@@ -11,7 +11,7 @@ public class Config {
      * Primary URL - Your GitHub Pages deployment
      * Format: https://YOUR_GITHUB_USERNAME.github.io/FKTI-Learning-Hub/
      */
-    public static final String PRIMARY_URL = "https://fkhambaty.github.io/FKTI-Learning-Hub/";
+    public static final String PRIMARY_URL = "https://fkhambaty.github.io/fkti_android/";
     
     /**
      * Backup URL - Alternative hosting (Netlify, Vercel, etc.)
