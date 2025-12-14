@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session 12: APIs & SQL | 🐍 Python Mastery</title>
+  <link rel="stylesheet" href="light-theme.css">
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-content">
+      <a href="complete-course.html" class="logo">🐍 Python Mastery</a>
+      <div class="session-nav">
+        <a href="s1-intro.html" class="nav-link">1</a>
+        <a href="s2-datatypes.html" class="nav-link">2</a>
+        <a href="s3-loops.html" class="nav-link">3</a>
+        <a href="s4-lists.html" class="nav-link">4</a>
+        <a href="s5-datastructures.html" class="nav-link">5</a>
+        <a href="s6-functions1.html" class="nav-link">6</a>
+        <a href="s7-functions2.html" class="nav-link">7</a>
+        <a href="s8-oop.html" class="nav-link">8</a>
+        <a href="s9-numpy.html" class="nav-link">9</a>
+        <a href="s10-pandas1.html" class="nav-link">10</a>
+        <a href="s11-pandas2.html" class="nav-link">11</a>
+        <a href="s12-api-sql.html" class="nav-link active">12</a>
+        <a href="assignments.html" class="nav-link assignment">📝</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <header class="session-header">
+      <div class="session-badge">Session 12</div>
+      <h1>🌐 APIs & SQL Databases</h1>
+      <p class="session-subtitle">Get real data from the web and databases</p>
+      <div class="progress-info">
+        <span>📚 8 Topics</span>
+        <span>⏱️ 50 min read</span>
+        <span>🎯 Advanced Level</span>
+      </div>
+    </header>
+
+    <!-- OVERVIEW -->
+    <section class="overview-card">
+      <h2>🗺️ What You'll Learn</h2>
+      <div class="overview-grid">
+        <div class="overview-item">
+          <span class="overview-icon">🌐</span>
+          <span>What are APIs?</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">📡</span>
+          <span>HTTP Requests</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">📦</span>
+          <span>JSON Data</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">🗄️</span>
+          <span>SQLite Basics</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">📊</span>
+          <span>SQL Queries</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">🐼</span>
+          <span>Pandas + SQL</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT IS AN API -->
+    <section class="content-section">
+      <h2>🌐 What is an API?</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">12.1</span>
+          <h3>📡 Application Programming Interface</h3>
+        </div>
+
+        <div class="visual-box">
+          <h4>🍽️ API = Restaurant Waiter</h4>
+          <pre style="text-align: center; font-size: 1rem;">
+    You (Client)         Waiter (API)         Kitchen (Server)
+    ─────────────        ────────────         ─────────────────
+    
+         📋                  🧑‍🍳                    👨‍🍳
+    "I want pizza"    →   Takes order    →   Prepares pizza
+                         
+         🍕                  🧑‍🍳                    👨‍🍳
+    Receives pizza   ←   Brings food    ←   Sends pizza
+    
+    The waiter (API) is the middleman that:
+    • Takes your request
+    • Communicates with the kitchen
+    • Returns the result to you
+          </pre>
+        </div>
+
+        <div class="info-box tip">
+          <div class="info-header">
+            <span class="info-icon">💡</span>
+            <span>Why Use APIs?</span>
+          </div>
+          <div class="info-content">
+            <ul>
+              <li>Get weather data from weather services</li>
+              <li>Access social media data</li>
+              <li>Retrieve stock prices</li>
+              <li>Use AI/ML services</li>
+              <li>Send emails, SMS</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HTTP REQUESTS -->
+    <section class="content-section">
+      <h2>📡 Making HTTP Requests</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">12.2</span>
+          <h3>🔌 The requests Library</h3>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># HTTP requests from Session 12</span>
+<span class="keyword">import</span> requests
+
+<span class="comment"># Make a GET request</span>
+<span class="variable">url</span> = <span class="string">"https://api.github.com/users/python"</span>
+<span class="variable">response</span> = requests.get(url)
+
+<span class="comment"># Check status code</span>
+<span class="function">print</span>(<span class="string">"Status Code:"</span>, response.status_code)
+<span class="function">print</span>(<span class="string">"Success?"</span>, response.status_code == <span class="number">200</span>)
+
+<span class="comment"># Common status codes:</span>
+<span class="comment"># 200 = Success</span>
+<span class="comment"># 404 = Not Found</span>
+<span class="comment"># 401 = Unauthorized</span>
+<span class="comment"># 500 = Server Error</span></code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Status Code: 200
+Success? True</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- JSON DATA -->
+    <section class="content-section">
+      <h2>📦 Working with JSON</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">12.3</span>
+          <h3>🗃️ JSON = JavaScript Object Notation</h3>
+        </div>
+
+        <div class="explanation">
+          <p>JSON is the most common data format for APIs. It's similar to Python dictionaries!</p>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Working with JSON from Session 12</span>
+<span class="keyword">import</span> requests
+<span class="keyword">import</span> json
+
+<span class="comment"># Get JSON data from API</span>
+<span class="variable">url</span> = <span class="string">"https://api.github.com/users/python"</span>
+<span class="variable">response</span> = requests.get(url)
+
+<span class="comment"># Parse JSON response</span>
+<span class="variable">data</span> = response.json()  <span class="comment"># Converts JSON to Python dict</span>
+
+<span class="function">print</span>(<span class="string">"Type:"</span>, <span class="function">type</span>(data))
+<span class="function">print</span>(<span class="string">"Login:"</span>, data[<span class="string">'login'</span>])
+<span class="function">print</span>(<span class="string">"Name:"</span>, data.get(<span class="string">'name'</span>))
+<span class="function">print</span>(<span class="string">"Followers:"</span>, data.get(<span class="string">'followers'</span>))
+
+<span class="comment"># Working with JSON strings</span>
+<span class="variable">json_string</span> = <span class="string">'{"name": "Alice", "age": 25}'</span>
+<span class="variable">parsed</span> = json.loads(json_string)  <span class="comment"># String to dict</span>
+<span class="function">print</span>(<span class="string">"\\nParsed:"</span>, parsed)
+
+<span class="comment"># Convert dict to JSON string</span>
+<span class="variable">my_dict</span> = {<span class="string">"product"</span>: <span class="string">"Laptop"</span>, <span class="string">"price"</span>: <span class="number">999</span>}
+<span class="variable">json_str</span> = json.dumps(my_dict, indent=<span class="number">2</span>)
+<span class="function">print</span>(<span class="string">"\\nJSON string:"</span>)
+<span class="function">print</span>(json_str)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Type: &lt;class 'dict'&gt;
+Login: python
+Name: Python
+Followers: 17000+
+
+Parsed: {'name': 'Alice', 'age': 25}
+
+JSON string:
+{
+  "product": "Laptop",
+  "price": 999
+}</pre>
+        </div>
+      </div>
+
+      <!-- PRACTICAL API EXAMPLE -->
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">12.4</span>
+          <h3>🌤️ Practical Example: Weather API</h3>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># API example from Session 12</span>
+<span class="keyword">import</span> requests
+<span class="keyword">import</span> pandas <span class="keyword">as</span> pd
+
+<span class="comment"># Example: JSONPlaceholder API (free test API)</span>
+<span class="variable">url</span> = <span class="string">"https://jsonplaceholder.typicode.com/users"</span>
+<span class="variable">response</span> = requests.get(url)
+<span class="variable">users</span> = response.json()
+
+<span class="comment"># Convert to DataFrame</span>
+<span class="variable">df</span> = pd.DataFrame(users)
+<span class="function">print</span>(<span class="string">"Users from API:"</span>)
+<span class="function">print</span>(df[[<span class="string">'id'</span>, <span class="string">'name'</span>, <span class="string">'email'</span>]].head())
+
+<span class="comment"># Get todos from API</span>
+<span class="variable">todos_url</span> = <span class="string">"https://jsonplaceholder.typicode.com/todos"</span>
+<span class="variable">todos</span> = requests.get(todos_url).json()
+<span class="variable">todos_df</span> = pd.DataFrame(todos)
+<span class="function">print</span>(<span class="string">"\\nTodos:"</span>)
+<span class="function">print</span>(todos_df.head())
+
+<span class="comment"># Analyze the data</span>
+<span class="function">print</span>(<span class="string">"\\nCompleted tasks by user:"</span>)
+<span class="function">print</span>(todos_df.groupby(<span class="string">'userId'</span>)[<span class="string">'completed'</span>].sum().head())</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Users from API:
+   id              name                      email
+0   1     Leanne Graham          Sincere@april.biz
+1   2      Ervin Howell    Shanna@melissa.tv
+2   3  Clementine Bauch       Nathan@yesenia.net
+3   4 Patricia Lebsack    Julianne.OConner@kory.org
+4   5 Chelsey Dietrich    Lucio_Hettinger@annie.ca
+
+Todos:
+   userId  id                        title  completed
+0       1   1  delectus aut autem            False
+1       1   2  quis ut nam facilis...        False
+2       1   3  fugiat veniam minus           False
+3       1   4  et porro tempora              True
+4       1   5  laboriosam mollitia...        False
+
+Completed tasks by user:
+userId
+1    11
+2     8
+3     7
+4     6
+5     12
+Name: completed, dtype: int64</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- SQL DATABASES -->
+    <section class="content-section">
+      <h2>🗄️ SQL Databases</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">12.5</span>
+          <h3>💾 SQLite - A File-Based Database</h3>
+        </div>
+
+        <div class="explanation">
+          <p>SQLite is a lightweight database that stores everything in a single file. Perfect for learning and small projects!</p>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># SQLite basics from Session 12</span>
+<span class="keyword">import</span> sqlite3
+
+<span class="comment"># Connect to database (creates if doesn't exist)</span>
+<span class="variable">conn</span> = sqlite3.connect(<span class="string">':memory:'</span>)  <span class="comment"># In-memory database</span>
+<span class="variable">cursor</span> = conn.cursor()
+
+<span class="comment"># Create a table</span>
+cursor.execute(<span class="string">'''
+    CREATE TABLE employees (
+        id INTEGER PRIMARY KEY,
+        name TEXT NOT NULL,
+        department TEXT,
+        salary REAL
+    )
+'''</span>)
+
+<span class="comment"># Insert data</span>
+cursor.execute(<span class="string">"INSERT INTO employees (name, department, salary) VALUES (?, ?, ?)"</span>,
+               (<span class="string">'Alice'</span>, <span class="string">'HR'</span>, <span class="number">50000</span>))
+cursor.execute(<span class="string">"INSERT INTO employees (name, department, salary) VALUES (?, ?, ?)"</span>,
+               (<span class="string">'Bob'</span>, <span class="string">'IT'</span>, <span class="number">60000</span>))
+cursor.execute(<span class="string">"INSERT INTO employees (name, department, salary) VALUES (?, ?, ?)"</span>,
+               (<span class="string">'Charlie'</span>, <span class="string">'IT'</span>, <span class="number">70000</span>))
+
+<span class="comment"># Commit changes</span>
+conn.commit()
+
+<span class="comment"># Query data</span>
+cursor.execute(<span class="string">"SELECT * FROM employees"</span>)
+<span class="variable">results</span> = cursor.fetchall()
+<span class="function">print</span>(<span class="string">"All employees:"</span>)
+<span class="keyword">for</span> <span class="variable">row</span> <span class="keyword">in</span> results:
+    <span class="function">print</span>(row)
+
+<span class="comment"># Close connection</span>
+conn.close()</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>All employees:
+(1, 'Alice', 'HR', 50000.0)
+(2, 'Bob', 'IT', 60000.0)
+(3, 'Charlie', 'IT', 70000.0)</pre>
+        </div>
+      </div>
+
+      <!-- SQL QUERIES -->
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">12.6</span>
+          <h3>📊 Common SQL Queries</h3>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># SQL queries from Session 12</span>
+<span class="keyword">import</span> sqlite3
+
+<span class="variable">conn</span> = sqlite3.connect(<span class="string">':memory:'</span>)
+<span class="variable">cursor</span> = conn.cursor()
+
+<span class="comment"># Create and populate table</span>
+cursor.execute(<span class="string">'CREATE TABLE products (id INTEGER, name TEXT, price REAL, stock INTEGER)'</span>)
+cursor.executemany(<span class="string">'INSERT INTO products VALUES (?, ?, ?, ?)'</span>, [
+    (<span class="number">1</span>, <span class="string">'Laptop'</span>, <span class="number">999.99</span>, <span class="number">50</span>),
+    (<span class="number">2</span>, <span class="string">'Mouse'</span>, <span class="number">29.99</span>, <span class="number">200</span>),
+    (<span class="number">3</span>, <span class="string">'Keyboard'</span>, <span class="number">79.99</span>, <span class="number">150</span>),
+    (<span class="number">4</span>, <span class="string">'Monitor'</span>, <span class="number">299.99</span>, <span class="number">75</span>),
+    (<span class="number">5</span>, <span class="string">'USB Cable'</span>, <span class="number">9.99</span>, <span class="number">500</span>)
+])
+conn.commit()
+
+<span class="comment"># SELECT with WHERE</span>
+<span class="function">print</span>(<span class="string">"Products over $50:"</span>)
+cursor.execute(<span class="string">"SELECT * FROM products WHERE price > 50"</span>)
+<span class="keyword">for</span> <span class="variable">row</span> <span class="keyword">in</span> cursor.fetchall():
+    <span class="function">print</span>(row)
+
+<span class="comment"># ORDER BY</span>
+<span class="function">print</span>(<span class="string">"\\nProducts by price (descending):"</span>)
+cursor.execute(<span class="string">"SELECT name, price FROM products ORDER BY price DESC"</span>)
+<span class="keyword">for</span> <span class="variable">row</span> <span class="keyword">in</span> cursor.fetchall():
+    <span class="function">print</span>(row)
+
+<span class="comment"># Aggregate functions</span>
+cursor.execute(<span class="string">"SELECT AVG(price), SUM(stock), COUNT(*) FROM products"</span>)
+<span class="variable">avg_price</span>, <span class="variable">total_stock</span>, <span class="variable">count</span> = cursor.fetchone()
+<span class="function">print</span>(<span class="string">f"\\nAverage price: ${avg_price:.2f}"</span>)
+<span class="function">print</span>(<span class="string">f"Total stock: {total_stock}"</span>)
+<span class="function">print</span>(<span class="string">f"Product count: {count}"</span>)
+
+conn.close()</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Products over $50:
+(1, 'Laptop', 999.99, 50)
+(3, 'Keyboard', 79.99, 150)
+(4, 'Monitor', 299.99, 75)
+
+Products by price (descending):
+('Laptop', 999.99)
+('Monitor', 299.99)
+('Keyboard', 79.99)
+('Mouse', 29.99)
+('USB Cable', 9.99)
+
+Average price: $283.99
+Total stock: 975
+Product count: 5</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- PANDAS + SQL -->
+    <section class="content-section">
+      <h2>🐼 Pandas + SQL</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">12.7</span>
+          <h3>🔗 Reading SQL into DataFrames</h3>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Pandas + SQL from Session 12</span>
+<span class="keyword">import</span> sqlite3
+<span class="keyword">import</span> pandas <span class="keyword">as</span> pd
+
+<span class="comment"># Create database with data</span>
+<span class="variable">conn</span> = sqlite3.connect(<span class="string">':memory:'</span>)
+<span class="variable">cursor</span> = conn.cursor()
+cursor.execute(<span class="string">'CREATE TABLE sales (id INTEGER, product TEXT, amount REAL, date TEXT)'</span>)
+cursor.executemany(<span class="string">'INSERT INTO sales VALUES (?, ?, ?, ?)'</span>, [
+    (<span class="number">1</span>, <span class="string">'Laptop'</span>, <span class="number">999.99</span>, <span class="string">'2024-01-15'</span>),
+    (<span class="number">2</span>, <span class="string">'Mouse'</span>, <span class="number">29.99</span>, <span class="string">'2024-01-15'</span>),
+    (<span class="number">3</span>, <span class="string">'Laptop'</span>, <span class="number">999.99</span>, <span class="string">'2024-01-16'</span>),
+    (<span class="number">4</span>, <span class="string">'Keyboard'</span>, <span class="number">79.99</span>, <span class="string">'2024-01-16'</span>),
+    (<span class="number">5</span>, <span class="string">'Mouse'</span>, <span class="number">29.99</span>, <span class="string">'2024-01-17'</span>)
+])
+conn.commit()
+
+<span class="comment"># Read SQL query into DataFrame</span>
+<span class="variable">df</span> = pd.read_sql_query(<span class="string">"SELECT * FROM sales"</span>, conn)
+<span class="function">print</span>(<span class="string">"Sales DataFrame:"</span>)
+<span class="function">print</span>(df)
+
+<span class="comment"># Use Pandas for analysis</span>
+<span class="function">print</span>(<span class="string">"\\nTotal sales by product:"</span>)
+<span class="function">print</span>(df.groupby(<span class="string">'product'</span>)[<span class="string">'amount'</span>].sum())
+
+<span class="comment"># Write DataFrame to SQL</span>
+<span class="variable">new_data</span> = pd.DataFrame({
+    <span class="string">'name'</span>: [<span class="string">'Alice'</span>, <span class="string">'Bob'</span>],
+    <span class="string">'score'</span>: [<span class="number">95</span>, <span class="number">87</span>]
+})
+new_data.to_sql(<span class="string">'scores'</span>, conn, index=<span class="keyword">False</span>)
+<span class="function">print</span>(<span class="string">"\\nCreated scores table from DataFrame!"</span>)
+
+conn.close()</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Sales DataFrame:
+   id   product  amount        date
+0   1    Laptop  999.99  2024-01-15
+1   2     Mouse   29.99  2024-01-15
+2   3    Laptop  999.99  2024-01-16
+3   4  Keyboard   79.99  2024-01-16
+4   5     Mouse   29.99  2024-01-17
+
+Total sales by product:
+product
+Keyboard      79.99
+Laptop      1999.98
+Mouse         59.98
+Name: amount, dtype: float64
+
+Created scores table from DataFrame!</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUICK REFERENCE -->
+    <section class="content-section">
+      <h2>📋 Quick Reference</h2>
+      
+      <div class="reference-card">
+        <h4>🌐 API Functions</h4>
+        <table class="reference-table">
+          <thead>
+            <tr><th>Code</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>requests.get(url)</td><td>Make GET request</td></tr>
+            <tr><td>response.json()</td><td>Parse JSON response</td></tr>
+            <tr><td>response.status_code</td><td>HTTP status code</td></tr>
+            <tr><td>json.loads(str)</td><td>String to dict</td></tr>
+            <tr><td>json.dumps(dict)</td><td>Dict to string</td></tr>
+          </tbody>
+        </table>
+
+        <h4 style="margin-top: 1.5rem;">🗄️ SQL Functions</h4>
+        <table class="reference-table">
+          <thead>
+            <tr><th>Code</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>sqlite3.connect()</td><td>Connect to database</td></tr>
+            <tr><td>cursor.execute()</td><td>Run SQL query</td></tr>
+            <tr><td>cursor.fetchall()</td><td>Get all results</td></tr>
+            <tr><td>conn.commit()</td><td>Save changes</td></tr>
+            <tr><td>pd.read_sql_query()</td><td>SQL to DataFrame</td></tr>
+            <tr><td>df.to_sql()</td><td>DataFrame to SQL</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- CONGRATULATIONS -->
+    <section class="content-section">
+      <div class="topic-card" style="text-align: center; background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);">
+        <h2>🎉 Congratulations!</h2>
+        <p style="font-size: 1.2rem; margin: 1rem 0;">You've completed all 12 sessions of Python Mastery!</p>
+        <p>You now know:</p>
+        <ul style="text-align: left; max-width: 400px; margin: 1rem auto;">
+          <li>✅ Python fundamentals</li>
+          <li>✅ Data types and structures</li>
+          <li>✅ Control flow and loops</li>
+          <li>✅ Functions and OOP</li>
+          <li>✅ NumPy and Pandas</li>
+          <li>✅ APIs and databases</li>
+        </ul>
+        <p style="margin-top: 1.5rem;">
+          <a href="a1-strings.html" style="display: inline-block; padding: 1rem 2rem; background: var(--gradient-python); color: white; text-decoration: none; border-radius: 12px; font-weight: bold;">📝 Test Your Skills with Assignments →</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- NAVIGATION -->
+    <nav class="page-navigation">
+      <a href="s11-pandas2.html" class="nav-prev">
+        <span class="nav-arrow">←</span>
+        <span class="nav-text">
+          <span class="nav-label">Previous</span>
+          <span class="nav-title">Pandas Part II</span>
+        </span>
+      </a>
+      <a href="complete-course.html" class="nav-home">🏠</a>
+      <a href="a1-strings.html" class="nav-next">
+        <span class="nav-text">
+          <span class="nav-label">Next</span>
+          <span class="nav-title">Assignment 1</span>
+        </span>
+        <span class="nav-arrow">→</span>
+      </a>
+    </nav>
+  </main>
+
+  <footer>
+    <p>🐍 Python Mastery | Learn. Code. Create.</p>
+  </footer>
+</body>
+</html>
+

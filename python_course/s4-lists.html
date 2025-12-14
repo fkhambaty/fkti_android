@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session 4: Lists & Tuples | 🐍 Python Mastery</title>
+  <link rel="stylesheet" href="light-theme.css">
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-content">
+      <a href="complete-course.html" class="logo">🐍 Python Mastery</a>
+      <div class="session-nav">
+        <a href="s1-intro.html" class="nav-link">1</a>
+        <a href="s2-datatypes.html" class="nav-link">2</a>
+        <a href="s3-loops.html" class="nav-link">3</a>
+        <a href="s4-lists.html" class="nav-link active">4</a>
+        <a href="s5-datastructures.html" class="nav-link">5</a>
+        <a href="s6-functions1.html" class="nav-link">6</a>
+        <a href="s7-functions2.html" class="nav-link">7</a>
+        <a href="s8-oop.html" class="nav-link">8</a>
+        <a href="s9-numpy.html" class="nav-link">9</a>
+        <a href="s10-pandas1.html" class="nav-link">10</a>
+        <a href="s11-pandas2.html" class="nav-link">11</a>
+        <a href="s12-api-sql.html" class="nav-link">12</a>
+        <a href="assignments.html" class="nav-link assignment">📝</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <header class="session-header">
+      <div class="session-badge">Session 4</div>
+      <h1>📋 Lists & Tuples</h1>
+      <p class="session-subtitle">Python's most versatile data structures</p>
+      <div class="progress-info">
+        <span>📚 12 Topics</span>
+        <span>⏱️ 50 min read</span>
+        <span>🎯 Essential Level</span>
+      </div>
+    </header>
+
+    <!-- OVERVIEW -->
+    <section class="overview-card">
+      <h2>🗺️ What You'll Learn</h2>
+      <div class="overview-grid">
+        <div class="overview-item">
+          <span class="overview-icon">📝</span>
+          <span>Creating Lists</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">🔍</span>
+          <span>Indexing & Slicing</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">➕</span>
+          <span>Adding & Removing Items</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">🔄</span>
+          <span>List Methods</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">🔒</span>
+          <span>Tuples (Immutable Lists)</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">📦</span>
+          <span>Nested Structures</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ANALOGY -->
+    <section class="analogy-card">
+      <div class="analogy-header">
+        <span class="analogy-icon">🚂</span>
+        <h3>Think of Lists Like a Train!</h3>
+      </div>
+      <div class="analogy-content">
+        <div class="visual-box">
+          <pre style="text-align: center; font-size: 1.1rem;">
+    🚂═══╦═══╦═══╦═══╦═══╦═══╗
+         ║ 🍎 ║ 🍊 ║ 🍋 ║ 🍇 ║ 🍉 ║
+         ║ [0]║ [1]║ [2]║ [3]║ [4]║
+    ═════╩═══╩═══╩═══╩═══╩═══╝
+    
+    • Each car holds one item
+    • Cars are numbered (indexed)
+    • You can add/remove cars
+    • You can look inside any car
+          </pre>
+        </div>
+        <p class="analogy-moral">A List is an ordered collection where each item has a position number!</p>
+      </div>
+    </section>
+
+    <!-- CREATING LISTS -->
+    <section class="content-section">
+      <h2>📝 Creating Lists</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">4.1</span>
+          <h3>🎯 What is a List?</h3>
+        </div>
+
+        <div class="explanation">
+          <p>A <strong>list</strong> is an ordered, mutable (changeable) collection of items. It can hold different types of data and duplicate values.</p>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Creating lists from Session 4</span>
+
+<span class="comment"># Empty list</span>
+<span class="variable">empty_list</span> = []
+<span class="function">print</span>(<span class="string">"Empty list:"</span>, empty_list)
+
+<span class="comment"># List with numbers</span>
+<span class="variable">numbers</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]
+<span class="function">print</span>(<span class="string">"Numbers:"</span>, numbers)
+
+<span class="comment"># List with strings</span>
+<span class="variable">fruits</span> = [<span class="string">"apple"</span>, <span class="string">"banana"</span>, <span class="string">"cherry"</span>]
+<span class="function">print</span>(<span class="string">"Fruits:"</span>, fruits)
+
+<span class="comment"># Mixed types - Python allows this!</span>
+<span class="variable">mixed</span> = [<span class="number">1</span>, <span class="string">"hello"</span>, <span class="number">3.14</span>, <span class="keyword">True</span>, <span class="keyword">None</span>]
+<span class="function">print</span>(<span class="string">"Mixed:"</span>, mixed)
+
+<span class="comment"># List with duplicates</span>
+<span class="variable">duplicates</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>]
+<span class="function">print</span>(<span class="string">"With duplicates:"</span>, duplicates)
+
+<span class="comment"># Using list() constructor</span>
+<span class="variable">from_string</span> = <span class="function">list</span>(<span class="string">"hello"</span>)
+<span class="function">print</span>(<span class="string">"From string:"</span>, from_string)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Empty list: []
+Numbers: [1, 2, 3, 4, 5]
+Fruits: ['apple', 'banana', 'cherry']
+Mixed: [1, 'hello', 3.14, True, None]
+With duplicates: [1, 2, 2, 3, 3, 3]
+From string: ['h', 'e', 'l', 'l', 'o']</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACCESSING ELEMENTS -->
+    <section class="content-section">
+      <h2>🔍 Accessing List Elements</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">4.2</span>
+          <h3>📍 Indexing</h3>
+        </div>
+
+        <div class="explanation">
+          <p>Each item in a list has a position number called an <strong>index</strong>. Python uses <strong>zero-based indexing</strong> - the first item is at index 0!</p>
+        </div>
+
+        <div class="visual-diagram">
+          <h4 style="text-align: center;">🔢 Understanding Indices</h4>
+          <pre style="text-align: center; font-size: 1.1rem;">
+    List:      ["apple", "banana", "cherry", "date", "elderberry"]
+    
+    Positive:      0        1         2        3          4
+                   ↓        ↓         ↓        ↓          ↓
+                 ┌────┐  ┌────┐   ┌────┐   ┌────┐    ┌────┐
+                 │ 🍎 │  │ 🍌 │   │ 🍒 │   │ 📅 │    │ 🫐 │
+                 └────┘  └────┘   └────┘   └────┘    └────┘
+                   ↑        ↑         ↑        ↑          ↑
+    Negative:     -5       -4        -3       -2         -1
+    
+    💡 Negative indices count from the end!
+          </pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Indexing from Session 4</span>
+<span class="variable">fruits</span> = [<span class="string">"apple"</span>, <span class="string">"banana"</span>, <span class="string">"cherry"</span>, <span class="string">"date"</span>, <span class="string">"elderberry"</span>]
+
+<span class="comment"># Positive indexing (from start)</span>
+<span class="function">print</span>(<span class="string">"First item (index 0):"</span>, fruits[<span class="number">0</span>])
+<span class="function">print</span>(<span class="string">"Second item (index 1):"</span>, fruits[<span class="number">1</span>])
+<span class="function">print</span>(<span class="string">"Third item (index 2):"</span>, fruits[<span class="number">2</span>])
+
+<span class="comment"># Negative indexing (from end)</span>
+<span class="function">print</span>(<span class="string">"Last item (index -1):"</span>, fruits[-<span class="number">1</span>])
+<span class="function">print</span>(<span class="string">"Second to last (index -2):"</span>, fruits[-<span class="number">2</span>])
+
+<span class="comment"># Get length of list</span>
+<span class="function">print</span>(<span class="string">"List length:"</span>, <span class="function">len</span>(fruits))</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>First item (index 0): apple
+Second item (index 1): banana
+Third item (index 2): cherry
+Last item (index -1): elderberry
+Second to last (index -2): date
+List length: 5</pre>
+        </div>
+      </div>
+
+      <!-- SLICING -->
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">4.3</span>
+          <h3>✂️ Slicing - Getting Multiple Items</h3>
+        </div>
+
+        <div class="explanation">
+          <p>Slicing lets you get a portion of a list using the syntax <code>list[start:stop:step]</code></p>
+        </div>
+
+        <div class="visual-box">
+          <h4>🎯 Slicing Rules</h4>
+          <pre style="text-align: center; font-size: 1rem;">
+    list[start:stop:step]
+    
+    • start: Where to begin (included)
+    • stop:  Where to end (NOT included!)
+    • step:  How many to skip (default: 1)
+    
+    🎪 Remember: Start is IN, Stop is OUT!
+          </pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Slicing from Session 4</span>
+<span class="variable">numbers</span> = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]
+
+<span class="comment"># Basic slicing</span>
+<span class="function">print</span>(<span class="string">"First 3 items:"</span>, numbers[<span class="number">0</span>:<span class="number">3</span>])     <span class="comment"># [0, 1, 2]</span>
+<span class="function">print</span>(<span class="string">"Items 3-6:"</span>, numbers[<span class="number">3</span>:<span class="number">7</span>])         <span class="comment"># [3, 4, 5, 6]</span>
+
+<span class="comment"># Shorthand notation</span>
+<span class="function">print</span>(<span class="string">"First 5:"</span>, numbers[:<span class="number">5</span>])           <span class="comment"># [0, 1, 2, 3, 4]</span>
+<span class="function">print</span>(<span class="string">"From index 5:"</span>, numbers[<span class="number">5</span>:])     <span class="comment"># [5, 6, 7, 8, 9]</span>
+<span class="function">print</span>(<span class="string">"Copy all:"</span>, numbers[:])           <span class="comment"># [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</span>
+
+<span class="comment"># With step</span>
+<span class="function">print</span>(<span class="string">"Every 2nd:"</span>, numbers[::<span class="number">2</span>])       <span class="comment"># [0, 2, 4, 6, 8]</span>
+<span class="function">print</span>(<span class="string">"Every 3rd:"</span>, numbers[::<span class="number">3</span>])       <span class="comment"># [0, 3, 6, 9]</span>
+
+<span class="comment"># Negative step (reverse!)</span>
+<span class="function">print</span>(<span class="string">"Reversed:"</span>, numbers[::-<span class="number">1</span>])       <span class="comment"># [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]</span>
+
+<span class="comment"># Negative indices in slicing</span>
+<span class="function">print</span>(<span class="string">"Last 3:"</span>, numbers[-<span class="number">3</span>:])          <span class="comment"># [7, 8, 9]</span>
+<span class="function">print</span>(<span class="string">"All except last 2:"</span>, numbers[:-<span class="number">2</span>]) <span class="comment"># [0, 1, 2, 3, 4, 5, 6, 7]</span></code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>First 3 items: [0, 1, 2]
+Items 3-6: [3, 4, 5, 6]
+First 5: [0, 1, 2, 3, 4]
+From index 5: [5, 6, 7, 8, 9]
+Copy all: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Every 2nd: [0, 2, 4, 6, 8]
+Every 3rd: [0, 3, 6, 9]
+Reversed: [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+Last 3: [7, 8, 9]
+All except last 2: [0, 1, 2, 3, 4, 5, 6, 7]</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODIFYING LISTS -->
+    <section class="content-section">
+      <h2>✏️ Modifying Lists</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">4.4</span>
+          <h3>➕ Adding Items</h3>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Adding items from Session 4</span>
+<span class="variable">fruits</span> = [<span class="string">"apple"</span>, <span class="string">"banana"</span>]
+<span class="function">print</span>(<span class="string">"Original:"</span>, fruits)
+
+<span class="comment"># append() - Add to end</span>
+fruits.append(<span class="string">"cherry"</span>)
+<span class="function">print</span>(<span class="string">"After append:"</span>, fruits)
+
+<span class="comment"># insert() - Add at specific position</span>
+fruits.insert(<span class="number">1</span>, <span class="string">"blueberry"</span>)  <span class="comment"># Insert at index 1</span>
+<span class="function">print</span>(<span class="string">"After insert at 1:"</span>, fruits)
+
+<span class="comment"># extend() - Add multiple items</span>
+fruits.extend([<span class="string">"date"</span>, <span class="string">"elderberry"</span>])
+<span class="function">print</span>(<span class="string">"After extend:"</span>, fruits)
+
+<span class="comment"># Using + operator</span>
+<span class="variable">more_fruits</span> = fruits + [<span class="string">"fig"</span>, <span class="string">"grape"</span>]
+<span class="function">print</span>(<span class="string">"Combined:"</span>, more_fruits)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Original: ['apple', 'banana']
+After append: ['apple', 'banana', 'cherry']
+After insert at 1: ['apple', 'blueberry', 'banana', 'cherry']
+After extend: ['apple', 'blueberry', 'banana', 'cherry', 'date', 'elderberry']
+Combined: ['apple', 'blueberry', 'banana', 'cherry', 'date', 'elderberry', 'fig', 'grape']</pre>
+        </div>
+
+        <div class="info-box tip">
+          <div class="info-header">
+            <span class="info-icon">💡</span>
+            <span>append() vs extend()</span>
+          </div>
+          <div class="info-content">
+            <p><code>append(item)</code> adds ONE item (can be a list!)</p>
+            <p><code>extend(list)</code> adds EACH item from the list separately</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">4.5</span>
+          <h3>➖ Removing Items</h3>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Removing items from Session 4</span>
+<span class="variable">numbers</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">6</span>]
+<span class="function">print</span>(<span class="string">"Original:"</span>, numbers)
+
+<span class="comment"># remove() - Remove first occurrence of value</span>
+numbers.remove(<span class="number">3</span>)  <span class="comment"># Removes first 3</span>
+<span class="function">print</span>(<span class="string">"After remove(3):"</span>, numbers)
+
+<span class="comment"># pop() - Remove and return item at index</span>
+<span class="variable">removed</span> = numbers.pop(<span class="number">2</span>)  <span class="comment"># Remove item at index 2</span>
+<span class="function">print</span>(<span class="string">"Popped:"</span>, removed)
+<span class="function">print</span>(<span class="string">"After pop(2):"</span>, numbers)
+
+<span class="comment"># pop() without index removes last item</span>
+<span class="variable">last</span> = numbers.pop()
+<span class="function">print</span>(<span class="string">"Popped last:"</span>, last)
+<span class="function">print</span>(<span class="string">"After pop():"</span>, numbers)
+
+<span class="comment"># del - Delete by index</span>
+<span class="keyword">del</span> numbers[<span class="number">0</span>]
+<span class="function">print</span>(<span class="string">"After del [0]:"</span>, numbers)
+
+<span class="comment"># clear() - Remove all items</span>
+numbers.clear()
+<span class="function">print</span>(<span class="string">"After clear():"</span>, numbers)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Original: [1, 2, 3, 4, 5, 3, 6]
+After remove(3): [1, 2, 4, 5, 3, 6]
+Popped: 4
+After pop(2): [1, 2, 5, 3, 6]
+Popped last: 6
+After pop(): [1, 2, 5, 3]
+After del [0]: [2, 5, 3]
+After clear(): []</pre>
+        </div>
+      </div>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">4.6</span>
+          <h3>🔄 Modifying Items</h3>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Modifying items from Session 4</span>
+<span class="variable">colors</span> = [<span class="string">"red"</span>, <span class="string">"green"</span>, <span class="string">"blue"</span>]
+<span class="function">print</span>(<span class="string">"Original:"</span>, colors)
+
+<span class="comment"># Change single item</span>
+colors[<span class="number">1</span>] = <span class="string">"yellow"</span>
+<span class="function">print</span>(<span class="string">"After changing index 1:"</span>, colors)
+
+<span class="comment"># Change multiple items with slicing</span>
+colors[<span class="number">0</span>:<span class="number">2</span>] = [<span class="string">"purple"</span>, <span class="string">"orange"</span>]
+<span class="function">print</span>(<span class="string">"After slice replacement:"</span>, colors)
+
+<span class="comment"># Replace with different number of items</span>
+colors[<span class="number">1</span>:<span class="number">2</span>] = [<span class="string">"pink"</span>, <span class="string">"brown"</span>, <span class="string">"gray"</span>]
+<span class="function">print</span>(<span class="string">"Replaced 1 with 3:"</span>, colors)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Original: ['red', 'green', 'blue']
+After changing index 1: ['red', 'yellow', 'blue']
+After slice replacement: ['purple', 'orange', 'blue']
+Replaced 1 with 3: ['purple', 'pink', 'brown', 'gray', 'blue']</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIST METHODS -->
+    <section class="content-section">
+      <h2>🛠️ List Methods</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">4.7</span>
+          <h3>📊 Sorting and Reversing</h3>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Sorting from Session 4</span>
+<span class="variable">numbers</span> = [<span class="number">3</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">9</span>, <span class="number">2</span>, <span class="number">6</span>]
+<span class="function">print</span>(<span class="string">"Original:"</span>, numbers)
+
+<span class="comment"># sort() - Sorts in place (changes original)</span>
+numbers.sort()
+<span class="function">print</span>(<span class="string">"Sorted ascending:"</span>, numbers)
+
+numbers.sort(reverse=<span class="keyword">True</span>)
+<span class="function">print</span>(<span class="string">"Sorted descending:"</span>, numbers)
+
+<span class="comment"># sorted() - Returns new sorted list (original unchanged)</span>
+<span class="variable">original</span> = [<span class="number">5</span>, <span class="number">2</span>, <span class="number">8</span>, <span class="number">1</span>]
+<span class="variable">new_sorted</span> = <span class="function">sorted</span>(original)
+<span class="function">print</span>(<span class="string">"Original unchanged:"</span>, original)
+<span class="function">print</span>(<span class="string">"New sorted list:"</span>, new_sorted)
+
+<span class="comment"># reverse() - Reverses in place</span>
+<span class="variable">letters</span> = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>]
+letters.reverse()
+<span class="function">print</span>(<span class="string">"Reversed:"</span>, letters)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Original: [3, 1, 4, 1, 5, 9, 2, 6]
+Sorted ascending: [1, 1, 2, 3, 4, 5, 6, 9]
+Sorted descending: [9, 6, 5, 4, 3, 2, 1, 1]
+Original unchanged: [5, 2, 8, 1]
+New sorted list: [1, 2, 5, 8]
+Reversed: ['d', 'c', 'b', 'a']</pre>
+        </div>
+      </div>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">4.8</span>
+          <h3>🔎 Searching and Counting</h3>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Searching and counting from Session 4</span>
+<span class="variable">fruits</span> = [<span class="string">"apple"</span>, <span class="string">"banana"</span>, <span class="string">"cherry"</span>, <span class="string">"banana"</span>, <span class="string">"date"</span>]
+
+<span class="comment"># index() - Find position of first occurrence</span>
+<span class="variable">position</span> = fruits.index(<span class="string">"cherry"</span>)
+<span class="function">print</span>(<span class="string">"'cherry' is at index:"</span>, position)
+
+<span class="comment"># count() - Count occurrences</span>
+<span class="variable">banana_count</span> = fruits.count(<span class="string">"banana"</span>)
+<span class="function">print</span>(<span class="string">"'banana' appears:"</span>, banana_count, <span class="string">"times"</span>)
+
+<span class="comment"># Check if item exists with 'in'</span>
+<span class="function">print</span>(<span class="string">"'apple' in list:"</span>, <span class="string">"apple"</span> <span class="keyword">in</span> fruits)
+<span class="function">print</span>(<span class="string">"'grape' in list:"</span>, <span class="string">"grape"</span> <span class="keyword">in</span> fruits)
+
+<span class="comment"># Get min, max, sum</span>
+<span class="variable">numbers</span> = [<span class="number">5</span>, <span class="number">2</span>, <span class="number">8</span>, <span class="number">1</span>, <span class="number">9</span>]
+<span class="function">print</span>(<span class="string">"Min:"</span>, <span class="function">min</span>(numbers))
+<span class="function">print</span>(<span class="string">"Max:"</span>, <span class="function">max</span>(numbers))
+<span class="function">print</span>(<span class="string">"Sum:"</span>, <span class="function">sum</span>(numbers))</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>'cherry' is at index: 2
+'banana' appears: 2 times
+'apple' in list: True
+'grape' in list: False
+Min: 1
+Max: 9
+Sum: 25</pre>
+        </div>
+      </div>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">4.9</span>
+          <h3>📋 Copying Lists</h3>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Copying lists from Session 4</span>
+
+<span class="comment"># WRONG way - creates a reference, not a copy!</span>
+<span class="variable">original</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]
+<span class="variable">wrong_copy</span> = original  <span class="comment"># Same list, different name!</span>
+wrong_copy.append(<span class="number">4</span>)
+<span class="function">print</span>(<span class="string">"Original (also changed!):"</span>, original)
+
+<span class="comment"># RIGHT ways to copy</span>
+<span class="variable">original</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]
+
+<span class="comment"># Method 1: copy()</span>
+<span class="variable">copy1</span> = original.copy()
+
+<span class="comment"># Method 2: list()</span>
+<span class="variable">copy2</span> = <span class="function">list</span>(original)
+
+<span class="comment"># Method 3: slicing</span>
+<span class="variable">copy3</span> = original[:]
+
+<span class="comment"># Modify copies - original stays same</span>
+copy1.append(<span class="number">100</span>)
+<span class="function">print</span>(<span class="string">"Original (unchanged):"</span>, original)
+<span class="function">print</span>(<span class="string">"Modified copy:"</span>, copy1)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Original (also changed!): [1, 2, 3, 4]
+Original (unchanged): [1, 2, 3]
+Modified copy: [1, 2, 3, 100]</pre>
+        </div>
+
+        <div class="info-box warning">
+          <div class="info-header">
+            <span class="info-icon">⚠️</span>
+            <span>Shallow vs Deep Copy</span>
+          </div>
+          <div class="info-content">
+            <p>The methods above create <strong>shallow copies</strong>. For nested lists, use <code>import copy</code> and <code>copy.deepcopy()</code>!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TUPLES -->
+    <section class="content-section">
+      <h2>🔒 Tuples</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">4.10</span>
+          <h3>📦 Immutable Sequences</h3>
+        </div>
+
+        <div class="explanation">
+          <p>A <strong>tuple</strong> is like a list, but it's <strong>immutable</strong> (cannot be changed after creation). Use parentheses <code>()</code> instead of brackets <code>[]</code>.</p>
+        </div>
+
+        <div class="visual-box">
+          <h4>🆚 List vs Tuple</h4>
+          <pre style="text-align: center; font-size: 1.1rem;">
+    LIST [1, 2, 3]        vs        TUPLE (1, 2, 3)
+    ──────────────                  ──────────────
+    ✅ Can add items                 ❌ Can't add
+    ✅ Can remove items              ❌ Can't remove
+    ✅ Can modify items              ❌ Can't modify
+    📝 Uses more memory              💾 Uses less memory
+    🐢 Slightly slower               🐇 Slightly faster
+    
+    Use LIST when you need to change data
+    Use TUPLE when data should stay fixed
+          </pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Tuple basics from Session 4</span>
+
+<span class="comment"># Creating tuples</span>
+<span class="variable">point</span> = (<span class="number">3</span>, <span class="number">4</span>)           <span class="comment"># x, y coordinates</span>
+<span class="variable">colors</span> = (<span class="string">"red"</span>, <span class="string">"green"</span>, <span class="string">"blue"</span>)
+<span class="variable">single</span> = (<span class="number">42</span>,)          <span class="comment"># Single item tuple - needs comma!</span>
+<span class="variable">empty</span> = ()              <span class="comment"># Empty tuple</span>
+
+<span class="function">print</span>(<span class="string">"Point:"</span>, point)
+<span class="function">print</span>(<span class="string">"Colors:"</span>, colors)
+<span class="function">print</span>(<span class="string">"Single:"</span>, single)
+<span class="function">print</span>(<span class="string">"Type of single:"</span>, <span class="function">type</span>(single))
+
+<span class="comment"># Accessing elements (same as lists)</span>
+<span class="function">print</span>(<span class="string">"First color:"</span>, colors[<span class="number">0</span>])
+<span class="function">print</span>(<span class="string">"Last color:"</span>, colors[-<span class="number">1</span>])
+<span class="function">print</span>(<span class="string">"Slice:"</span>, colors[<span class="number">1</span>:])
+
+<span class="comment"># Tuple packing and unpacking</span>
+<span class="variable">packed</span> = <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>        <span class="comment"># Parentheses optional!</span>
+<span class="function">print</span>(<span class="string">"Packed:"</span>, packed)
+
+<span class="variable">a</span>, <span class="variable">b</span>, <span class="variable">c</span> = packed       <span class="comment"># Unpacking</span>
+<span class="function">print</span>(<span class="string">"Unpacked: a="</span>, a, <span class="string">"b="</span>, b, <span class="string">"c="</span>, c)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Point: (3, 4)
+Colors: ('red', 'green', 'blue')
+Single: (42,)
+Type of single: &lt;class 'tuple'&gt;
+First color: red
+Last color: blue
+Slice: ('green', 'blue')
+Packed: (1, 2, 3)
+Unpacked: a= 1 b= 2 c= 3</pre>
+        </div>
+
+        <h4>🔄 Tuple Methods and Operations</h4>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Tuple methods from Session 4</span>
+<span class="variable">numbers</span> = (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">2</span>)
+
+<span class="comment"># count() - Count occurrences</span>
+<span class="function">print</span>(<span class="string">"Count of 2:"</span>, numbers.count(<span class="number">2</span>))
+
+<span class="comment"># index() - Find position</span>
+<span class="function">print</span>(<span class="string">"Index of 3:"</span>, numbers.index(<span class="number">3</span>))
+
+<span class="comment"># len(), min(), max(), sum() work too</span>
+<span class="function">print</span>(<span class="string">"Length:"</span>, <span class="function">len</span>(numbers))
+<span class="function">print</span>(<span class="string">"Max:"</span>, <span class="function">max</span>(numbers))
+
+<span class="comment"># Convert between list and tuple</span>
+<span class="variable">my_list</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]
+<span class="variable">my_tuple</span> = <span class="function">tuple</span>(my_list)
+<span class="variable">back_to_list</span> = <span class="function">list</span>(my_tuple)
+<span class="function">print</span>(<span class="string">"List to tuple:"</span>, my_tuple)
+<span class="function">print</span>(<span class="string">"Tuple to list:"</span>, back_to_list)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Count of 2: 3
+Index of 3: 2
+Length: 6
+Max: 4
+List to tuple: (1, 2, 3)
+Tuple to list: [1, 2, 3]</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- NESTED LISTS -->
+    <section class="content-section">
+      <h2>📦 Nested Lists (2D Arrays)</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">4.11</span>
+          <h3>🎮 Lists Inside Lists</h3>
+        </div>
+
+        <div class="explanation">
+          <p>You can put lists inside lists to create grids, tables, or matrix-like structures!</p>
+        </div>
+
+        <div class="visual-diagram">
+          <h4 style="text-align: center;">🎯 2D List Visualization</h4>
+          <pre style="text-align: center;">
+    matrix = [
+        [1, 2, 3],    ← Row 0
+        [4, 5, 6],    ← Row 1
+        [7, 8, 9]     ← Row 2
+    ]
+    
+    Access: matrix[row][column]
+    
+         Col 0  Col 1  Col 2
+           ↓      ↓      ↓
+    Row 0 [1]    [2]    [3]
+    Row 1 [4]    [5]    [6]
+    Row 2 [7]    [8]    [9]
+    
+    matrix[1][2] = 6  (Row 1, Col 2)
+          </pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Nested lists from Session 4</span>
+
+<span class="comment"># Create a 3x3 matrix</span>
+<span class="variable">matrix</span> = [
+    [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],
+    [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>],
+    [<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]
+]
+
+<span class="comment"># Access elements</span>
+<span class="function">print</span>(<span class="string">"First row:"</span>, matrix[<span class="number">0</span>])
+<span class="function">print</span>(<span class="string">"Element at row 1, col 2:"</span>, matrix[<span class="number">1</span>][<span class="number">2</span>])
+
+<span class="comment"># Loop through nested list</span>
+<span class="function">print</span>(<span class="string">"\\nPrint matrix:"</span>)
+<span class="keyword">for</span> <span class="variable">row</span> <span class="keyword">in</span> matrix:
+    <span class="keyword">for</span> <span class="variable">item</span> <span class="keyword">in</span> row:
+        <span class="function">print</span>(item, end=<span class="string">" "</span>)
+    <span class="function">print</span>()  <span class="comment"># New line after each row</span>
+
+<span class="comment"># Modify nested element</span>
+matrix[<span class="number">1</span>][<span class="number">1</span>] = <span class="number">99</span>
+<span class="function">print</span>(<span class="string">"\\nAfter modification:"</span>, matrix[<span class="number">1</span>])</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>First row: [1, 2, 3]
+Element at row 1, col 2: 6
+
+Print matrix:
+1 2 3 
+4 5 6 
+7 8 9 
+
+After modification: [4, 99, 6]</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOOPING THROUGH LISTS -->
+    <section class="content-section">
+      <h2>🔁 Looping Through Lists</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">4.12</span>
+          <h3>🎢 Different Loop Styles</h3>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Looping through lists from Session 4</span>
+<span class="variable">fruits</span> = [<span class="string">"apple"</span>, <span class="string">"banana"</span>, <span class="string">"cherry"</span>]
+
+<span class="comment"># Method 1: Loop through items directly</span>
+<span class="function">print</span>(<span class="string">"Method 1 - Direct:"</span>)
+<span class="keyword">for</span> <span class="variable">fruit</span> <span class="keyword">in</span> fruits:
+    <span class="function">print</span>(<span class="string">f"  I like </span>{fruit}<span class="string">"</span>)
+
+<span class="comment"># Method 2: Loop with index using range()</span>
+<span class="function">print</span>(<span class="string">"\\nMethod 2 - With index:"</span>)
+<span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> <span class="function">range</span>(<span class="function">len</span>(fruits)):
+    <span class="function">print</span>(<span class="string">f"  Index </span>{i}<span class="string">: </span>{fruits[i]}<span class="string">"</span>)
+
+<span class="comment"># Method 3: enumerate() - best of both worlds!</span>
+<span class="function">print</span>(<span class="string">"\\nMethod 3 - Enumerate:"</span>)
+<span class="keyword">for</span> <span class="variable">index</span>, <span class="variable">fruit</span> <span class="keyword">in</span> <span class="function">enumerate</span>(fruits):
+    <span class="function">print</span>(<span class="string">f"  {index}: {fruit}"</span>)
+
+<span class="comment"># enumerate with custom start</span>
+<span class="function">print</span>(<span class="string">"\\nWith custom start (1):"</span>)
+<span class="keyword">for</span> <span class="variable">num</span>, <span class="variable">fruit</span> <span class="keyword">in</span> <span class="function">enumerate</span>(fruits, start=<span class="number">1</span>):
+    <span class="function">print</span>(<span class="string">f"  #{num}: {fruit}"</span>)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Method 1 - Direct:
+  I like apple
+  I like banana
+  I like cherry
+
+Method 2 - With index:
+  Index 0: apple
+  Index 1: banana
+  Index 2: cherry
+
+Method 3 - Enumerate:
+  0: apple
+  1: banana
+  2: cherry
+
+With custom start (1):
+  #1: apple
+  #2: banana
+  #3: cherry</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUICK REFERENCE -->
+    <section class="content-section">
+      <h2>📋 Quick Reference</h2>
+      
+      <div class="reference-card">
+        <h4>📝 List Methods</h4>
+        <table class="reference-table">
+          <thead>
+            <tr>
+              <th>Method</th>
+              <th>Description</th>
+              <th>Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>append()</code></td>
+              <td>Add to end</td>
+              <td>list.append(x)</td>
+            </tr>
+            <tr>
+              <td><code>insert()</code></td>
+              <td>Add at index</td>
+              <td>list.insert(i, x)</td>
+            </tr>
+            <tr>
+              <td><code>extend()</code></td>
+              <td>Add multiple items</td>
+              <td>list.extend([a,b])</td>
+            </tr>
+            <tr>
+              <td><code>remove()</code></td>
+              <td>Remove by value</td>
+              <td>list.remove(x)</td>
+            </tr>
+            <tr>
+              <td><code>pop()</code></td>
+              <td>Remove by index</td>
+              <td>list.pop(i)</td>
+            </tr>
+            <tr>
+              <td><code>sort()</code></td>
+              <td>Sort in place</td>
+              <td>list.sort()</td>
+            </tr>
+            <tr>
+              <td><code>reverse()</code></td>
+              <td>Reverse in place</td>
+              <td>list.reverse()</td>
+            </tr>
+            <tr>
+              <td><code>index()</code></td>
+              <td>Find position</td>
+              <td>list.index(x)</td>
+            </tr>
+            <tr>
+              <td><code>count()</code></td>
+              <td>Count occurrences</td>
+              <td>list.count(x)</td>
+            </tr>
+            <tr>
+              <td><code>copy()</code></td>
+              <td>Shallow copy</td>
+              <td>list.copy()</td>
+            </tr>
+            <tr>
+              <td><code>clear()</code></td>
+              <td>Remove all</td>
+              <td>list.clear()</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- NAVIGATION -->
+    <nav class="page-navigation">
+      <a href="s3-loops.html" class="nav-prev">
+        <span class="nav-arrow">←</span>
+        <span class="nav-text">
+          <span class="nav-label">Previous</span>
+          <span class="nav-title">Loops & Conditions</span>
+        </span>
+      </a>
+      <a href="complete-course.html" class="nav-home">🏠</a>
+      <a href="s5-datastructures.html" class="nav-next">
+        <span class="nav-text">
+          <span class="nav-label">Next</span>
+          <span class="nav-title">Sets & Dictionaries</span>
+        </span>
+        <span class="nav-arrow">→</span>
+      </a>
+    </nav>
+  </main>
+
+  <footer>
+    <p>🐍 Python Mastery | Learn. Code. Create.</p>
+  </footer>
+</body>
+</html>
+

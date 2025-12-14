@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Practice | 🐍 Python Mastery</title>
+  <link rel="stylesheet" href="light-theme.css">
+  <style>
+    .question-card {
+      background: white;
+      border: 2px solid var(--border-color);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 1.25rem;
+      transition: all 0.2s ease;
+    }
+    .question-card:hover {
+      border-color: var(--python-blue);
+      box-shadow: var(--shadow-md);
+    }
+    .question-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .question-num {
+      background: var(--gradient-python);
+      color: var(--text-primary);
+      min-width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+    .question-text {
+      font-size: 1.05rem;
+      color: var(--text-primary);
+      font-weight: 600;
+      line-height: 1.6;
+    }
+    .question-text code {
+      background: #fef3c7 !important;
+      color: #92400e !important;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    .hint-toggle {
+      background: #fef3c7;
+      border: 1px solid #fcd34d;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      color: #92400e;
+      font-size: 0.85rem;
+      margin-top: 0.75rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s;
+    }
+    .hint-toggle:hover {
+      background: #fde68a;
+    }
+    .hint-content {
+      display: none;
+      margin-top: 1rem;
+      padding: 1rem;
+      background: #fffbeb;
+      border-radius: 10px;
+      border-left: 4px solid #fbbf24;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+    .hint-content.show {
+      display: block;
+    }
+    .difficulty-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-left: auto;
+      flex-shrink: 0;
+    }
+    .difficulty-easy { background: #dcfce7; color: #166534; }
+    .difficulty-medium { background: #fef3c7; color: #92400e; }
+    .difficulty-hard { background: #fee2e2; color: #991b1b; }
+    
+    .assignment-tabs {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+      padding: 1rem;
+      background: white;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+    }
+    .tab-btn {
+      padding: 0.75rem 1.25rem;
+      border: 2px solid var(--border-color);
+      background: white;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--text-secondary);
+      transition: all 0.2s;
+    }
+    .tab-btn:hover {
+      border-color: var(--python-blue);
+      color: var(--python-blue);
+    }
+    .tab-btn.active {
+      background: var(--python-blue);
+      color: white;
+      border-color: var(--python-blue);
+    }
+    .assignment-section {
+      display: none;
+    }
+    .assignment-section.active {
+      display: block;
+    }
+    .sub-questions {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: #f8fafc;
+      border-radius: 10px;
+      border-left: 3px solid var(--python-blue);
+    }
+    .sub-questions p {
+      margin: 0.5rem 0;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+    .sub-questions p:first-child {
+      margin-top: 0;
+    }
+    .try-it-box {
+      background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%);
+      border: 2px dashed var(--python-blue);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: 1rem;
+      text-align: center;
+    }
+    .try-it-box h4 {
+      color: var(--python-blue);
+      margin-bottom: 0.5rem;
+    }
+    .try-it-box p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-content">
+      <a href="complete-course.html" class="logo">🐍 Python Mastery</a>
+      <div class="session-nav">
+        <a href="assignments.html" class="nav-link" style="width:auto;padding:0 1rem;">📝 All Assignments</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <header class="session-header">
+      <div class="session-badge" style="background: var(--gradient-success);">Practice Mode</div>
+      <h1>📚 Student Practice</h1>
+      <p class="session-subtitle">Original questions from assignments. Try solving them yourself!</p>
+    </header>
+
+    <!-- Assignment Tabs -->
+    <div class="assignment-tabs">
+      <button class="tab-btn active" onclick="showAssignment(1)">A1: Data Types</button>
+      <button class="tab-btn" onclick="showAssignment(2)">A2: Loops</button>
+      <button class="tab-btn" onclick="showAssignment(3)">A3: Lists & Dicts</button>
+      <button class="tab-btn" onclick="showAssignment(4)">A4: Functions</button>
+      <button class="tab-btn" onclick="showAssignment(5)">A5: OOP & Pandas</button>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         ASSIGNMENT 1: Data Types & Strings (EXACT from source)
+         ═══════════════════════════════════════════════════════════════ -->
+    <section id="assignment1" class="assignment-section active">
+      <div class="content-section">
+        <h2>📝 Assignment 1: Data Types & Strings</h2>
+        
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-num">1</span>
+            <span class="question-text">Create two numbers. One float another integer. Add two numbers and print the result in integer format.</span>
+            <span class="difficulty-badge difficulty-easy">Easy</span>
+          </div>
+          <button class="hint-toggle" onclick="toggleHint(this)">💡 Show Hint</button>
+          <div class="hint-content">Create a float like <code>3.14</code> and an int like <code>5</code>. Use <code>int()</code> to convert the sum to integer.</div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-num">2</span>
+            <span class="question-text">"i live in india since my childhood". Count number of 'i' in this text.</span>
+            <span class="difficulty-badge difficulty-easy">Easy</span>
+          </div>
+          <button class="hint-toggle" onclick="toggleHint(this)">💡 Show Hint</button>
+          <div class="hint-content">Use the <code>.count('i')</code> method on strings. Be careful - this is case sensitive!</div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-num">3</span>
+            <span class="question-text">How do you check if a variable is of a certain data type in Python?</span>
+            <span class="difficulty-badge difficulty-easy">Easy</span>
+          </div>
+          <button class="hint-toggle" onclick="toggleHint(this)">💡 Show Hint</button>
+          <div class="hint-content">Use <code>type(variable)</code> to get the type, or <code>isinstance(variable, type)</code> to check against a specific type.</div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-num">4</span>
+            <span class="question-text">Write a python code to find last 4 characters of a string: 'Machine Learning'</span>
+            <span class="difficulty-badge difficulty-easy">Easy</span>
+          </div>
+          <button class="hint-toggle" onclick="toggleHint(this)">💡 Show Hint</button>
+          <div class="hint-content">Use negative slicing: <code>string[-4:]</code> gets the last 4 characters.</div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-num">5</span>
+            <span class="question-text">Write a python code to remove trailing space from string: 'Machine Learning. '</span>
+            <span class="difficulty-badge difficulty-easy">Easy</span>
+          </div>
+          <button class="hint-toggle" onclick="toggleHint(this)">💡 Show Hint</button>
+          <div class="hint-content">Use <code>.rstrip()</code> to remove trailing whitespace, or <code>.strip()</code> for both ends.</div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-num">6</span>
+            <span class="question-text">Write a Python program to print every second character from the string: "Data Science with Python"</span>
+            <span class="difficulty-badge difficulty-medium">Medium</span>
+          </div>
+          <button class="hint-toggle" onclick="toggleHint(this)">💡 Show Hint</button>
+          <div class="hint-content">Use slicing with step: <code>string[::2]</code> gets every second character starting from index 0.</div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-num">7</span>
+            <span class="question-text">Write a python code to check given character is digit or not: 265</span>
+            <span class="difficulty-badge difficulty-easy">Easy</span>
+          </div>
+          <button class="hint-toggle" onclick="toggleHint(this)">💡 Show Hint</button>
+          <div class="hint-content">Convert to string first, then use <code>.isdigit()</code> method.</div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-num">8</span>
+            <span class="question-text">Write a python code to Convert a string to lowercase: 'MACHINE LEARNING'</span>
+            <span class="difficulty-badge difficulty-easy">Easy</span>
+          </div>
+          <button class="hint-toggle" onclick="toggleHint(this)">💡 Show Hint</button>
+          <div class="hint-content">Use the <code>.lower()</code> method on strings.</div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-num">9</span>
+            <span class="question-text">Write a python code to count the number of occurrences of a character 'e' in a string: 'Machine Learning and Deep Learning'</span>
+            <span class="difficulty-badge difficulty-easy">Easy</span>
+          </div>
+          <button class="hint-toggle" onclick="toggleHint(this)">💡 Show Hint</button>
+          <div class="hint-content">Use <code>.count('e')</code> method on the string.</div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-num">10</span>
+            <span class="question-text">Write a python code to check if a string contains only alphabetic characters. String = 'HelloPython'</span>
+            <span class="difficulty-badge difficulty-easy">Easy</span>
+          </div>
+          <button class="hint-toggle" onclick="toggleHint(this)">💡 Show Hint</button>
+          <div class="hint-content">Use <code>.isalpha()</code> method - returns True if all characters are alphabetic.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         ASSIGNMENT 2: Loops & Conditions (EXACT from source)
+         ═══════════════════════════════════════════════════════════════ -->
+    <section id="assignment2" class="assignment-section">
+      <div class="content-section">
+        <h2>🔄 Assignment 2: Loops & Conditions</h2>
+        
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-num">1</span>
+            <span class="question-text">Create a list with numbers 1 to 10 in it ([1,2,3….10]). Write a for loop on this list to sum up all numbers in the list except 5 and 7. Print the result.</span>
+            <span class="difficulty-badge difficulty-medium">Medium</span>
+          </div>
+          <button class="hint-toggle" onclick="toggleHint(this)">💡 Show Hint</button>
+          <div class="hint-content">Use <code>if num not in [5, 7]</code> or <code>if num != 5 and num != 7</code> inside your loop before adding to sum.</div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-num">2</span>
+            <span class="question-text">Write a while loop to create a list with numbers from 1 to 100. When inserting new number in the list, skip every number which is divisible by 3. Print the result. Tip: To check whether number is divisible by 3 you can use % operator</span>
+            <span class="difficulty-badge difficulty-medium">Medium</span>
+          </div>
+          <button class="hint-toggle" onclick="toggleHint(this)">💡 Show Hint</button>
+          <div class="hint-content">Use <code>if num % 3 != 0</code> to check if NOT divisible by 3, then append to list.</div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-num">3</span>
+            <span class="question-text">Write a program that prints the 1 to 10 numbers.</span>
+            <span class="difficulty-badge difficulty-easy">Easy</span>
+          </div>
+          <button class="hint-toggle" onclick="toggleHint(this)">💡 Show Hint</button>
+          <div class="hint-content">Use <code>for i in range(1, 11)</code> - remember range end is exclusive!</div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-num">4</span>
+            <span class="question-text">Write a python code to print the summation of all the numbers from 1 to 100.</span>
+            <span class="difficulty-badge difficulty-easy">Easy</span>
+          </div>
+          <button class="hint-toggle" onclick="toggleHint(this)">💡 Show Hint</button>
+          <div class="hint-content">Use <code>sum(range(1, 101))</code> or accumulate in a loop.</div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-num">5</span>
+            <span class="question-text">Write a Python program to find the common elements between two lists.<br><code>list1 = [11,2,190,43,23,65,19]</code><br><code>list2 = [12,11,121,190,43,23,76,190]</code></span>
+            <span class="difficulty-badge difficulty-medium">Medium</span>
+          </div>
+          <button class="hint-toggle" onclick="toggleHint(this)">💡 Show Hint</button>
+          <div class="hint-content">Convert to sets and use <code>&</code> operator: <code>set(list1) & set(list2)</code></div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-num">6</span>
+            <span class="question-text">Write a python code to create separate lists of Even and Odd numbers from a list: <code>[21,44,22,878,55,90,17,68,69,91]</code></span>
+            <span class="difficulty-badge difficulty-medium">Medium</span>
+          </div>
+          <button class="hint-toggle" onclick="toggleHint(this)">💡 Show Hint</button>
+          <div class="hint-content">Loop through list, check <code>num % 2 == 0</code> for even, else odd. Append to respective lists.</div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-num">7</span>
+            <span class="question-text">Calculate the sum of all numbers in a list using a loop: <code>[21,44,767,98,37]</code></span>
+            <span class="difficulty-badge difficulty-easy">Easy</span>
+          </div>
+          <button class="hint-toggle" onclick="toggleHint(this)">💡 Show Hint</button>
+          <div class="hint-content">Initialize <code>total = 0</code>, then <code>total += num</code> for each number in the list.</div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-num">8</span>
+            <span class="question-text">Write a python code to check if a number is positive, negative, or zero.</span>
+            <span class="difficulty-badge difficulty-easy">Easy</span>
+          </div>
+          <button class="hint-toggle" onclick="toggleHint(this)">💡 Show Hint</button>
+          <div class="hint-content">Use <code>if num > 0</code>, <code>elif num < 0</code>, <code>else</code> for zero.</div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-num">9</span>
+            <span class="question-text">Find the length of the longest word in a string: 'Data Science and Machine Learning'</span>
+            <span class="difficulty-badge difficulty-medium">Medium</span>
+          </div>
+          <button class="hint-toggle" onclick="toggleHint(this)">💡 Show Hint</button>
+          <div class="hint-content">Split string into words with <code>.split()</code>, then find <code>max(words, key=len)</code> or loop to find longest.</div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-num">10</span>
+            <span class="question-text">Write a program to calculate the sum of squares of all numbers from 1 to 10 using a while loop.</span>
+            <span class="difficulty-badge difficulty-medium">Medium</span>
+          </div>
+          <button class="hint-toggle" onclick="toggleHint(this)">💡 Show Hint</button>
+          <div class="hint-content">Sum of squares: <code>1² + 2² + 3² + ...</code>. Add <code>i**2</code> to total, increment i while i <= 10.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         ASSIGNMENT 3: Lists & Dictionaries (EXACT from source)
+         ═══════════════════════════════════════════════════════════════ -->
+    <section id="assignment3" class="assignment-section">
+      <div class="content-section">
+        <h2>📦 Assignment 3: Lists & Dictionaries</h2>
+        
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-num">1</span>
+            <span class="question-text">Create a list with numbers 1 to 10 and sort it in ascending and descending order.</span>
+            <span class="difficulty-badge difficulty-easy">Easy</span>
+          </div>
+          <button class="hint-toggle" onclick="toggleHint(this)">💡 Show Hint</button>
+          <div class="hint-content">Use <code>sorted(list)</code> for ascending, <code>sorted(list, reverse=True)</code> for descending.</div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-num">2</span>
+            <span class="question-text"><code>data = [1,2,3,4,6,7,7,8,9,9]</code>. Drop duplicate values from this list and print the remaining numbers.</span>
+            <span class="difficulty-badge difficulty-easy">Easy</span>
+          </div>
+          <button class="hint-toggle" onclick="toggleHint(this)">💡 Show Hint</button>
+          <div class="hint-content">Convert to set and back: <code>list(set(data))</code>. Use <code>dict.fromkeys(data)</code> to preserve order.</div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-num">3</span>
+            <span class="question-text">Write a python code to find the second largest number in a list: <code>[21,44,767,98,37,106,345,87]</code></span>
+            <span class="difficulty-badge difficulty-medium">Medium</span>
+          </div>
+          <button class="hint-toggle" onclick="toggleHint(this)">💡 Show Hint</button>
+          <div class="hint-content">Sort descending and get index 1, or use <code>sorted(list)[-2]</code></div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-num">4</span>
+            <span class="question-text">Write a Python program to find the maximum and minimum values in a list: <code>list1 = [21,44,767,98,37]</code></span>
+            <span class="difficulty-badge difficulty-easy">Easy</span>
+          </div>
+          <button class="hint-toggle" onclick="toggleHint(this)">💡 Show Hint</button>
+          <div class="hint-content">Use built-in <code>max(list1)</code> and <code>min(list1)</code> functions.</div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-num">5</span>
+            <span class="question-text">Create two separate dictionaries and Merge them.</span>
+            <span class="difficulty-badge difficulty-easy">Easy</span>
+          </div>
+          <button class="hint-toggle" onclick="toggleHint(this)">💡 Show Hint</button>
+          <div class="hint-content">Use <code>{**dict1, **dict2}</code> or <code>dict1 | dict2</code> (Python 3.9+) or <code>dict1.update(dict2)</code></div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-num">6</span>
+            <span class="question-text">Write a Python program to create a dictionary where keys are integers from 1 to 5 and corresponding values are their squares.</span>
+            <span class="difficulty-badge difficulty-easy">Easy</span>
+          </div>
+          <button class="hint-toggle" onclick="toggleHint(this)">💡 Show Hint</button>
+          <div class="hint-content">Use dictionary comprehension: <code>{i: i**2 for i in range(1, 6)}</code></div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-num">7</span>
+            <span class="question-text">Create a Python dictionary with keys as cars and values as their respective prices.<br><code>car_models = ["Toyota Camry", "Honda Civic", "Ford Mustang", "Chevrolet Silverado", "Nissan Altima"]</code><br><code>car_prices = [2500000, 2200000, 4000000, 3500000, 2300000]</code></span>
+            <span class="difficulty-badge difficulty-easy">Easy</span>
+          </div>
+          <button class="hint-toggle" onclick="toggleHint(this)">💡 Show Hint</button>
+          <div class="hint-content">Use <code>dict(zip(car_models, car_prices))</code> to combine two lists into a dictionary.</div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-num">8</span>
+            <span class="question-text">Create a dictionary with 5 key pair values. Key would be a grocery item name and value will be its price (any value in the range of 10 to 1000). Write a for loop to iterate over a dictionary and print key-value pairs. While printing if the value is greater Rs. 500 then print a line – "this is a costly item."</span>
+            <span class="difficulty-badge difficulty-medium">Medium</span>
+          </div>
+          <button class="hint-toggle" onclick="toggleHint(this)">💡 Show Hint</button>
+          <div class="hint-content">Use <code>for item, price in dict.items():</code> to iterate, then <code>if price > 500:</code> to check.</div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-num">9</span>
+            <span class="question-text">In the dictionary created in above task, delete the key value pairs where price is less than average price of all the items in the dictionary.</span>
+            <span class="difficulty-badge difficulty-medium">Medium</span>
+          </div>
+          <button class="hint-toggle" onclick="toggleHint(this)">💡 Show Hint</button>
+          <div class="hint-content">Calculate avg with <code>sum(dict.values())/len(dict)</code>. Create new dict with items above avg, or use dict comprehension.</div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-num">10</span>
+            <span class="question-text">Write a python code that takes two sets as input and returns a set containing only the common elements.</span>
+            <span class="difficulty-badge difficulty-easy">Easy</span>
+          </div>
+          <button class="hint-toggle" onclick="toggleHint(this)">💡 Show Hint</button>
+          <div class="hint-content">Use <code>set1 & set2</code> or <code>set1.intersection(set2)</code> to find common elements.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         ASSIGNMENT 4: Functions (EXACT from source)
+         ═══════════════════════════════════════════════════════════════ -->
+    <section id="assignment4" class="assignment-section">
+      <div class="content-section">
+        <h2>⚙️ Assignment 4: Functions</h2>
+        
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-num">1</span>
+            <span class="question-text">Create a function which takes 2 numbers as inputs and returns the following three values: Addition of two numbers, Subtraction of two numbers, Multiplication of two numbers.</span>
+            <span class="difficulty-badge difficulty-easy">Easy</span>
+          </div>
+          <button class="hint-toggle" onclick="toggleHint(this)">💡 Show Hint</button>
+          <div class="hint-content">Return multiple values with <code>return a+b, a-b, a*b</code>. Call with <code>add, sub, mul = func(x, y)</code></div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-num">2</span>
+            <span class="question-text">Write a python function to calculate the factorial of a given integer: 10<br><br>For example: Factorial of 5 = 5×4×3×2×1 = 120</span>
+            <span class="difficulty-badge difficulty-medium">Medium</span>
+          </div>
+          <button class="hint-toggle" onclick="toggleHint(this)">💡 Show Hint</button>
+          <div class="hint-content">Use a loop: start with result=1, multiply by each number from 2 to n. Or use recursion.</div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-num">3</span>
+            <span class="question-text">Write a python function that takes a list of integers as input and returns a new list with the integers sorted in descending order.</span>
+            <span class="difficulty-badge difficulty-easy">Easy</span>
+          </div>
+          <button class="hint-toggle" onclick="toggleHint(this)">💡 Show Hint</button>
+          <div class="hint-content">Use <code>return sorted(lst, reverse=True)</code> inside your function.</div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-num">4</span>
+            <span class="question-text">Write a python function that takes a string as input and returns the number of vowels in the string.</span>
+            <span class="difficulty-badge difficulty-easy">Easy</span>
+          </div>
+          <button class="hint-toggle" onclick="toggleHint(this)">💡 Show Hint</button>
+          <div class="hint-content">Loop through string, check <code>if char.lower() in 'aeiou'</code>, count matches.</div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-num">5</span>
+            <span class="question-text">Create a function that checks if a given number is even or odd.</span>
+            <span class="difficulty-badge difficulty-easy">Easy</span>
+          </div>
+          <button class="hint-toggle" onclick="toggleHint(this)">💡 Show Hint</button>
+          <div class="hint-content">Use <code>num % 2 == 0</code> to check even. Return "Even" or "Odd" string, or True/False.</div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-num">6</span>
+            <span class="question-text">Create a function to find the sum of all even numbers in a list: <code>[12,2,33,11,45,8]</code></span>
+            <span class="difficulty-badge difficulty-medium">Medium</span>
+          </div>
+          <button class="hint-toggle" onclick="toggleHint(this)">💡 Show Hint</button>
+          <div class="hint-content">Filter evens first: <code>sum(n for n in lst if n % 2 == 0)</code></div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-num">7</span>
+            <span class="question-text">Write a function to remove duplicate elements from a list.</span>
+            <span class="difficulty-badge difficulty-easy">Easy</span>
+          </div>
+          <button class="hint-toggle" onclick="toggleHint(this)">💡 Show Hint</button>
+          <div class="hint-content">Use <code>return list(set(lst))</code> or <code>list(dict.fromkeys(lst))</code> to preserve order.</div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-num">8</span>
+            <span class="question-text">Create a Python function to reverse a string.</span>
+            <span class="difficulty-badge difficulty-easy">Easy</span>
+          </div>
+          <button class="hint-toggle" onclick="toggleHint(this)">💡 Show Hint</button>
+          <div class="hint-content">Use slicing: <code>return text[::-1]</code></div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-num">9</span>
+            <span class="question-text">Create a function greet_user that takes a name as an argument and prints "Hello, [Name]!". If no name is provided, it should print "Hello, Guest!"</span>
+            <span class="difficulty-badge difficulty-easy">Easy</span>
+          </div>
+          <button class="hint-toggle" onclick="toggleHint(this)">💡 Show Hint</button>
+          <div class="hint-content">Use default parameter: <code>def greet_user(name="Guest"):</code></div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-num">10</span>
+            <span class="question-text">Create a function that takes an integer as input and returns its cube.</span>
+            <span class="difficulty-badge difficulty-easy">Easy</span>
+          </div>
+          <button class="hint-toggle" onclick="toggleHint(this)">💡 Show Hint</button>
+          <div class="hint-content">Cube is n³: <code>return n ** 3</code> or <code>return n * n * n</code></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         ASSIGNMENT 5: OOP, NumPy & Pandas (EXACT from source)
+         ═══════════════════════════════════════════════════════════════ -->
+    <section id="assignment5" class="assignment-section">
+      <div class="content-section">
+        <h2>🚀 Assignment 5: OOP, NumPy & Pandas</h2>
+        
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-num">1</span>
+            <span class="question-text">Write a Python Class Circle which has the following variables and functions:</span>
+            <span class="difficulty-badge difficulty-hard">Hard</span>
+          </div>
+          <div class="sub-questions">
+            <p><strong>Variables:</strong></p>
+            <p>• pi_value = 3.14 (private variable)</p>
+            <p>• radius</p>
+            <p><strong>Functions:</strong></p>
+            <p>• area_calculator</p>
+            <p>• circumference_calculator</p>
+            <p><strong>Task:</strong> Create an object of Class Circle and calculate its area and circumference.</p>
+          </div>
+          <button class="hint-toggle" onclick="toggleHint(this)">💡 Show Hint</button>
+          <div class="hint-content">Use <code>__pi_value</code> for private variable. Area = π × r². Circumference = 2 × π × r. Use <code>__init__</code> to set radius.</div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-num">2</span>
+            <span class="question-text">Write a function which returns the addition of all numbers in a numpy array. NumPy array should contain 50 random numbers in the range of 10 to 100 generated using random number generator.</span>
+            <span class="difficulty-badge difficulty-medium">Medium</span>
+          </div>
+          <button class="hint-toggle" onclick="toggleHint(this)">💡 Show Hint</button>
+          <div class="hint-content">Use <code>np.random.randint(10, 101, size=50)</code> and <code>np.sum(array)</code></div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-num">3</span>
+            <span class="question-text">NumPy Matrix Operations:</span>
+            <span class="difficulty-badge difficulty-hard">Hard</span>
+          </div>
+          <div class="sub-questions">
+            <p>i) Create a 3×2 (3 rows, 2 columns) matrix using numpy and transpose it.</p>
+            <p>ii) After transposing print the first row of matrix (index 0)</p>
+            <p>iii) Print second element in first row</p>
+            <p>iv) Flatten the matrix to 1D (1 Dimensional) array</p>
+            <p>v) Print maximum, minimum and average value of 1D array</p>
+          </div>
+          <button class="hint-toggle" onclick="toggleHint(this)">💡 Show Hint</button>
+          <div class="hint-content">Create with <code>np.array([[...],[...],[...]])</code>. Transpose with <code>.T</code>. Flatten with <code>.flatten()</code>. Stats: <code>np.max()</code>, <code>np.min()</code>, <code>np.mean()</code></div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-num">4</span>
+            <span class="question-text">Read the Housing.csv file in your notebook and perform the following operations:</span>
+            <span class="difficulty-badge difficulty-hard">Hard</span>
+          </div>
+          <div class="sub-questions">
+            <p>i) Calculate average and median price per square foot area (assume area column's unit is sq ft)</p>
+            <p>ii) Calculate median price per bedroom.</p>
+            <p>iii) Calculate average price per sq ft for furnished, semi-furnished and unfurnished homes.</p>
+            <p>iv) Are homes with guestrooms AND main road location costlier than remaining houses? Analyze the data using pandas to come up with your answer.</p>
+            <p>v) Convert the values in air conditioning column to 0 and 1 using lambda function</p>
+            <p>vi) Create a new column with the name price_index. Assign it 1 if the price of house is higher than average price else assign it value 0</p>
+            <p>vii) Sort the data by area, bathrooms and bedrooms column in descending order</p>
+          </div>
+          <button class="hint-toggle" onclick="toggleHint(this)">💡 Show Hint</button>
+          <div class="hint-content">
+            Use <code>pd.read_csv('Housing.csv')</code>. 
+            Price per sqft: <code>df['price']/df['area']</code>. 
+            GroupBy for categories: <code>df.groupby('furnishingstatus')['price'].mean()</code>. 
+            Lambda: <code>df['ac'].apply(lambda x: 1 if x == 'yes' else 0)</code>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Try It Box -->
+    <div class="try-it-box">
+      <h4>✍️ Ready to try?</h4>
+      <p>Open Python on your computer or use an online editor like <a href="https://replit.com" target="_blank">Replit</a> or <a href="https://colab.research.google.com" target="_blank">Google Colab</a> to practice!</p>
+    </div>
+
+    <nav class="page-navigation">
+      <a href="assignments.html" class="nav-prev">
+        <span class="nav-arrow">←</span>
+        <span class="nav-text">
+          <span class="nav-label">Back</span>
+          <span class="nav-title">Assignment Hub</span>
+        </span>
+      </a>
+      <a href="complete-course.html" class="nav-home">🏠</a>
+      <a href="s1-intro.html" class="nav-next">
+        <span class="nav-text">
+          <span class="nav-label">Review</span>
+          <span class="nav-title">Session 1</span>
+        </span>
+        <span class="nav-arrow">→</span>
+      </a>
+    </nav>
+  </main>
+
+  <footer>
+    <p>🐍 Python Mastery | Learn. Code. Create.</p>
+  </footer>
+
+  <script>
+    function showAssignment(num) {
+      document.querySelectorAll('.assignment-section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('assignment' + num).classList.add('active');
+      document.querySelectorAll('.tab-btn')[num - 1].classList.add('active');
+    }
+    
+    function toggleHint(btn) {
+      const hint = btn.nextElementSibling;
+      hint.classList.toggle('show');
+      btn.textContent = hint.classList.contains('show') ? '🔒 Hide Hint' : '💡 Show Hint';
+    }
+  </script>
+</body>
+</html>

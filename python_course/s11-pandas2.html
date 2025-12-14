@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session 11: Pandas Part II | 🐍 Python Mastery</title>
+  <link rel="stylesheet" href="light-theme.css">
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-content">
+      <a href="complete-course.html" class="logo">🐍 Python Mastery</a>
+      <div class="session-nav">
+        <a href="s1-intro.html" class="nav-link">1</a>
+        <a href="s2-datatypes.html" class="nav-link">2</a>
+        <a href="s3-loops.html" class="nav-link">3</a>
+        <a href="s4-lists.html" class="nav-link">4</a>
+        <a href="s5-datastructures.html" class="nav-link">5</a>
+        <a href="s6-functions1.html" class="nav-link">6</a>
+        <a href="s7-functions2.html" class="nav-link">7</a>
+        <a href="s8-oop.html" class="nav-link">8</a>
+        <a href="s9-numpy.html" class="nav-link">9</a>
+        <a href="s10-pandas1.html" class="nav-link">10</a>
+        <a href="s11-pandas2.html" class="nav-link active">11</a>
+        <a href="s12-api-sql.html" class="nav-link">12</a>
+        <a href="assignments.html" class="nav-link assignment">📝</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <header class="session-header">
+      <div class="session-badge">Session 11</div>
+      <h1>📈 Pandas Part II</h1>
+      <p class="session-subtitle">Advanced data analysis and manipulation</p>
+      <div class="progress-info">
+        <span>📚 8 Topics</span>
+        <span>⏱️ 55 min read</span>
+        <span>🎯 Advanced Level</span>
+      </div>
+    </header>
+
+    <!-- OVERVIEW -->
+    <section class="overview-card">
+      <h2>🗺️ What You'll Learn</h2>
+      <div class="overview-grid">
+        <div class="overview-item">
+          <span class="overview-icon">🔍</span>
+          <span>Filtering Data</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">📊</span>
+          <span>GroupBy Operations</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">📈</span>
+          <span>Sorting & Ranking</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">🔢</span>
+          <span>Aggregations</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">⚡</span>
+          <span>Apply & Lambda</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">🧹</span>
+          <span>Handling Missing Data</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- FILTERING -->
+    <section class="content-section">
+      <h2>🔍 Filtering Data</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">11.1</span>
+          <h3>🎯 Boolean Indexing</h3>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Filtering from Session 11</span>
+<span class="keyword">import</span> pandas <span class="keyword">as</span> pd
+
+<span class="variable">df</span> = pd.DataFrame({
+    <span class="string">'Name'</span>: [<span class="string">'Alice'</span>, <span class="string">'Bob'</span>, <span class="string">'Charlie'</span>, <span class="string">'David'</span>, <span class="string">'Eve'</span>],
+    <span class="string">'Age'</span>: [<span class="number">25</span>, <span class="number">30</span>, <span class="number">35</span>, <span class="number">28</span>, <span class="number">32</span>],
+    <span class="string">'Salary'</span>: [<span class="number">50000</span>, <span class="number">60000</span>, <span class="number">70000</span>, <span class="number">55000</span>, <span class="number">65000</span>],
+    <span class="string">'Department'</span>: [<span class="string">'HR'</span>, <span class="string">'IT'</span>, <span class="string">'IT'</span>, <span class="string">'HR'</span>, <span class="string">'Finance'</span>]
+})
+<span class="function">print</span>(<span class="string">"Original DataFrame:"</span>)
+<span class="function">print</span>(df)
+
+<span class="comment"># Filter by single condition</span>
+<span class="function">print</span>(<span class="string">"\\nAge > 28:"</span>)
+<span class="function">print</span>(df[df[<span class="string">'Age'</span>] > <span class="number">28</span>])
+
+<span class="comment"># Multiple conditions with & (and)</span>
+<span class="function">print</span>(<span class="string">"\\nAge > 25 AND Salary > 55000:"</span>)
+<span class="function">print</span>(df[(df[<span class="string">'Age'</span>] > <span class="number">25</span>) & (df[<span class="string">'Salary'</span>] > <span class="number">55000</span>)])
+
+<span class="comment"># Multiple conditions with | (or)</span>
+<span class="function">print</span>(<span class="string">"\\nDepartment is HR OR Salary > 65000:"</span>)
+<span class="function">print</span>(df[(df[<span class="string">'Department'</span>] == <span class="string">'HR'</span>) | (df[<span class="string">'Salary'</span>] > <span class="number">65000</span>)])
+
+<span class="comment"># Using isin() for multiple values</span>
+<span class="function">print</span>(<span class="string">"\\nDepartment in ['HR', 'Finance']:"</span>)
+<span class="function">print</span>(df[df[<span class="string">'Department'</span>].isin([<span class="string">'HR'</span>, <span class="string">'Finance'</span>])])</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Original DataFrame:
+      Name  Age  Salary Department
+0    Alice   25   50000         HR
+1      Bob   30   60000         IT
+2  Charlie   35   70000         IT
+3    David   28   55000         HR
+4      Eve   32   65000    Finance
+
+Age > 28:
+      Name  Age  Salary Department
+1      Bob   30   60000         IT
+2  Charlie   35   70000         IT
+4      Eve   32   65000    Finance
+
+Age > 25 AND Salary > 55000:
+      Name  Age  Salary Department
+1      Bob   30   60000         IT
+2  Charlie   35   70000         IT
+4      Eve   32   65000    Finance
+
+Department is HR OR Salary > 65000:
+      Name  Age  Salary Department
+0    Alice   25   50000         HR
+2  Charlie   35   70000         IT
+3    David   28   55000         HR
+
+Department in ['HR', 'Finance']:
+    Name  Age  Salary Department
+0  Alice   25   50000         HR
+3  David   28   55000         HR
+4    Eve   32   65000    Finance</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- GROUPBY -->
+    <section class="content-section">
+      <h2>📊 GroupBy Operations</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">11.2</span>
+          <h3>🗂️ Split-Apply-Combine</h3>
+        </div>
+
+        <div class="visual-box">
+          <h4>🔄 GroupBy Process</h4>
+          <pre style="text-align: center; font-size: 1rem;">
+    Original Data
+         │
+         ▼
+    ┌─────────┐
+    │  SPLIT  │  Group by category
+    └─────────┘
+         │
+    ┌────┴────┐
+    ▼         ▼
+   HR        IT
+         │
+         ▼
+    ┌─────────┐
+    │  APPLY  │  Calculate (mean, sum, count...)
+    └─────────┘
+         │
+         ▼
+    ┌─────────┐
+    │ COMBINE │  Merge results
+    └─────────┘
+          </pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># GroupBy from Session 11</span>
+<span class="keyword">import</span> pandas <span class="keyword">as</span> pd
+
+<span class="variable">df</span> = pd.DataFrame({
+    <span class="string">'Department'</span>: [<span class="string">'HR'</span>, <span class="string">'IT'</span>, <span class="string">'IT'</span>, <span class="string">'HR'</span>, <span class="string">'Finance'</span>],
+    <span class="string">'Name'</span>: [<span class="string">'Alice'</span>, <span class="string">'Bob'</span>, <span class="string">'Charlie'</span>, <span class="string">'David'</span>, <span class="string">'Eve'</span>],
+    <span class="string">'Salary'</span>: [<span class="number">50000</span>, <span class="number">60000</span>, <span class="number">70000</span>, <span class="number">55000</span>, <span class="number">65000</span>]
+})
+
+<span class="comment"># Group by Department and calculate mean salary</span>
+<span class="function">print</span>(<span class="string">"Mean salary by Department:"</span>)
+<span class="function">print</span>(df.groupby(<span class="string">'Department'</span>)[<span class="string">'Salary'</span>].mean())
+
+<span class="comment"># Multiple aggregations</span>
+<span class="function">print</span>(<span class="string">"\\nMultiple aggregations:"</span>)
+<span class="function">print</span>(df.groupby(<span class="string">'Department'</span>)[<span class="string">'Salary'</span>].agg([<span class="string">'mean'</span>, <span class="string">'sum'</span>, <span class="string">'count'</span>, <span class="string">'min'</span>, <span class="string">'max'</span>]))
+
+<span class="comment"># Count employees per department</span>
+<span class="function">print</span>(<span class="string">"\\nEmployee count by Department:"</span>)
+<span class="function">print</span>(df.groupby(<span class="string">'Department'</span>).size())</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Mean salary by Department:
+Department
+Finance    65000.0
+HR         52500.0
+IT         65000.0
+Name: Salary, dtype: float64
+
+Multiple aggregations:
+              mean    sum  count    min    max
+Department                                    
+Finance    65000.0  65000      1  65000  65000
+HR         52500.0 105000      2  50000  55000
+IT         65000.0 130000      2  60000  70000
+
+Employee count by Department:
+Department
+Finance    1
+HR         2
+IT         2
+dtype: int64</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- SORTING -->
+    <section class="content-section">
+      <h2>📈 Sorting & Ranking</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">11.3</span>
+          <h3>⬆️⬇️ Ordering Data</h3>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Sorting from Session 11</span>
+<span class="keyword">import</span> pandas <span class="keyword">as</span> pd
+
+<span class="variable">df</span> = pd.DataFrame({
+    <span class="string">'Name'</span>: [<span class="string">'Alice'</span>, <span class="string">'Bob'</span>, <span class="string">'Charlie'</span>, <span class="string">'David'</span>],
+    <span class="string">'Age'</span>: [<span class="number">25</span>, <span class="number">30</span>, <span class="number">35</span>, <span class="number">28</span>],
+    <span class="string">'Salary'</span>: [<span class="number">50000</span>, <span class="number">60000</span>, <span class="number">70000</span>, <span class="number">55000</span>]
+})
+
+<span class="comment"># Sort by single column</span>
+<span class="function">print</span>(<span class="string">"Sorted by Age (ascending):"</span>)
+<span class="function">print</span>(df.sort_values(<span class="string">'Age'</span>))
+
+<span class="function">print</span>(<span class="string">"\\nSorted by Salary (descending):"</span>)
+<span class="function">print</span>(df.sort_values(<span class="string">'Salary'</span>, ascending=<span class="keyword">False</span>))
+
+<span class="comment"># nlargest and nsmallest</span>
+<span class="function">print</span>(<span class="string">"\\nTop 2 highest salaries:"</span>)
+<span class="function">print</span>(df.nlargest(<span class="number">2</span>, <span class="string">'Salary'</span>))
+
+<span class="function">print</span>(<span class="string">"\\n2 youngest employees:"</span>)
+<span class="function">print</span>(df.nsmallest(<span class="number">2</span>, <span class="string">'Age'</span>))</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Sorted by Age (ascending):
+      Name  Age  Salary
+0    Alice   25   50000
+3    David   28   55000
+1      Bob   30   60000
+2  Charlie   35   70000
+
+Sorted by Salary (descending):
+      Name  Age  Salary
+2  Charlie   35   70000
+1      Bob   30   60000
+3    David   28   55000
+0    Alice   25   50000
+
+Top 2 highest salaries:
+      Name  Age  Salary
+2  Charlie   35   70000
+1      Bob   30   60000
+
+2 youngest employees:
+    Name  Age  Salary
+0  Alice   25   50000
+3  David   28   55000</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- APPLY AND LAMBDA -->
+    <section class="content-section">
+      <h2>⚡ Apply & Lambda</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">11.4</span>
+          <h3>🔧 Custom Transformations</h3>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Apply and lambda from Session 11</span>
+<span class="keyword">import</span> pandas <span class="keyword">as</span> pd
+
+<span class="variable">df</span> = pd.DataFrame({
+    <span class="string">'Name'</span>: [<span class="string">'alice'</span>, <span class="string">'bob'</span>, <span class="string">'charlie'</span>],
+    <span class="string">'Price'</span>: [<span class="number">100</span>, <span class="number">200</span>, <span class="number">150</span>],
+    <span class="string">'Quantity'</span>: [<span class="number">5</span>, <span class="number">3</span>, <span class="number">4</span>]
+})
+<span class="function">print</span>(<span class="string">"Original:"</span>)
+<span class="function">print</span>(df)
+
+<span class="comment"># Apply lambda to single column</span>
+df[<span class="string">'Name'</span>] = df[<span class="string">'Name'</span>].apply(<span class="keyword">lambda</span> x: x.title())
+<span class="function">print</span>(<span class="string">"\\nCapitalized names:"</span>)
+<span class="function">print</span>(df)
+
+<span class="comment"># Apply lambda to create new column</span>
+df[<span class="string">'Total'</span>] = df.apply(<span class="keyword">lambda</span> row: row[<span class="string">'Price'</span>] * row[<span class="string">'Quantity'</span>], axis=<span class="number">1</span>)
+<span class="function">print</span>(<span class="string">"\\nWith Total:"</span>)
+<span class="function">print</span>(df)
+
+<span class="comment"># Apply with custom function</span>
+<span class="keyword">def</span> <span class="function">categorize_price</span>(price):
+    <span class="keyword">if</span> price < <span class="number">150</span>:
+        <span class="keyword">return</span> <span class="string">'Budget'</span>
+    <span class="keyword">elif</span> price < <span class="number">200</span>:
+        <span class="keyword">return</span> <span class="string">'Standard'</span>
+    <span class="keyword">else</span>:
+        <span class="keyword">return</span> <span class="string">'Premium'</span>
+
+df[<span class="string">'Category'</span>] = df[<span class="string">'Price'</span>].apply(categorize_price)
+<span class="function">print</span>(<span class="string">"\\nWith Category:"</span>)
+<span class="function">print</span>(df)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Original:
+      Name  Price  Quantity
+0    alice    100         5
+1      bob    200         3
+2  charlie    150         4
+
+Capitalized names:
+      Name  Price  Quantity
+0    Alice    100         5
+1      Bob    200         3
+2  Charlie    150         4
+
+With Total:
+      Name  Price  Quantity  Total
+0    Alice    100         5    500
+1      Bob    200         3    600
+2  Charlie    150         4    600
+
+With Category:
+      Name  Price  Quantity  Total  Category
+0    Alice    100         5    500    Budget
+1      Bob    200         3    600   Premium
+2  Charlie    150         4    600  Standard</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- MISSING DATA -->
+    <section class="content-section">
+      <h2>🧹 Handling Missing Data</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">11.5</span>
+          <h3>❓ Dealing with NaN Values</h3>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Handling missing data from Session 11</span>
+<span class="keyword">import</span> pandas <span class="keyword">as</span> pd
+<span class="keyword">import</span> numpy <span class="keyword">as</span> np
+
+<span class="variable">df</span> = pd.DataFrame({
+    <span class="string">'A'</span>: [<span class="number">1</span>, <span class="number">2</span>, np.nan, <span class="number">4</span>],
+    <span class="string">'B'</span>: [<span class="number">5</span>, np.nan, np.nan, <span class="number">8</span>],
+    <span class="string">'C'</span>: [<span class="string">'x'</span>, <span class="string">'y'</span>, <span class="string">'z'</span>, <span class="keyword">None</span>]
+})
+<span class="function">print</span>(<span class="string">"DataFrame with missing values:"</span>)
+<span class="function">print</span>(df)
+
+<span class="comment"># Check for missing values</span>
+<span class="function">print</span>(<span class="string">"\\nMissing values:"</span>)
+<span class="function">print</span>(df.isnull().sum())
+
+<span class="comment"># Drop rows with any NaN</span>
+<span class="function">print</span>(<span class="string">"\\nDrop rows with NaN:"</span>)
+<span class="function">print</span>(df.dropna())
+
+<span class="comment"># Fill NaN with a value</span>
+<span class="function">print</span>(<span class="string">"\\nFill NaN with 0:"</span>)
+<span class="function">print</span>(df.fillna(<span class="number">0</span>))
+
+<span class="comment"># Fill with column mean (numeric only)</span>
+<span class="variable">df_numeric</span> = df[[<span class="string">'A'</span>, <span class="string">'B'</span>]].fillna(df[[<span class="string">'A'</span>, <span class="string">'B'</span>]].mean())
+<span class="function">print</span>(<span class="string">"\\nFill with column mean:"</span>)
+<span class="function">print</span>(df_numeric)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>DataFrame with missing values:
+     A    B     C
+0  1.0  5.0     x
+1  2.0  NaN     y
+2  NaN  NaN     z
+3  4.0  8.0  None
+
+Missing values:
+A    1
+B    2
+C    1
+dtype: int64
+
+Drop rows with NaN:
+     A    B  C
+0  1.0  5.0  x
+
+Fill NaN with 0:
+     A    B     C
+0  1.0  5.0     x
+1  2.0  0.0     y
+2  0.0  0.0     z
+3  4.0  8.0     0
+
+Fill with column mean:
+          A         B
+0  1.000000  5.000000
+1  2.000000  6.500000
+2  2.333333  6.500000
+3  4.000000  8.000000</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- VALUE COUNTS AND UNIQUE -->
+    <section class="content-section">
+      <h2>📊 Value Counts & Unique</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">11.6</span>
+          <h3>🔢 Counting Values</h3>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Value counts from Session 11</span>
+<span class="keyword">import</span> pandas <span class="keyword">as</span> pd
+
+<span class="variable">df</span> = pd.DataFrame({
+    <span class="string">'Department'</span>: [<span class="string">'HR'</span>, <span class="string">'IT'</span>, <span class="string">'IT'</span>, <span class="string">'HR'</span>, <span class="string">'Finance'</span>, <span class="string">'IT'</span>, <span class="string">'HR'</span>],
+    <span class="string">'Level'</span>: [<span class="string">'Junior'</span>, <span class="string">'Senior'</span>, <span class="string">'Junior'</span>, <span class="string">'Senior'</span>, <span class="string">'Senior'</span>, <span class="string">'Mid'</span>, <span class="string">'Mid'</span>]
+})
+
+<span class="comment"># Count occurrences</span>
+<span class="function">print</span>(<span class="string">"Department counts:"</span>)
+<span class="function">print</span>(df[<span class="string">'Department'</span>].value_counts())
+
+<span class="comment"># Get unique values</span>
+<span class="function">print</span>(<span class="string">"\\nUnique departments:"</span>, df[<span class="string">'Department'</span>].unique())
+<span class="function">print</span>(<span class="string">"Number of unique:"</span>, df[<span class="string">'Department'</span>].nunique())
+
+<span class="comment"># Value counts as percentage</span>
+<span class="function">print</span>(<span class="string">"\\nLevel distribution (%):"</span>)
+<span class="function">print</span>(df[<span class="string">'Level'</span>].value_counts(normalize=<span class="keyword">True</span>) * <span class="number">100</span>)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Department counts:
+IT         3
+HR         3
+Finance    1
+Name: Department, dtype: int64
+
+Unique departments: ['HR' 'IT' 'Finance']
+Number of unique: 3
+
+Level distribution (%):
+Senior    42.857143
+Junior    28.571429
+Mid       28.571429
+Name: Level, dtype: float64</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUICK REFERENCE -->
+    <section class="content-section">
+      <h2>📋 Quick Reference</h2>
+      
+      <div class="reference-card">
+        <table class="reference-table">
+          <thead>
+            <tr><th>Function</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>df[df['col'] > x]</td><td>Filter rows</td></tr>
+            <tr><td>df.groupby('col')</td><td>Group by column</td></tr>
+            <tr><td>.agg(['mean','sum'])</td><td>Multiple aggregations</td></tr>
+            <tr><td>df.sort_values()</td><td>Sort data</td></tr>
+            <tr><td>df.nlargest()</td><td>Top n values</td></tr>
+            <tr><td>df['col'].apply()</td><td>Apply function</td></tr>
+            <tr><td>df.isnull()</td><td>Check for NaN</td></tr>
+            <tr><td>df.fillna()</td><td>Fill NaN values</td></tr>
+            <tr><td>df.dropna()</td><td>Drop NaN rows</td></tr>
+            <tr><td>.value_counts()</td><td>Count values</td></tr>
+            <tr><td>.unique()</td><td>Get unique values</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- NAVIGATION -->
+    <nav class="page-navigation">
+      <a href="s10-pandas1.html" class="nav-prev">
+        <span class="nav-arrow">←</span>
+        <span class="nav-text">
+          <span class="nav-label">Previous</span>
+          <span class="nav-title">Pandas Part I</span>
+        </span>
+      </a>
+      <a href="complete-course.html" class="nav-home">🏠</a>
+      <a href="s12-api-sql.html" class="nav-next">
+        <span class="nav-text">
+          <span class="nav-label">Next</span>
+          <span class="nav-title">APIs & SQL</span>
+        </span>
+        <span class="nav-arrow">→</span>
+      </a>
+    </nav>
+  </main>
+
+  <footer>
+    <p>🐍 Python Mastery | Learn. Code. Create.</p>
+  </footer>
+</body>
+</html>
+

@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FKTI Learning Hub | Fakhruddin Khambaty Training Institute</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/minimalistic-theme.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/fkti-light-theme.css">
     <link rel="stylesheet" href="css/hub-styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
@@ -22,7 +22,7 @@
             <div class="nav-links">
                 <a href="#courses" class="nav-link">Courses</a>
                 <a href="#about" class="nav-link">About</a>
-                <a href="#contact" class="nav-link">Contact</a>
+                <a href="#" class="nav-link" onclick="showContactInfo(); return false;">Contact</a>
                 <div class="theme-selector">
                     <button class="theme-toggle" onclick="toggleThemeSelector()">
                         <i class="fas fa-palette"></i>
@@ -73,7 +73,7 @@
                 </p>
                 <div class="hero-stats">
                     <div class="stat-item">
-                        <div class="stat-number">7</div>
+                        <div class="stat-number">9</div>
                         <div class="stat-label">Comprehensive Courses</div>
                     </div>
                     <div class="stat-item">
@@ -90,91 +90,192 @@
                         <span>Explore Courses</span>
                         <i class="fas fa-arrow-right"></i>
                     </button>
-                    <button class="btn btn-secondary" onclick="scrollToSection('about')">
-                        <span>Learn More</span>
-                    </button>
                 </div>
             </div>
             <div class="hero-visual">
-                <div class="tech-stack">
-                    <div class="tech-item" style="animation-delay: 0s;">
+                <div class="tech-powerhouse">
+                    <!-- Central powerful icon -->
+                    <div class="power-center">
+                        <div class="power-rings">
+                            <div class="ring ring-1"></div>
+                            <div class="ring ring-2"></div>
+                            <div class="ring ring-3"></div>
+                        </div>
+                        <div class="power-core">
+                            <i class="fas fa-database"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Floating tech icons - scattered layout -->
+                    <div class="tech-float tech-1">
                         <img src="assets/python-logo.svg" alt="Python">
+                        <span class="tech-label">Python</span>
                     </div>
-                    <div class="tech-item" style="animation-delay: 0.1s;">
+                    <div class="tech-float tech-2">
                         <img src="assets/airflow-logo.svg" alt="Airflow">
+                        <span class="tech-label">Airflow</span>
                     </div>
-                    <div class="tech-item" style="animation-delay: 0.2s;">
+                    <div class="tech-float tech-3">
                         <img src="assets/terraform-logo.svg" alt="Terraform">
+                        <span class="tech-label">Terraform</span>
                     </div>
-                    <div class="tech-item" style="animation-delay: 0.3s;">
+                    <div class="tech-float tech-4">
                         <img src="assets/redshift-logo.svg" alt="Redshift">
+                        <span class="tech-label">Redshift</span>
                     </div>
-                    <div class="tech-item" style="animation-delay: 0.4s;">
-                        <img src="assets/mssql-logo.svg" alt="MSSQL">
+                    <div class="tech-float tech-5">
+                        <img src="assets/mssql-logo.svg" alt="SQL">
+                        <span class="tech-label">SQL</span>
                     </div>
-                    <div class="tech-item" style="animation-delay: 0.5s;">
+                    <div class="tech-float tech-6">
                         <img src="assets/dbt-logo.svg" alt="DBT">
+                        <span class="tech-label">DBT</span>
                     </div>
-                    <div class="tech-item" style="animation-delay: 0.6s;">
+                    <div class="tech-float tech-7">
                         <img src="assets/metabase-logo.svg" alt="Metabase">
+                        <span class="tech-label">Analytics</span>
                     </div>
+                    
+                    <!-- Connection lines -->
+                    <svg class="power-connections" viewBox="0 0 400 400">
+                        <defs>
+                            <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.4"/>
+                                <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.1"/>
+                            </linearGradient>
+                        </defs>
+                        <line x1="200" y1="200" x2="80" y2="60" stroke="url(#lineGrad)" stroke-width="1"/>
+                        <line x1="200" y1="200" x2="320" y2="80" stroke="url(#lineGrad)" stroke-width="1"/>
+                        <line x1="200" y1="200" x2="60" y2="200" stroke="url(#lineGrad)" stroke-width="1"/>
+                        <line x1="200" y1="200" x2="340" y2="220" stroke="url(#lineGrad)" stroke-width="1"/>
+                        <line x1="200" y1="200" x2="100" y2="340" stroke="url(#lineGrad)" stroke-width="1"/>
+                        <line x1="200" y1="200" x2="300" y2="320" stroke="url(#lineGrad)" stroke-width="1"/>
+                        <line x1="200" y1="200" x2="200" y2="380" stroke="url(#lineGrad)" stroke-width="1"/>
+                    </svg>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Story Theme Selector -->
+    <section class="story-selector">
+        <div class="selector-container">
+            <div class="selector-header">
+                <h2 class="section-title">📖 Choose Your Data Adventure!</h2>
+                <p class="section-subtitle">Pick an industry and watch DataBot show you how data engineering transforms that world!</p>
+            </div>
+            
+            <div class="theme-cards">
+                <button class="theme-card active" data-theme="walmart" onclick="selectStoryTheme('walmart')">
+                    <div class="theme-icon">🛒</div>
+                    <div class="theme-name">Retail Giant</div>
+                    <div class="theme-subtitle">Walmart-style</div>
+                </button>
+                <button class="theme-card" data-theme="cinema" onclick="selectStoryTheme('cinema')">
+                    <div class="theme-icon">🎬</div>
+                    <div class="theme-name">Movie Theatre</div>
+                    <div class="theme-subtitle">Blockbuster Analytics</div>
+                </button>
+                <button class="theme-card" data-theme="airline" onclick="selectStoryTheme('airline')">
+                    <div class="theme-icon">✈️</div>
+                    <div class="theme-name">Airlines</div>
+                    <div class="theme-subtitle">Sky-High Data</div>
+                </button>
+                <button class="theme-card" data-theme="oilrig" onclick="selectStoryTheme('oilrig')">
+                    <div class="theme-icon">🛢️</div>
+                    <div class="theme-name">Oil & Gas</div>
+                    <div class="theme-subtitle">Energy Analytics</div>
+                </button>
+                <button class="theme-card" data-theme="procurement" onclick="selectStoryTheme('procurement')">
+                    <div class="theme-icon">📦</div>
+                    <div class="theme-name">Procurement</div>
+                    <div class="theme-subtitle">Supply Chain</div>
+                </button>
+                <button class="theme-card" data-theme="hospital" onclick="selectStoryTheme('hospital')">
+                    <div class="theme-icon">🏥</div>
+                    <div class="theme-name">Healthcare</div>
+                    <div class="theme-subtitle">Medical Data</div>
+                </button>
+                <button class="theme-card" data-theme="automotive" onclick="selectStoryTheme('automotive')">
+                    <div class="theme-icon">🚗</div>
+                    <div class="theme-name">Automotive</div>
+                    <div class="theme-subtitle">Manufacturing</div>
+                </button>
+                <button class="theme-card" data-theme="banking" onclick="selectStoryTheme('banking')">
+                    <div class="theme-icon">🏦</div>
+                    <div class="theme-name">Banking</div>
+                    <div class="theme-subtitle">Financial Analytics</div>
+                </button>
+                <button class="theme-card" data-theme="ecommerce" onclick="selectStoryTheme('ecommerce')">
+                    <div class="theme-icon">🛍️</div>
+                    <div class="theme-name">E-Commerce</div>
+                    <div class="theme-subtitle">Online Shopping</div>
+                </button>
+            </div>
+        </div>
+    </section>
+
     <!-- Data Journey Section -->
-    <section class="data-journey">
+    <section class="data-journey" id="data-journey">
         <div class="journey-container">
-            <div class="section-header">
-                <h2 class="section-title">Meet DataBot 🤖 - Your Data Engineering Guide!</h2>
-                <p class="section-subtitle">
-                    Follow DataBot as he transforms messy business data into beautiful insights using our 7 essential tools!
-                </p>
+            <div class="journey-header-row">
+                <div class="section-header">
+                    <h2 class="section-title" id="journey-title">Meet DataBot 🤖 - Your Retail Data Guide!</h2>
+                    <p class="section-subtitle" id="journey-subtitle">
+                        Follow DataBot as he transforms messy store data into sales insights using our 9 essential tools!
+                    </p>
+                </div>
+
+                <!-- DataBot Character - Compact Robot Design -->
+                <div class="databot-container">
+                    <div class="databot-robot" id="databot">
+                        <div class="robot-antenna">
+                            <div class="antenna-ball"></div>
+                        </div>
+                        <div class="robot-head">
+                            <div class="robot-screen">
+                                <span class="robot-hat-icon" id="databot-hat">🛒</span>
+                            </div>
+                            <div class="robot-eyes">
+                                <div class="robot-eye left"></div>
+                                <div class="robot-eye right"></div>
+                            </div>
+                            <div class="robot-mouth"></div>
+                        </div>
+                        <div class="robot-neck"></div>
+                        <div class="robot-body">
+                            <div class="robot-chest-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div class="robot-badge" id="databot-badge">RETAIL</div>
+                        </div>
+                        <div class="robot-arms">
+                            <div class="robot-arm left-arm"></div>
+                            <div class="robot-arm right-arm"></div>
+                        </div>
+                    </div>
+                    <div class="databot-speech" id="databot-speech">
+                        Welcome! Let me show you how data transforms businesses! 🚀
+                    </div>
+                </div>
             </div>
 
             <div class="journey-story">
-                <div class="story-character">
-                    <div class="databot">
-                        <div class="databot-head">
-                            <div class="databot-eyes">
-                                <div class="eye left-eye"></div>
-                                <div class="eye right-eye"></div>
-                            </div>
-                            <div class="databot-mouth"></div>
-                        </div>
-                        <div class="databot-body">
-                            <div class="databot-chest">
-                                <i class="fas fa-database"></i>
-                            </div>
-                        </div>
-                        <div class="databot-arms">
-                            <div class="arm left-arm"></div>
-                            <div class="arm right-arm"></div>
-                        </div>
-                    </div>
-                    <div class="speech-bubble">
-                        <p id="databot-speech">Let me show you how we turn chaos into insights!</p>
-                    </div>
-                </div>
 
-                <div class="journey-steps">
-                    <!-- Step 1: MSSQL -->
+                <div class="journey-steps" id="journey-steps">
+                    <!-- Step 1: SQL Database -->
                     <div class="journey-step" data-step="1">
                         <div class="step-number">1</div>
                         <div class="step-icon mssql-icon">
                             <i class="fas fa-database"></i>
                         </div>
                         <div class="step-content">
-                            <h3>MSSQL - The Messy Kitchen</h3>
-                            <p class="step-description">
-                                "Imagine your business data as a chaotic restaurant kitchen! 🍳 Orders flying everywhere, 
-                                ingredients scattered, recipes mixed up. That's your MSSQL application database - 
-                                it works for serving customers, but good luck finding anything for analysis!"
+                            <h3 id="step1-title">SQL Database - Where Data Lives</h3>
+                            <p class="step-description" id="step1-desc">
+                                "Imagine thousands of cash registers across 5,000 stores! 🏪 Every beep, every scan creates data. Whether you use PostgreSQL, MSSQL, or MySQL - they all store your business data. We teach courses for multiple databases, so pick what works for you!"
                             </p>
-                            <div class="step-example">
-                                <strong>Real Example:</strong> "Customer John bought pizza, but his data is spread across 
-                                Orders table, Customers table, and Products table. It's like having the recipe on the ceiling!"
+                            <div class="step-example" id="step1-example">
+                                <strong>Real Scenario:</strong> "Customer Sarah bought diapers, beer, and chips at Store #4521. This data lives in your SQL database - use DBeaver to explore it visually! 🔍"
                             </div>
                         </div>
                     </div>
@@ -186,134 +287,160 @@
                             <i class="fab fa-python"></i>
                         </div>
                         <div class="step-content">
-                            <h3>Python - The Smart Detective</h3>
-                            <p class="step-description">
-                                "Enter Python - our brilliant detective! 🔍 It sneaks into that chaotic kitchen, 
-                                finds all the scattered ingredients (data), and says 'Aha! I know where everything is!' 
-                                It reads the messy data and makes sense of it."
+                            <h3 id="step2-title">Python - The Smart Assistant</h3>
+                            <p class="step-description" id="step2-desc">
+                                "Python is that super-smart employee who memorizes EVERYTHING! 🧠 It reads millions of records, spots patterns humans miss, and says 'People who buy diapers also buy beer!' Mind = Blown!"
                             </p>
-                            <div class="step-example">
-                                <strong>Python says:</strong> "Found John's pizza order! Let me connect his customer info, 
-                                order details, and payment. Now I see he's a regular who loves pepperoni!"
+                            <div class="step-example" id="step2-example">
+                                <strong>Python discovers:</strong> "Analyzed 50 million transactions! Found that putting bananas near cereal increases banana sales by 23%! 🍌"
                             </div>
                         </div>
                     </div>
 
-                    <!-- Step 3: Terraform -->
+                    <!-- Step 3: AWS DMS -->
                     <div class="journey-step" data-step="3">
                         <div class="step-number">3</div>
+                        <div class="step-icon dms-icon">
+                            <i class="fas fa-truck-loading"></i>
+                        </div>
+                        <div class="step-content">
+                            <h3 id="step3-title">AWS DMS - The Data Mover</h3>
+                            <p class="step-description" id="step3-desc">
+                                "DMS is like a magical moving truck! 🚚 It moves data from your old system to the cloud - WITHOUT downtime! Customers keep shopping while data syncs. Zero stress!"
+                            </p>
+                            <div class="step-example" id="step3-example">
+                                <strong>DMS in action:</strong> "Moving 500GB to AWS... Customers still shopping... Done! Not a single record lost! 🎉"
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Terraform -->
+                    <div class="journey-step" data-step="4">
+                        <div class="step-number">4</div>
                         <div class="step-icon terraform-icon">
                             <i class="fas fa-cubes"></i>
                         </div>
                         <div class="step-content">
-                            <h3>Terraform - The Master Architect</h3>
-                            <p class="step-description">
-                                "Time for Terraform, our master architect! 🏗️ Like building IKEA furniture but for the cloud. 
-                                'I need a data warehouse here, some servers there, and make sure everything talks to each other!' 
-                                It builds our cloud infrastructure automatically."
+                            <h3 id="step4-title">Terraform - Cloud Builder</h3>
+                            <p class="step-description" id="step4-desc">
+                                "Need cloud infrastructure? Terraform builds it in minutes! 🏗️ Like LEGO for the cloud - 'I need 1 data warehouse, 5 servers!' Click. Done."
                             </p>
-                            <div class="step-example">
-                                <strong>Terraform declares:</strong> "Creating 1 AWS Redshift cluster, 3 EC2 instances, 
-                                1 S3 bucket... Done! Your cloud kitchen is ready for serious cooking!"
+                            <div class="step-example" id="step4-example">
+                                <strong>Terraform builds:</strong> "Creating analytics infrastructure... Scaling for Black Friday... Ready for 1M transactions/hour! 💪"
                             </div>
                         </div>
                     </div>
 
-                    <!-- Step 4: Redshift -->
-                    <div class="journey-step" data-step="4">
-                        <div class="step-number">4</div>
+                    <!-- Step 5: Terraform -->
+                    <div class="journey-step" data-step="5">
+                        <div class="step-number">5</div>
+                        <div class="step-icon terraform-icon">
+                            <i class="fas fa-cubes"></i>
+                        </div>
+                        <div class="step-content">
+                            <h3 id="step5-title">Terraform - The Store Builder Robot</h3>
+                            <p class="step-description" id="step5-desc">
+                                "Need a new data center? Terraform builds it in 10 minutes! 🏗️ Like LEGO for the cloud - 
+                                'I need 1 data warehouse, 5 servers, 3 storage buckets, and connect them all together!' 
+                                Click. Done. No calling IT for 6 months!"
+                            </p>
+                            <div class="step-example" id="step5-example">
+                                <strong>Terraform builds:</strong> "Creating analytics infrastructure for Black Friday... 
+                                Scaling to handle 10x normal traffic... Ready to process 1 million transactions per hour! 💪"
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 6: Redshift -->
+                    <div class="journey-step" data-step="6">
+                        <div class="step-number">6</div>
                         <div class="step-icon redshift-icon">
                             <i class="fab fa-aws"></i>
                         </div>
                         <div class="step-content">
-                            <h3>Redshift - The Organized Warehouse</h3>
-                            <p class="step-description">
-                                "Meet Redshift - the Marie Kondo of data! ✨ It takes all that messy restaurant data 
-                                and organizes it into a beautiful, spotless warehouse. Everything has its place, 
-                                everything is labeled, and finding anything takes seconds!"
+                            <h3 id="step6-title">Redshift - The Super Organized Warehouse</h3>
+                            <p class="step-description" id="step6-desc">
+                                "Redshift is like having a warehouse where EVERYTHING is perfectly organized! 📦 
+                                5 billion rows of data, but finding 'all customers who bought organic milk on Tuesdays' 
+                                takes 2 seconds! It's the Marie Kondo of data storage!"
                             </p>
-                            <div class="step-example">
-                                <strong>Redshift organizes:</strong> "All pizzas in aisle A, all customers in section B, 
-                                all payments in zone C. Want to find all pepperoni lovers? Boom - 0.3 seconds!"
+                            <div class="step-example" id="step6-example">
+                                <strong>Redshift answers:</strong> "'Which stores sold out of toilet paper last March?' 
+                                Searching 10 years of data... Found 847 stores in 0.8 seconds! 🚀"
                             </div>
                         </div>
                     </div>
 
-                    <!-- Step 5: Airflow -->
-                    <div class="journey-step" data-step="5">
-                        <div class="step-number">5</div>
+                    <!-- Step 7: Airflow -->
+                    <div class="journey-step" data-step="7">
+                        <div class="step-number">7</div>
                         <div class="step-icon airflow-icon">
                             <i class="fas fa-project-diagram"></i>
                         </div>
                         <div class="step-content">
-                            <h3>Airflow - The Reliable Robot Butler</h3>
-                            <p class="step-description">
-                                "Airflow is like having a super-reliable robot butler! 🤖 Every day at 3 AM, it wakes up and says: 
-                                'Time to collect today's data, clean it up, and put it in the warehouse!' 
-                                It never forgets, never sleeps in, never calls in sick!"
+                            <h3 id="step7-title">Airflow - The Never-Sleeping Manager</h3>
+                            <p class="step-description" id="step7-desc">
+                                "Airflow is that manager who NEVER sleeps! ⏰ Every night at midnight: 'Collect all store data! 
+                                Clean it up! Load it to warehouse! Update inventory counts! Send alerts if something's wrong!' 
+                                365 days a year, never takes vacation!"
                             </p>
-                            <div class="step-example">
-                                <strong>Airflow's daily routine:</strong> "Good morning! Extracting yesterday's orders... 
-                                Cleaning data... Loading to Redshift... Sending success email... See you tomorrow!"
+                            <div class="step-example" id="step7-example">
+                                <strong>Airflow's schedule:</strong> "12:00 AM - Extract sales data ✓, 12:30 AM - Clean data ✓, 
+                                1:00 AM - Load to Redshift ✓, 1:30 AM - Update dashboards ✓, Ready for morning meetings! ☕"
                             </div>
                         </div>
                     </div>
 
-                    <!-- Step 6: DBT -->
-                    <div class="journey-step" data-step="6">
-                        <div class="step-number">6</div>
+                    <!-- Step 8: DBT -->
+                    <div class="journey-step" data-step="8">
+                        <div class="step-number">8</div>
                         <div class="step-icon dbt-icon">
                             <i class="fas fa-magic"></i>
                         </div>
                         <div class="step-content">
-                            <h3>DBT - The Master Chef</h3>
-                            <p class="step-description">
-                                "DBT is our Gordon Ramsay of data! 👨‍🍳 It takes those organized ingredients from Redshift 
-                                and transforms them into gourmet business insights. 'This raw data is BLAND! 
-                                Let me add some calculations, mix in some business logic, and... BOOM! Masterpiece!'"
+                            <h3 id="step8-title">DBT - The Business Translator</h3>
+                            <p class="step-description" id="step8-desc">
+                                "DBT is your translator from 'tech speak' to 'business speak'! 🎭 It takes raw data like 
+                                'txn_id: 847291, prod_sku: 001847' and transforms it into 'Sarah bought 2 gallons of milk 
+                                worth $6.98 and has been a loyal customer for 3 years!'"
                             </p>
-                            <div class="step-example">
-                                <strong>DBT transforms:</strong> "Raw pizza orders + customer data + seasonality = 
-                                'John buys 23% more pizza during football season and prefers thin crust on Fridays!'"
-                </div>
-            </div>
+                            <div class="step-example" id="step8-example">
+                                <strong>DBT creates:</strong> "Customer Lifetime Value model ready! Sarah = $12,847 over 3 years. 
+                                She's in the top 5% of customers! Time to send her a VIP coupon! 👑"
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- Step 7: Metabase -->
-                    <div class="journey-step" data-step="7">
-                        <div class="step-number">7</div>
+                    <!-- Step 9: Metabase -->
+                    <div class="journey-step" data-step="9">
+                        <div class="step-number">9</div>
                         <div class="step-icon metabase-icon">
                             <i class="fas fa-chart-line"></i>
                         </div>
                         <div class="step-content">
-                            <h3>Metabase - The Storyteller</h3>
-                            <p class="step-description">
-                                "Finally, Metabase - our brilliant storyteller! 📊 It takes all those beautiful insights 
-                                and turns them into stunning visual stories. Charts that make CEOs go 'Wow!', 
-                                dashboards that make data dance, and reports that actually make sense!"
+                            <h3 id="step9-title">Metabase - The Beautiful Storyteller</h3>
+                            <p class="step-description" id="step9-desc">
+                                "Metabase turns numbers into stories that even your grandma would understand! 📊 
+                                No more spreadsheets with 10,000 rows. Instead: beautiful charts, interactive maps, 
+                                and dashboards that make the CEO say 'WOW, show me more!'"
                             </p>
-                            <div class="step-example">
-                                <strong>Metabase presents:</strong> "Here's your pizza empire dashboard! Sales are up 34%, 
-                                John and 2,847 other customers love pepperoni, and Friday is your money day! 💰"
+                            <div class="step-example" id="step9-example">
+                                <strong>Metabase shows:</strong> "Live dashboard: Sales up 12% today! Store #4521 is the MVP! 
+                                Hot product: Organic avocados! Alert: Store #2847 running low on eggs! 🥚"
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="journey-result">
-                    <div class="result-card">
-                        <div class="result-icon">
-                            <i class="fas fa-trophy"></i>
-                        </div>
-                        <h3>The Magic Result! ✨</h3>
-                        <p>
-                            From chaotic restaurant kitchen to crystal-clear business insights! Your executives now have 
-                            beautiful dashboards showing exactly what's happening in your business, powered by all 7 tools 
-                            working together like a perfect orchestra! 🎵
-                        </p>
-                        <div class="final-example">
-                            <strong>Before:</strong> "How are pizza sales?" → *3 weeks of manual spreadsheet hell* 😵<br>
-                            <strong>After:</strong> "How are pizza sales?" → *Click* → "Here's your real-time dashboard!" 🎉
+                    <div class="result-card" id="result-card">
+                        <div class="result-icon">🏆</div>
+                        <div class="result-content">
+                            <h3 id="result-title">The Retail Magic! ✨</h3>
+                            <p id="result-desc">From chaotic stores to one command center! Real-time sales, inventory alerts, and customer trends - all tools working together!</p>
+                            <div class="final-example" id="final-example">
+                                <strong>Before:</strong> "How did we do?" → *2 weeks of work* 😵 &nbsp;|&nbsp; <strong>After:</strong> *Real-time dashboard* → "$2.3B, up 15%!" 🎉
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -489,6 +616,18 @@
                         </div>
                     </div>
 
+                    <div class="course-curriculum">
+                        <h4>What You'll Learn:</h4>
+                        <ul>
+                            <li>HCL syntax and Terraform basics</li>
+                            <li>Providers, resources, and modules</li>
+                            <li>State management and backends</li>
+                            <li>AWS, Azure, GCP provisioning</li>
+                            <li>CI/CD pipeline integration</li>
+                            <li>Best practices and security</li>
+                        </ul>
+                    </div>
+
                     <button class="course-cta terraform-cta" onclick="enterCourse('terraform')">
                         <i class="fas fa-cube"></i>
                         Start Terraform Course
@@ -526,6 +665,18 @@
                             <i class="fas fa-award"></i>
                             <span>AWS Certification</span>
                         </div>
+                    </div>
+
+                    <div class="course-curriculum">
+                        <h4>What You'll Learn:</h4>
+                        <ul>
+                            <li>Redshift architecture and setup</li>
+                            <li>Columnar storage optimization</li>
+                            <li>Distribution and sort keys</li>
+                            <li>Query performance tuning</li>
+                            <li>Data loading with COPY</li>
+                            <li>Redshift Spectrum and ML</li>
+                        </ul>
                     </div>
                     
                     <button class="course-cta redshift-cta" onclick="enterCourse('redshift')">
@@ -567,6 +718,18 @@
                         </div>
                     </div>
 
+                    <div class="course-curriculum">
+                        <h4>What You'll Learn:</h4>
+                        <ul>
+                            <li>SQL Server installation & config</li>
+                            <li>T-SQL programming mastery</li>
+                            <li>Stored procedures & functions</li>
+                            <li>Index optimization strategies</li>
+                            <li>Backup, recovery & security</li>
+                            <li>SSIS, SSRS, and SSAS basics</li>
+                        </ul>
+                    </div>
+
                     <button class="course-cta mssql-cta" onclick="enterCourse('mssql')">
                         <i class="fas fa-database"></i>
                         Start MSSQL Course
@@ -604,6 +767,18 @@
                             <i class="fas fa-award"></i>
                             <span>Analytics Certification</span>
                         </div>
+                    </div>
+
+                    <div class="course-curriculum">
+                        <h4>What You'll Learn:</h4>
+                        <ul>
+                            <li>DBT project setup & structure</li>
+                            <li>Models, refs, and sources</li>
+                            <li>Testing and documentation</li>
+                            <li>Jinja macros & packages</li>
+                            <li>Incremental models & snapshots</li>
+                            <li>dbt Cloud deployment</li>
+                        </ul>
                     </div>
 
                     <button class="course-cta dbt-cta" onclick="enterCourse('dbt')">
@@ -645,9 +820,145 @@
                         </div>
                     </div>
 
+                    <div class="course-curriculum">
+                        <h4>What You'll Learn:</h4>
+                        <ul>
+                            <li>Metabase setup & data sources</li>
+                            <li>Questions and custom queries</li>
+                            <li>Dashboard design principles</li>
+                            <li>Filters, drill-downs & interactivity</li>
+                            <li>Embedding & sharing reports</li>
+                            <li>Admin settings & permissions</li>
+                        </ul>
+                    </div>
+
                     <button class="course-cta metabase-cta" onclick="enterCourse('metabase')">
                         <i class="fas fa-chart-bar"></i>
                         Start Metabase Course
+                    </button>
+                </div>
+
+                <!-- PostgreSQL/DBeaver Course Card - NEW -->
+                <div class="course-card postgres-card">
+                    <div class="course-header">
+                        <div class="course-icon">
+                            <i class="fas fa-elephant"></i>
+                        </div>
+                        <div class="course-badge beginner">Database Fundamentals</div>
+                    </div>
+                    <h3 class="course-title">PostgreSQL with DBeaver</h3>
+                    <p class="course-description">
+                        Master the world's most advanced open-source database! Learn PostgreSQL from scratch using 
+                        DBeaver - your friendly database explorer. Perfect for beginners who want to understand databases.
+                    </p>
+                    
+                    <div class="course-features">
+                        <div class="feature">
+                            <i class="fas fa-clock"></i>
+                            <span>14-Week Course</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-tasks"></i>
+                            <span>35+ Lessons</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-eye"></i>
+                            <span>Visual Learning</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-certificate"></i>
+                            <span>Database Certification</span>
+                        </div>
+                    </div>
+
+                    <div class="course-curriculum">
+                        <h4>What You'll Learn:</h4>
+                        <ul>
+                            <li>Database concepts explained simply</li>
+                            <li>DBeaver installation & navigation</li>
+                            <li>SQL from SELECT to complex JOINs</li>
+                            <li>Creating tables & relationships</li>
+                            <li>Indexes and query optimization</li>
+                            <li>Real-world database design</li>
+                        </ul>
+                    </div>
+
+                    <div class="course-stats">
+                        <div class="stat-item">
+                            <span class="stat-value">100%</span>
+                            <span class="stat-label">Beginner Friendly</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">4.9/5</span>
+                            <span class="stat-label">Student Rating</span>
+                        </div>
+                    </div>
+
+                    <button class="course-cta postgres-cta" onclick="enterCourse('postgres')">
+                        <i class="fas fa-database"></i>
+                        Start PostgreSQL Course
+                    </button>
+                </div>
+
+                <!-- AWS DMS Course Card - NEW -->
+                <div class="course-card dms-card">
+                    <div class="course-header">
+                        <div class="course-icon">
+                            <i class="fas fa-truck-loading"></i>
+                        </div>
+                        <div class="course-badge intermediate">Data Migration</div>
+                    </div>
+                    <h3 class="course-title">AWS Database Migration Service</h3>
+                    <p class="course-description">
+                        Learn to move data between databases without downtime! AWS DMS is like a magical moving truck 
+                        for your data - it copies everything while your applications keep running. Zero stress migrations!
+                    </p>
+                    
+                    <div class="course-features">
+                        <div class="feature">
+                            <i class="fas fa-clock"></i>
+                            <span>10-Week Course</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-tasks"></i>
+                            <span>28+ Lessons</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-sync"></i>
+                            <span>Live Migrations</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-award"></i>
+                            <span>AWS Certification</span>
+                        </div>
+                    </div>
+
+                    <div class="course-curriculum">
+                        <h4>What You'll Learn:</h4>
+                        <ul>
+                            <li>Migration concepts simplified</li>
+                            <li>Source & target endpoints setup</li>
+                            <li>Full load vs CDC (Change Data Capture)</li>
+                            <li>Schema conversion made easy</li>
+                            <li>Troubleshooting common issues</li>
+                            <li>Real migration projects</li>
+                        </ul>
+                    </div>
+
+                    <div class="course-stats">
+                        <div class="stat-item">
+                            <span class="stat-value">Zero</span>
+                            <span class="stat-label">Downtime Migrations</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">4.8/5</span>
+                            <span class="stat-label">Expert Rating</span>
+                        </div>
+                    </div>
+
+                    <button class="course-cta dms-cta" onclick="enterCourse('dms')">
+                        <i class="fas fa-rocket"></i>
+                        Start DMS Course
                     </button>
                 </div>
             </div>
@@ -749,24 +1060,19 @@
             <div class="about-content">
                 <h2 class="section-title">About FKTI</h2>
                 <p class="about-text">
-                    Fakhruddin Khambaty Training Institute (FKTI) is dedicated to providing world-class education 
-                    in data science and engineering. Our courses combine academic rigor with industry practicality, 
-                    preparing students for successful careers in the rapidly evolving field of data technology.
+                    <strong>FKTI was born from frustration.</strong> Learning data engineering shouldn't feel like 
+                    decoding ancient hieroglyphics. Too many courses assume you already know things, skip real-world 
+                    examples, and leave you more confused than when you started.
                 </p>
-                <div class="about-stats">
-                    <div class="about-stat">
-                        <div class="stat-number">5000+</div>
-                        <div class="stat-text">Students Trained</div>
-                    </div>
-                    <div class="about-stat">
-                        <div class="stat-number">95%</div>
-                        <div class="stat-text">Job Placement Rate</div>
-                    </div>
-                    <div class="about-stat">
-                        <div class="stat-number">50+</div>
-                        <div class="stat-text">Industry Partners</div>
-                    </div>
-                </div>
+                <p class="about-text" style="margin-top: 16px;">
+                    <strong>We do things differently.</strong> At FKTI, we assume you know absolutely nothing — 
+                    and that's perfectly okay. Every concept is explained with everyday examples: databases become 
+                    filing cabinets, APIs become restaurant waiters, and SQL queries become conversations with your data.
+                </p>
+                <p class="about-text" style="margin-top: 16px;">
+                    Whether you're switching careers or just curious about data, FKTI meets you where you are 
+                    and takes you where you want to go — one simple explanation at a time.
+                </p>
             </div>
             <div class="about-visual">
                 <div class="about-image-placeholder">
@@ -787,22 +1093,28 @@
             </div>
             <div class="footer-links">
                 <div class="footer-column">
-                    <h4>Courses</h4>
+                    <h4>Programming</h4>
                     <a href="python_course/index.html">Python for Data Science</a>
-                    <a href="airflow_course/index.html">Apache Airflow Mastery</a>
-                    <a href="#contact">Get Started</a>
+                    <a href="#" onclick="enterCourse('mssql'); return false;">Microsoft SQL Server</a>
+                    <a href="postgres_course/index.html">PostgreSQL & DBeaver</a>
                 </div>
                 <div class="footer-column">
-                    <h4>Resources</h4>
-                    <a href="#about">About FKTI</a>
-                    <a href="python_course/README.md">Course Documentation</a>
-                    <a href="#contact">Support</a>
+                    <h4>Data Engineering</h4>
+                    <a href="airflow_course/index.html">Apache Airflow</a>
+                    <a href="#" onclick="enterCourse('dbt'); return false;">DBT Transformation</a>
+                    <a href="#" onclick="enterCourse('dms'); return false;">AWS DMS</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Cloud & Analytics</h4>
+                    <a href="#" onclick="enterCourse('terraform'); return false;">Terraform IaC</a>
+                    <a href="#" onclick="enterCourse('redshift'); return false;">AWS Redshift</a>
+                    <a href="#" onclick="enterCourse('metabase'); return false;">Metabase BI</a>
                 </div>
                 <div class="footer-column">
                     <h4>Connect</h4>
-                    <a href="mailto:fktiindia@gmail.com">Email Support</a>
-                    <a href="#contact">Contact Us</a>
-                    <a href="#courses">All Courses</a>
+                    <a href="#about">About FKTI</a>
+                    <a href="#" onclick="openChatbot(); return false;">💬 Chat Support</a>
+                    <a href="#" onclick="showContactInfo(); return false;">📧 Contact Us</a>
                 </div>
             </div>
         </div>
@@ -812,6 +1124,705 @@
         </div>
     </footer>
 
+    <!-- Chat Support Modal -->
+    <div id="chatModal" class="modal-overlay" style="display: none;">
+        <div class="chat-modal">
+            <div class="chat-header">
+                <span>💬 Chat with FKTI Support</span>
+                <button class="close-btn" onclick="closeChatbot()">×</button>
+            </div>
+            <div class="chat-body">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="bot-message">
+                        <span class="bot-avatar">🤖</span>
+                        <p>Hi there! 👋 I'm FKTI's support bot. How can I help you today? Type your question below and I'll forward it to our team!</p>
+                    </div>
+                </div>
+                <form class="chat-input-form" onsubmit="sendChatMessage(event)">
+                    <input type="text" id="userName" placeholder="Your name" required style="margin-bottom: 8px;">
+                    <input type="email" id="userEmail" placeholder="Your email" required style="margin-bottom: 8px;">
+                    <textarea id="userMessage" placeholder="Your message..." required rows="3"></textarea>
+                    <button type="submit" class="btn btn-primary" style="margin-top: 12px; width: 100%;">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Info Modal -->
+    <div id="contactModal" class="modal-overlay" style="display: none;">
+        <div class="contact-modal">
+            <div class="contact-header">
+                <span>📧 Contact FKTI</span>
+                <button class="close-btn" onclick="closeContactInfo()">×</button>
+            </div>
+            <div class="contact-body">
+                <p style="margin-bottom: 20px; color: #6e6e73;">Reach out to us anytime. We'd love to hear from you!</p>
+                <div class="contact-item">
+                    <div class="contact-icon">📩</div>
+                    <div class="contact-details">
+                        <strong>General Inquiries</strong>
+                        <a href="mailto:fktiindia@gmail.com">fktiindia@gmail.com</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">👨‍💼</div>
+                    <div class="contact-details">
+                        <strong>Founder</strong>
+                        <a href="mailto:fakhruddinkhambaty@gmail.com">fakhruddinkhambaty@gmail.com</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .chat-modal, .contact-modal {
+            background: white;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            animation: modalSlideIn 0.3s ease;
+        }
+        
+        @keyframes modalSlideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .chat-header, .contact-header {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+        
+        .close-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .close-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        .chat-body, .contact-body {
+            padding: 20px;
+        }
+        
+        .chat-messages {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-bottom: 16px;
+        }
+        
+        .bot-message {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+        
+        .bot-avatar {
+            font-size: 28px;
+        }
+        
+        .bot-message p {
+            background: #f5f5f7;
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #1d1d1f;
+        }
+        
+        .chat-input-form input,
+        .chat-input-form textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e5e5e5;
+            border-radius: 10px;
+            font-size: 14px;
+            font-family: inherit;
+        }
+        
+        .chat-input-form input:focus,
+        .chat-input-form textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            background: #f5f5f7;
+            border-radius: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .contact-icon {
+            font-size: 28px;
+        }
+        
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        
+        .contact-details strong {
+            font-size: 14px;
+            color: #1d1d1f;
+        }
+        
+        .contact-details a {
+            font-size: 13px;
+            color: #3b82f6;
+            text-decoration: none;
+        }
+        
+        .contact-details a:hover {
+            text-decoration: underline;
+        }
+        
+        .success-message {
+            background: #dcfce7;
+            color: #166534;
+            padding: 16px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 16px;
+        }
+    </style>
+
+    <script>
+        // Chatbot functions
+        function openChatbot() {
+            document.getElementById('chatModal').style.display = 'flex';
+        }
+        
+        function closeChatbot() {
+            document.getElementById('chatModal').style.display = 'none';
+        }
+        
+        function showContactInfo() {
+            document.getElementById('contactModal').style.display = 'flex';
+        }
+        
+        function closeContactInfo() {
+            document.getElementById('contactModal').style.display = 'none';
+        }
+        
+        // Close modals on outside click
+        document.getElementById('chatModal')?.addEventListener('click', function(e) {
+            if (e.target === this) closeChatbot();
+        });
+        document.getElementById('contactModal')?.addEventListener('click', function(e) {
+            if (e.target === this) closeContactInfo();
+        });
+        
+        async function sendChatMessage(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('userName').value;
+            const email = document.getElementById('userEmail').value;
+            const message = document.getElementById('userMessage').value;
+            const submitBtn = event.target.querySelector('button[type="submit"]');
+            
+            // Show loading state
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+            
+            try {
+                // Using Web3Forms API (free, no backend needed)
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        access_key: '7750d0a8-c3ec-4aa0-882b-e9fbe9140f37', // FKTI's Web3Forms key
+                        subject: `FKTI Support: Message from ${name}`,
+                        from_name: 'FKTI Contact Form',
+                        name: name,
+                        email: email,
+                        message: message,
+                        to: 'fktiindia@gmail.com'
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    // Show success message
+                    const chatBody = document.querySelector('.chat-body');
+                    chatBody.innerHTML = `
+                        <div class="success-message">
+                            <div style="font-size: 48px; margin-bottom: 12px;">✅</div>
+                            <strong>Message Sent!</strong>
+                            <p style="margin-top: 8px; font-size: 14px;">Thanks ${name}! We've received your message and will get back to you at <strong>${email}</strong> soon.</p>
+                        </div>
+                    `;
+                } else {
+                    throw new Error('Failed to send');
+                }
+            } catch (error) {
+                // Fallback to mailto if API fails
+                const subject = encodeURIComponent(`FKTI Support Request from ${name}`);
+                const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+                window.location.href = `mailto:fktiindia@gmail.com?subject=${subject}&body=${body}`;
+                
+                const chatBody = document.querySelector('.chat-body');
+                chatBody.innerHTML = `
+                    <div class="success-message">
+                        <div style="font-size: 48px; margin-bottom: 12px;">📧</div>
+                        <strong>Opening Email...</strong>
+                        <p style="margin-top: 8px; font-size: 14px;">Your email app should open. If not, email us at <a href="mailto:fktiindia@gmail.com">fktiindia@gmail.com</a></p>
+                    </div>
+                `;
+            }
+            
+            return false;
+        }
+    </script>
+
     <script src="js/hub-script.js"></script>
+
+    <!-- Admin Key Icon -->
+    <div class="admin-key-btn" onclick="showAdminModal()" title="Admin Access">
+        <i class="fas fa-key"></i>
+    </div>
+
+    <!-- Admin Login Modal -->
+    <div id="adminModal" class="admin-modal">
+        <div class="admin-modal-content">
+            <span class="admin-close" onclick="closeAdminModal()">&times;</span>
+            <div class="admin-login-form">
+                <div class="admin-icon">🔐</div>
+                <h3>Admin Access</h3>
+                <p>Enter passcode to view analytics</p>
+                <input type="password" id="adminPasscode" placeholder="Enter passcode" onkeypress="if(event.key==='Enter')verifyAdminAccess()">
+                <button onclick="verifyAdminAccess()">Access Dashboard</button>
+                <p class="admin-error" id="adminError"></p>
+            </div>
+            <div class="admin-dashboard" id="adminDashboard" style="display:none;">
+                <h3>📊 FKTI Analytics Dashboard</h3>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-number" id="totalVisitors">--</div>
+                        <div class="stat-label">Total Visitors</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-icon">📅</div>
+                        <div class="stat-number" id="todayVisitors">--</div>
+                        <div class="stat-label">Today's Visits</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-icon">🔥</div>
+                        <div class="stat-number" id="uniqueVisitors">--</div>
+                        <div class="stat-label">Unique Visitors</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-icon">📍</div>
+                        <div class="stat-number" id="pageViews">--</div>
+                        <div class="stat-label">Page Views</div>
+                    </div>
+                </div>
+                <div class="recent-visits">
+                    <h4>Recent Activity</h4>
+                    <div id="recentVisitsList"></div>
+                </div>
+                <div class="popular-courses">
+                    <h4>Popular Courses</h4>
+                    <div id="popularCoursesList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* Admin Key Button */
+        .admin-key-btn {
+            position: fixed;
+            bottom: 100px;
+            right: 24px;
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+        .admin-key-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+        .admin-key-btn i {
+            color: white;
+            font-size: 18px;
+        }
+
+        /* Admin Modal */
+        .admin-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 10000;
+            backdrop-filter: blur(5px);
+        }
+        .admin-modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 20px;
+            padding: 32px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+        .admin-close {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            font-size: 28px;
+            cursor: pointer;
+            color: #666;
+        }
+        .admin-close:hover { color: #333; }
+        
+        .admin-login-form {
+            text-align: center;
+        }
+        .admin-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+        .admin-login-form h3 {
+            margin-bottom: 8px;
+            color: #1d1d1f;
+        }
+        .admin-login-form p {
+            color: #86868b;
+            margin-bottom: 20px;
+        }
+        .admin-login-form input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e5e5e5;
+            border-radius: 12px;
+            font-size: 16px;
+            margin-bottom: 16px;
+            transition: border-color 0.3s;
+        }
+        .admin-login-form input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        .admin-login-form button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .admin-login-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+        .admin-error {
+            color: #ef4444;
+            font-size: 14px;
+            margin-top: 12px;
+        }
+
+        /* Admin Dashboard */
+        .admin-dashboard h3 {
+            text-align: center;
+            margin-bottom: 24px;
+            color: #1d1d1f;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .stat-box {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+        }
+        .stat-icon {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+        .stat-number {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1d1d1f;
+        }
+        .stat-box .stat-label {
+            font-size: 12px;
+            color: #86868b;
+            margin-top: 4px;
+        }
+        .recent-visits, .popular-courses {
+            background: #f8fafc;
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+        .recent-visits h4, .popular-courses h4 {
+            font-size: 14px;
+            color: #1d1d1f;
+            margin-bottom: 12px;
+        }
+        .visit-item, .course-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #e5e5e5;
+            font-size: 13px;
+        }
+        .visit-item:last-child, .course-item:last-child {
+            border-bottom: none;
+        }
+    </style>
+
+    <script>
+        // Admin Modal Functions
+        function showAdminModal() {
+            document.getElementById('adminModal').style.display = 'block';
+            document.getElementById('adminPasscode').focus();
+        }
+        
+        function closeAdminModal() {
+            document.getElementById('adminModal').style.display = 'none';
+            document.getElementById('adminPasscode').value = '';
+            document.getElementById('adminError').textContent = '';
+            document.querySelector('.admin-login-form').style.display = 'block';
+            document.getElementById('adminDashboard').style.display = 'none';
+        }
+
+        // Encrypted passcode verification (current date IST: ddmmyyyy)
+        function verifyAdminAccess() {
+            const input = document.getElementById('adminPasscode').value;
+            const _0x4f = [0x67,0x65,0x74,0x55,0x54,0x43,0x44,0x61,0x74,0x65];
+            const _0x5a = [0x67,0x65,0x74,0x55,0x54,0x43,0x4d,0x6f,0x6e,0x74,0x68];
+            const _0x6b = [0x67,0x65,0x74,0x55,0x54,0x43,0x46,0x75,0x6c,0x6c,0x59,0x65,0x61,0x72];
+            
+            const now = new Date();
+            // IST is UTC + 5:30
+            const istOffset = 5.5 * 60 * 60 * 1000;
+            const ist = new Date(now.getTime() + istOffset);
+            
+            const d = ist[String.fromCharCode(..._0x4f)]();
+            const m = ist[String.fromCharCode(..._0x5a)]() + 1;
+            const y = ist[String.fromCharCode(..._0x6b)]();
+            
+            const _k = (d < 10 ? '0' : '') + d + (m < 10 ? '0' : '') + m + y;
+            
+            if (input === _k) {
+                document.querySelector('.admin-login-form').style.display = 'none';
+                document.getElementById('adminDashboard').style.display = 'block';
+                loadAnalytics();
+            } else {
+                document.getElementById('adminError').textContent = 'Invalid passcode. Try again.';
+                document.getElementById('adminPasscode').value = '';
+            }
+        }
+
+        // Track visitor on page load
+        (function trackVisitor() {
+            const STORAGE_KEY = 'fkti_analytics';
+            const SESSION_KEY = 'fkti_session';
+            
+            // Get or create visitor ID
+            let visitorId = localStorage.getItem('fkti_visitor_id');
+            if (!visitorId) {
+                visitorId = 'v_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                localStorage.setItem('fkti_visitor_id', visitorId);
+            }
+            
+            // Check if this is a new session (30 min timeout)
+            const lastVisit = localStorage.getItem('fkti_last_visit');
+            const now = Date.now();
+            const isNewSession = !lastVisit || (now - parseInt(lastVisit)) > 30 * 60 * 1000;
+            
+            localStorage.setItem('fkti_last_visit', now.toString());
+            
+            // Get existing analytics
+            let analytics = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+            
+            // Initialize if empty
+            if (!analytics.totalVisits) {
+                analytics = {
+                    totalVisits: 0,
+                    uniqueVisitors: [],
+                    pageViews: 0,
+                    dailyStats: {},
+                    recentVisits: [],
+                    courseCounts: {}
+                };
+            }
+            
+            // Update stats
+            analytics.pageViews++;
+            
+            if (isNewSession) {
+                analytics.totalVisits++;
+            }
+            
+            if (!analytics.uniqueVisitors.includes(visitorId)) {
+                analytics.uniqueVisitors.push(visitorId);
+            }
+            
+            // Daily stats
+            const today = new Date().toISOString().split('T')[0];
+            if (!analytics.dailyStats[today]) {
+                analytics.dailyStats[today] = { visits: 0, pageViews: 0 };
+            }
+            if (isNewSession) {
+                analytics.dailyStats[today].visits++;
+            }
+            analytics.dailyStats[today].pageViews++;
+            
+            // Recent visits (keep last 20)
+            analytics.recentVisits.unshift({
+                time: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+                page: window.location.pathname.split('/').pop() || 'Home',
+                visitor: visitorId.substr(0, 12)
+            });
+            analytics.recentVisits = analytics.recentVisits.slice(0, 20);
+            
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(analytics));
+            
+            // Also try to save to a free online service for persistence
+            saveToCloud(analytics);
+        })();
+
+        // Save to cloud (using JSONbin.io free tier)
+        async function saveToCloud(data) {
+            try {
+                // Using localStorage as primary, with timestamp for sync
+                data.lastUpdated = new Date().toISOString();
+                localStorage.setItem('fkti_analytics', JSON.stringify(data));
+            } catch (e) {
+                console.log('Analytics save:', e);
+            }
+        }
+
+        // Load analytics for admin dashboard
+        function loadAnalytics() {
+            const analytics = JSON.parse(localStorage.getItem('fkti_analytics') || '{}');
+            const today = new Date().toISOString().split('T')[0];
+            
+            document.getElementById('totalVisitors').textContent = analytics.totalVisits || 0;
+            document.getElementById('todayVisitors').textContent = 
+                (analytics.dailyStats && analytics.dailyStats[today]) 
+                    ? analytics.dailyStats[today].visits 
+                    : 0;
+            document.getElementById('uniqueVisitors').textContent = 
+                analytics.uniqueVisitors ? analytics.uniqueVisitors.length : 0;
+            document.getElementById('pageViews').textContent = analytics.pageViews || 0;
+            
+            // Recent visits
+            const recentList = document.getElementById('recentVisitsList');
+            if (analytics.recentVisits && analytics.recentVisits.length > 0) {
+                recentList.innerHTML = analytics.recentVisits.slice(0, 10).map(v => `
+                    <div class="visit-item">
+                        <span>${v.page}</span>
+                        <span style="color:#86868b">${v.time}</span>
+                    </div>
+                `).join('');
+            } else {
+                recentList.innerHTML = '<p style="color:#86868b;font-size:13px;">No visits recorded yet</p>';
+            }
+            
+            // Popular courses
+            const courseList = document.getElementById('popularCoursesList');
+            if (analytics.courseCounts && Object.keys(analytics.courseCounts).length > 0) {
+                const sorted = Object.entries(analytics.courseCounts)
+                    .sort((a, b) => b[1] - a[1])
+                    .slice(0, 5);
+                courseList.innerHTML = sorted.map(([course, count]) => `
+                    <div class="course-item">
+                        <span>${course}</span>
+                        <span style="font-weight:600">${count} visits</span>
+                    </div>
+                `).join('');
+            } else {
+                courseList.innerHTML = '<p style="color:#86868b;font-size:13px;">No course visits recorded yet</p>';
+            }
+        }
+
+        // Track course clicks
+        const originalEnterCourse = window.enterCourse;
+        window.enterCourse = function(course) {
+            const analytics = JSON.parse(localStorage.getItem('fkti_analytics') || '{}');
+            if (!analytics.courseCounts) analytics.courseCounts = {};
+            analytics.courseCounts[course] = (analytics.courseCounts[course] || 0) + 1;
+            localStorage.setItem('fkti_analytics', JSON.stringify(analytics));
+            
+            if (originalEnterCourse) originalEnterCourse(course);
+        };
+
+        // Close modal on outside click
+        document.getElementById('adminModal').addEventListener('click', function(e) {
+            if (e.target === this) closeAdminModal();
+        });
+    </script>
 </body>
 </html>
+

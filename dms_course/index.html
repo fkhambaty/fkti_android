@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS Database Migration Service | FKTI Learning Hub</title>
+    <link rel="stylesheet" href="../css/fkti-light-theme.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Course-specific styles */
+        :root {
+            --aws-orange: #ff9900;
+            --aws-blue: #146eb4;
+        }
+        
+        body {
+            background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+            min-height: 100vh;
+        }
+
+        .course-nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            padding: 12px 20px;
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-hub {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            background: linear-gradient(180deg, #ffffff 0%, #f5f5f7 100%);
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            color: #1d1d1f;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 3px 0 #d1d5db, 0 4px 8px rgba(0,0,0,0.08);
+            transition: all 0.15s;
+        }
+
+        .nav-hub:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 0 #d1d5db, 0 7px 14px rgba(0,0,0,0.1);
+        }
+
+        .course-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .course-logo {
+            font-size: 32px;
+        }
+
+        .course-title-nav {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--aws-orange);
+        }
+
+        /* Hero Section */
+        .course-hero {
+            padding: 80px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(255, 153, 0, 0.05) 0%, rgba(20, 110, 180, 0.05) 100%);
+        }
+
+        .hero-icon {
+            font-size: 80px;
+            margin-bottom: 24px;
+            animation: truck 2s ease-in-out infinite;
+        }
+
+        @keyframes truck {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .hero-title {
+            font-size: 48px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--aws-orange), var(--aws-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            color: #6e6e73;
+            max-width: 700px;
+            margin: 0 auto 32px;
+            line-height: 1.6;
+        }
+
+        .hero-badges {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: white;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .badge i {
+            color: var(--aws-orange);
+        }
+
+        /* Content Sections */
+        .content-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1d1d1f;
+            margin-bottom: 12px;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: #6e6e73;
+        }
+
+        /* Lesson Cards */
+        .lessons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .lesson-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid #e5e5e5;
+            transition: all 0.25s;
+            cursor: pointer;
+        }
+
+        .lesson-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(255, 153, 0, 0.15);
+            border-color: var(--aws-orange);
+        }
+
+        .lesson-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--aws-orange), var(--aws-blue));
+            color: white;
+            border-radius: 50%;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .lesson-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 8px;
+        }
+
+        .lesson-desc {
+            font-size: 14px;
+            color: #6e6e73;
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        .lesson-topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .topic-tag {
+            padding: 4px 10px;
+            background: #f5f5f7;
+            border-radius: 6px;
+            font-size: 11px;
+            color: #6e6e73;
+            font-weight: 500;
+        }
+
+        /* Migration Visual */
+        .migration-visual {
+            background: linear-gradient(135deg, #1d1d1f 0%, #2d2d2d 100%);
+            border-radius: 24px;
+            padding: 48px;
+            margin: 60px 0;
+            text-align: center;
+            color: white;
+        }
+
+        .migration-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin: 32px 0;
+        }
+
+        .migration-box {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 16px;
+            padding: 24px 32px;
+            min-width: 150px;
+        }
+
+        .migration-box-icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+
+        .migration-box-label {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .migration-arrow {
+            font-size: 32px;
+            color: var(--aws-orange);
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.1); }
+        }
+
+        .migration-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .migration-subtitle {
+            font-size: 16px;
+            opacity: 0.8;
+        }
+
+        /* Fun Section */
+        .fun-section {
+            background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+            border-radius: 24px;
+            padding: 48px;
+            text-align: center;
+        }
+
+        .robot-container {
+            font-size: 80px;
+            margin-bottom: 24px;
+        }
+
+        .fun-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1d1d1f;
+            margin-bottom: 16px;
+        }
+
+        .fun-desc {
+            font-size: 16px;
+            color: #6e6e73;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* CTA */
+        .cta-section {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .btn-start {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            background: linear-gradient(180deg, var(--aws-orange) 0%, #e88a00 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #cc7a00, 0 6px 16px rgba(255, 153, 0, 0.35);
+            transition: all 0.15s;
+        }
+
+        .btn-start:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 #cc7a00, 0 10px 24px rgba(255, 153, 0, 0.4);
+        }
+
+        .btn-start:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #cc7a00, 0 3px 8px rgba(255, 153, 0, 0.3);
+        }
+
+        /* Coming Soon Banner */
+        .coming-soon {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .coming-soon h3 {
+            font-size: 24px;
+            color: #92400e;
+            margin-bottom: 12px;
+        }
+
+        .coming-soon p {
+            color: #a16207;
+            font-size: 16px;
+        }
+
+        /* Footer */
+        .course-footer {
+            text-align: center;
+            padding: 32px;
+            border-top: 1px solid #e5e5e5;
+            font-size: 14px;
+            color: #86868b;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 32px; }
+            .hero-subtitle { font-size: 16px; }
+            .lessons-grid { grid-template-columns: 1fr; }
+            .migration-visual { padding: 32px 20px; }
+            .migration-flow { flex-direction: column; }
+            .migration-arrow { transform: rotate(90deg); }
+            .fun-section { padding: 32px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="course-nav">
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-hub">
+                <span>←</span> FKTI Hub
+            </a>
+            <div class="course-brand">
+                <span class="course-logo">🚚</span>
+                <span class="course-title-nav">AWS DMS</span>
+            </div>
+            <div style="width: 120px;"></div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="course-hero">
+        <div class="hero-icon">🚚</div>
+        <h1 class="hero-title">AWS Database Migration Service</h1>
+        <p class="hero-subtitle">
+            Learn to move data between databases like a pro! AWS DMS is your magical moving truck - 
+            it transfers data while your apps keep running. Zero downtime, zero stress! 🎉
+        </p>
+        <div class="hero-badges">
+            <div class="badge"><i class="fas fa-clock"></i> 10 Weeks</div>
+            <div class="badge"><i class="fas fa-book"></i> 28+ Lessons</div>
+            <div class="badge"><i class="fas fa-sync"></i> Live Migrations</div>
+            <div class="badge"><i class="fas fa-award"></i> AWS Skills</div>
+        </div>
+    </section>
+
+    <!-- Coming Soon -->
+    <div class="content-wrapper">
+        <div class="coming-soon">
+            <h3>🚧 Course Under Construction!</h3>
+            <p>Our AWS experts are building the most beginner-friendly DMS course. Launching soon!</p>
+        </div>
+
+        <!-- Migration Visual -->
+        <div class="migration-visual">
+            <h2 class="migration-title">🎬 The Magic of Live Migration</h2>
+            <div class="migration-flow">
+                <div class="migration-box">
+                    <div class="migration-box-icon">🏢</div>
+                    <div class="migration-box-label">Old Database</div>
+                </div>
+                <div class="migration-arrow">→</div>
+                <div class="migration-box" style="border-color: var(--aws-orange);">
+                    <div class="migration-box-icon">🚚</div>
+                    <div class="migration-box-label">AWS DMS</div>
+                </div>
+                <div class="migration-arrow">→</div>
+                <div class="migration-box">
+                    <div class="migration-box-icon">☁️</div>
+                    <div class="migration-box-label">Cloud Database</div>
+                </div>
+            </div>
+            <p class="migration-subtitle">
+                Your apps never know the difference! Users keep working while data moves in the background. ✨
+            </p>
+        </div>
+
+        <!-- What You'll Learn -->
+        <div class="section-header">
+            <h2 class="section-title">🎓 What You'll Learn</h2>
+            <p class="section-subtitle">From "what's migration?" to "I moved 10TB without anyone noticing!"</p>
+        </div>
+
+        <div class="lessons-grid">
+            <!-- Module 1 -->
+            <div class="lesson-card">
+                <div class="lesson-number">1</div>
+                <h3 class="lesson-title">Why Move Data At All?</h3>
+                <p class="lesson-desc">
+                    Imagine your data living in an old house that's falling apart! 🏚️ Time to move to a 
+                    modern apartment (the cloud). We'll explain WHY migrations happen and WHEN you need them.
+                </p>
+                <div class="lesson-topics">
+                    <span class="topic-tag">Migration Reasons</span>
+                    <span class="topic-tag">Cloud Benefits</span>
+                    <span class="topic-tag">Planning</span>
+                </div>
+            </div>
+
+            <!-- Module 2 -->
+            <div class="lesson-card">
+                <div class="lesson-number">2</div>
+                <h3 class="lesson-title">Meet AWS DMS - Your Moving Truck</h3>
+                <p class="lesson-desc">
+                    DMS is like hiring professional movers who pack, transport, and unpack everything 
+                    while you're still living in the house! No boxes, no stress, no downtime! 📦
+                </p>
+                <div class="lesson-topics">
+                    <span class="topic-tag">What is DMS?</span>
+                    <span class="topic-tag">How it Works</span>
+                    <span class="topic-tag">Use Cases</span>
+                </div>
+            </div>
+
+            <!-- Module 3 -->
+            <div class="lesson-card">
+                <div class="lesson-number">3</div>
+                <h3 class="lesson-title">Setting Up Your First Migration</h3>
+                <p class="lesson-desc">
+                    Time to get your hands dirty! We'll set up a real migration from MySQL to PostgreSQL. 
+                    Don't worry - we'll hold your hand every step of the way! 🤝
+                </p>
+                <div class="lesson-topics">
+                    <span class="topic-tag">Source Endpoint</span>
+                    <span class="topic-tag">Target Endpoint</span>
+                    <span class="topic-tag">Replication Instance</span>
+                </div>
+            </div>
+
+            <!-- Module 4 -->
+            <div class="lesson-card">
+                <div class="lesson-number">4</div>
+                <h3 class="lesson-title">Full Load vs CDC - The Two Superpowers</h3>
+                <p class="lesson-desc">
+                    Full Load = Move EVERYTHING at once (like a big moving day) 📦<br>
+                    CDC = Keep syncing new changes (like forwarding your mail) 📬<br>
+                    Together = UNSTOPPABLE!
+                </p>
+                <div class="lesson-topics">
+                    <span class="topic-tag">Full Load</span>
+                    <span class="topic-tag">CDC</span>
+                    <span class="topic-tag">Combined Mode</span>
+                </div>
+            </div>
+
+            <!-- Module 5 -->
+            <div class="lesson-card">
+                <div class="lesson-number">5</div>
+                <h3 class="lesson-title">Schema Conversion - The Translator</h3>
+                <p class="lesson-desc">
+                    Oracle speaks French, PostgreSQL speaks Spanish! 🗣️ AWS Schema Conversion Tool 
+                    translates your database structure so nothing gets lost in translation!
+                </p>
+                <div class="lesson-topics">
+                    <span class="topic-tag">SCT Tool</span>
+                    <span class="topic-tag">Data Types</span>
+                    <span class="topic-tag">Incompatibilities</span>
+                </div>
+            </div>
+
+            <!-- Module 6 -->
+            <div class="lesson-card">
+                <div class="lesson-number">6</div>
+                <h3 class="lesson-title">Troubleshooting Like a Pro</h3>
+                <p class="lesson-desc">
+                    Things will break! 😅 But that's okay - we'll teach you how to read logs, 
+                    fix common errors, and become the hero who saves migration projects!
+                </p>
+                <div class="lesson-topics">
+                    <span class="topic-tag">Error Logs</span>
+                    <span class="topic-tag">Common Issues</span>
+                    <span class="topic-tag">Best Practices</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fun Section -->
+        <div class="fun-section">
+            <div class="robot-container">🤖🚚</div>
+            <h3 class="fun-title">DataBot's Migration Wisdom</h3>
+            <p class="fun-desc">
+                "Migrating databases used to be like moving houses while living in them - terrifying! 😱 
+                But with AWS DMS, it's like having a teleporter. Your data appears in the new place 
+                while the old place keeps working. By course end, you'll migrate databases in your sleep!"
+            </p>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <button class="btn-start" onclick="alert('Course coming soon! 🚧')">
+            <i class="fas fa-bell"></i>
+            Notify Me When Ready
+        </button>
+    </section>
+
+    <!-- Footer -->
+    <footer class="course-footer">
+        <p>© 2024 FKTI Learning Hub | AWS DMS Course</p>
+    </footer>
+</body>
+</html>
+

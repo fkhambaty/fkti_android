@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session 13: Data Visualization | 🐍 Python Mastery</title>
+  <link rel="stylesheet" href="light-theme.css">
+  <style>
+    .viz-hero {
+      background: linear-gradient(135deg, #fdf4ff 0%, #fae8ff 50%, #f5d0fe 100%);
+      border-radius: 20px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      border: 2px solid #e879f9;
+    }
+    .viz-hero h2 { color: #a21caf; margin-bottom: 0.5rem; }
+    .chart-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .chart-item {
+      background: white;
+      border: 2px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1rem;
+      text-align: center;
+      transition: all 0.2s;
+    }
+    .chart-item:hover {
+      border-color: var(--accent-purple);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+    .chart-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
+    .chart-name { font-weight: 700; color: var(--text-primary); font-size: 0.9rem; }
+    .matplotlib-vs-seaborn {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    .lib-card {
+      background: white;
+      border: 2px solid var(--border-color);
+      border-radius: 16px;
+      padding: 1.5rem;
+    }
+    .lib-card.matplotlib { border-color: #3b82f6; }
+    .lib-card.seaborn { border-color: #8b5cf6; }
+    .lib-card h4 { margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+    .analogy-card {
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      border: 2px solid #fbbf24;
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    .analogy-card h4 { color: #b45309; margin-bottom: 0.75rem; }
+    .visual-example {
+      background: #f8fafc;
+      border: 2px dashed var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 1rem 0;
+      text-align: center;
+    }
+    .visual-example img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin: 1rem 0;
+    }
+    @media (max-width: 600px) {
+      .matplotlib-vs-seaborn { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-content">
+      <a href="complete-course.html" class="logo">🐍 Python Mastery</a>
+      <div class="session-nav">
+        <a href="s11-pandas2.html" class="nav-link">S11</a>
+        <a href="s12-api-sql.html" class="nav-link">S12</a>
+        <a href="s13-dataviz.html" class="nav-link active">S13</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <header class="session-header">
+      <div class="session-badge">Session 13</div>
+      <h1>📊 Data Visualization Part I</h1>
+      <p class="session-subtitle">Transform numbers into beautiful, insightful charts!</p>
+      <div class="progress-info">
+        <span>🎨 Matplotlib & Seaborn</span>
+        <span>📈 Charts & Plots</span>
+        <span>⏱️ 60 min</span>
+      </div>
+    </header>
+
+    <!-- Why Data Viz? -->
+    <div class="viz-hero">
+      <h2>🎯 Why Data Visualization?</h2>
+      <p style="color: #6b21a8; font-size: 1.1rem;">A picture is worth a thousand numbers!</p>
+      <p style="color: var(--text-secondary); margin-top: 0.5rem;">Data analysis with pandas takes time to understand. Data visualization takes <strong>seconds</strong> to grasp!</p>
+    </div>
+
+    <!-- Learning Objectives -->
+    <div class="objectives-card">
+      <h2>🎯 What You'll Learn</h2>
+      <div class="objectives-grid">
+        <div class="objective-item">
+          <div class="objective-icon">📈</div>
+          <h4>Line Charts</h4>
+          <p>Show trends over time</p>
+        </div>
+        <div class="objective-item">
+          <div class="objective-icon">📊</div>
+          <h4>Bar Charts</h4>
+          <p>Compare categories</p>
+        </div>
+        <div class="objective-item">
+          <div class="objective-icon">🔥</div>
+          <h4>Heatmaps</h4>
+          <p>Visualize patterns</p>
+        </div>
+        <div class="objective-item">
+          <div class="objective-icon">📉</div>
+          <h4>Histograms</h4>
+          <p>Show distributions</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chart Types Gallery -->
+    <section class="content-section">
+      <h2>📊 Types of Charts We'll Cover</h2>
+      
+      <div class="chart-gallery">
+        <div class="chart-item">
+          <div class="chart-icon">📈</div>
+          <div class="chart-name">Line Chart</div>
+        </div>
+        <div class="chart-item">
+          <div class="chart-icon">📊</div>
+          <div class="chart-name">Bar Graph</div>
+        </div>
+        <div class="chart-item">
+          <div class="chart-icon">🥧</div>
+          <div class="chart-name">Pie Chart</div>
+        </div>
+        <div class="chart-item">
+          <div class="chart-icon">🔥</div>
+          <div class="chart-name">Heatmap</div>
+        </div>
+        <div class="chart-item">
+          <div class="chart-icon">📉</div>
+          <div class="chart-name">Histogram</div>
+        </div>
+        <div class="chart-item">
+          <div class="chart-icon">🎻</div>
+          <div class="chart-name">Violin Plot</div>
+        </div>
+        <div class="chart-item">
+          <div class="chart-icon">📦</div>
+          <div class="chart-name">Box Plot</div>
+        </div>
+        <div class="chart-item">
+          <div class="chart-icon">🔵</div>
+          <div class="chart-name">Scatter Plot</div>
+        </div>
+      </div>
+
+      <div class="code-block"><pre><code># Types of charts we'll learn:
+# 1. Line graph, subplots, bar graph
+# 2. Pie chart, grouped chart, donut chart
+# 3. Box plot, histogram, violin plot
+# 4. KDE, scatter graph, pair plot
+# 5. Distribution plot, heatmap</code></pre></div>
+    </section>
+
+    <!-- Matplotlib vs Seaborn -->
+    <section class="content-section">
+      <h2>🎨 Two Visualization Libraries</h2>
+      
+      <div class="analogy-card">
+        <h4>🎬 Movie Analogy</h4>
+        <p>Think of <strong>Matplotlib</strong> as a professional camera where you control EVERY setting manually (exposure, focus, lighting). Think of <strong>Seaborn</strong> as a smartphone camera with "Auto" mode - it makes everything look great automatically!</p>
+      </div>
+
+      <div class="matplotlib-vs-seaborn">
+        <div class="lib-card matplotlib">
+          <h4>📐 Matplotlib</h4>
+          <ul style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary);">
+            <li>Low-level control</li>
+            <li>More customization</li>
+            <li>Manual styling</li>
+            <li>Foundation library</li>
+          </ul>
+        </div>
+        <div class="lib-card seaborn">
+          <h4>✨ Seaborn</h4>
+          <ul style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary);">
+            <li>Built on Matplotlib</li>
+            <li>Beautiful defaults</li>
+            <li>Automatic styling</li>
+            <li>Statistical focus</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="code-block"><pre><code># Data Visualization Libraries
+# 1. Matplotlib - Mathematical plotting library
+#    - Manual control over every element
+#    - Need to guide each command
+#
+# 2. Seaborn - Built on top of Matplotlib
+#    - Automated, beautiful visualizations
+#    - Less code, more beauty!</code></pre></div>
+
+      <h3>📦 Installing & Importing</h3>
+      <div class="code-block"><pre><code># Install matplotlib (usually pre-installed)
+! pip install matplotlib
+
+# Import the libraries
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
+import pandas as pd</code></pre></div>
+    </section>
+
+    <!-- Heatmap Introduction -->
+    <section class="content-section">
+      <h2>🔥 Starting with a Bang: Heatmaps!</h2>
+      
+      <div class="story-box">
+        <div class="story-title">🌡️ Real-World Analogy: Weather Maps</div>
+        <p>You've seen weather maps on TV showing temperature - red for hot, blue for cold. That's a heatmap! It uses colors to represent values, making patterns instantly visible.</p>
+        <p class="story-moral">Heatmaps turn boring number grids into colorful insights!</p>
+      </div>
+
+      <h3>Creating Random Data for Heatmap</h3>
+      <div class="code-block"><pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+# Create a 12x12 grid of random numbers (like a spreadsheet)
+data = np.random.randint(15, 95, (12, 12))
+print("Shape:", data.shape)
+print(data)</code></pre></div>
+      <div class="output-block"><div class="output-header">Output</div><pre>Shape: (12, 12)
+[[52 78 34 ... 67 89 23]
+ [45 91 56 ... 82 37 64]
+ ...
+ [73 28 95 ... 41 58 86]]</pre></div>
+
+      <div class="tip-box">
+        <strong>💡 What's happening?</strong> <code>np.random.randint(15, 95, (12, 12))</code> creates a 12×12 grid with random numbers between 15 and 95. Think of it as a spreadsheet with 144 cells!
+      </div>
+
+      <h3>Visualizing with Seaborn Heatmap</h3>
+      <div class="code-block"><pre><code>import seaborn as sns
+
+# Create the heatmap
+sns.heatmap(data, annot=True, cmap="viridis")
+plt.show()</code></pre></div>
+
+      <div class="visual-example">
+        <p>🎨 <strong>Output: A Beautiful Heatmap!</strong></p>
+        <p style="font-size: 3rem;">🟨🟩🟦🟪🟫</p>
+        <p style="color: var(--text-secondary);">Colors range from dark (low values) to bright (high values)</p>
+      </div>
+
+      <div class="key-concept">
+        <h4>🔑 Heatmap Parameters Explained</h4>
+        <ul style="margin: 0; padding-left: 1.5rem;">
+          <li><code>data</code> - The 2D array of numbers</li>
+          <li><code>annot=True</code> - Show numbers inside each cell</li>
+          <li><code>cmap="viridis"</code> - Color scheme (try "coolwarm", "Blues", "YlOrRd")</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Line Charts -->
+    <section class="content-section">
+      <h2>📈 Line Charts: Showing Trends</h2>
+
+      <div class="story-box">
+        <div class="story-title">📱 Real-World Example: Stock Prices</div>
+        <p>Ever watched a stock price chart? That's a line chart! It shows how something changes over time - whether your investment is going up 📈 or down 📉</p>
+        <p class="story-moral">Line charts answer: "How does Y change as X increases?"</p>
+      </div>
+
+      <h3>Basic Line Chart</h3>
+      <div class="code-block"><pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+# Create data points
+x = np.arange(0, 10, 1)  # [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+y = 2*x + 3              # Linear equation: y = 2x + 3
+
+# Plot the line
+plt.plot(x, y)
+plt.show()</code></pre></div>
+
+      <div class="visual-example">
+        <p>📈 <strong>A Simple Rising Line!</strong></p>
+        <p style="font-size: 2rem;">↗️↗️↗️</p>
+        <p style="color: var(--text-secondary);">Points: (0,3), (1,5), (2,7)... going upward</p>
+      </div>
+
+      <div class="tip-box">
+        <strong>🧮 Math Refresher:</strong> <code>y = 2x + 3</code> means "start at 3, then go up by 2 for each step". When x=0, y=3. When x=5, y=13.
+      </div>
+
+      <h3>✨ Customized Line Chart (The Pro Way!)</h3>
+      <div class="code-block"><pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+# Create two datasets
+x = np.arange(0, 10, 1)
+y = 2*x + 3
+z = 3*x + 2
+
+# Create a larger figure
+fig = plt.figure(figsize=(9, 8))
+
+# Plot first line with customizations
+plt.plot(x, y, 
+         linestyle='-.', 
+         marker="^",      # Triangle markers
+         markersize=14,   # Big markers
+         color="m",       # Magenta color
+         alpha=0.9)       # Slight transparency
+
+# Plot second line
+plt.plot(x, z, 
+         linestyle='-', 
+         marker="8",      # Octagon markers
+         markersize=10, 
+         color="r",       # Red color
+         alpha=0.3)       # More transparent
+
+# Add labels to each point
+for i in range(len(x)):
+    plt.annotate(f"({x[i]},{y[i]})",  # Text to display
+                 (x[i], y[i]),         # Point to annotate
+                 textcoords="offset points",
+                 xytext=(0, 10),       # Offset above marker
+                 ha="center")
+
+# Add labels and title
+plt.xlabel("price")
+plt.ylabel("area")
+plt.title("Line Chart")
+plt.grid(True)
+plt.legend(["xy", "xz"], loc="best")
+
+# Save the figure
+plt.savefig("line_chart.jpg")
+plt.show()</code></pre></div>
+
+      <div class="key-concept">
+        <h4>🎨 Line Chart Customization Options</h4>
+        <table class="data-table">
+          <tr><th>Parameter</th><th>Options</th><th>Example</th></tr>
+          <tr><td><code>linestyle</code></td><td>'-', '--', '-.', ':'</td><td>Solid, dashed, dash-dot, dotted</td></tr>
+          <tr><td><code>marker</code></td><td>'o', '^', 's', '*', '8'</td><td>Circle, triangle, square, star, octagon</td></tr>
+          <tr><td><code>color</code></td><td>'r', 'g', 'b', 'm', 'c'</td><td>Red, green, blue, magenta, cyan</td></tr>
+          <tr><td><code>alpha</code></td><td>0.0 to 1.0</td><td>0=invisible, 1=solid</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- Working with Real Data -->
+    <section class="content-section">
+      <h2>📂 Working with Real Data</h2>
+
+      <div class="analogy-card">
+        <h4>🎯 Real Dataset: Loan Approval</h4>
+        <p>We'll use a loan approval dataset - imagine you're a bank analyst deciding who gets loans! The data includes income, CIBIL score (credit score in India), loan amount, and whether the loan was approved.</p>
+      </div>
+
+      <h3>Loading the Data</h3>
+      <div class="code-block"><pre><code>import pandas as pd
+
+# Read the loan dataset
+df = pd.read_csv("loan_approval_dataset.csv")
+
+# View first few rows
+df.head()</code></pre></div>
+
+      <div class="code-block"><pre><code># Check the columns
+df.columns</code></pre></div>
+      <div class="output-block"><div class="output-header">Output</div><pre>Index(['loan_id', 'no_of_dependents', 'education', 'self_employed',
+       'income_annum', 'loan_amount', 'loan_term', 'cibil_score',
+       'residential_assets_value', 'commercial_assets_value',
+       'luxury_assets_value', 'bank_asset_value', 'loan_status'], dtype='object')</pre></div>
+
+      <h3>Multiple Line Plots in One Figure</h3>
+      <div class="code-block"><pre><code>import matplotlib.pyplot as plt
+import seaborn as sns
+
+plt.figure(figsize=(8, 4))
+
+# Line plot 1 - Income over applicants
+sns.lineplot(x=df.index, y=df['income_annum'], label="Income")
+
+# Line plot 2 - Loan Amount
+sns.lineplot(x=df.index, y=df['loan_amount'], label="Loan Amount")
+
+# Line plot 3 - CIBIL Score
+sns.lineplot(x=df.index, y=df['cibil_score'], label="CIBIL Score")
+
+plt.title("Line Plots in One Figure")
+plt.legend()
+plt.tight_layout()
+plt.show()</code></pre></div>
+
+      <div class="tip-box">
+        <strong>💡 Pro Tip:</strong> <code>plt.tight_layout()</code> automatically adjusts spacing so labels don't overlap. Always use it!
+      </div>
+    </section>
+
+    <!-- Bar Charts -->
+    <section class="content-section">
+      <h2>📊 Bar Charts: Comparing Categories</h2>
+
+      <div class="story-box">
+        <div class="story-title">🏆 Real-World Example: Election Results</div>
+        <p>Bar charts are like podiums at the Olympics! Each bar represents a category (candidate, product, team), and the height shows the value (votes, sales, score). Taller bar = better performance!</p>
+        <p class="story-moral">Bar charts answer: "Which category is bigger/smaller?"</p>
+      </div>
+
+      <div class="key-concept">
+        <h4>📐 Bar Chart Anatomy</h4>
+        <ul style="margin: 0; padding-left: 1.5rem;">
+          <li><strong>X-axis:</strong> Categories (education, loan status, etc.)</li>
+          <li><strong>Y-axis:</strong> Values (counts, amounts, percentages)</li>
+          <li><strong>Bars:</strong> Height represents magnitude</li>
+          <li><strong>Colors:</strong> Can show sub-categories</li>
+        </ul>
+      </div>
+
+      <h3>Simple Bar Chart - Loan Status Count</h3>
+      <div class="code-block"><pre><code># Count how many approved vs rejected
+counts = df[" loan_status"].value_counts()
+print(counts)</code></pre></div>
+      <div class="output-block"><div class="output-header">Output</div><pre> Approved    2656
+ Rejected    1610
+Name:  loan_status, dtype: int64</pre></div>
+
+      <div class="code-block"><pre><code># Method 1: Using matplotlib directly
+plt.bar(counts.index, counts.values)
+plt.title("Loan Status Count")
+plt.show()</code></pre></div>
+
+      <div class="code-block"><pre><code># Method 2: Using pandas plot (even easier!)
+df[" loan_status"].value_counts().plot(kind="bar")
+plt.show()</code></pre></div>
+
+      <h3>Grouped Bar Chart - Self-Employed vs Loan Status</h3>
+      <div class="code-block"><pre><code># Create a cross-tabulation (like a pivot table)
+group_data = pd.crosstab(df[' self_employed'], df[' loan_status'])
+print(group_data)</code></pre></div>
+      <div class="output-block"><div class="output-header">Output</div><pre> loan_status   Approved   Rejected
+ self_employed                     
+ No               1950       1180
+ Yes               706        430</pre></div>
+
+      <div class="code-block"><pre><code># Create grouped bar chart
+ax = group_data.plot(kind="bar", figsize=(12, 8))
+
+plt.xlabel("Self Employed")
+plt.ylabel("No of Applicants")
+plt.title("Loan Status by Self Employed")
+
+# Add data labels on each bar
+for container in ax.containers:
+    ax.bar_label(container, label_type='edge', 
+                 fontsize=10, color='black', padding=7)
+
+plt.show()</code></pre></div>
+
+      <div class="visual-example">
+        <p>📊 <strong>Grouped Bar Chart Result</strong></p>
+        <p style="color: var(--text-secondary);">Shows Approved (green) vs Rejected (red) for both "No" and "Yes" self-employed groups</p>
+        <p style="font-size: 1.5rem;">🟩🟩🟥 | 🟩🟥</p>
+        <p style="font-size: 0.9rem; color: var(--text-muted);">Not Self-Employed | Self-Employed</p>
+      </div>
+
+      <div class="tip-box">
+        <strong>💡 Key Insight:</strong> <code>pd.crosstab()</code> creates a frequency table showing how two categorical variables relate. It's like asking: "For each employment type, how many got approved vs rejected?"
+      </div>
+    </section>
+
+    <!-- Subplots -->
+    <section class="content-section">
+      <h2>📱 Subplots: Multiple Charts in One Figure</h2>
+
+      <div class="analogy-card">
+        <h4>📺 TV Analogy: Split Screen</h4>
+        <p>Subplots are like a split-screen on your TV! Instead of switching between channels, you see multiple shows at once. Data scientists use this to compare different aspects of data side-by-side.</p>
+      </div>
+
+      <div class="key-concept">
+        <h4>🔢 Understanding subplot(rows, cols, position)</h4>
+        <ul style="margin: 0; padding-left: 1.5rem;">
+          <li><code>subplot(2, 2, 1)</code> = 2 rows, 2 cols, position 1 (top-left)</li>
+          <li><code>subplot(2, 2, 2)</code> = 2 rows, 2 cols, position 2 (top-right)</li>
+          <li><code>subplot(2, 2, 3)</code> = 2 rows, 2 cols, position 3 (bottom-left)</li>
+          <li><code>subplot(2, 2, 4)</code> = 2 rows, 2 cols, position 4 (bottom-right)</li>
+        </ul>
+      </div>
+
+      <div class="visual-example">
+        <p><strong>Subplot Layout (2×2 Grid)</strong></p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; max-width: 300px; margin: 1rem auto;">
+          <div style="background: #dbeafe; padding: 1rem; border-radius: 8px; text-align: center;">1️⃣</div>
+          <div style="background: #dcfce7; padding: 1rem; border-radius: 8px; text-align: center;">2️⃣</div>
+          <div style="background: #fef3c7; padding: 1rem; border-radius: 8px; text-align: center;">3️⃣</div>
+          <div style="background: #fce7f3; padding: 1rem; border-radius: 8px; text-align: center;">4️⃣</div>
+        </div>
+      </div>
+
+      <h3>Creating 4 Distribution Plots</h3>
+      <div class="code-block"><pre><code>import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Set a nice style
+sns.set(style="whitegrid")
+
+# Create figure with specific size
+plt.figure(figsize=(10, 8))
+
+# Subplot 1: Income Distribution (top-left)
+plt.subplot(2, 2, 1)
+sns.histplot(df['income_annum'], kde=True)
+plt.title("Income Distribution")
+
+# Subplot 2: CIBIL Score Distribution (top-right)
+plt.subplot(2, 2, 2)
+sns.histplot(df['cibil_score'], kde=True)
+plt.title("CIBIL Score Distribution")
+
+# Subplot 3: Loan Amount Distribution (bottom-left)
+plt.subplot(2, 2, 3)
+sns.histplot(df['loan_amount'], kde=True)
+plt.title("Loan Amount Distribution")
+
+# Subplot 4: Loan Term Distribution (bottom-right)
+plt.subplot(2, 2, 4)
+sns.histplot(df['loan_term'], kde=True)
+plt.title("Loan Term Distribution")
+
+# Adjust spacing
+plt.tight_layout()
+plt.show()</code></pre></div>
+
+      <div class="key-concept">
+        <h4>📊 What's a Histogram with KDE?</h4>
+        <ul style="margin: 0; padding-left: 1.5rem;">
+          <li><strong>Histogram:</strong> Bars showing how many values fall in each range</li>
+          <li><strong>KDE (Kernel Density Estimate):</strong> The smooth curve overlaid showing the distribution shape</li>
+          <li>Together they answer: "What's the typical value? Are there outliers?"</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Quick Reference -->
+    <section class="content-section">
+      <h2>🎁 Quick Reference Cheat Sheet</h2>
+
+      <div class="concept-card" style="background: #f0fdf4; border: 2px solid var(--accent-green); border-radius: 16px; padding: 1.5rem; margin-bottom: 1rem;">
+        <h3 style="color: var(--accent-green);">📈 Matplotlib Essentials</h3>
+        <div class="code-block"><pre><code>import matplotlib.pyplot as plt
+
+# Basic plot
+plt.plot(x, y)
+plt.show()
+
+# Customizations
+plt.figure(figsize=(10, 6))   # Set figure size
+plt.xlabel("X Label")          # X-axis label
+plt.ylabel("Y Label")          # Y-axis label
+plt.title("My Chart")          # Chart title
+plt.legend(["Line 1"])         # Legend
+plt.grid(True)                 # Show grid
+plt.savefig("chart.png")       # Save to file
+
+# Multiple plots
+plt.subplot(rows, cols, position)</code></pre></div>
+      </div>
+
+      <div class="concept-card" style="background: #faf5ff; border: 2px solid var(--accent-purple); border-radius: 16px; padding: 1.5rem;">
+        <h3 style="color: var(--accent-purple);">✨ Seaborn Essentials</h3>
+        <div class="code-block"><pre><code>import seaborn as sns
+
+# Set style
+sns.set(style="whitegrid")
+
+# Common plots
+sns.lineplot(x=x, y=y)              # Line plot
+sns.barplot(x=cats, y=vals)         # Bar plot
+sns.histplot(data, kde=True)        # Histogram
+sns.heatmap(matrix, annot=True)     # Heatmap
+sns.scatterplot(x=x, y=y)           # Scatter plot
+
+# Color palettes
+cmap="viridis"     # Yellow-green-blue
+cmap="coolwarm"    # Blue-red
+cmap="Blues"       # Shades of blue</code></pre></div>
+      </div>
+    </section>
+
+    <!-- Summary -->
+    <div class="summary-section">
+      <h2>🎉 Session 13 Summary</h2>
+      <div class="summary-grid">
+        <div class="summary-item">
+          <h4>📊 Matplotlib</h4>
+          <p>Low-level control, manual customization</p>
+        </div>
+        <div class="summary-item">
+          <h4>✨ Seaborn</h4>
+          <p>Beautiful defaults, statistical focus</p>
+        </div>
+        <div class="summary-item">
+          <h4>📈 Line Charts</h4>
+          <p>Show trends and changes over time</p>
+        </div>
+        <div class="summary-item">
+          <h4>📊 Bar Charts</h4>
+          <p>Compare categories and groups</p>
+        </div>
+        <div class="summary-item">
+          <h4>🔥 Heatmaps</h4>
+          <p>Color-coded value matrices</p>
+        </div>
+        <div class="summary-item">
+          <h4>📱 Subplots</h4>
+          <p>Multiple charts in one figure</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Practice -->
+    <div class="quiz-box">
+      <h4>✍️ Practice Challenge</h4>
+      <p>Try creating these visualizations with any dataset:</p>
+      <ul class="quiz-list">
+        <li>1️⃣ A line chart showing sales over 12 months</li>
+        <li>2️⃣ A bar chart comparing product categories</li>
+        <li>3️⃣ A heatmap of correlation between numeric columns</li>
+        <li>4️⃣ A 2×2 subplot with different chart types</li>
+      </ul>
+    </div>
+
+    <nav class="page-navigation">
+      <a href="s12-api-sql.html" class="nav-prev">
+        <span class="nav-arrow">←</span>
+        <span class="nav-text">
+          <span class="nav-label">Previous</span>
+          <span class="nav-title">APIs & SQL</span>
+        </span>
+      </a>
+      <a href="complete-course.html" class="nav-home">🏠</a>
+      <a href="assignments.html" class="nav-next">
+        <span class="nav-text">
+          <span class="nav-label">Practice</span>
+          <span class="nav-title">Assignments</span>
+        </span>
+        <span class="nav-arrow">→</span>
+      </a>
+    </nav>
+  </main>
+
+  <footer>
+    <p>🐍 Python Mastery | Learn. Code. Visualize!</p>
+  </footer>
+</body>
+</html>
+

@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session 10: Pandas Part I | 🐍 Python Mastery</title>
+  <link rel="stylesheet" href="light-theme.css">
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-content">
+      <a href="complete-course.html" class="logo">🐍 Python Mastery</a>
+      <div class="session-nav">
+        <a href="s1-intro.html" class="nav-link">1</a>
+        <a href="s2-datatypes.html" class="nav-link">2</a>
+        <a href="s3-loops.html" class="nav-link">3</a>
+        <a href="s4-lists.html" class="nav-link">4</a>
+        <a href="s5-datastructures.html" class="nav-link">5</a>
+        <a href="s6-functions1.html" class="nav-link">6</a>
+        <a href="s7-functions2.html" class="nav-link">7</a>
+        <a href="s8-oop.html" class="nav-link">8</a>
+        <a href="s9-numpy.html" class="nav-link">9</a>
+        <a href="s10-pandas1.html" class="nav-link active">10</a>
+        <a href="s11-pandas2.html" class="nav-link">11</a>
+        <a href="s12-api-sql.html" class="nav-link">12</a>
+        <a href="assignments.html" class="nav-link assignment">📝</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <header class="session-header">
+      <div class="session-badge">Session 10</div>
+      <h1>🐼 Pandas Part I</h1>
+      <p class="session-subtitle">Data manipulation with Series and DataFrames</p>
+      <div class="progress-info">
+        <span>📚 8 Topics</span>
+        <span>⏱️ 55 min read</span>
+        <span>🎯 Intermediate Level</span>
+      </div>
+    </header>
+
+    <!-- OVERVIEW -->
+    <section class="overview-card">
+      <h2>🗺️ What You'll Learn</h2>
+      <div class="overview-grid">
+        <div class="overview-item">
+          <span class="overview-icon">📊</span>
+          <span>What is Pandas?</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">📈</span>
+          <span>Series (1D data)</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">📋</span>
+          <span>DataFrames (2D data)</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">📁</span>
+          <span>Reading CSV Files</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">🔍</span>
+          <span>Data Exploration</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">🔗</span>
+          <span>Merging Data</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ANALOGY -->
+    <section class="analogy-card">
+      <div class="analogy-header">
+        <span class="analogy-icon">📊</span>
+        <h3>Pandas = Excel on Steroids!</h3>
+      </div>
+      <div class="analogy-content">
+        <div class="visual-box">
+          <pre style="text-align: center; font-size: 1rem;">
+    Excel Spreadsheet              Pandas DataFrame
+    ─────────────────              ─────────────────
+    
+    │  A  │  B  │  C  │            │ Name │ Age │ City │
+    │─────│─────│─────│            │──────│─────│──────│
+    │ Tom │  25 │ NYC │     →      │ Tom  │  25 │ NYC  │
+    │ Ann │  30 │  LA │            │ Ann  │  30 │  LA  │
+    
+    Same concept, but with Python superpowers! 🦸
+          </pre>
+        </div>
+        <p class="analogy-moral">Pandas lets you work with tabular data using Python code!</p>
+      </div>
+    </section>
+
+    <!-- WHAT IS PANDAS -->
+    <section class="content-section">
+      <h2>🐼 What is Pandas?</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">10.1</span>
+          <h3>📊 The Data Analysis Library</h3>
+        </div>
+
+        <div class="explanation">
+          <p>Pandas is Python's most popular library for data manipulation and analysis. It provides two main data structures:</p>
+          <ul>
+            <li><strong>Series</strong>: 1-dimensional labeled array (like a column)</li>
+            <li><strong>DataFrame</strong>: 2-dimensional labeled table (like a spreadsheet)</li>
+          </ul>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Import pandas from Session 10</span>
+<span class="keyword">import</span> pandas <span class="keyword">as</span> pd
+<span class="keyword">import</span> numpy <span class="keyword">as</span> np
+
+<span class="function">print</span>(<span class="string">"Pandas version:"</span>, pd.__version__)</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERIES -->
+    <section class="content-section">
+      <h2>📈 Pandas Series</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">10.2</span>
+          <h3>📊 1-Dimensional Data</h3>
+        </div>
+
+        <div class="explanation">
+          <p>A Series is like a single column of data with labels (index) for each value.</p>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Creating Series from Session 10</span>
+<span class="keyword">import</span> pandas <span class="keyword">as</span> pd
+
+<span class="comment"># From a list</span>
+<span class="variable">s1</span> = pd.Series([<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>, <span class="number">50</span>])
+<span class="function">print</span>(<span class="string">"Series from list:"</span>)
+<span class="function">print</span>(s1)
+<span class="function">print</span>()
+
+<span class="comment"># With custom index</span>
+<span class="variable">s2</span> = pd.Series([<span class="number">100</span>, <span class="number">200</span>, <span class="number">300</span>], index=[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>])
+<span class="function">print</span>(<span class="string">"Series with custom index:"</span>)
+<span class="function">print</span>(s2)
+<span class="function">print</span>()
+
+<span class="comment"># From a dictionary</span>
+<span class="variable">ages</span> = {<span class="string">'Alice'</span>: <span class="number">25</span>, <span class="string">'Bob'</span>: <span class="number">30</span>, <span class="string">'Charlie'</span>: <span class="number">35</span>}
+<span class="variable">s3</span> = pd.Series(ages)
+<span class="function">print</span>(<span class="string">"Series from dict:"</span>)
+<span class="function">print</span>(s3)
+
+<span class="comment"># Accessing elements</span>
+<span class="function">print</span>(<span class="string">"\\nAlice's age:"</span>, s3[<span class="string">'Alice'</span>])
+<span class="function">print</span>(<span class="string">"First two:"</span>)
+<span class="function">print</span>(s3[:<span class="number">2</span>])</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Series from list:
+0    10
+1    20
+2    30
+3    40
+4    50
+dtype: int64
+
+Series with custom index:
+a    100
+b    200
+c    300
+dtype: int64
+
+Series from dict:
+Alice      25
+Bob        30
+Charlie    35
+dtype: int64
+
+Alice's age: 25
+First two:
+Alice    25
+Bob      30
+dtype: int64</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- DATAFRAMES -->
+    <section class="content-section">
+      <h2>📋 Pandas DataFrames</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">10.3</span>
+          <h3>📊 2-Dimensional Tables</h3>
+        </div>
+
+        <div class="explanation">
+          <p>A DataFrame is a 2D table with rows and columns - like a spreadsheet or SQL table!</p>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Creating DataFrames from Session 10</span>
+<span class="keyword">import</span> pandas <span class="keyword">as</span> pd
+
+<span class="comment"># From a dictionary</span>
+<span class="variable">data</span> = {
+    <span class="string">'Name'</span>: [<span class="string">'Alice'</span>, <span class="string">'Bob'</span>, <span class="string">'Charlie'</span>, <span class="string">'David'</span>],
+    <span class="string">'Age'</span>: [<span class="number">25</span>, <span class="number">30</span>, <span class="number">35</span>, <span class="number">28</span>],
+    <span class="string">'City'</span>: [<span class="string">'NYC'</span>, <span class="string">'LA'</span>, <span class="string">'Chicago'</span>, <span class="string">'Houston'</span>],
+    <span class="string">'Salary'</span>: [<span class="number">50000</span>, <span class="number">60000</span>, <span class="number">70000</span>, <span class="number">55000</span>]
+}
+<span class="variable">df</span> = pd.DataFrame(data)
+<span class="function">print</span>(<span class="string">"DataFrame:"</span>)
+<span class="function">print</span>(df)
+
+<span class="comment"># DataFrame info</span>
+<span class="function">print</span>(<span class="string">"\\nShape:"</span>, df.shape)  <span class="comment"># (rows, columns)</span>
+<span class="function">print</span>(<span class="string">"Columns:"</span>, <span class="function">list</span>(df.columns))
+<span class="function">print</span>(<span class="string">"Index:"</span>, <span class="function">list</span>(df.index))
+<span class="function">print</span>(<span class="string">"Data types:"</span>)
+<span class="function">print</span>(df.dtypes)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>DataFrame:
+      Name  Age     City  Salary
+0    Alice   25      NYC   50000
+1      Bob   30       LA   60000
+2  Charlie   35  Chicago   70000
+3    David   28  Houston   55000
+
+Shape: (4, 4)
+Columns: ['Name', 'Age', 'City', 'Salary']
+Index: [0, 1, 2, 3]
+Data types:
+Name      object
+Age        int64
+City      object
+Salary     int64
+dtype: object</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- READING DATA -->
+    <section class="content-section">
+      <h2>📁 Reading Data Files</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">10.4</span>
+          <h3>📂 Loading CSV Files</h3>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Reading CSV from Session 10</span>
+<span class="keyword">import</span> pandas <span class="keyword">as</span> pd
+
+<span class="comment"># Read CSV file</span>
+<span class="comment"># df = pd.read_csv('data.csv')</span>
+
+<span class="comment"># Common parameters</span>
+<span class="comment"># df = pd.read_csv('data.csv', sep=',')         # Specify delimiter</span>
+<span class="comment"># df = pd.read_csv('data.csv', header=0)        # Row to use as header</span>
+<span class="comment"># df = pd.read_csv('data.csv', index_col='id')  # Column to use as index</span>
+<span class="comment"># df = pd.read_csv('data.csv', usecols=['name', 'age'])  # Select columns</span>
+
+<span class="comment"># Create sample data for demonstration</span>
+<span class="variable">df</span> = pd.DataFrame({
+    <span class="string">'product'</span>: [<span class="string">'Apple'</span>, <span class="string">'Banana'</span>, <span class="string">'Orange'</span>, <span class="string">'Mango'</span>],
+    <span class="string">'price'</span>: [<span class="number">1.50</span>, <span class="number">0.50</span>, <span class="number">0.80</span>, <span class="number">2.00</span>],
+    <span class="string">'quantity'</span>: [<span class="number">100</span>, <span class="number">150</span>, <span class="number">200</span>, <span class="number">80</span>]
+})
+
+<span class="function">print</span>(<span class="string">"Sample DataFrame:"</span>)
+<span class="function">print</span>(df)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Sample DataFrame:
+  product  price  quantity
+0   Apple   1.50       100
+1  Banana   0.50       150
+2  Orange   0.80       200
+3   Mango   2.00        80</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- DATA EXPLORATION -->
+    <section class="content-section">
+      <h2>🔍 Data Exploration</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">10.5</span>
+          <h3>👀 First Look at Your Data</h3>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Data exploration from Session 10</span>
+<span class="keyword">import</span> pandas <span class="keyword">as</span> pd
+
+<span class="variable">df</span> = pd.DataFrame({
+    <span class="string">'Name'</span>: [<span class="string">'Alice'</span>, <span class="string">'Bob'</span>, <span class="string">'Charlie'</span>, <span class="string">'David'</span>, <span class="string">'Eve'</span>],
+    <span class="string">'Age'</span>: [<span class="number">25</span>, <span class="number">30</span>, <span class="number">35</span>, <span class="number">28</span>, <span class="number">32</span>],
+    <span class="string">'Salary'</span>: [<span class="number">50000</span>, <span class="number">60000</span>, <span class="number">70000</span>, <span class="number">55000</span>, <span class="number">65000</span>],
+    <span class="string">'Department'</span>: [<span class="string">'HR'</span>, <span class="string">'IT'</span>, <span class="string">'IT'</span>, <span class="string">'HR'</span>, <span class="string">'Finance'</span>]
+})
+
+<span class="comment"># head() - First n rows</span>
+<span class="function">print</span>(<span class="string">"First 3 rows:"</span>)
+<span class="function">print</span>(df.head(<span class="number">3</span>))
+
+<span class="comment"># tail() - Last n rows</span>
+<span class="function">print</span>(<span class="string">"\\nLast 2 rows:"</span>)
+<span class="function">print</span>(df.tail(<span class="number">2</span>))
+
+<span class="comment"># info() - Summary info</span>
+<span class="function">print</span>(<span class="string">"\\nDataFrame Info:"</span>)
+df.info()
+
+<span class="comment"># describe() - Statistics for numeric columns</span>
+<span class="function">print</span>(<span class="string">"\\nStatistics:"</span>)
+<span class="function">print</span>(df.describe())</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>First 3 rows:
+      Name  Age  Salary Department
+0    Alice   25   50000         HR
+1      Bob   30   60000         IT
+2  Charlie   35   70000         IT
+
+Last 2 rows:
+    Name  Age  Salary Department
+3  David   28   55000         HR
+4    Eve   32   65000    Finance
+
+DataFrame Info:
+&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 5 entries, 0 to 4
+Data columns (total 4 columns):
+ #   Column      Non-Null Count  Dtype 
+---  ------      --------------  ----- 
+ 0   Name        5 non-null      object
+ 1   Age         5 non-null      int64 
+ 2   Salary      5 non-null      int64 
+ 3   Department  5 non-null      object
+dtypes: int64(2), object(2)
+
+Statistics:
+             Age        Salary
+count   5.000000      5.000000
+mean   30.000000  60000.000000
+std     3.807887   7905.694150
+min    25.000000  50000.000000
+25%    28.000000  55000.000000
+50%    30.000000  60000.000000
+75%    32.000000  65000.000000
+max    35.000000  70000.000000</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- SELECTING DATA -->
+    <section class="content-section">
+      <h2>🎯 Selecting Data</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">10.6</span>
+          <h3>📍 Accessing Rows & Columns</h3>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Selecting data from Session 10/11</span>
+<span class="keyword">import</span> pandas <span class="keyword">as</span> pd
+
+<span class="variable">df</span> = pd.DataFrame({
+    <span class="string">'Name'</span>: [<span class="string">'Alice'</span>, <span class="string">'Bob'</span>, <span class="string">'Charlie'</span>],
+    <span class="string">'Age'</span>: [<span class="number">25</span>, <span class="number">30</span>, <span class="number">35</span>],
+    <span class="string">'City'</span>: [<span class="string">'NYC'</span>, <span class="string">'LA'</span>, <span class="string">'Chicago'</span>]
+})
+<span class="function">print</span>(<span class="string">"DataFrame:"</span>)
+<span class="function">print</span>(df)
+
+<span class="comment"># Select single column</span>
+<span class="function">print</span>(<span class="string">"\\nName column:"</span>)
+<span class="function">print</span>(df[<span class="string">'Name'</span>])
+
+<span class="comment"># Select multiple columns</span>
+<span class="function">print</span>(<span class="string">"\\nName and Age:"</span>)
+<span class="function">print</span>(df[[<span class="string">'Name'</span>, <span class="string">'Age'</span>]])
+
+<span class="comment"># loc - Select by label</span>
+<span class="function">print</span>(<span class="string">"\\nRow 0 (loc):"</span>)
+<span class="function">print</span>(df.loc[<span class="number">0</span>])
+
+<span class="comment"># iloc - Select by position</span>
+<span class="function">print</span>(<span class="string">"\\nFirst 2 rows, first 2 columns (iloc):"</span>)
+<span class="function">print</span>(df.iloc[:<span class="number">2</span>, :<span class="number">2</span>])</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>DataFrame:
+      Name  Age     City
+0    Alice   25      NYC
+1      Bob   30       LA
+2  Charlie   35  Chicago
+
+Name column:
+0      Alice
+1        Bob
+2    Charlie
+Name: Name, dtype: object
+
+Name and Age:
+      Name  Age
+0    Alice   25
+1      Bob   30
+2  Charlie   35
+
+Row 0 (loc):
+Name    Alice
+Age        25
+City      NYC
+Name: 0, dtype: object
+
+First 2 rows, first 2 columns (iloc):
+    Name  Age
+0  Alice   25
+1    Bob   30</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADDING COLUMNS -->
+    <section class="content-section">
+      <h2>➕ Adding & Modifying Columns</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">10.7</span>
+          <h3>✏️ Creating New Columns</h3>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Adding columns from Session 10</span>
+<span class="keyword">import</span> pandas <span class="keyword">as</span> pd
+
+<span class="variable">df</span> = pd.DataFrame({
+    <span class="string">'product'</span>: [<span class="string">'Apple'</span>, <span class="string">'Banana'</span>, <span class="string">'Orange'</span>],
+    <span class="string">'price'</span>: [<span class="number">1.50</span>, <span class="number">0.50</span>, <span class="number">0.80</span>],
+    <span class="string">'quantity'</span>: [<span class="number">100</span>, <span class="number">150</span>, <span class="number">200</span>]
+})
+<span class="function">print</span>(<span class="string">"Original:"</span>)
+<span class="function">print</span>(df)
+
+<span class="comment"># Add new column from calculation</span>
+df[<span class="string">'total_value'</span>] = df[<span class="string">'price'</span>] * df[<span class="string">'quantity'</span>]
+<span class="function">print</span>(<span class="string">"\\nWith total_value:"</span>)
+<span class="function">print</span>(df)
+
+<span class="comment"># Add column with fixed value</span>
+df[<span class="string">'currency'</span>] = <span class="string">'USD'</span>
+<span class="function">print</span>(<span class="string">"\\nWith currency:"</span>)
+<span class="function">print</span>(df)
+
+<span class="comment"># Add column using apply() with lambda</span>
+df[<span class="string">'discounted'</span>] = df[<span class="string">'price'</span>].apply(<span class="keyword">lambda</span> x: x * <span class="number">0.9</span>)
+<span class="function">print</span>(<span class="string">"\\nWith 10% discount:"</span>)
+<span class="function">print</span>(df)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Original:
+  product  price  quantity
+0   Apple   1.50       100
+1  Banana   0.50       150
+2  Orange   0.80       200
+
+With total_value:
+  product  price  quantity  total_value
+0   Apple   1.50       100        150.0
+1  Banana   0.50       150         75.0
+2  Orange   0.80       200        160.0
+
+With currency:
+  product  price  quantity  total_value currency
+0   Apple   1.50       100        150.0      USD
+1  Banana   0.50       150         75.0      USD
+2  Orange   0.80       200        160.0      USD
+
+With 10% discount:
+  product  price  quantity  total_value currency  discounted
+0   Apple   1.50       100        150.0      USD       1.35
+1  Banana   0.50       150         75.0      USD       0.45
+2  Orange   0.80       200        160.0      USD       0.72</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- MERGING DATA -->
+    <section class="content-section">
+      <h2>🔗 Merging & Concatenating</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">10.8</span>
+          <h3>📎 Combining DataFrames</h3>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Merging DataFrames from Session 10</span>
+<span class="keyword">import</span> pandas <span class="keyword">as</span> pd
+
+<span class="comment"># Two DataFrames to merge</span>
+<span class="variable">employees</span> = pd.DataFrame({
+    <span class="string">'emp_id'</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],
+    <span class="string">'name'</span>: [<span class="string">'Alice'</span>, <span class="string">'Bob'</span>, <span class="string">'Charlie'</span>]
+})
+
+<span class="variable">salaries</span> = pd.DataFrame({
+    <span class="string">'emp_id'</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],
+    <span class="string">'salary'</span>: [<span class="number">50000</span>, <span class="number">60000</span>, <span class="number">70000</span>]
+})
+
+<span class="function">print</span>(<span class="string">"Employees:"</span>)
+<span class="function">print</span>(employees)
+<span class="function">print</span>(<span class="string">"\\nSalaries:"</span>)
+<span class="function">print</span>(salaries)
+
+<span class="comment"># Merge on common column</span>
+<span class="variable">merged</span> = pd.merge(employees, salaries, on=<span class="string">'emp_id'</span>)
+<span class="function">print</span>(<span class="string">"\\nMerged:"</span>)
+<span class="function">print</span>(merged)
+
+<span class="comment"># Concatenate DataFrames vertically</span>
+<span class="variable">df1</span> = pd.DataFrame({<span class="string">'A'</span>: [<span class="number">1</span>, <span class="number">2</span>], <span class="string">'B'</span>: [<span class="number">3</span>, <span class="number">4</span>]})
+<span class="variable">df2</span> = pd.DataFrame({<span class="string">'A'</span>: [<span class="number">5</span>, <span class="number">6</span>], <span class="string">'B'</span>: [<span class="number">7</span>, <span class="number">8</span>]})
+
+<span class="variable">concatenated</span> = pd.concat([df1, df2], ignore_index=<span class="keyword">True</span>)
+<span class="function">print</span>(<span class="string">"\\nConcatenated:"</span>)
+<span class="function">print</span>(concatenated)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Employees:
+   emp_id     name
+0       1    Alice
+1       2      Bob
+2       3  Charlie
+
+Salaries:
+   emp_id  salary
+0       1   50000
+1       2   60000
+2       3   70000
+
+Merged:
+   emp_id     name  salary
+0       1    Alice   50000
+1       2      Bob   60000
+2       3  Charlie   70000
+
+Concatenated:
+   A  B
+0  1  3
+1  2  4
+2  5  7
+3  6  8</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUICK REFERENCE -->
+    <section class="content-section">
+      <h2>📋 Quick Reference</h2>
+      
+      <div class="reference-card">
+        <table class="reference-table">
+          <thead>
+            <tr><th>Function</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>pd.DataFrame()</td><td>Create DataFrame</td></tr>
+            <tr><td>pd.read_csv()</td><td>Read CSV file</td></tr>
+            <tr><td>df.head()</td><td>First n rows</td></tr>
+            <tr><td>df.tail()</td><td>Last n rows</td></tr>
+            <tr><td>df.info()</td><td>Summary info</td></tr>
+            <tr><td>df.describe()</td><td>Statistics</td></tr>
+            <tr><td>df.shape</td><td>Dimensions</td></tr>
+            <tr><td>df['col']</td><td>Select column</td></tr>
+            <tr><td>df.loc[]</td><td>Select by label</td></tr>
+            <tr><td>df.iloc[]</td><td>Select by position</td></tr>
+            <tr><td>pd.merge()</td><td>Join DataFrames</td></tr>
+            <tr><td>pd.concat()</td><td>Stack DataFrames</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- NAVIGATION -->
+    <nav class="page-navigation">
+      <a href="s9-numpy.html" class="nav-prev">
+        <span class="nav-arrow">←</span>
+        <span class="nav-text">
+          <span class="nav-label">Previous</span>
+          <span class="nav-title">NumPy</span>
+        </span>
+      </a>
+      <a href="complete-course.html" class="nav-home">🏠</a>
+      <a href="s11-pandas2.html" class="nav-next">
+        <span class="nav-text">
+          <span class="nav-label">Next</span>
+          <span class="nav-title">Pandas Part II</span>
+        </span>
+        <span class="nav-arrow">→</span>
+      </a>
+    </nav>
+  </main>
+
+  <footer>
+    <p>🐍 Python Mastery | Learn. Code. Create.</p>
+  </footer>
+</body>
+</html>
+

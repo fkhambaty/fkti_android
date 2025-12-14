@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session 9: NumPy & Comprehensions | 🐍 Python Mastery</title>
+  <link rel="stylesheet" href="light-theme.css">
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-content">
+      <a href="complete-course.html" class="logo">🐍 Python Mastery</a>
+      <div class="session-nav">
+        <a href="s1-intro.html" class="nav-link">1</a>
+        <a href="s2-datatypes.html" class="nav-link">2</a>
+        <a href="s3-loops.html" class="nav-link">3</a>
+        <a href="s4-lists.html" class="nav-link">4</a>
+        <a href="s5-datastructures.html" class="nav-link">5</a>
+        <a href="s6-functions1.html" class="nav-link">6</a>
+        <a href="s7-functions2.html" class="nav-link">7</a>
+        <a href="s8-oop.html" class="nav-link">8</a>
+        <a href="s9-numpy.html" class="nav-link active">9</a>
+        <a href="s10-pandas1.html" class="nav-link">10</a>
+        <a href="s11-pandas2.html" class="nav-link">11</a>
+        <a href="s12-api-sql.html" class="nav-link">12</a>
+        <a href="assignments.html" class="nav-link assignment">📝</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <header class="session-header">
+      <div class="session-badge">Session 9</div>
+      <h1>🔢 NumPy & List Comprehensions</h1>
+      <p class="session-subtitle">Powerful numerical computing and elegant list creation</p>
+      <div class="progress-info">
+        <span>📚 10 Topics</span>
+        <span>⏱️ 50 min read</span>
+        <span>🎯 Intermediate Level</span>
+      </div>
+    </header>
+
+    <!-- OVERVIEW -->
+    <section class="overview-card">
+      <h2>🗺️ What You'll Learn</h2>
+      <div class="overview-grid">
+        <div class="overview-item">
+          <span class="overview-icon">📊</span>
+          <span>NumPy Arrays</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">➕</span>
+          <span>Array Operations</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">📐</span>
+          <span>Array Reshaping</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">🔢</span>
+          <span>Mathematical Functions</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">📝</span>
+          <span>List Comprehensions</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">📖</span>
+          <span>Dict Comprehensions</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIST COMPREHENSIONS -->
+    <section class="content-section">
+      <h2>📝 List Comprehensions</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">9.1</span>
+          <h3>⚡ Elegant List Creation</h3>
+        </div>
+
+        <div class="explanation">
+          <p>List comprehensions are a concise way to create lists in a single line!</p>
+        </div>
+
+        <div class="visual-box">
+          <h4>🔄 Traditional vs Comprehension</h4>
+          <pre style="text-align: center; font-size: 0.95rem;">
+    TRADITIONAL (4 lines)              LIST COMPREHENSION (1 line)
+    ─────────────────────              ─────────────────────────────
+    squares = []                       squares = [x**2 for x in range(5)]
+    for x in range(5):
+        squares.append(x**2)
+    
+    Same result: [0, 1, 4, 9, 16]
+    
+    Syntax: [expression for item in iterable]
+          </pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># List comprehensions from Session 9</span>
+
+<span class="comment"># Basic list comprehension</span>
+<span class="variable">squares</span> = [x**<span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1</span>, <span class="number">6</span>)]
+<span class="function">print</span>(<span class="string">"Squares:"</span>, squares)
+
+<span class="comment"># With condition (filter)</span>
+<span class="variable">even_squares</span> = [x**<span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1</span>, <span class="number">11</span>) <span class="keyword">if</span> x % <span class="number">2</span> == <span class="number">0</span>]
+<span class="function">print</span>(<span class="string">"Even squares:"</span>, even_squares)
+
+<span class="comment"># Transform strings</span>
+<span class="variable">names</span> = [<span class="string">"alice"</span>, <span class="string">"bob"</span>, <span class="string">"charlie"</span>]
+<span class="variable">upper_names</span> = [name.upper() <span class="keyword">for</span> name <span class="keyword">in</span> names]
+<span class="function">print</span>(<span class="string">"Uppercase:"</span>, upper_names)
+
+<span class="comment"># With if-else</span>
+<span class="variable">numbers</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]
+<span class="variable">labels</span> = [<span class="string">"even"</span> <span class="keyword">if</span> x % <span class="number">2</span> == <span class="number">0</span> <span class="keyword">else</span> <span class="string">"odd"</span> <span class="keyword">for</span> x <span class="keyword">in</span> numbers]
+<span class="function">print</span>(<span class="string">"Labels:"</span>, labels)
+
+<span class="comment"># Nested list comprehension (flattening)</span>
+<span class="variable">matrix</span> = [[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>], [<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]]
+<span class="variable">flat</span> = [num <span class="keyword">for</span> row <span class="keyword">in</span> matrix <span class="keyword">for</span> num <span class="keyword">in</span> row]
+<span class="function">print</span>(<span class="string">"Flattened:"</span>, flat)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Squares: [1, 4, 9, 16, 25]
+Even squares: [4, 16, 36, 64, 100]
+Uppercase: ['ALICE', 'BOB', 'CHARLIE']
+Labels: ['odd', 'even', 'odd', 'even', 'odd']
+Flattened: [1, 2, 3, 4, 5, 6, 7, 8, 9]</pre>
+        </div>
+      </div>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">9.2</span>
+          <h3>📖 Dictionary & Set Comprehensions</h3>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Dictionary comprehension</span>
+<span class="variable">squares_dict</span> = {x: x**<span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1</span>, <span class="number">6</span>)}
+<span class="function">print</span>(<span class="string">"Squares dict:"</span>, squares_dict)
+
+<span class="comment"># From two lists</span>
+<span class="variable">names</span> = [<span class="string">"Alice"</span>, <span class="string">"Bob"</span>, <span class="string">"Charlie"</span>]
+<span class="variable">ages</span> = [<span class="number">25</span>, <span class="number">30</span>, <span class="number">35</span>]
+<span class="variable">people</span> = {name: age <span class="keyword">for</span> name, age <span class="keyword">in</span> <span class="function">zip</span>(names, ages)}
+<span class="function">print</span>(<span class="string">"People:"</span>, people)
+
+<span class="comment"># Set comprehension (removes duplicates)</span>
+<span class="variable">numbers</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>]
+<span class="variable">unique_squares</span> = {x**<span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> numbers}
+<span class="function">print</span>(<span class="string">"Unique squares:"</span>, unique_squares)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Squares dict: {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
+People: {'Alice': 25, 'Bob': 30, 'Charlie': 35}
+Unique squares: {1, 4, 9}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- NUMPY SECTION -->
+    <section class="content-section">
+      <h2>🔢 NumPy - Numerical Python</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">9.3</span>
+          <h3>📊 What is NumPy?</h3>
+        </div>
+
+        <div class="explanation">
+          <p>NumPy is the foundation for numerical computing in Python. It provides powerful array objects and mathematical functions!</p>
+        </div>
+
+        <div class="visual-box">
+          <h4>⚡ Why NumPy?</h4>
+          <pre style="text-align: center; font-size: 1rem;">
+    Python List              NumPy Array
+    ─────────────            ───────────
+    [1, 2, 3, 4, 5]         np.array([1, 2, 3, 4, 5])
+    
+    ❌ Slow loops            ✅ Fast vectorized operations
+    ❌ Element-by-element    ✅ Whole-array operations
+    ❌ Memory inefficient    ✅ Memory efficient
+    
+    NumPy can be 10-100x faster! 🚀
+          </pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># NumPy basics from Session 9</span>
+<span class="keyword">import</span> numpy <span class="keyword">as</span> np
+
+<span class="comment"># Create arrays</span>
+<span class="variable">arr1</span> = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>])
+<span class="function">print</span>(<span class="string">"Array:"</span>, arr1)
+<span class="function">print</span>(<span class="string">"Type:"</span>, <span class="function">type</span>(arr1))
+<span class="function">print</span>(<span class="string">"Shape:"</span>, arr1.shape)
+<span class="function">print</span>(<span class="string">"Data type:"</span>, arr1.dtype)
+
+<span class="comment"># 2D array</span>
+<span class="variable">arr2d</span> = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]])
+<span class="function">print</span>(<span class="string">"\\n2D Array:"</span>)
+<span class="function">print</span>(arr2d)
+<span class="function">print</span>(<span class="string">"Shape:"</span>, arr2d.shape)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Array: [1 2 3 4 5]
+Type: &lt;class 'numpy.ndarray'&gt;
+Shape: (5,)
+Data type: int64
+
+2D Array:
+[[1 2 3]
+ [4 5 6]]
+Shape: (2, 3)</pre>
+        </div>
+      </div>
+
+      <!-- CREATING ARRAYS -->
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">9.4</span>
+          <h3>🏗️ Creating Arrays</h3>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Array creation functions from Session 9</span>
+<span class="keyword">import</span> numpy <span class="keyword">as</span> np
+
+<span class="comment"># zeros - array of all zeros</span>
+<span class="variable">zeros</span> = np.zeros(<span class="number">5</span>)
+<span class="function">print</span>(<span class="string">"Zeros:"</span>, zeros)
+
+<span class="comment"># ones - array of all ones</span>
+<span class="variable">ones</span> = np.ones((<span class="number">2</span>, <span class="number">3</span>))  <span class="comment"># 2x3 matrix</span>
+<span class="function">print</span>(<span class="string">"Ones:\\n"</span>, ones)
+
+<span class="comment"># arange - like range but returns array</span>
+<span class="variable">range_arr</span> = np.arange(<span class="number">0</span>, <span class="number">10</span>, <span class="number">2</span>)
+<span class="function">print</span>(<span class="string">"Arange:"</span>, range_arr)
+
+<span class="comment"># linspace - evenly spaced numbers</span>
+<span class="variable">linspace_arr</span> = np.linspace(<span class="number">0</span>, <span class="number">1</span>, <span class="number">5</span>)  <span class="comment"># 5 numbers from 0 to 1</span>
+<span class="function">print</span>(<span class="string">"Linspace:"</span>, linspace_arr)
+
+<span class="comment"># random arrays</span>
+<span class="variable">random_arr</span> = np.random.rand(<span class="number">3</span>)  <span class="comment"># 3 random numbers [0, 1)</span>
+<span class="function">print</span>(<span class="string">"Random:"</span>, random_arr)
+
+<span class="variable">random_int</span> = np.random.randint(<span class="number">1</span>, <span class="number">10</span>, size=<span class="number">5</span>)  <span class="comment"># 5 random integers 1-9</span>
+<span class="function">print</span>(<span class="string">"Random integers:"</span>, random_int)
+
+<span class="comment"># Identity matrix</span>
+<span class="variable">identity</span> = np.eye(<span class="number">3</span>)
+<span class="function">print</span>(<span class="string">"Identity matrix:\\n"</span>, identity)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Zeros: [0. 0. 0. 0. 0.]
+Ones:
+ [[1. 1. 1.]
+ [1. 1. 1.]]
+Arange: [0 2 4 6 8]
+Linspace: [0.   0.25 0.5  0.75 1.  ]
+Random: [0.123... 0.456... 0.789...]
+Random integers: [3 7 2 9 1]
+Identity matrix:
+ [[1. 0. 0.]
+ [0. 1. 0.]
+ [0. 0. 1.]]</pre>
+        </div>
+      </div>
+
+      <!-- ARRAY OPERATIONS -->
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">9.5</span>
+          <h3>➕ Array Operations</h3>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Array operations from Session 9</span>
+<span class="keyword">import</span> numpy <span class="keyword">as</span> np
+
+<span class="variable">arr</span> = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>])
+
+<span class="comment"># Element-wise operations</span>
+<span class="function">print</span>(<span class="string">"Original:"</span>, arr)
+<span class="function">print</span>(<span class="string">"arr + 10:"</span>, arr + <span class="number">10</span>)
+<span class="function">print</span>(<span class="string">"arr * 2:"</span>, arr * <span class="number">2</span>)
+<span class="function">print</span>(<span class="string">"arr ** 2:"</span>, arr ** <span class="number">2</span>)
+<span class="function">print</span>(<span class="string">"arr / 2:"</span>, arr / <span class="number">2</span>)
+
+<span class="comment"># Operations between arrays</span>
+<span class="variable">arr2</span> = np.array([<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>, <span class="number">50</span>])
+<span class="function">print</span>(<span class="string">"\\narr + arr2:"</span>, arr + arr2)
+<span class="function">print</span>(<span class="string">"arr * arr2:"</span>, arr * arr2)
+
+<span class="comment"># Comparison operations</span>
+<span class="function">print</span>(<span class="string">"\\narr > 2:"</span>, arr > <span class="number">2</span>)
+<span class="function">print</span>(<span class="string">"arr == 3:"</span>, arr == <span class="number">3</span>)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Original: [1 2 3 4 5]
+arr + 10: [11 12 13 14 15]
+arr * 2: [ 2  4  6  8 10]
+arr ** 2: [ 1  4  9 16 25]
+arr / 2: [0.5 1.  1.5 2.  2.5]
+
+arr + arr2: [11 22 33 44 55]
+arr * arr2: [ 10  40  90 160 250]
+
+arr > 2: [False False  True  True  True]
+arr == 3: [False False  True False False]</pre>
+        </div>
+      </div>
+
+      <!-- INDEXING AND SLICING -->
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">9.6</span>
+          <h3>🔍 Indexing & Slicing</h3>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># NumPy indexing from Session 9</span>
+<span class="keyword">import</span> numpy <span class="keyword">as</span> np
+
+<span class="variable">arr</span> = np.array([<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>, <span class="number">50</span>])
+
+<span class="comment"># Basic indexing</span>
+<span class="function">print</span>(<span class="string">"First element:"</span>, arr[<span class="number">0</span>])
+<span class="function">print</span>(<span class="string">"Last element:"</span>, arr[-<span class="number">1</span>])
+<span class="function">print</span>(<span class="string">"Slice [1:4]:"</span>, arr[<span class="number">1</span>:<span class="number">4</span>])
+
+<span class="comment"># 2D array indexing</span>
+<span class="variable">matrix</span> = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>], [<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]])
+<span class="function">print</span>(<span class="string">"\\nMatrix:"</span>)
+<span class="function">print</span>(matrix)
+<span class="function">print</span>(<span class="string">"Row 0:"</span>, matrix[<span class="number">0</span>])
+<span class="function">print</span>(<span class="string">"Element [1,2]:"</span>, matrix[<span class="number">1</span>, <span class="number">2</span>])
+<span class="function">print</span>(<span class="string">"Column 1:"</span>, matrix[:, <span class="number">1</span>])
+
+<span class="comment"># Boolean indexing (filtering)</span>
+<span class="function">print</span>(<span class="string">"\\nElements > 30:"</span>, arr[arr > <span class="number">30</span>])
+<span class="function">print</span>(<span class="string">"Even elements:"</span>, arr[arr % <span class="number">20</span> == <span class="number">0</span>])</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>First element: 10
+Last element: 50
+Slice [1:4]: [20 30 40]
+
+Matrix:
+[[1 2 3]
+ [4 5 6]
+ [7 8 9]]
+Row 0: [1 2 3]
+Element [1,2]: 6
+Column 1: [2 5 8]
+
+Elements > 30: [40 50]
+Even elements: [20 40]</pre>
+        </div>
+      </div>
+
+      <!-- MATHEMATICAL FUNCTIONS -->
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">9.7</span>
+          <h3>📐 Mathematical Functions</h3>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># NumPy math functions from Session 9</span>
+<span class="keyword">import</span> numpy <span class="keyword">as</span> np
+
+<span class="variable">arr</span> = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>])
+
+<span class="comment"># Aggregation functions</span>
+<span class="function">print</span>(<span class="string">"Sum:"</span>, np.sum(arr))
+<span class="function">print</span>(<span class="string">"Mean:"</span>, np.mean(arr))
+<span class="function">print</span>(<span class="string">"Max:"</span>, np.max(arr))
+<span class="function">print</span>(<span class="string">"Min:"</span>, np.min(arr))
+<span class="function">print</span>(<span class="string">"Std Dev:"</span>, np.std(arr))
+
+<span class="comment"># Mathematical functions</span>
+<span class="function">print</span>(<span class="string">"\\nSquare root:"</span>, np.sqrt(arr))
+<span class="function">print</span>(<span class="string">"Exponential:"</span>, np.exp(arr))
+<span class="function">print</span>(<span class="string">"Log:"</span>, np.log(arr))
+
+<span class="comment"># Matrix operations</span>
+<span class="variable">A</span> = np.array([[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>]])
+<span class="variable">B</span> = np.array([[<span class="number">5</span>, <span class="number">6</span>], [<span class="number">7</span>, <span class="number">8</span>]])
+
+<span class="function">print</span>(<span class="string">"\\nMatrix A:"</span>)
+<span class="function">print</span>(A)
+<span class="function">print</span>(<span class="string">"Matrix B:"</span>)
+<span class="function">print</span>(B)
+<span class="function">print</span>(<span class="string">"A @ B (matrix multiplication):"</span>)
+<span class="function">print</span>(np.dot(A, B))</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Sum: 15
+Mean: 3.0
+Max: 5
+Min: 1
+Std Dev: 1.4142135...
+
+Square root: [1.   1.41 1.73 2.   2.24]
+Exponential: [  2.72   7.39  20.09  54.60 148.41]
+Log: [0.   0.69 1.10 1.39 1.61]
+
+Matrix A:
+[[1 2]
+ [3 4]]
+Matrix B:
+[[5 6]
+ [7 8]]
+A @ B (matrix multiplication):
+[[19 22]
+ [43 50]]</pre>
+        </div>
+      </div>
+
+      <!-- RESHAPING -->
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">9.8</span>
+          <h3>🔄 Reshaping Arrays</h3>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Reshaping arrays from Session 9</span>
+<span class="keyword">import</span> numpy <span class="keyword">as</span> np
+
+<span class="variable">arr</span> = np.arange(<span class="number">1</span>, <span class="number">13</span>)  <span class="comment"># [1, 2, 3, ..., 12]</span>
+<span class="function">print</span>(<span class="string">"Original:"</span>, arr)
+<span class="function">print</span>(<span class="string">"Shape:"</span>, arr.shape)
+
+<span class="comment"># Reshape to 3x4</span>
+<span class="variable">reshaped</span> = arr.reshape(<span class="number">3</span>, <span class="number">4</span>)
+<span class="function">print</span>(<span class="string">"\\nReshaped to 3x4:"</span>)
+<span class="function">print</span>(reshaped)
+
+<span class="comment"># Reshape to 4x3</span>
+<span class="variable">reshaped2</span> = arr.reshape(<span class="number">4</span>, <span class="number">3</span>)
+<span class="function">print</span>(<span class="string">"\\nReshaped to 4x3:"</span>)
+<span class="function">print</span>(reshaped2)
+
+<span class="comment"># Flatten back to 1D</span>
+<span class="variable">flat</span> = reshaped.flatten()
+<span class="function">print</span>(<span class="string">"\\nFlattened:"</span>, flat)
+
+<span class="comment"># Transpose</span>
+<span class="function">print</span>(<span class="string">"\\nTransposed:"</span>)
+<span class="function">print</span>(reshaped.T)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Original: [ 1  2  3  4  5  6  7  8  9 10 11 12]
+Shape: (12,)
+
+Reshaped to 3x4:
+[[ 1  2  3  4]
+ [ 5  6  7  8]
+ [ 9 10 11 12]]
+
+Reshaped to 4x3:
+[[ 1  2  3]
+ [ 4  5  6]
+ [ 7  8  9]
+ [10 11 12]]
+
+Flattened: [ 1  2  3  4  5  6  7  8  9 10 11 12]
+
+Transposed:
+[[ 1  5  9]
+ [ 2  6 10]
+ [ 3  7 11]
+ [ 4  8 12]]</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUICK REFERENCE -->
+    <section class="content-section">
+      <h2>📋 Quick Reference</h2>
+      
+      <div class="reference-card">
+        <h4>📝 List Comprehension Syntax</h4>
+        <table class="reference-table">
+          <thead>
+            <tr><th>Pattern</th><th>Example</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Basic</td><td>[x**2 for x in range(5)]</td></tr>
+            <tr><td>With filter</td><td>[x for x in range(10) if x%2==0]</td></tr>
+            <tr><td>With if-else</td><td>["even" if x%2==0 else "odd" for x in nums]</td></tr>
+            <tr><td>Dict</td><td>{k: v for k, v in zip(keys, vals)}</td></tr>
+            <tr><td>Set</td><td>{x**2 for x in nums}</td></tr>
+          </tbody>
+        </table>
+
+        <h4 style="margin-top: 1.5rem;">🔢 NumPy Functions</h4>
+        <table class="reference-table">
+          <thead>
+            <tr><th>Function</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>np.array()</td><td>Create array</td></tr>
+            <tr><td>np.zeros(n)</td><td>Array of zeros</td></tr>
+            <tr><td>np.ones(n)</td><td>Array of ones</td></tr>
+            <tr><td>np.arange()</td><td>Range as array</td></tr>
+            <tr><td>np.linspace()</td><td>Evenly spaced</td></tr>
+            <tr><td>arr.reshape()</td><td>Change shape</td></tr>
+            <tr><td>np.sum/mean/max</td><td>Aggregations</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- NAVIGATION -->
+    <nav class="page-navigation">
+      <a href="s8-oop.html" class="nav-prev">
+        <span class="nav-arrow">←</span>
+        <span class="nav-text">
+          <span class="nav-label">Previous</span>
+          <span class="nav-title">OOP</span>
+        </span>
+      </a>
+      <a href="complete-course.html" class="nav-home">🏠</a>
+      <a href="s10-pandas1.html" class="nav-next">
+        <span class="nav-text">
+          <span class="nav-label">Next</span>
+          <span class="nav-title">Pandas Part I</span>
+        </span>
+        <span class="nav-arrow">→</span>
+      </a>
+    </nav>
+  </main>
+
+  <footer>
+    <p>🐍 Python Mastery | Learn. Code. Create.</p>
+  </footer>
+</body>
+</html>
+

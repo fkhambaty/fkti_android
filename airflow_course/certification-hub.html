@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airflow Certification | FKTI</title>
+    <link rel="stylesheet" href="../css/fkti-light-theme.css">
+    <style>
+        .page-header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        .logo-text {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: #86868b;
+            margin-bottom: 16px;
+        }
+        .page-header h1 {
+            font-size: 32px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 8px;
+        }
+        .page-header p {
+            font-size: 17px;
+            color: #86868b;
+        }
+        
+        .content {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        .mode-cards {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .mode-card {
+            background: #fff;
+            border: 1px solid #e5e5e5;
+            border-radius: 16px;
+            padding: 32px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s;
+            display: block;
+        }
+        .mode-card:hover {
+            border-color: #06c;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transform: translateY(-2px);
+        }
+        .mode-card.student {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-color: #bae6fd;
+        }
+        .mode-card.admin {
+            background: linear-gradient(135deg, #fdf4ff 0%, #fae8ff 100%);
+            border-color: #f0abfc;
+            cursor: pointer;
+        }
+        .card-icon {
+            font-size: 40px;
+            margin-bottom: 16px;
+        }
+        .mode-card h2 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 8px;
+        }
+        .mode-card p {
+            font-size: 14px;
+            color: #6e6e73;
+            line-height: 1.5;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-top: 12px;
+        }
+        .badge.blue { background: #dbeafe; color: #1d4ed8; }
+        .badge.purple { background: #f3e8ff; color: #7c3aed; }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(4px);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal.show { display: flex; }
+        .modal-box {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            width: 90%;
+            max-width: 360px;
+            text-align: center;
+        }
+        .modal-box h3 {
+            font-size: 18px;
+            margin-bottom: 16px;
+            color: #1d1d1f;
+        }
+        .modal-box input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            font-size: 16px;
+            text-align: center;
+            margin-bottom: 16px;
+            font-family: inherit;
+        }
+        .modal-box input:focus {
+            outline: none;
+            border-color: #06c;
+        }
+        .modal-btn {
+            background: #06c;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+            font-family: inherit;
+            width: 100%;
+        }
+        .modal-btn:hover { opacity: 0.9; }
+        .error-msg {
+            color: #dc2626;
+            font-size: 13px;
+            margin-top: 12px;
+            display: none;
+        }
+        .close-btn {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #86868b;
+            cursor: pointer;
+        }
+        .modal-box { position: relative; }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 40px;
+            color: #06c;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .back-link:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <div class="container" style="justify-content: flex-start;">
+            <a href="../index.html" class="nav-btn">← FKTI</a>
+            <a href="index.html" class="nav-btn">Airflow</a>
+            <span class="nav-btn active">Certification</span>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <div class="logo-text">FKTI</div>
+        <h1>Airflow Certification</h1>
+        <p>75 Questions · Complete Study Guide</p>
+    </div>
+
+    <div class="content">
+        <div class="mode-cards">
+            <a href="certification-student.html" class="mode-card student">
+                <div class="card-icon">📚</div>
+                <h2>Practice Mode</h2>
+                <p>Study all 75 questions with hints. Test yourself in quiz mode without seeing the answers first.</p>
+                <span class="badge blue">For Everyone</span>
+            </a>
+            
+            <div class="mode-card admin" onclick="showModal()">
+                <div class="card-icon">🔐</div>
+                <h2>Answer Key</h2>
+                <p>Access complete solutions and explanations. Restricted to instructors only.</p>
+                <span class="badge purple">Passcode Required</span>
+            </div>
+        </div>
+        
+        <a href="index.html" class="back-link">← Back to Airflow Course</a>
+    </div>
+
+    <!-- Password Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-box">
+            <button class="close-btn" onclick="hideModal()">×</button>
+            <h3>Enter Passcode</h3>
+            <input type="password" id="passcode" placeholder="••••••••" onkeypress="if(event.key==='Enter')verify()">
+            <button class="modal-btn" onclick="verify()">Continue</button>
+            <p class="error-msg" id="error">Incorrect passcode</p>
+        </div>
+    </div>
+
+    <script>
+        function showModal() {
+            document.getElementById('modal').classList.add('show');
+            document.getElementById('passcode').focus();
+        }
+        function hideModal() {
+            document.getElementById('modal').classList.remove('show');
+            document.getElementById('error').style.display = 'none';
+            document.getElementById('passcode').value = '';
+        }
+        function verify() {
+            var _0x1=['\x67\x65\x74\x44\x61\x74\x65','\x67\x65\x74\x4d\x6f\x6e\x74\x68','\x67\x65\x74\x46\x75\x6c\x6c\x59\x65\x61\x72'];
+            var n=new Date();var d=n[_0x1[0]](),m=n[_0x1[1]]()+1,y=n[_0x1[2]]();
+            var _0xp=(d<10?'0':'')+d+(m<10?'0':'')+m+y;
+            var v=document.getElementById('passcode').value;
+            if(v===_0xp){window.location.href=atob('Y2VydGlmaWNhdGlvbi1hZG1pbi5odG1s');}
+            else{document.getElementById('error').style.display='block';}
+        }
+        document.getElementById('modal').addEventListener('click', function(e) {
+            if (e.target === this) hideModal();
+        });
+    </script>
+</body>
+</html>
+

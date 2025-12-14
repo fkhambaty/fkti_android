@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airflow Certification Answers | FKTI</title>
+    <link rel="stylesheet" href="../css/fkti-light-theme.css">
+    <style>
+        .page-header {
+            text-align: center;
+            padding: 60px 20px 32px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        .logo-text { font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: #86868b; margin-bottom: 16px; }
+        .page-header h1 { font-size: 28px; font-weight: 600; color: #1d1d1f; margin-bottom: 8px; }
+        .page-header p { font-size: 15px; color: #86868b; }
+        .admin-badge { display: inline-block; background: #fef3c7; color: #92400e; padding: 4px 12px; border-radius: 12px; font-size: 11px; font-weight: 600; margin-top: 12px; }
+        
+        .content { max-width: 720px; margin: 0 auto; padding: 32px 20px 60px; }
+        
+        .question {
+            background: white;
+            border: 1px solid #e5e5e5;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+        .q-meta { display: flex; gap: 8px; margin-bottom: 12px; align-items: center; }
+        .q-num {
+            font-size: 11px;
+            font-weight: 600;
+            color: white;
+            background: #1d4ed8;
+            padding: 3px 10px;
+            border-radius: 12px;
+        }
+        .q-cat {
+            font-size: 10px;
+            color: #6e6e73;
+            background: #f5f5f7;
+            padding: 3px 8px;
+            border-radius: 10px;
+        }
+        .q-text { font-size: 14px; color: #1d1d1f; margin-bottom: 16px; line-height: 1.6; }
+        .q-text pre {
+            background: #f5f5f7;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            overflow-x: auto;
+            margin: 8px 0;
+            font-family: 'SF Mono', Menlo, monospace;
+        }
+        
+        .options { display: flex; flex-direction: column; gap: 6px; }
+        .opt {
+            padding: 10px 14px;
+            background: #f9fafb;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            font-size: 13px;
+        }
+        .opt.correct {
+            background: #dcfce7;
+            border-color: #86efac;
+            color: #166534;
+        }
+        .opt.correct::before {
+            content: '✓ ';
+            font-weight: 600;
+        }
+        
+        .explanation {
+            margin-top: 12px;
+            padding: 12px;
+            background: #eff6ff;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #1e40af;
+            line-height: 1.5;
+        }
+        
+        @media (max-width: 600px) {
+            .page-header { padding: 40px 16px 24px; }
+            .content { padding: 20px 16px 40px; }
+            .question { padding: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <div class="container" style="justify-content: flex-start;">
+            <a href="certification-hub.html" class="nav-btn">← Back</a>
+            <span class="nav-btn active">Answer Key</span>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <div class="logo-text">FKTI · AIRFLOW CERTIFICATION</div>
+        <h1>Complete Answer Key</h1>
+        <p>75 Questions with Solutions</p>
+        <span class="admin-badge">🔐 Instructor Access</span>
+    </div>
+
+    <div class="content" id="questions"></div>
+
+    <script>
+        const questions = [
+            { id: 1, q: "Assume an Airflow variable with the name airtable_api_key was created via the Airflow UI. Will the variable's value be hidden on the Airflow UI?", opts: ["Yes", "No"], ans: [0], cat: "Variables", exp: "Airflow automatically masks variables containing sensitive keywords like 'api_key', 'password', 'secret' in their names." },
+            { id: 2, q: "Is this the correct way to create a PostgreSQL connection?\n\nAIRFLOW_CONN_POSTGRES='my-conn-type://login:password@host:port/schema'", opts: ["Yes", "No"], ans: [1], cat: "Connections", exp: "No. 'my-conn-type' is invalid. Use 'postgresql' or 'postgres'." },
+            { id: 3, q: "What is a DAG run?", opts: ["A special Airflow object that determines the schedule of a DAG", "A specific run or instance of a task", "A specific run or instance of a DAG", "An object grouping all DAGs"], ans: [2], cat: "Core Concepts", exp: "A DAG run represents a single execution of a DAG at a specific point in time." },
+            { id: 4, q: "With [task_a(), task_b()] >> task_e() and [task_c(), task_d()] >> task_e(), how many tasks run at the same time?", opts: ["4", "1", "0", "2"], ans: [0], cat: "Dependencies", exp: "4 tasks (a, b, c, d) have no upstream dependencies, so they all run in parallel." },
+            { id: 5, q: "Which feature allows tasks to communicate and share data?", opts: ["Variables", "Connections", "XCom", "Hooks"], ans: [2], cat: "Core Concepts", exp: "XCom (Cross-Communication) is Airflow's mechanism for tasks to exchange data." },
+            { id: 6, q: "With @daily schedule and catchup=True, how far back will Airflow catch up?", opts: ["To the beginning of time", "One week", "One month", "To the DAG's start_date"], ans: [3], cat: "Scheduling", exp: "Airflow backfills from start_date to current date." },
+            { id: 7, q: "A Python script downloads data from an API and stores it daily. Is this a use case for Airflow?", opts: ["Yes", "No"], ans: [0], cat: "Use Cases", exp: "Yes! Scheduled data pipelines are ideal for Airflow." },
+            { id: 8, q: "Which parameter limits a DAG to run only for the next two months?", opts: ["start_date", "schedule", "end_date", "catchup"], ans: [2], cat: "DAG Parameters", exp: "end_date stops scheduling after a specific date." },
+            { id: 9, q: "A new task doesn't appear in the UI after saving. Why?", opts: ["The schedule parameter is missing", "The task dependency setup is incorrect", "Airflow has a default delay of up to 30 seconds", "Airflow has a default delay of up to 5 minutes"], ans: [2], cat: "Troubleshooting", exp: "min_file_process_interval defaults to 30 seconds for re-parsing existing files." },
+            { id: 10, q: "What is the role of the executor?", opts: ["It deletes unwanted tasks", "It defines how tasks are executed and on which system", "It executes tasks", "It schedules tasks"], ans: [1], cat: "Architecture", exp: "The executor defines the mechanism for running tasks (Local, Celery, Kubernetes, etc.)." },
+            { id: 11, q: "Which mode is best when poke_interval > 5 minutes?", opts: ["reschedule", "poke"], ans: [0], cat: "Sensors", exp: "reschedule mode releases the worker slot between pokes." },
+            { id: 12, q: "Schedule for every 10 minutes, but not on weekends?", opts: ["schedule='/10 * * * *'", "schedule='*/10 * * * 1-5'", "schedule=timedelta(minutes=10)", "schedule='*/10 * * * M-F'"], ans: [1], cat: "Scheduling", exp: "'*/10 * * * 1-5' = every 10 min, Mon-Fri." },
+            { id: 13, q: "Which are valid schedule values? (select all)", opts: ["Timedelta", "Integers", "Calendar", "Cron"], ans: [0, 3], cat: "Scheduling", exp: "Valid: Cron strings, Timedelta objects, Timetables, None, Datasets." },
+            { id: 14, q: "A new DAG file doesn't show up. Why? (select all)", opts: ["The code doesn't contain 'airflow' or 'dag'", "The Airflow instance must be restarted", "5 minute default delay", "The .airflowignore file has the name"], ans: [0, 2, 3], cat: "Troubleshooting", exp: "Airflow scans for keywords, has 5-min delay for new files, and respects .airflowignore." },
+            { id: 15, q: "What is the default value for start_date?", opts: ["datetime.now()", "datetime(2020, 1, 1)", "None", "Yesterday"], ans: [2], cat: "DAG Parameters", exp: "start_date defaults to None." },
+            { id: 16, q: "Which sets start date to 2025/01/01?", opts: ["start_date=datetime(2025, 1, 1)", "schedule=datetime(2025, 1, 1)", "start_date=datetime(1, 1, 2025)", "start_date='2025/01/01'"], ans: [0], cat: "DAG Parameters", exp: "Format: datetime(year, month, day)." },
+            { id: 17, q: "Daily DAG at 00:00, start_date Jan 1, 2025. What's the first logical_date?", opts: ["2025/01/01 00:00", "2025/01/02 00:00", "2025/01/01 00:01", "2025/01/02 23:59"], ans: [0], cat: "Scheduling", exp: "logical_date = start of the data interval (2025-01-01 00:00)." },
+            { id: 18, q: "XCom limitations? (select all)", opts: ["XComs are the only way to share data", "Requires a defined DAG with at least one task", "Data size is limited", "Max 2 tasks can use XCom"], ans: [1, 2], cat: "XCom", exp: "XCom requires task context and has size limits." },
+            { id: 19, q: "How to avoid dag=dag in all operators? (select all)", opts: ["Using @dag decorator", "Giving all tasks the same task_id", "Using 'with DAG()' context manager", "Creating default_argument dictionary"], ans: [0, 2], cat: "DAG Definition", exp: "@dag decorator or context manager auto-associates tasks." },
+            { id: 20, q: "What is the default timezone in Airflow?", opts: ["Local timezone", "EST", "UTC", "PST"], ans: [2], cat: "Configuration", exp: "Airflow uses UTC by default." },
+            { id: 21, q: "What is the typical task journey?", opts: ["No status → Scheduled → Queued → Running → Success/Failure", "Queued → Scheduled → Running → Success/Failure", "No status → Queued → Scheduled → Running → Success/Failure", "Scheduled → Queued → Running → Success/Failure"], ans: [0], cat: "Core Concepts", exp: "No status → Scheduled → Queued → Running → Success/Failure." },
+            { id: 22, q: "DAG missing start_date, task/dag not called. What are the issues? (select all)", opts: ["start_date missing", "tags missing", "Task not called", "DAG not called"], ans: [0, 2, 3], cat: "Troubleshooting", exp: "Missing start_date, task not called, DAG not called. Tags are optional." },
+            { id: 23, q: "Purpose of task dependencies?", opts: ["Ensure correct execution order", "Reduce task failures", "Increase parallelism", "Improve scheduler performance"], ans: [0], cat: "Dependencies", exp: "Dependencies define execution order." },
+            { id: 24, q: "What is XCom?", opts: ["A real-time communication protocol", "A way to store data between tasks", "A data serialization tool", "A type of task"], ans: [1], cat: "XCom", exp: "XCom shares data between tasks." },
+            { id: 25, q: "Default sensor timeout?", opts: ["7 hours", "7 days", "1 day", "1 minute"], ans: [1], cat: "Sensors", exp: "Default timeout is 7 days." },
+            { id: 26, q: "What does the bar chart show in DAGs view?", opts: ["Future DAG runs", "Previous DAG runs only", "Task instances with states", "Past and current DAG runs with states"], ans: [3], cat: "UI", exp: "Shows recent DAG runs and their statuses." },
+            { id: 27, q: "Why doesn't the DAG show up? (my_dag function not called)", opts: ["my_dag isn't called", "schedule missing", "catchup missing", "start_date format wrong"], ans: [0], cat: "Troubleshooting", exp: "When using @dag, you must call the decorated function." },
+            { id: 28, q: "Jan 4, start_date Jan 1, @daily, default catchup. How many DAG runs?", opts: ["4", "1", "0", "2"], ans: [0], cat: "Scheduling", exp: "4 completed intervals." },
+            { id: 29, q: "Which parameter defines when scheduling starts?", opts: ["schedule", "end_date", "start_date", "dag_id"], ans: [2], cat: "DAG Parameters", exp: "start_date defines when scheduling begins." },
+            { id: 30, q: "Which creates t0 → t1 → t2 → t3?", opts: ["[t0, t1] >> [t2, t3]", "[t0, t1] >> t2 >> t3", "t0 >> t1 >> t2 >> t3", "t0 >> t1 >> [t2, t3]"], ans: [2], cat: "Dependencies", exp: "t0 >> t1 >> t2 >> t3 creates linear flow." },
+            { id: 31, q: "Valid ways to create a pipeline? (select all)", opts: ["Using with DAG()", "Using DAG class with dag parameter", "Creating a function called DAG", "Using @dag decorator"], ans: [0, 1, 3], cat: "DAG Definition", exp: "Valid: @dag, with DAG(), DAG class with dag=." },
+            { id: 32, q: "Can you backfill with catchup=False?", opts: ["No, impossible", "Yes, with UI, API, or CLI"], ans: [1], cat: "Backfill", exp: "You can manually backfill even with catchup=False." },
+            { id: 33, q: "Would task_a() >> task_b (missing parentheses) work?", opts: ["Yes", "No"], ans: [1], cat: "Troubleshooting", exp: "No, task_b without () is a decorator object, not a task." },
+            { id: 34, q: "What does 'Latest Run' column show?", opts: ["Logical date of latest DAG run", "Interval between runs", "End date/time of most recent run", "Next scheduled run"], ans: [0], cat: "UI", exp: "Shows the logical_date of the most recent DAG run." },
+            { id: 35, q: "Presto provider missing. What to do?", opts: ["Reinstall Airflow", "Restart Airflow", "Impossible", "Install the provider package"], ans: [3], cat: "Providers", exp: "Install: pip install apache-airflow-providers-presto" },
+            { id: 36, q: "Best view for DAG runs and task states overview?", opts: ["Graph view", "Grid view", "DAGs view"], ans: [1], cat: "UI", exp: "Grid view shows tasks × runs matrix." },
+            { id: 37, q: "True about DAG? (select all)", opts: ["Loops are good practice", "DAG is a programming language", "DAG = Directed Acyclic Graph", "Nodes = tasks, edges = dependencies"], ans: [2, 3], cat: "Core Concepts", exp: "DAG = Directed Acyclic Graph. No loops allowed." },
+            { id: 38, q: "Purpose of Airflow variable? (select all)", opts: ["Store XCom", "Reuse value across DAGs", "Store large data", "Avoid hardcoding"], ans: [1, 3], cat: "Variables", exp: "Variables store config values and avoid hardcoding." },
+            { id: 39, q: "CLI command to run a task without dependencies?", opts: ["airflow tasks start", "airflow dags test", "airflow standalone", "airflow tasks test"], ans: [3], cat: "CLI", exp: "airflow tasks test runs a task in isolation." },
+            { id: 40, q: "What can be stored in a variable? (select all)", opts: ["Integers", "Strings", "Python Dataclasses", "JSON"], ans: [1, 3], cat: "Variables", exp: "Strings and JSON (with deserialize_json=True)." },
+            { id: 41, q: "What does a Transfer Operator do?", opts: ["Moves data between systems", "Transforms data format", "Sends notifications", "Evaluates conditions"], ans: [0], cat: "Operators", exp: "Transfer Operators move data from one system to another." },
+            { id: 42, q: "Purpose of default_args?", opts: ["Specifies schedule interval", "Specifies operator to use", "Default params for one task", "Default params for all tasks"], ans: [3], cat: "DAG Parameters", exp: "default_args applies to ALL tasks in the DAG." },
+            { id: 43, q: "What does a Sensor Operator do?", opts: ["Waits for a condition", "Evaluates conditions for branching", "Sends notifications", "Provides utility functions"], ans: [0], cat: "Sensors", exp: "Sensors wait for a condition to be true." },
+            { id: 44, q: "Is [t0, t1] >> t2 >> [t3, t4] >> t5 valid?", opts: ["No", "Yes"], ans: [1], cat: "Dependencies", exp: "Yes, valid Airflow syntax." },
+            { id: 45, q: "Jan 8 10:00, start_date Jan 5, catchup=True. How many DAG runs?", opts: ["4", "2", "1", "3"], ans: [3], cat: "Scheduling", exp: "3 completed intervals: 5→6, 6→7, 7→8." },
+            { id: 46, q: "Optional params without @dag? (select all)", opts: ["schedule_interval", "start_date", "default_args", "dag_id"], ans: [0, 1, 2], cat: "DAG Parameters", exp: "Only dag_id is required." },
+            { id: 47, q: "How can Airflow help build a user behavior dashboard?", opts: ["As the database", "To schedule pipelines feeding a data warehouse", "To analyze events and present dashboards", "To build dashboards in the UI"], ans: [1], cat: "Use Cases", exp: "Airflow orchestrates pipelines, not databases or dashboards." },
+            { id: 48, q: "Can env variable variables be accessed in DAGs even if not in UI?", opts: ["Yes", "No"], ans: [0], cat: "Variables", exp: "Yes, via Variable.get()." },
+            { id: 49, q: "Result of chain(t0, t1, [t2, t3], [t4, t5], t6)?", opts: ["chain(t0, t1, [t2, t4], [t3, t5], t6)", "t0 >> t1 >> [t2, t3] >> [t4, t5] >> t6", "chain(t0, t1, [t2, t3], [t4, t5], t6)", "[t0, t1] >> t2 >> t3 >> t4 >> [t5, t6]"], ans: [2], cat: "Dependencies", exp: "chain() with lists connects corresponding elements." },
+            { id: 50, q: "Valid ways to create a connection? (select all)", opts: ["Airflow CLI", "In an XCom", "Airflow UI", "Environment Variables"], ans: [0, 2, 3], cat: "Connections", exp: "CLI, UI, or AIRFLOW_CONN_* env vars." },
+            { id: 51, q: "Best mode when poke_interval < 5 minutes?", opts: ["reschedule", "poke"], ans: [1], cat: "Sensors", exp: "poke mode is best for short intervals." },
+            { id: 52, q: "Which folder does the scheduler parse for DAGs?", opts: ["/plugins", "/dags", "/include", "/airflow"], ans: [1], cat: "Configuration", exp: "/dags folder contains DAG files." },
+            { id: 53, q: "Method to add data to XCom?", opts: ["xcom parameter of DAG", "xcom_push", "xcom_add", "xcom_pull"], ans: [1], cat: "XCom", exp: "Use xcom_push to add data." },
+            { id: 54, q: "What does 'queued' status mean?", opts: ["Task is running", "Task executes immediately", "Task waiting to be scheduled", "Task assigned to executor, awaiting worker"], ans: [3], cat: "Core Concepts", exp: "Queued = sent to executor, waiting for worker." },
+            { id: 55, q: "Is daily SQL aggregation a use case for Airflow?", opts: ["No", "Yes"], ans: [1], cat: "Use Cases", exp: "Yes, perfect use case!" },
+            { id: 56, q: "Purpose of PythonOperator?", opts: ["Deploy Python packages", "Execute Python code as a task", "Schedule Python scripts", "Manage virtual environments"], ans: [1], cat: "Operators", exp: "PythonOperator executes a Python function as a task." },
+            { id: 57, q: "Is automated failure notification a use case for Airflow?", opts: ["No", "Yes"], ans: [1], cat: "Use Cases", exp: "Yes! Airflow provides email_on_failure, Slack, etc." },
+            { id: 58, q: "Correct env var for variable 'customer_folder'='my_folder'?", opts: ["AIRFLOW_VARIABLE_CUSTOMER_FOLDER='my_folder'", "CUSTOMER_FOLDER='my_folder'", "AIRFLOW_VAR_CUSTOMER_FOLDER='my_folder'", "AIRFLOW_CUSTOMER_FOLDER='my_folder'"], ans: [2], cat: "Variables", exp: "Format: AIRFLOW_VAR_<NAME_UPPERCASE>=value" },
+            { id: 59, q: "Which creates t0 → t1 → t2 → t3? (select all)", opts: ["t3 << t2 << t1 << t0", "t0 >> t1 >> t2 >> t3", "t0 >> [t1, t2] >> t3", "t0 >> [t1, t2, t3]"], ans: [0, 1], cat: "Dependencies", exp: "Both >> and << create the same chain." },
+            { id: 60, q: "CLI command showing Python version?", opts: ["airflow version", "airflow python version", "airflow info", "airflow standalone"], ans: [2], cat: "CLI", exp: "airflow info shows environment details." },
+            { id: 61, q: "Best view for understanding task dependencies?", opts: ["Graph view", "Grid view", "DAGs view"], ans: [0], cat: "UI", exp: "Graph view shows tasks and arrows." },
+            { id: 62, q: "What is an Airflow provider?", opts: ["Task concurrency config", "Separate package extending Airflow", "Docker image", "Core operators"], ans: [1], cat: "Providers", exp: "Providers are packages adding integrations." },
+            { id: 63, q: "Is SQLSensor with poke_interval=30 checking every 30 minutes?", opts: ["Yes", "No"], ans: [1], cat: "Sensors", exp: "No! poke_interval is in SECONDS. 30 = 30 seconds." },
+            { id: 64, q: "CLI command to create the metadata database?", opts: ["airflow db start", "airflow db reset", "airflow db check", "airflow db migrate"], ans: [3], cat: "CLI", exp: "airflow db migrate creates/upgrades the schema." },
+            { id: 65, q: "Error: '_TaskDecorator' object has no attribute 'update_relative'. Solution?", opts: ["Call the task explicitly", "Change start_date format", "Import correct DAG object", "Not enough info"], ans: [0], cat: "Troubleshooting", exp: "Call tasks: task_a() >> task_b()" },
+            { id: 66, q: "Method to get data from XCom?", opts: ["xcom_push", "xcom_add", "xcom_pull", "xcom parameter"], ans: [2], cat: "XCom", exp: "Use xcom_pull to retrieve data." },
+            { id: 67, q: "Is t0 >> t1 >> t2 >> t3 equivalent to t3 << t2 << t1 << t0?", opts: ["No", "Yes"], ans: [1], cat: "Dependencies", exp: "Yes, both create t0 → t1 → t2 → t3." },
+            { id: 68, q: "Where are task dependencies set up?", opts: ["In /includes directory", "In the DAG file", "In the Airflow UI", "In a config file"], ans: [1], cat: "DAG Definition", exp: "Dependencies are defined in the DAG Python file." },
+            { id: 69, q: "Purpose of catchup parameter?", opts: ["Determines schedule interval", "Determines future runs", "Determines retry count", "Determines retroactive runs"], ans: [3], cat: "DAG Parameters", exp: "catchup controls backfilling past intervals." },
+            { id: 70, q: "Which returns 'my_json' as a Python dict?", opts: ["Variable.retrieve('my_json', deserialize_json=True)", "Variable.get('my_json', deserialize_json=True)", "Variable.retrieve('my_json', deserialize_json=False)", "Variable.get('my_json')"], ans: [1], cat: "Variables", exp: "Variable.get() with deserialize_json=True." },
+            { id: 71, q: "Is [t0, t1] >> [t2, t3] valid?", opts: ["No", "Yes"], ans: [1], cat: "Dependencies", exp: "Yes, creates cross-dependencies." },
+            { id: 72, q: "Schedule for daily at 7:00 AM?", opts: ["schedule='7 * * * *'", "schedule='0 7 * * *'", "schedule=timedelta(hours=6)", "schedule=timedelta(hours=7)"], ans: [1], cat: "Scheduling", exp: "'0 7 * * *' = minute 0, hour 7, daily." },
+            { id: 73, q: "Default time for new DAG file to appear?", opts: ["1 minute", "30 seconds", "5 minutes", "1 second"], ans: [2], cat: "Configuration", exp: "dag_dir_list_interval defaults to 5 minutes." },
+            { id: 74, q: "UI shows 2 DAGs but expecting 5. Why?", opts: ["5-minute delay", "A filter is applied", "30-second delay", "Airflow error"], ans: [1], cat: "UI", exp: "A tag filter is likely applied." },
+            { id: 75, q: "Purpose of schedule parameter?", opts: ["When scheduling starts", "How often DAG runs", "When scheduling stops", "Timezone for DAG"], ans: [1], cat: "DAG Parameters", exp: "schedule defines how often the DAG runs." }
+        ];
+
+        function render() {
+            const container = document.getElementById('questions');
+            container.innerHTML = questions.map(q => `
+                <div class="question">
+                    <div class="q-meta">
+                        <span class="q-num">Q${q.id}</span>
+                        <span class="q-cat">${q.cat}</span>
+                    </div>
+                    <div class="q-text">${q.q.replace(/\n/g, '<br>')}</div>
+                    <div class="options">
+                        ${q.opts.map((o, i) => `
+                            <div class="opt ${q.ans.includes(i) ? 'correct' : ''}">${o}</div>
+                        `).join('')}
+                    </div>
+                    <div class="explanation"><strong>Explanation:</strong> ${q.exp}</div>
+                </div>
+            `).join('');
+        }
+
+        render();
+    </script>
+</body>
+</html>
+

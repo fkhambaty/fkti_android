@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session 2: Data Types | 🐍 Python Mastery</title>
+  <link rel="stylesheet" href="light-theme.css">
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-content">
+      <a href="complete-course.html" class="logo">🐍 Python Mastery</a>
+      <div class="session-nav">
+        <a href="s1-intro.html" class="nav-link">1</a>
+        <a href="s2-datatypes.html" class="nav-link active">2</a>
+        <a href="s3-loops.html" class="nav-link">3</a>
+        <a href="s4-lists.html" class="nav-link">4</a>
+        <a href="s5-datastructures.html" class="nav-link">5</a>
+        <a href="s6-functions1.html" class="nav-link">6</a>
+        <a href="s7-functions2.html" class="nav-link">7</a>
+        <a href="s8-oop.html" class="nav-link">8</a>
+        <a href="s9-numpy.html" class="nav-link">9</a>
+        <a href="s10-pandas1.html" class="nav-link">10</a>
+        <a href="s11-pandas2.html" class="nav-link">11</a>
+        <a href="s12-api-sql.html" class="nav-link">12</a>
+        <a href="assignments.html" class="nav-link assignment">📝</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <header class="session-header">
+      <div class="session-badge">Session 2</div>
+      <h1>🎨 Data Types in Python</h1>
+      <p class="session-subtitle">Understanding the different kinds of data Python can handle</p>
+      <div class="progress-info">
+        <span>📚 6 Topics</span>
+        <span>⏱️ 45 min read</span>
+        <span>🎯 Foundation Level</span>
+      </div>
+    </header>
+
+    <!-- OVERVIEW SECTION -->
+    <section class="overview-card">
+      <h2>🗺️ What You'll Learn</h2>
+      <div class="overview-grid">
+        <div class="overview-item">
+          <span class="overview-icon">🔢</span>
+          <span>Numeric Types (int, float, complex)</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">📝</span>
+          <span>Text/String Type</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">✅</span>
+          <span>Boolean Type</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">🚫</span>
+          <span>NoneType</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">🔄</span>
+          <span>Type Conversion</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">🔍</span>
+          <span>type() Function</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ANALOGY SECTION -->
+    <section class="analogy-card">
+      <div class="analogy-header">
+        <span class="analogy-icon">🎒</span>
+        <h3>Think of It Like a Backpack!</h3>
+      </div>
+      <div class="analogy-content">
+        <p>Imagine your backpack can hold different things:</p>
+        <div class="analogy-examples">
+          <div class="analogy-item">
+            <span class="item-icon">📚</span>
+            <span><strong>Books</strong> = Integers (whole things)</span>
+          </div>
+          <div class="analogy-item">
+            <span class="item-icon">🧃</span>
+            <span><strong>Water bottle</strong> = Float (can be partially full: 0.5 liters)</span>
+          </div>
+          <div class="analogy-item">
+            <span class="item-icon">📝</span>
+            <span><strong>Notes</strong> = Strings (written text)</span>
+          </div>
+          <div class="analogy-item">
+            <span class="item-icon">💡</span>
+            <span><strong>Flashlight</strong> = Boolean (ON or OFF)</span>
+          </div>
+          <div class="analogy-item">
+            <span class="item-icon">👻</span>
+            <span><strong>Empty pocket</strong> = None (nothing there!)</span>
+          </div>
+        </div>
+        <p class="analogy-moral">Just like you organize different items differently in your backpack, Python needs to know what "type" of data it's working with!</p>
+      </div>
+    </section>
+
+    <!-- DATA TYPE OVERVIEW -->
+    <section class="content-section">
+      <h2>📊 Python Data Type Overview</h2>
+      
+      <div class="visual-diagram">
+        <h4 style="text-align: center; margin-bottom: 1rem;">🌳 The Data Type Family Tree</h4>
+        <pre class="tree-diagram">
+                    Python Data Types
+                          │
+        ┌─────────────────┼─────────────────┐
+        │                 │                 │
+    📊 NUMERIC        📝 TEXT           🔘 SPECIAL
+        │                 │                 │
+   ┌────┼────┐         string           ┌───┴───┐
+   │    │    │                          │       │
+  int float complex                   bool    None
+   │    │    │                          │       │
+  42  3.14  2+3j                    True/False  ∅
+        </pre>
+      </div>
+
+      <div class="info-box tip">
+        <div class="info-header">
+          <span class="info-icon">💡</span>
+          <span>Quick Reference</span>
+        </div>
+        <div class="info-content">
+          <p>Every piece of data in Python has a type. Use <code>type()</code> to discover it!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- NUMERIC TYPES -->
+    <section class="content-section">
+      <h2>🔢 Numeric Data Types</h2>
+
+      <!-- INTEGERS -->
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">2.1</span>
+          <h3>📦 Integers (int) - Whole Numbers</h3>
+        </div>
+
+        <div class="explanation">
+          <p>Integers are <strong>whole numbers</strong> without any decimal point. They can be positive, negative, or zero.</p>
+          
+          <div class="real-world-box">
+            <span class="rw-icon">🌍</span>
+            <div>
+              <strong>Real World Examples:</strong>
+              <ul>
+                <li>Your age: 25 years (not 25.5!)</li>
+                <li>Number of apples: 10 apples</li>
+                <li>Floor number: -2 (basement)</li>
+                <li>Bank balance: -500 (overdrawn 😅)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Integer examples from Session 2</span>
+<span class="variable">a</span> = <span class="number">5</span>          <span class="comment"># Positive integer</span>
+<span class="variable">b</span> = -<span class="number">3</span>         <span class="comment"># Negative integer</span>
+<span class="variable">c</span> = <span class="number">0</span>          <span class="comment"># Zero is also an integer!</span>
+<span class="variable">large_num</span> = <span class="number">1000000</span>  <span class="comment"># Large numbers work too</span>
+
+<span class="comment"># Check the type</span>
+<span class="function">print</span>(<span class="function">type</span>(a))  <span class="comment"># Output: &lt;class 'int'&gt;</span>
+<span class="function">print</span>(<span class="function">type</span>(b))  <span class="comment"># Output: &lt;class 'int'&gt;</span></code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>&lt;class 'int'&gt;
+&lt;class 'int'&gt;</pre>
+        </div>
+      </div>
+
+      <!-- FLOATS -->
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">2.2</span>
+          <h3>🌊 Floating Point (float) - Decimal Numbers</h3>
+        </div>
+
+        <div class="explanation">
+          <p>Floats are numbers with a <strong>decimal point</strong>. The name "floating point" comes from how the decimal point can "float" to different positions.</p>
+          
+          <div class="visual-box">
+            <h4>🎯 Why "Floating" Point?</h4>
+            <pre style="text-align: center; font-size: 1.2rem;">
+    123.456  →  1.23456 × 10²
+    0.00123  →  1.23 × 10⁻³
+    
+    The decimal "floats" to create 
+    a standard form! 🎈
+            </pre>
+          </div>
+
+          <div class="real-world-box">
+            <span class="rw-icon">🌍</span>
+            <div>
+              <strong>Real World Examples:</strong>
+              <ul>
+                <li>Temperature: 98.6°F</li>
+                <li>Price: $19.99</li>
+                <li>Height: 5.8 feet</li>
+                <li>Pi: 3.14159...</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Float examples from Session 2</span>
+<span class="variable">pi</span> = <span class="number">3.14</span>
+<span class="variable">temperature</span> = <span class="number">98.6</span>
+<span class="variable">negative_float</span> = -<span class="number">2.5</span>
+<span class="variable">scientific</span> = <span class="number">1.5e10</span>  <span class="comment"># Scientific notation: 15,000,000,000</span>
+
+<span class="comment"># Check the types</span>
+<span class="function">print</span>(<span class="function">type</span>(pi))           <span class="comment"># Output: &lt;class 'float'&gt;</span>
+<span class="function">print</span>(<span class="function">type</span>(temperature))   <span class="comment"># Output: &lt;class 'float'&gt;</span>
+<span class="function">print</span>(<span class="function">type</span>(scientific))    <span class="comment"># Output: &lt;class 'float'&gt;</span></code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>&lt;class 'float'&gt;
+&lt;class 'float'&gt;
+&lt;class 'float'&gt;</pre>
+        </div>
+
+        <div class="info-box warning">
+          <div class="info-header">
+            <span class="info-icon">⚠️</span>
+            <span>Float Precision Warning</span>
+          </div>
+          <div class="info-content">
+            <p>Floats can sometimes be slightly imprecise due to how computers store decimal numbers:</p>
+            <code>0.1 + 0.2 = 0.30000000000000004</code> (not exactly 0.3!)
+          </div>
+        </div>
+      </div>
+
+      <!-- COMPLEX NUMBERS -->
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">2.3</span>
+          <h3>🌀 Complex Numbers</h3>
+        </div>
+
+        <div class="explanation">
+          <p>Complex numbers have a <strong>real part</strong> and an <strong>imaginary part</strong>. Python uses <code>j</code> for the imaginary unit (mathematicians use <code>i</code>).</p>
+          
+          <div class="visual-box">
+            <h4>🎨 Visualizing Complex Numbers</h4>
+            <pre style="text-align: center;">
+        Imaginary (j)
+              ↑
+              │    • (3+4j)
+            4 │    │
+              │    │
+        ──────┼────┴───────→ Real
+              │    3
+              │
+              
+    A complex number is like a point 
+    on a 2D plane! 📍
+            </pre>
+          </div>
+
+          <div class="real-world-box">
+            <span class="rw-icon">🌍</span>
+            <div>
+              <strong>Where Complex Numbers Are Used:</strong>
+              <ul>
+                <li>Electrical Engineering (AC circuits)</li>
+                <li>Signal Processing</li>
+                <li>Quantum Physics</li>
+                <li>Control Systems</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Complex number examples from Session 2</span>
+<span class="variable">z</span> = <span class="number">3</span> + <span class="number">4j</span>
+<span class="variable">w</span> = <span class="function">complex</span>(<span class="number">2</span>, <span class="number">5</span>)  <span class="comment"># Another way to create: 2+5j</span>
+
+<span class="comment"># Access real and imaginary parts</span>
+<span class="function">print</span>(<span class="string">"Real part:"</span>, z.real)      <span class="comment"># Output: 3.0</span>
+<span class="function">print</span>(<span class="string">"Imaginary part:"</span>, z.imag)  <span class="comment"># Output: 4.0</span>
+<span class="function">print</span>(<span class="function">type</span>(z))                    <span class="comment"># Output: &lt;class 'complex'&gt;</span>
+
+<span class="comment"># Complex arithmetic</span>
+<span class="variable">sum_complex</span> = z + w
+<span class="function">print</span>(<span class="string">"Sum:"</span>, sum_complex)  <span class="comment"># Output: (5+9j)</span></code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Real part: 3.0
+Imaginary part: 4.0
+&lt;class 'complex'&gt;
+Sum: (5+9j)</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- STRING TYPE -->
+    <section class="content-section">
+      <h2>📝 String Data Type (str)</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">2.4</span>
+          <h3>✍️ Strings - Text Data</h3>
+        </div>
+
+        <div class="explanation">
+          <p>Strings are <strong>sequences of characters</strong> - basically text! They can contain letters, numbers, symbols, spaces, and even emojis.</p>
+          
+          <div class="visual-box">
+            <h4>📿 Think of Strings as Beads on a Necklace</h4>
+            <pre style="text-align: center; font-size: 1.2rem;">
+    "Hello"
+    
+    ┌───┬───┬───┬───┬───┐
+    │ H │ e │ l │ l │ o │
+    └───┴───┴───┴───┴───┘
+      0   1   2   3   4   ← Index numbers
+      
+    Each character is a "bead" you can access!
+            </pre>
+          </div>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># String examples from Session 2</span>
+<span class="variable">name</span> = <span class="string">"Alice"</span>             <span class="comment"># Double quotes</span>
+<span class="variable">greeting</span> = <span class="string">'Hello World'</span>   <span class="comment"># Single quotes work too!</span>
+<span class="variable">mixed</span> = <span class="string">"I'm learning Python"</span>  <span class="comment"># Mix when needed</span>
+
+<span class="comment"># Multi-line strings with triple quotes</span>
+<span class="variable">poem</span> = <span class="string">"""Roses are red,
+Violets are blue,
+Python is awesome,
+And so are you!"""</span>
+
+<span class="function">print</span>(<span class="function">type</span>(name))     <span class="comment"># Output: &lt;class 'str'&gt;</span>
+<span class="function">print</span>(<span class="function">type</span>(greeting))  <span class="comment"># Output: &lt;class 'str'&gt;</span>
+<span class="function">print</span>(poem)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>&lt;class 'str'&gt;
+&lt;class 'str'&gt;
+Roses are red,
+Violets are blue,
+Python is awesome,
+And so are you!</pre>
+        </div>
+
+        <h4>🔤 String Operations</h4>
+        
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># String concatenation (joining)</span>
+<span class="variable">first</span> = <span class="string">"Hello"</span>
+<span class="variable">second</span> = <span class="string">"World"</span>
+<span class="variable">combined</span> = first + <span class="string">" "</span> + second
+<span class="function">print</span>(combined)  <span class="comment"># Output: Hello World</span>
+
+<span class="comment"># String repetition</span>
+<span class="variable">laugh</span> = <span class="string">"Ha"</span> * <span class="number">3</span>
+<span class="function">print</span>(laugh)  <span class="comment"># Output: HaHaHa</span>
+
+<span class="comment"># String length</span>
+<span class="function">print</span>(<span class="function">len</span>(combined))  <span class="comment"># Output: 11</span>
+
+<span class="comment"># Accessing characters (indexing)</span>
+<span class="variable">word</span> = <span class="string">"Python"</span>
+<span class="function">print</span>(word[<span class="number">0</span>])   <span class="comment"># Output: P (first character)</span>
+<span class="function">print</span>(word[-<span class="number">1</span>])  <span class="comment"># Output: n (last character)</span></code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Hello World
+HaHaHa
+11
+P
+n</pre>
+        </div>
+
+        <div class="info-box tip">
+          <div class="info-header">
+            <span class="info-icon">💡</span>
+            <span>Pro Tip: Numbers in Strings</span>
+          </div>
+          <div class="info-content">
+            <p><code>"42"</code> is a STRING, not a number! You can't do math with it directly:</p>
+            <code>"42" + "8" = "428"</code> (concatenation, not addition!)
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOOLEAN TYPE -->
+    <section class="content-section">
+      <h2>✅ Boolean Data Type (bool)</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">2.5</span>
+          <h3>🔘 Booleans - True or False</h3>
+        </div>
+
+        <div class="explanation">
+          <p>Booleans are the simplest data type - they can only be <code>True</code> or <code>False</code>. Named after mathematician George Boole!</p>
+          
+          <div class="visual-box">
+            <h4>💡 The Light Switch of Programming</h4>
+            <pre style="text-align: center; font-size: 1.5rem;">
+       True              False
+    ┌─────────┐      ┌─────────┐
+    │   ON    │      │   OFF   │
+    │   💡    │      │   🔌    │
+    │    1    │      │    0    │
+    └─────────┘      └─────────┘
+    
+    Only 2 states. Nothing in between!
+            </pre>
+          </div>
+
+          <div class="real-world-box">
+            <span class="rw-icon">🌍</span>
+            <div>
+              <strong>Real World Boolean Questions:</strong>
+              <ul>
+                <li>Is the user logged in? → True/False</li>
+                <li>Is the age ≥ 18? → True/False</li>
+                <li>Did the payment succeed? → True/False</li>
+                <li>Is the file empty? → True/False</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Boolean examples from Session 2</span>
+<span class="variable">is_sunny</span> = <span class="keyword">True</span>
+<span class="variable">is_raining</span> = <span class="keyword">False</span>
+
+<span class="function">print</span>(<span class="function">type</span>(is_sunny))  <span class="comment"># Output: &lt;class 'bool'&gt;</span>
+
+<span class="comment"># Booleans from comparisons</span>
+<span class="variable">x</span> = <span class="number">10</span>
+<span class="variable">y</span> = <span class="number">5</span>
+
+<span class="function">print</span>(x > y)    <span class="comment"># Output: True</span>
+<span class="function">print</span>(x < y)    <span class="comment"># Output: False</span>
+<span class="function">print</span>(x == y)   <span class="comment"># Output: False</span>
+<span class="function">print</span>(x != y)   <span class="comment"># Output: True</span>
+
+<span class="comment"># Boolean logic</span>
+<span class="function">print</span>(is_sunny <span class="keyword">and</span> is_raining)  <span class="comment"># Output: False (both must be True)</span>
+<span class="function">print</span>(is_sunny <span class="keyword">or</span> is_raining)   <span class="comment"># Output: True (at least one is True)</span>
+<span class="function">print</span>(<span class="keyword">not</span> is_raining)           <span class="comment"># Output: True (flips False to True)</span></code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>&lt;class 'bool'&gt;
+True
+False
+False
+True
+False
+True
+True</pre>
+        </div>
+
+        <div class="visual-diagram">
+          <h4 style="text-align: center;">🎯 Boolean Logic Truth Table</h4>
+          <table class="truth-table">
+            <thead>
+              <tr>
+                <th>A</th>
+                <th>B</th>
+                <th>A and B</th>
+                <th>A or B</th>
+                <th>not A</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>True</td>
+                <td>True</td>
+                <td class="true">True</td>
+                <td class="true">True</td>
+                <td class="false">False</td>
+              </tr>
+              <tr>
+                <td>True</td>
+                <td>False</td>
+                <td class="false">False</td>
+                <td class="true">True</td>
+                <td class="false">False</td>
+              </tr>
+              <tr>
+                <td>False</td>
+                <td>True</td>
+                <td class="false">False</td>
+                <td class="true">True</td>
+                <td class="true">True</td>
+              </tr>
+              <tr>
+                <td>False</td>
+                <td>False</td>
+                <td class="false">False</td>
+                <td class="false">False</td>
+                <td class="true">True</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- NONETYPE -->
+    <section class="content-section">
+      <h2>🚫 NoneType</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">2.6</span>
+          <h3>👻 None - The Absence of Value</h3>
+        </div>
+
+        <div class="explanation">
+          <p><code>None</code> represents the <strong>absence of a value</strong>. It's not zero, not empty string, not False - it's literally "nothing".</p>
+          
+          <div class="visual-box">
+            <h4>🎁 Understanding None</h4>
+            <pre style="text-align: center; font-size: 1.1rem;">
+    📦 Empty Box = ""     (empty string - box exists!)
+    📦 Box with 0 = 0     (zero - a number in the box!)
+    📭 No Box = None      (no box at all!)
+    
+    None means the value doesn't exist yet,
+    or was deliberately set to "nothing"
+            </pre>
+          </div>
+
+          <div class="real-world-box">
+            <span class="rw-icon">🌍</span>
+            <div>
+              <strong>When You Might See None:</strong>
+              <ul>
+                <li>A function that doesn't return anything</li>
+                <li>A variable before you assign a value</li>
+                <li>When data is missing from a database</li>
+                <li>Default value for optional parameters</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># None examples from Session 2</span>
+<span class="variable">nothing</span> = <span class="keyword">None</span>
+
+<span class="function">print</span>(nothing)           <span class="comment"># Output: None</span>
+<span class="function">print</span>(<span class="function">type</span>(nothing))     <span class="comment"># Output: &lt;class 'NoneType'&gt;</span>
+
+<span class="comment"># Checking for None</span>
+<span class="keyword">if</span> nothing <span class="keyword">is</span> <span class="keyword">None</span>:
+    <span class="function">print</span>(<span class="string">"The variable has no value!"</span>)
+
+<span class="comment"># Functions that return None</span>
+<span class="keyword">def</span> <span class="function">say_hello</span>(name):
+    <span class="function">print</span>(<span class="string">f"Hello, </span>{name}<span class="string">!"</span>)
+    <span class="comment"># No return statement = returns None</span>
+
+<span class="variable">result</span> = say_hello(<span class="string">"Alice"</span>)
+<span class="function">print</span>(<span class="string">"Function returned:"</span>, result)  <span class="comment"># Output: None</span></code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>None
+&lt;class 'NoneType'&gt;
+The variable has no value!
+Hello, Alice!
+Function returned: None</pre>
+        </div>
+
+        <div class="info-box warning">
+          <div class="info-header">
+            <span class="info-icon">⚠️</span>
+            <span>Important: Check for None with 'is', not '=='</span>
+          </div>
+          <div class="info-content">
+            <p>Always use <code>if x is None</code> instead of <code>if x == None</code>. It's the Pythonic way and more reliable!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TYPE CONVERSION -->
+    <section class="content-section">
+      <h2>🔄 Type Conversion (Casting)</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">2.7</span>
+          <h3>🎭 Changing Data Types</h3>
+        </div>
+
+        <div class="explanation">
+          <p>Sometimes you need to convert data from one type to another. This is called <strong>type casting</strong> or <strong>type conversion</strong>.</p>
+          
+          <div class="visual-box">
+            <h4>🦋 Type Conversion = Transformation</h4>
+            <pre style="text-align: center; font-size: 1.1rem;">
+    "42"  ──→  int("42")  ──→  42
+    🧵 String    🔄 Cast     🔢 Integer
+    
+    42  ──→  str(42)  ──→  "42"
+    🔢 Int   🔄 Cast   🧵 String
+    
+    Like converting currencies! 💱
+            </pre>
+          </div>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Type conversion examples from Session 2</span>
+
+<span class="comment"># String to Integer</span>
+<span class="variable">age_string</span> = <span class="string">"25"</span>
+<span class="variable">age_int</span> = <span class="function">int</span>(age_string)
+<span class="function">print</span>(<span class="string">"Type:"</span>, <span class="function">type</span>(age_int), <span class="string">"Value:"</span>, age_int)
+
+<span class="comment"># String to Float</span>
+<span class="variable">price_string</span> = <span class="string">"19.99"</span>
+<span class="variable">price_float</span> = <span class="function">float</span>(price_string)
+<span class="function">print</span>(<span class="string">"Type:"</span>, <span class="function">type</span>(price_float), <span class="string">"Value:"</span>, price_float)
+
+<span class="comment"># Number to String</span>
+<span class="variable">num</span> = <span class="number">100</span>
+<span class="variable">num_string</span> = <span class="function">str</span>(num)
+<span class="function">print</span>(<span class="string">"Type:"</span>, <span class="function">type</span>(num_string), <span class="string">"Value:"</span>, num_string)
+
+<span class="comment"># Float to Integer (truncates decimal!)</span>
+<span class="variable">pi</span> = <span class="number">3.99</span>
+<span class="variable">pi_int</span> = <span class="function">int</span>(pi)
+<span class="function">print</span>(<span class="string">"Float to Int:"</span>, pi_int)  <span class="comment"># Output: 3 (not rounded!)</span>
+
+<span class="comment"># Integer to Float</span>
+<span class="variable">whole</span> = <span class="number">5</span>
+<span class="variable">decimal</span> = <span class="function">float</span>(whole)
+<span class="function">print</span>(<span class="string">"Int to Float:"</span>, decimal)  <span class="comment"># Output: 5.0</span></code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Type: &lt;class 'int'&gt; Value: 25
+Type: &lt;class 'float'&gt; Value: 19.99
+Type: &lt;class 'str'&gt; Value: 100
+Float to Int: 3
+Int to Float: 5.0</pre>
+        </div>
+
+        <h4>🔢 Boolean Conversion</h4>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Boolean conversions from Session 2</span>
+
+<span class="comment"># Numbers to Boolean</span>
+<span class="function">print</span>(<span class="function">bool</span>(<span class="number">0</span>))      <span class="comment"># False (zero is falsy)</span>
+<span class="function">print</span>(<span class="function">bool</span>(<span class="number">1</span>))      <span class="comment"># True (any non-zero is truthy)</span>
+<span class="function">print</span>(<span class="function">bool</span>(-<span class="number">5</span>))     <span class="comment"># True</span>
+<span class="function">print</span>(<span class="function">bool</span>(<span class="number">0.0</span>))    <span class="comment"># False</span>
+
+<span class="comment"># Strings to Boolean</span>
+<span class="function">print</span>(<span class="function">bool</span>(<span class="string">""</span>))       <span class="comment"># False (empty string is falsy)</span>
+<span class="function">print</span>(<span class="function">bool</span>(<span class="string">"Hello"</span>)) <span class="comment"># True (any non-empty string is truthy)</span>
+<span class="function">print</span>(<span class="function">bool</span>(<span class="string">"False"</span>)) <span class="comment"># True (it's a non-empty string!)</span>
+
+<span class="comment"># None to Boolean</span>
+<span class="function">print</span>(<span class="function">bool</span>(<span class="keyword">None</span>))   <span class="comment"># False</span></code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>False
+True
+True
+False
+False
+True
+True
+False</pre>
+        </div>
+
+        <div class="info-box tip">
+          <div class="info-header">
+            <span class="info-icon">💡</span>
+            <span>Truthy vs Falsy</span>
+          </div>
+          <div class="info-content">
+            <p><strong>Falsy values:</strong> <code>0</code>, <code>0.0</code>, <code>""</code>, <code>None</code>, <code>False</code>, <code>[]</code>, <code>{}</code></p>
+            <p><strong>Everything else is Truthy!</strong></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE TYPE() FUNCTION -->
+    <section class="content-section">
+      <h2>🔍 The type() Function</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">2.8</span>
+          <h3>🕵️ Detecting Data Types</h3>
+        </div>
+
+        <div class="explanation">
+          <p>The <code>type()</code> function is your detective tool - it tells you exactly what type of data you're working with!</p>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># type() examples from Session 2</span>
+
+<span class="comment"># Check types of various values</span>
+<span class="function">print</span>(<span class="function">type</span>(<span class="number">42</span>))        <span class="comment"># &lt;class 'int'&gt;</span>
+<span class="function">print</span>(<span class="function">type</span>(<span class="number">3.14</span>))      <span class="comment"># &lt;class 'float'&gt;</span>
+<span class="function">print</span>(<span class="function">type</span>(<span class="string">"hello"</span>))   <span class="comment"># &lt;class 'str'&gt;</span>
+<span class="function">print</span>(<span class="function">type</span>(<span class="keyword">True</span>))      <span class="comment"># &lt;class 'bool'&gt;</span>
+<span class="function">print</span>(<span class="function">type</span>(<span class="keyword">None</span>))      <span class="comment"># &lt;class 'NoneType'&gt;</span>
+<span class="function">print</span>(<span class="function">type</span>(<span class="number">2</span>+<span class="number">3j</span>))      <span class="comment"># &lt;class 'complex'&gt;</span>
+
+<span class="comment"># Useful for debugging!</span>
+<span class="variable">mystery_value</span> = <span class="string">"100"</span>
+<span class="keyword">if</span> <span class="function">type</span>(mystery_value) == <span class="function">str</span>:
+    <span class="function">print</span>(<span class="string">"It's a string! Converting to int..."</span>)
+    mystery_value = <span class="function">int</span>(mystery_value)
+<span class="function">print</span>(<span class="string">"Final value:"</span>, mystery_value, <span class="string">"Type:"</span>, <span class="function">type</span>(mystery_value))</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>&lt;class 'int'&gt;
+&lt;class 'float'&gt;
+&lt;class 'str'&gt;
+&lt;class 'bool'&gt;
+&lt;class 'NoneType'&gt;
+&lt;class 'complex'&gt;
+It's a string! Converting to int...
+Final value: 100 Type: &lt;class 'int'&gt;</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUICK REFERENCE -->
+    <section class="content-section">
+      <h2>📋 Quick Reference Card</h2>
+      
+      <div class="reference-card">
+        <table class="reference-table">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Example</th>
+              <th>Check</th>
+              <th>Convert</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>int</code></td>
+              <td>42, -10, 0</td>
+              <td>type(x) == int</td>
+              <td>int("42")</td>
+            </tr>
+            <tr>
+              <td><code>float</code></td>
+              <td>3.14, -2.5</td>
+              <td>type(x) == float</td>
+              <td>float("3.14")</td>
+            </tr>
+            <tr>
+              <td><code>str</code></td>
+              <td>"hello", '42'</td>
+              <td>type(x) == str</td>
+              <td>str(42)</td>
+            </tr>
+            <tr>
+              <td><code>bool</code></td>
+              <td>True, False</td>
+              <td>type(x) == bool</td>
+              <td>bool(1)</td>
+            </tr>
+            <tr>
+              <td><code>complex</code></td>
+              <td>2+3j</td>
+              <td>type(x) == complex</td>
+              <td>complex(2, 3)</td>
+            </tr>
+            <tr>
+              <td><code>NoneType</code></td>
+              <td>None</td>
+              <td>x is None</td>
+              <td>N/A</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- PRACTICE EXERCISES -->
+    <section class="content-section">
+      <h2>🎯 Practice Exercises</h2>
+      
+      <div class="exercise-card">
+        <div class="exercise-header">
+          <span class="exercise-number">Exercise 1</span>
+          <span class="exercise-difficulty easy">Easy</span>
+        </div>
+        <p>Create variables of each data type and print their types.</p>
+        <details class="solution">
+          <summary>💡 Show Solution</summary>
+          <div class="code-block">
+            <pre><code>my_int = 25
+my_float = 3.14
+my_str = "Hello"
+my_bool = True
+my_none = None
+
+print(type(my_int))    # &lt;class 'int'&gt;
+print(type(my_float))  # &lt;class 'float'&gt;
+print(type(my_str))    # &lt;class 'str'&gt;
+print(type(my_bool))   # &lt;class 'bool'&gt;
+print(type(my_none))   # &lt;class 'NoneType'&gt;</code></pre>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise-card">
+        <div class="exercise-header">
+          <span class="exercise-number">Exercise 2</span>
+          <span class="exercise-difficulty medium">Medium</span>
+        </div>
+        <p>Convert the string "3.14159" to a float, then to an integer. What happens to the decimal?</p>
+        <details class="solution">
+          <summary>💡 Show Solution</summary>
+          <div class="code-block">
+            <pre><code>pi_string = "3.14159"
+pi_float = float(pi_string)
+pi_int = int(pi_float)
+
+print(pi_float)  # 3.14159
+print(pi_int)    # 3 (decimal part is truncated!)</code></pre>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- NAVIGATION -->
+    <nav class="page-navigation">
+      <a href="s1-intro.html" class="nav-prev">
+        <span class="nav-arrow">←</span>
+        <span class="nav-text">
+          <span class="nav-label">Previous</span>
+          <span class="nav-title">Introduction to Python</span>
+        </span>
+      </a>
+      <a href="complete-course.html" class="nav-home">🏠</a>
+      <a href="s3-loops.html" class="nav-next">
+        <span class="nav-text">
+          <span class="nav-label">Next</span>
+          <span class="nav-title">Loops & Conditions</span>
+        </span>
+        <span class="nav-arrow">→</span>
+      </a>
+    </nav>
+  </main>
+
+  <footer>
+    <p>🐍 Python Mastery | Learn. Code. Create.</p>
+  </footer>
+</body>
+</html>
+

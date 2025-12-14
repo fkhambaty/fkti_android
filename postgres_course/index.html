@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PostgreSQL with DBeaver | FKTI Learning Hub</title>
+    <link rel="stylesheet" href="../css/fkti-light-theme.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Course-specific styles */
+        :root {
+            --postgres-blue: #336791;
+            --postgres-light: #4a90c7;
+        }
+        
+        body {
+            background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+            min-height: 100vh;
+        }
+
+        .course-nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            padding: 12px 20px;
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-hub {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            background: linear-gradient(180deg, #ffffff 0%, #f5f5f7 100%);
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            color: #1d1d1f;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 3px 0 #d1d5db, 0 4px 8px rgba(0,0,0,0.08);
+            transition: all 0.15s;
+        }
+
+        .nav-hub:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 0 #d1d5db, 0 7px 14px rgba(0,0,0,0.1);
+        }
+
+        .course-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .course-logo {
+            font-size: 32px;
+        }
+
+        .course-title-nav {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--postgres-blue);
+        }
+
+        /* Hero Section */
+        .course-hero {
+            padding: 80px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(51, 103, 145, 0.05) 0%, rgba(74, 144, 199, 0.05) 100%);
+        }
+
+        .hero-icon {
+            font-size: 80px;
+            margin-bottom: 24px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero-title {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--postgres-blue);
+            margin-bottom: 16px;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            color: #6e6e73;
+            max-width: 700px;
+            margin: 0 auto 32px;
+            line-height: 1.6;
+        }
+
+        .hero-badges {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: white;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .badge i {
+            color: var(--postgres-blue);
+        }
+
+        /* Content Sections */
+        .content-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1d1d1f;
+            margin-bottom: 12px;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: #6e6e73;
+        }
+
+        /* Lesson Cards */
+        .lessons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .lesson-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid #e5e5e5;
+            transition: all 0.25s;
+            cursor: pointer;
+        }
+
+        .lesson-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(51, 103, 145, 0.15);
+            border-color: var(--postgres-blue);
+        }
+
+        .lesson-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--postgres-blue), var(--postgres-light));
+            color: white;
+            border-radius: 50%;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .lesson-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 8px;
+        }
+
+        .lesson-desc {
+            font-size: 14px;
+            color: #6e6e73;
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        .lesson-topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .topic-tag {
+            padding: 4px 10px;
+            background: #f5f5f7;
+            border-radius: 6px;
+            font-size: 11px;
+            color: #6e6e73;
+            font-weight: 500;
+        }
+
+        /* Fun Section */
+        .fun-section {
+            background: linear-gradient(135deg, #f5f5f7 0%, #e8e8ed 100%);
+            border-radius: 24px;
+            padding: 48px;
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .robot-container {
+            font-size: 80px;
+            margin-bottom: 24px;
+        }
+
+        .fun-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1d1d1f;
+            margin-bottom: 16px;
+        }
+
+        .fun-desc {
+            font-size: 16px;
+            color: #6e6e73;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* CTA */
+        .cta-section {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .btn-start {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            background: linear-gradient(180deg, var(--postgres-blue) 0%, #2a5478 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #1e3d56, 0 6px 16px rgba(51, 103, 145, 0.35);
+            transition: all 0.15s;
+        }
+
+        .btn-start:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 #1e3d56, 0 10px 24px rgba(51, 103, 145, 0.4);
+        }
+
+        .btn-start:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #1e3d56, 0 3px 8px rgba(51, 103, 145, 0.3);
+        }
+
+        /* Coming Soon Banner */
+        .coming-soon {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .coming-soon h3 {
+            font-size: 24px;
+            color: #92400e;
+            margin-bottom: 12px;
+        }
+
+        .coming-soon p {
+            color: #a16207;
+            font-size: 16px;
+        }
+
+        /* Footer */
+        .course-footer {
+            text-align: center;
+            padding: 32px;
+            border-top: 1px solid #e5e5e5;
+            font-size: 14px;
+            color: #86868b;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 32px; }
+            .hero-subtitle { font-size: 16px; }
+            .lessons-grid { grid-template-columns: 1fr; }
+            .fun-section { padding: 32px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="course-nav">
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-hub">
+                <span>←</span> FKTI Hub
+            </a>
+            <div class="course-brand">
+                <span class="course-logo">🐘</span>
+                <span class="course-title-nav">PostgreSQL & DBeaver</span>
+            </div>
+            <div style="width: 120px;"></div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="course-hero">
+        <div class="hero-icon">🐘</div>
+        <h1 class="hero-title">PostgreSQL with DBeaver</h1>
+        <p class="hero-subtitle">
+            Master the world's most advanced open-source database! Learn PostgreSQL from absolute zero 
+            using DBeaver - the friendliest database explorer. No experience needed, just curiosity! 🎯
+        </p>
+        <div class="hero-badges">
+            <div class="badge"><i class="fas fa-clock"></i> 14 Weeks</div>
+            <div class="badge"><i class="fas fa-book"></i> 35+ Lessons</div>
+            <div class="badge"><i class="fas fa-smile"></i> Beginner Friendly</div>
+            <div class="badge"><i class="fas fa-certificate"></i> FKTI Certificate</div>
+        </div>
+    </section>
+
+    <!-- Coming Soon -->
+    <div class="content-wrapper">
+        <div class="coming-soon">
+            <h3>🚧 Course Under Construction!</h3>
+            <p>Our database experts are crafting the most beginner-friendly PostgreSQL course ever. Stay tuned!</p>
+        </div>
+
+        <!-- What You'll Learn -->
+        <div class="section-header">
+            <h2 class="section-title">🎓 What You'll Learn</h2>
+            <p class="section-subtitle">From "what's a database?" to "I can optimize queries in my sleep!"</p>
+        </div>
+
+        <div class="lessons-grid">
+            <!-- Module 1 -->
+            <div class="lesson-card">
+                <div class="lesson-number">1</div>
+                <h3 class="lesson-title">What's a Database Anyway?</h3>
+                <p class="lesson-desc">
+                    Imagine a super-organized filing cabinet that never loses anything! We'll explain databases 
+                    using grocery stores, libraries, and your phone contacts. No jargon, just fun!
+                </p>
+                <div class="lesson-topics">
+                    <span class="topic-tag">Tables = Spreadsheets</span>
+                    <span class="topic-tag">Rows = Records</span>
+                    <span class="topic-tag">Why Databases?</span>
+                </div>
+            </div>
+
+            <!-- Module 2 -->
+            <div class="lesson-card">
+                <div class="lesson-number">2</div>
+                <h3 class="lesson-title">Installing Your Magic Tools</h3>
+                <p class="lesson-desc">
+                    Let's install PostgreSQL (the engine) and DBeaver (the steering wheel). 
+                    Step-by-step with screenshots. If your grandma can follow it, you can too! 👵
+                </p>
+                <div class="lesson-topics">
+                    <span class="topic-tag">PostgreSQL Setup</span>
+                    <span class="topic-tag">DBeaver Install</span>
+                    <span class="topic-tag">First Connection</span>
+                </div>
+            </div>
+
+            <!-- Module 3 -->
+            <div class="lesson-card">
+                <div class="lesson-number">3</div>
+                <h3 class="lesson-title">Your First SELECT Query</h3>
+                <p class="lesson-desc">
+                    "SELECT * FROM happiness WHERE you = 'learning'" - Your first SQL query! 
+                    We'll start simple and build up. By lesson end, you'll feel like a hacker! 🕵️
+                </p>
+                <div class="lesson-topics">
+                    <span class="topic-tag">SELECT</span>
+                    <span class="topic-tag">FROM</span>
+                    <span class="topic-tag">WHERE</span>
+                </div>
+            </div>
+
+            <!-- Module 4 -->
+            <div class="lesson-card">
+                <div class="lesson-number">4</div>
+                <h3 class="lesson-title">Creating Your Own Tables</h3>
+                <p class="lesson-desc">
+                    Build tables like building LEGO! Define columns, set data types, 
+                    and create your first real database. It's like creating a spreadsheet, but cooler! 🏗️
+                </p>
+                <div class="lesson-topics">
+                    <span class="topic-tag">CREATE TABLE</span>
+                    <span class="topic-tag">Data Types</span>
+                    <span class="topic-tag">Constraints</span>
+                </div>
+            </div>
+
+            <!-- Module 5 -->
+            <div class="lesson-card">
+                <div class="lesson-number">5</div>
+                <h3 class="lesson-title">JOINs - The Dating Game</h3>
+                <p class="lesson-desc">
+                    JOINs are like matchmaking for tables! INNER JOIN = mutual matches, 
+                    LEFT JOIN = you like them but they might not like you back. SQL romance! 💕
+                </p>
+                <div class="lesson-topics">
+                    <span class="topic-tag">INNER JOIN</span>
+                    <span class="topic-tag">LEFT JOIN</span>
+                    <span class="topic-tag">RIGHT JOIN</span>
+                </div>
+            </div>
+
+            <!-- Module 6 -->
+            <div class="lesson-card">
+                <div class="lesson-number">6</div>
+                <h3 class="lesson-title">Indexes - The Speed Boost</h3>
+                <p class="lesson-desc">
+                    Indexes are like the index in a book! Instead of reading every page (slow), 
+                    you jump straight to what you need (FAST!). Make your queries zoom! 🚀
+                </p>
+                <div class="lesson-topics">
+                    <span class="topic-tag">CREATE INDEX</span>
+                    <span class="topic-tag">Query Plans</span>
+                    <span class="topic-tag">Performance</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fun Section -->
+        <div class="fun-section">
+            <div class="robot-container">🤖🐘</div>
+            <h3 class="fun-title">DataBot Says...</h3>
+            <p class="fun-desc">
+                "PostgreSQL is like having a super-organized assistant who never forgets anything! 
+                And DBeaver is like having X-ray vision to see inside any database. Together, they're unstoppable! 
+                By the end of this course, you'll be querying data like a pro!" 🎉
+            </p>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <button class="btn-start" onclick="alert('Course coming soon! 🚧')">
+            <i class="fas fa-bell"></i>
+            Notify Me When Ready
+        </button>
+    </section>
+
+    <!-- Footer -->
+    <footer class="course-footer">
+        <p>© 2024 FKTI Learning Hub | PostgreSQL & DBeaver Course</p>
+    </footer>
+</body>
+</html>
+

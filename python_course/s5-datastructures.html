@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session 5: Sets & Dictionaries | 🐍 Python Mastery</title>
+  <link rel="stylesheet" href="light-theme.css">
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-content">
+      <a href="complete-course.html" class="logo">🐍 Python Mastery</a>
+      <div class="session-nav">
+        <a href="s1-intro.html" class="nav-link">1</a>
+        <a href="s2-datatypes.html" class="nav-link">2</a>
+        <a href="s3-loops.html" class="nav-link">3</a>
+        <a href="s4-lists.html" class="nav-link">4</a>
+        <a href="s5-datastructures.html" class="nav-link active">5</a>
+        <a href="s6-functions1.html" class="nav-link">6</a>
+        <a href="s7-functions2.html" class="nav-link">7</a>
+        <a href="s8-oop.html" class="nav-link">8</a>
+        <a href="s9-numpy.html" class="nav-link">9</a>
+        <a href="s10-pandas1.html" class="nav-link">10</a>
+        <a href="s11-pandas2.html" class="nav-link">11</a>
+        <a href="s12-api-sql.html" class="nav-link">12</a>
+        <a href="assignments.html" class="nav-link assignment">📝</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <header class="session-header">
+      <div class="session-badge">Session 5</div>
+      <h1>🎯 Sets & Dictionaries</h1>
+      <p class="session-subtitle">Unique collections and key-value pairs</p>
+      <div class="progress-info">
+        <span>📚 10 Topics</span>
+        <span>⏱️ 45 min read</span>
+        <span>🎯 Essential Level</span>
+      </div>
+    </header>
+
+    <!-- OVERVIEW -->
+    <section class="overview-card">
+      <h2>🗺️ What You'll Learn</h2>
+      <div class="overview-grid">
+        <div class="overview-item">
+          <span class="overview-icon">🎯</span>
+          <span>Creating Sets</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">∪</span>
+          <span>Set Operations</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">📖</span>
+          <span>Creating Dictionaries</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">🔑</span>
+          <span>Keys & Values</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">🔄</span>
+          <span>Dictionary Methods</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">📦</span>
+          <span>Nested Dictionaries</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPARISON -->
+    <section class="analogy-card">
+      <div class="analogy-header">
+        <span class="analogy-icon">📊</span>
+        <h3>Python Data Structures Comparison</h3>
+      </div>
+      <div class="analogy-content">
+        <table class="reference-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>List []</th>
+              <th>Tuple ()</th>
+              <th>Set {}</th>
+              <th>Dict {:}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Ordered</td>
+              <td>✅ Yes</td>
+              <td>✅ Yes</td>
+              <td>❌ No</td>
+              <td>✅ Yes*</td>
+            </tr>
+            <tr>
+              <td>Mutable</td>
+              <td>✅ Yes</td>
+              <td>❌ No</td>
+              <td>✅ Yes</td>
+              <td>✅ Yes</td>
+            </tr>
+            <tr>
+              <td>Duplicates</td>
+              <td>✅ Allowed</td>
+              <td>✅ Allowed</td>
+              <td>❌ No</td>
+              <td>❌ Keys</td>
+            </tr>
+            <tr>
+              <td>Indexed</td>
+              <td>✅ Yes</td>
+              <td>✅ Yes</td>
+              <td>❌ No</td>
+              <td>🔑 Keys</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="analogy-moral">* Dictionaries maintain insertion order since Python 3.7</p>
+      </div>
+    </section>
+
+    <!-- SETS SECTION -->
+    <section class="content-section">
+      <h2>🎯 Sets</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">5.1</span>
+          <h3>🎲 What is a Set?</h3>
+        </div>
+
+        <div class="explanation">
+          <p>A <strong>set</strong> is an unordered collection of <strong>unique items</strong>. Think of it like a bag of distinct marbles - no two can be the same!</p>
+        </div>
+
+        <div class="visual-box">
+          <h4>🎯 Sets - Like a Unique Collection</h4>
+          <pre style="text-align: center; font-size: 1.1rem;">
+         LIST                    SET
+    [🔴, 🔵, 🔴, 🟢]    →    {🔴, 🔵, 🟢}
+    
+    • Duplicates allowed       • No duplicates
+    • Has order (0, 1, 2, 3)  • No fixed order
+    • Can access by index     • Cannot use index
+    
+    Sets automatically remove duplicates! ✨
+          </pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Creating sets from Session 4/5</span>
+
+<span class="comment"># Using curly braces</span>
+<span class="variable">fruits</span> = {<span class="string">"apple"</span>, <span class="string">"banana"</span>, <span class="string">"cherry"</span>}
+<span class="function">print</span>(<span class="string">"Fruits set:"</span>, fruits)
+
+<span class="comment"># Using set() constructor</span>
+<span class="variable">numbers</span> = <span class="function">set</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>])
+<span class="function">print</span>(<span class="string">"Numbers set:"</span>, numbers)
+
+<span class="comment"># Sets remove duplicates automatically!</span>
+<span class="variable">with_dupes</span> = {<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>}
+<span class="function">print</span>(<span class="string">"Duplicates removed:"</span>, with_dupes)
+
+<span class="comment"># Empty set - must use set(), not {}</span>
+<span class="variable">empty_set</span> = <span class="function">set</span>()          <span class="comment"># Correct!</span>
+<span class="variable">empty_dict</span> = {}             <span class="comment"># This is a dictionary, not a set!</span>
+<span class="function">print</span>(<span class="string">"Empty set type:"</span>, <span class="function">type</span>(empty_set))
+<span class="function">print</span>(<span class="string">"Empty braces type:"</span>, <span class="function">type</span>(empty_dict))
+
+<span class="comment"># Create set from string</span>
+<span class="variable">letters</span> = <span class="function">set</span>(<span class="string">"hello"</span>)
+<span class="function">print</span>(<span class="string">"Unique letters in 'hello':"</span>, letters)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Fruits set: {'cherry', 'apple', 'banana'}
+Numbers set: {1, 2, 3, 4, 5}
+Duplicates removed: {1, 2, 3}
+Empty set type: &lt;class 'set'&gt;
+Empty braces type: &lt;class 'dict'&gt;
+Unique letters in 'hello': {'h', 'e', 'l', 'o'}</pre>
+        </div>
+
+        <div class="info-box tip">
+          <div class="info-header">
+            <span class="info-icon">💡</span>
+            <span>Why Use Sets?</span>
+          </div>
+          <div class="info-content">
+            <p>Sets are perfect for: removing duplicates, checking membership (very fast!), and mathematical set operations (union, intersection, etc.)</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SET METHODS -->
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">5.2</span>
+          <h3>➕ Adding & Removing from Sets</h3>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Set modifications from Session 4/5</span>
+<span class="variable">colors</span> = {<span class="string">"red"</span>, <span class="string">"green"</span>, <span class="string">"blue"</span>}
+<span class="function">print</span>(<span class="string">"Original:"</span>, colors)
+
+<span class="comment"># add() - Add single item</span>
+colors.add(<span class="string">"yellow"</span>)
+<span class="function">print</span>(<span class="string">"After add:"</span>, colors)
+
+<span class="comment"># update() - Add multiple items</span>
+colors.update([<span class="string">"purple"</span>, <span class="string">"orange"</span>])
+<span class="function">print</span>(<span class="string">"After update:"</span>, colors)
+
+<span class="comment"># remove() - Remove item (error if not found)</span>
+colors.remove(<span class="string">"yellow"</span>)
+<span class="function">print</span>(<span class="string">"After remove:"</span>, colors)
+
+<span class="comment"># discard() - Remove item (no error if not found)</span>
+colors.discard(<span class="string">"pink"</span>)  <span class="comment"># No error even though "pink" doesn't exist</span>
+<span class="function">print</span>(<span class="string">"After discard:"</span>, colors)
+
+<span class="comment"># pop() - Remove and return arbitrary item</span>
+<span class="variable">removed</span> = colors.pop()
+<span class="function">print</span>(<span class="string">"Popped:"</span>, removed)
+<span class="function">print</span>(<span class="string">"After pop:"</span>, colors)
+
+<span class="comment"># clear() - Remove all items</span>
+colors.clear()
+<span class="function">print</span>(<span class="string">"After clear:"</span>, colors)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Original: {'red', 'green', 'blue'}
+After add: {'red', 'green', 'blue', 'yellow'}
+After update: {'red', 'green', 'blue', 'yellow', 'purple', 'orange'}
+After remove: {'red', 'green', 'blue', 'purple', 'orange'}
+After discard: {'red', 'green', 'blue', 'purple', 'orange'}
+Popped: red
+After pop: {'green', 'blue', 'purple', 'orange'}</pre>
+        </div>
+      </div>
+
+      <!-- SET OPERATIONS -->
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">5.3</span>
+          <h3>∪ Set Operations (Math!)</h3>
+        </div>
+
+        <div class="visual-diagram">
+          <h4 style="text-align: center;">🔵 Venn Diagram of Set Operations</h4>
+          <pre style="text-align: center; font-size: 0.9rem;">
+    A = {1, 2, 3, 4}        B = {3, 4, 5, 6}
+    
+       ┌─────────────────────────────────┐
+       │     A       │        B          │
+       │   ┌─────┬───┴───┬─────┐        │
+       │   │ 1,2 │  3,4  │ 5,6 │        │
+       │   └─────┴───────┴─────┘        │
+       └─────────────────────────────────┘
+    
+    UNION (A | B)        = {1, 2, 3, 4, 5, 6}  All items
+    INTERSECTION (A & B) = {3, 4}              Common items
+    DIFFERENCE (A - B)   = {1, 2}              In A, not in B
+    SYMMETRIC (A ^ B)    = {1, 2, 5, 6}        In one, not both
+          </pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Set operations from Session 4/5</span>
+<span class="variable">set_a</span> = {<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>}
+<span class="variable">set_b</span> = {<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>}
+
+<span class="function">print</span>(<span class="string">"Set A:"</span>, set_a)
+<span class="function">print</span>(<span class="string">"Set B:"</span>, set_b)
+
+<span class="comment"># Union - all elements from both sets</span>
+<span class="variable">union</span> = set_a | set_b              <span class="comment"># or set_a.union(set_b)</span>
+<span class="function">print</span>(<span class="string">"\\nUnion (A | B):"</span>, union)
+
+<span class="comment"># Intersection - elements in both sets</span>
+<span class="variable">intersection</span> = set_a & set_b      <span class="comment"># or set_a.intersection(set_b)</span>
+<span class="function">print</span>(<span class="string">"Intersection (A & B):"</span>, intersection)
+
+<span class="comment"># Difference - elements in A but not in B</span>
+<span class="variable">difference</span> = set_a - set_b         <span class="comment"># or set_a.difference(set_b)</span>
+<span class="function">print</span>(<span class="string">"Difference (A - B):"</span>, difference)
+
+<span class="comment"># Symmetric Difference - elements in either, but not both</span>
+<span class="variable">sym_diff</span> = set_a ^ set_b           <span class="comment"># or set_a.symmetric_difference(set_b)</span>
+<span class="function">print</span>(<span class="string">"Symmetric Difference (A ^ B):"</span>, sym_diff)
+
+<span class="comment"># Subset and Superset checks</span>
+<span class="variable">small</span> = {<span class="number">1</span>, <span class="number">2</span>}
+<span class="variable">big</span> = {<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>}
+<span class="function">print</span>(<span class="string">"\\nIs {1,2} subset of {1,2,3,4,5}?"</span>, small.issubset(big))
+<span class="function">print</span>(<span class="string">"Is {1,2,3,4,5} superset of {1,2}?"</span>, big.issuperset(small))</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Set A: {1, 2, 3, 4}
+Set B: {3, 4, 5, 6}
+
+Union (A | B): {1, 2, 3, 4, 5, 6}
+Intersection (A & B): {3, 4}
+Difference (A - B): {1, 2}
+Symmetric Difference (A ^ B): {1, 2, 5, 6}
+
+Is {1,2} subset of {1,2,3,4,5}? True
+Is {1,2,3,4,5} superset of {1,2}? True</pre>
+        </div>
+      </div>
+
+      <!-- SET USE CASES -->
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">5.4</span>
+          <h3>💼 Practical Set Use Cases</h3>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Practical set examples from Session 4/5</span>
+
+<span class="comment"># 1. Remove duplicates from a list</span>
+<span class="variable">numbers</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">4</span>]
+<span class="variable">unique</span> = <span class="function">list</span>(<span class="function">set</span>(numbers))
+<span class="function">print</span>(<span class="string">"Unique numbers:"</span>, unique)
+
+<span class="comment"># 2. Check membership (very fast!)</span>
+<span class="variable">valid_users</span> = {<span class="string">"alice"</span>, <span class="string">"bob"</span>, <span class="string">"charlie"</span>}
+<span class="variable">user</span> = <span class="string">"bob"</span>
+<span class="keyword">if</span> user <span class="keyword">in</span> valid_users:
+    <span class="function">print</span>(<span class="string">f"</span>{user}<span class="string"> is a valid user! ✅"</span>)
+
+<span class="comment"># 3. Find common elements</span>
+<span class="variable">my_skills</span> = {<span class="string">"python"</span>, <span class="string">"sql"</span>, <span class="string">"excel"</span>}
+<span class="variable">job_requirements</span> = {<span class="string">"python"</span>, <span class="string">"sql"</span>, <span class="string">"javascript"</span>}
+<span class="variable">matching</span> = my_skills & job_requirements
+<span class="function">print</span>(<span class="string">"Matching skills:"</span>, matching)
+<span class="function">print</span>(<span class="string">"Skills to learn:"</span>, job_requirements - my_skills)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Unique numbers: [1, 2, 3, 4]
+bob is a valid user! ✅
+Matching skills: {'python', 'sql'}
+Skills to learn: {'javascript'}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- DICTIONARIES SECTION -->
+    <section class="content-section">
+      <h2>📖 Dictionaries</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">5.5</span>
+          <h3>🔑 What is a Dictionary?</h3>
+        </div>
+
+        <div class="explanation">
+          <p>A <strong>dictionary</strong> stores data in <strong>key-value pairs</strong>. Think of it like a real dictionary where you look up a word (key) to find its definition (value)!</p>
+        </div>
+
+        <div class="visual-box">
+          <h4>📚 Dictionary = Real-World Dictionary</h4>
+          <pre style="text-align: center; font-size: 1.1rem;">
+    📖 DICTIONARY
+    ┌──────────────────────────────────┐
+    │  KEY          →    VALUE         │
+    │  ─────────────────────────────── │
+    │  "name"       →    "Alice"       │
+    │  "age"        →    25            │
+    │  "city"       →    "New York"    │
+    │  "is_student" →    True          │
+    └──────────────────────────────────┘
+    
+    Look up by KEY, get back the VALUE! 🔍
+          </pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Creating dictionaries from Session 4/5</span>
+
+<span class="comment"># Method 1: Using curly braces</span>
+<span class="variable">person</span> = {
+    <span class="string">"name"</span>: <span class="string">"Alice"</span>,
+    <span class="string">"age"</span>: <span class="number">25</span>,
+    <span class="string">"city"</span>: <span class="string">"New York"</span>,
+    <span class="string">"is_student"</span>: <span class="keyword">True</span>
+}
+<span class="function">print</span>(<span class="string">"Person:"</span>, person)
+
+<span class="comment"># Method 2: Using dict() constructor</span>
+<span class="variable">car</span> = <span class="function">dict</span>(brand=<span class="string">"Toyota"</span>, model=<span class="string">"Camry"</span>, year=<span class="number">2022</span>)
+<span class="function">print</span>(<span class="string">"Car:"</span>, car)
+
+<span class="comment"># Empty dictionary</span>
+<span class="variable">empty</span> = {}
+<span class="function">print</span>(<span class="string">"Empty dict:"</span>, empty, <span class="string">"Type:"</span>, <span class="function">type</span>(empty))
+
+<span class="comment"># Dict from list of tuples</span>
+<span class="variable">pairs</span> = [(<span class="string">"a"</span>, <span class="number">1</span>), (<span class="string">"b"</span>, <span class="number">2</span>), (<span class="string">"c"</span>, <span class="number">3</span>)]
+<span class="variable">from_tuples</span> = <span class="function">dict</span>(pairs)
+<span class="function">print</span>(<span class="string">"From tuples:"</span>, from_tuples)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Person: {'name': 'Alice', 'age': 25, 'city': 'New York', 'is_student': True}
+Car: {'brand': 'Toyota', 'model': 'Camry', 'year': 2022}
+Empty dict: {} Type: &lt;class 'dict'&gt;
+From tuples: {'a': 1, 'b': 2, 'c': 3}</pre>
+        </div>
+      </div>
+
+      <!-- ACCESSING DICTIONARY -->
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">5.6</span>
+          <h3>🔍 Accessing Dictionary Values</h3>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Accessing dictionary values from Session 4/5</span>
+<span class="variable">student</span> = {
+    <span class="string">"name"</span>: <span class="string">"Bob"</span>,
+    <span class="string">"grade"</span>: <span class="string">"A"</span>,
+    <span class="string">"age"</span>: <span class="number">20</span>,
+    <span class="string">"courses"</span>: [<span class="string">"Math"</span>, <span class="string">"Physics"</span>]
+}
+
+<span class="comment"># Method 1: Square brackets (raises error if key doesn't exist)</span>
+<span class="function">print</span>(<span class="string">"Name:"</span>, student[<span class="string">"name"</span>])
+<span class="function">print</span>(<span class="string">"Grade:"</span>, student[<span class="string">"grade"</span>])
+
+<span class="comment"># Method 2: get() method (returns None if key doesn't exist)</span>
+<span class="function">print</span>(<span class="string">"Age:"</span>, student.get(<span class="string">"age"</span>))
+<span class="function">print</span>(<span class="string">"Email:"</span>, student.get(<span class="string">"email"</span>))  <span class="comment"># Returns None</span>
+<span class="function">print</span>(<span class="string">"Email (default):"</span>, student.get(<span class="string">"email"</span>, <span class="string">"Not provided"</span>))
+
+<span class="comment"># Access nested values</span>
+<span class="function">print</span>(<span class="string">"First course:"</span>, student[<span class="string">"courses"</span>][<span class="number">0</span>])
+
+<span class="comment"># Check if key exists</span>
+<span class="keyword">if</span> <span class="string">"name"</span> <span class="keyword">in</span> student:
+    <span class="function">print</span>(<span class="string">"Name key exists! ✅"</span>)
+
+<span class="keyword">if</span> <span class="string">"email"</span> <span class="keyword">not in</span> student:
+    <span class="function">print</span>(<span class="string">"Email key doesn't exist ❌"</span>)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Name: Bob
+Grade: A
+Age: 20
+Email: None
+Email (default): Not provided
+First course: Math
+Name key exists! ✅
+Email key doesn't exist ❌</pre>
+        </div>
+      </div>
+
+      <!-- MODIFYING DICTIONARIES -->
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">5.7</span>
+          <h3>✏️ Modifying Dictionaries</h3>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Modifying dictionaries from Session 4/5</span>
+<span class="variable">product</span> = {<span class="string">"name"</span>: <span class="string">"Laptop"</span>, <span class="string">"price"</span>: <span class="number">999</span>}
+<span class="function">print</span>(<span class="string">"Original:"</span>, product)
+
+<span class="comment"># Add new key-value pair</span>
+product[<span class="string">"brand"</span>] = <span class="string">"Dell"</span>
+<span class="function">print</span>(<span class="string">"After adding brand:"</span>, product)
+
+<span class="comment"># Update existing value</span>
+product[<span class="string">"price"</span>] = <span class="number">899</span>
+<span class="function">print</span>(<span class="string">"After price update:"</span>, product)
+
+<span class="comment"># update() - Add/update multiple items</span>
+product.update({<span class="string">"color"</span>: <span class="string">"Silver"</span>, <span class="string">"stock"</span>: <span class="number">50</span>})
+<span class="function">print</span>(<span class="string">"After update():"</span>, product)
+
+<span class="comment"># Remove items</span>
+<span class="keyword">del</span> product[<span class="string">"stock"</span>]  <span class="comment"># Remove by key</span>
+<span class="function">print</span>(<span class="string">"After del:"</span>, product)
+
+<span class="variable">removed_price</span> = product.pop(<span class="string">"price"</span>)  <span class="comment"># Remove and return value</span>
+<span class="function">print</span>(<span class="string">"Removed price:"</span>, removed_price)
+<span class="function">print</span>(<span class="string">"After pop:"</span>, product)
+
+<span class="comment"># popitem() - Remove last inserted item</span>
+<span class="variable">last_item</span> = product.popitem()
+<span class="function">print</span>(<span class="string">"Last item removed:"</span>, last_item)
+
+<span class="comment"># clear() - Remove all items</span>
+product.clear()
+<span class="function">print</span>(<span class="string">"After clear:"</span>, product)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Original: {'name': 'Laptop', 'price': 999}
+After adding brand: {'name': 'Laptop', 'price': 999, 'brand': 'Dell'}
+After price update: {'name': 'Laptop', 'price': 899, 'brand': 'Dell'}
+After update(): {'name': 'Laptop', 'price': 899, 'brand': 'Dell', 'color': 'Silver', 'stock': 50}
+After del: {'name': 'Laptop', 'price': 899, 'brand': 'Dell', 'color': 'Silver'}
+Removed price: 899
+After pop: {'name': 'Laptop', 'brand': 'Dell', 'color': 'Silver'}
+Last item removed: ('color', 'Silver')
+After clear: {}</pre>
+        </div>
+      </div>
+
+      <!-- DICTIONARY METHODS -->
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">5.8</span>
+          <h3>🛠️ Dictionary Methods</h3>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Dictionary methods from Session 4/5</span>
+<span class="variable">scores</span> = {<span class="string">"Alice"</span>: <span class="number">95</span>, <span class="string">"Bob"</span>: <span class="number">87</span>, <span class="string">"Charlie"</span>: <span class="number">92</span>}
+
+<span class="comment"># keys() - Get all keys</span>
+<span class="function">print</span>(<span class="string">"Keys:"</span>, <span class="function">list</span>(scores.keys()))
+
+<span class="comment"># values() - Get all values</span>
+<span class="function">print</span>(<span class="string">"Values:"</span>, <span class="function">list</span>(scores.values()))
+
+<span class="comment"># items() - Get key-value pairs as tuples</span>
+<span class="function">print</span>(<span class="string">"Items:"</span>, <span class="function">list</span>(scores.items()))
+
+<span class="comment"># Loop through dictionary</span>
+<span class="function">print</span>(<span class="string">"\\nLooping through keys:"</span>)
+<span class="keyword">for</span> <span class="variable">name</span> <span class="keyword">in</span> scores:
+    <span class="function">print</span>(<span class="string">f"  </span>{name}<span class="string">: </span>{scores[name]}<span class="string">"</span>)
+
+<span class="function">print</span>(<span class="string">"\\nLooping through items:"</span>)
+<span class="keyword">for</span> <span class="variable">name</span>, <span class="variable">score</span> <span class="keyword">in</span> scores.items():
+    <span class="function">print</span>(<span class="string">f"  </span>{name}<span class="string"> scored </span>{score}<span class="string">"</span>)
+
+<span class="comment"># Length of dictionary</span>
+<span class="function">print</span>(<span class="string">"\\nNumber of students:"</span>, <span class="function">len</span>(scores))</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Keys: ['Alice', 'Bob', 'Charlie']
+Values: [95, 87, 92]
+Items: [('Alice', 95), ('Bob', 87), ('Charlie', 92)]
+
+Looping through keys:
+  Alice: 95
+  Bob: 87
+  Charlie: 92
+
+Looping through items:
+  Alice scored 95
+  Bob scored 87
+  Charlie scored 92
+
+Number of students: 3</pre>
+        </div>
+      </div>
+
+      <!-- NESTED DICTIONARIES -->
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">5.9</span>
+          <h3>📦 Nested Dictionaries</h3>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Nested dictionaries from Session 4/5</span>
+<span class="variable">company</span> = {
+    <span class="string">"employee1"</span>: {
+        <span class="string">"name"</span>: <span class="string">"Alice"</span>,
+        <span class="string">"department"</span>: <span class="string">"Engineering"</span>,
+        <span class="string">"salary"</span>: <span class="number">75000</span>
+    },
+    <span class="string">"employee2"</span>: {
+        <span class="string">"name"</span>: <span class="string">"Bob"</span>,
+        <span class="string">"department"</span>: <span class="string">"Marketing"</span>,
+        <span class="string">"salary"</span>: <span class="number">65000</span>
+    },
+    <span class="string">"employee3"</span>: {
+        <span class="string">"name"</span>: <span class="string">"Charlie"</span>,
+        <span class="string">"department"</span>: <span class="string">"Engineering"</span>,
+        <span class="string">"salary"</span>: <span class="number">70000</span>
+    }
+}
+
+<span class="comment"># Access nested values</span>
+<span class="function">print</span>(<span class="string">"Employee 1's name:"</span>, company[<span class="string">"employee1"</span>][<span class="string">"name"</span>])
+<span class="function">print</span>(<span class="string">"Employee 2's dept:"</span>, company[<span class="string">"employee2"</span>][<span class="string">"department"</span>])
+
+<span class="comment"># Loop through nested dictionary</span>
+<span class="function">print</span>(<span class="string">"\\nAll employees:"</span>)
+<span class="keyword">for</span> <span class="variable">emp_id</span>, <span class="variable">emp_info</span> <span class="keyword">in</span> company.items():
+    <span class="function">print</span>(<span class="string">f"  </span>{emp_info['name']}<span class="string"> - </span>{emp_info['department']}<span class="string"> (${emp_info['salary']:,})"</span>)
+
+<span class="comment"># Modify nested value</span>
+company[<span class="string">"employee1"</span>][<span class="string">"salary"</span>] = <span class="number">80000</span>
+<span class="function">print</span>(<span class="string">"\\nAlice's new salary:"</span>, company[<span class="string">"employee1"</span>][<span class="string">"salary"</span>])</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Employee 1's name: Alice
+Employee 2's dept: Marketing
+
+All employees:
+  Alice - Engineering ($75,000)
+  Bob - Marketing ($65,000)
+  Charlie - Engineering ($70,000)
+
+Alice's new salary: 80000</pre>
+        </div>
+      </div>
+
+      <!-- DICTIONARY COMPREHENSION -->
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">5.10</span>
+          <h3>⚡ Dictionary Comprehension</h3>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Dictionary comprehension from Session 4/5</span>
+
+<span class="comment"># Create dict of squares</span>
+<span class="variable">squares</span> = {x: x**<span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1</span>, <span class="number">6</span>)}
+<span class="function">print</span>(<span class="string">"Squares:"</span>, squares)
+
+<span class="comment"># Filter with condition</span>
+<span class="variable">even_squares</span> = {x: x**<span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1</span>, <span class="number">11</span>) <span class="keyword">if</span> x % <span class="number">2</span> == <span class="number">0</span>}
+<span class="function">print</span>(<span class="string">"Even squares:"</span>, even_squares)
+
+<span class="comment"># Transform values</span>
+<span class="variable">prices</span> = {<span class="string">"apple"</span>: <span class="number">1.00</span>, <span class="string">"banana"</span>: <span class="number">0.50</span>, <span class="string">"cherry"</span>: <span class="number">2.00</span>}
+<span class="variable">discounted</span> = {item: price * <span class="number">0.9</span> <span class="keyword">for</span> item, price <span class="keyword">in</span> prices.items()}
+<span class="function">print</span>(<span class="string">"10% discount:"</span>, discounted)
+
+<span class="comment"># Create from two lists</span>
+<span class="variable">names</span> = [<span class="string">"Alice"</span>, <span class="string">"Bob"</span>, <span class="string">"Charlie"</span>]
+<span class="variable">ages</span> = [<span class="number">25</span>, <span class="number">30</span>, <span class="number">35</span>]
+<span class="variable">combined</span> = {name: age <span class="keyword">for</span> name, age <span class="keyword">in</span> <span class="function">zip</span>(names, ages)}
+<span class="function">print</span>(<span class="string">"Combined:"</span>, combined)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Squares: {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
+Even squares: {2: 4, 4: 16, 6: 36, 8: 64, 10: 100}
+10% discount: {'apple': 0.9, 'banana': 0.45, 'cherry': 1.8}
+Combined: {'Alice': 25, 'Bob': 30, 'Charlie': 35}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUICK REFERENCE -->
+    <section class="content-section">
+      <h2>📋 Quick Reference</h2>
+      
+      <div class="reference-card">
+        <h4>🎯 Set Methods</h4>
+        <table class="reference-table">
+          <thead>
+            <tr><th>Method</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>add(x)</code></td><td>Add element</td></tr>
+            <tr><td><code>remove(x)</code></td><td>Remove (error if not found)</td></tr>
+            <tr><td><code>discard(x)</code></td><td>Remove (no error)</td></tr>
+            <tr><td><code>union()</code> or <code>|</code></td><td>All elements from both</td></tr>
+            <tr><td><code>intersection()</code> or <code>&</code></td><td>Common elements</td></tr>
+            <tr><td><code>difference()</code> or <code>-</code></td><td>In first, not second</td></tr>
+          </tbody>
+        </table>
+
+        <h4 style="margin-top: 1.5rem;">📖 Dictionary Methods</h4>
+        <table class="reference-table">
+          <thead>
+            <tr><th>Method</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>get(key)</code></td><td>Get value (None if not found)</td></tr>
+            <tr><td><code>keys()</code></td><td>Get all keys</td></tr>
+            <tr><td><code>values()</code></td><td>Get all values</td></tr>
+            <tr><td><code>items()</code></td><td>Get key-value pairs</td></tr>
+            <tr><td><code>update()</code></td><td>Update with another dict</td></tr>
+            <tr><td><code>pop(key)</code></td><td>Remove and return value</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- NAVIGATION -->
+    <nav class="page-navigation">
+      <a href="s4-lists.html" class="nav-prev">
+        <span class="nav-arrow">←</span>
+        <span class="nav-text">
+          <span class="nav-label">Previous</span>
+          <span class="nav-title">Lists & Tuples</span>
+        </span>
+      </a>
+      <a href="complete-course.html" class="nav-home">🏠</a>
+      <a href="s6-functions1.html" class="nav-next">
+        <span class="nav-text">
+          <span class="nav-label">Next</span>
+          <span class="nav-title">Functions Part I</span>
+        </span>
+        <span class="nav-arrow">→</span>
+      </a>
+    </nav>
+  </main>
+
+  <footer>
+    <p>🐍 Python Mastery | Learn. Code. Create.</p>
+  </footer>
+</body>
+</html>
+

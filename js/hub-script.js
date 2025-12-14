@@ -167,7 +167,9 @@ function enterCourse(courseType) {
         'redshift': 'redshift_course/index.html',
         'mssql': 'mssql_course/index.html',
         'dbt': 'dbt_course/index.html',
-        'metabase': 'metabase_course/index.html'
+        'metabase': 'metabase_course/index.html',
+        'postgres': 'postgres_course/index.html',
+        'dms': 'dms_course/index.html'
     };
     
     const url = courseUrls[courseType];
@@ -614,6 +616,425 @@ function setTheme(themeName) {
     console.log(`Theme changed to: ${themeName}`);
 }
 
+// ═══════════════════════════════════════════════════════════════
+// STORY THEME SYSTEM - Interactive Industry Scenarios
+// ═══════════════════════════════════════════════════════════════
+
+const storyThemes = {
+    walmart: {
+        name: "Retail Giant",
+        icon: "🛒",
+        badge: "RETAIL",
+        title: "Meet DataBot 🤖 - Your Retail Data Guide!",
+        subtitle: "Follow DataBot as he transforms messy store data into sales insights using our 9 essential tools!",
+        speech: "Welcome to the world of Retail! Let me show you how we turn messy store data into golden sales insights!",
+        steps: {
+            step1: {
+                title: "PostgreSQL - The Busy Store Register",
+                desc: "Imagine thousands of cash registers across 5,000 stores! 🏪 Every beep, every scan, every 'Have a nice day!' creates data. But it's all scattered - frozen pizza in one table, customer info in another, inventory somewhere else. Like finding a specific sock in a warehouse of socks!",
+                example: "Customer Sarah bought diapers, beer, and chips at Store #4521 at 8:47 PM. But this data is split across 12 different tables! 😱"
+            },
+            step2: {
+                title: "DBeaver - The X-Ray Vision Glasses",
+                desc: "DBeaver is like putting on magical X-ray glasses! 👓 You can SEE inside any database. 'Oh look, there's the customers table! And there's the products! Let me write a query to peek at Sarah's shopping cart!'",
+                example: "Connected to 15 different stores! I can see 2.3 million transactions from last week. Let me show you which products are selling like hotcakes! 🥞"
+            },
+            step3: {
+                title: "Python - The Smart Shopping Assistant",
+                desc: "Python is that super-smart employee who memorizes EVERYTHING! 🧠 It reads millions of receipts, spots patterns humans would miss, and says 'Aha! People who buy diapers also buy beer! And it happens more on Friday evenings!'",
+                example: "Analyzed 50 million transactions! Found that putting bananas near cereal increases banana sales by 23%! 🍌"
+            },
+            step4: {
+                title: "AWS DMS - The Data Moving Truck",
+                desc: "DMS is like having a magical moving truck! 🚚 It takes data from your old store system and moves it to the fancy new cloud warehouse - WITHOUT closing the store! Zero downtime, zero data loss!",
+                example: "Moving 500GB of sales data from Store Server to AWS... Customers still shopping... Done! Not a single receipt lost! 🎉"
+            }
+        },
+        result: {
+            title: "The Retail Magic! ✨",
+            desc: "From 5,000 chaotic stores to one beautiful command center! Store managers now see real-time sales, inventory alerts, and customer trends. All 9 tools working together like a symphony! 🎵",
+            before: "How did we do on Black Friday?",
+            beforeResult: "*2 weeks of number crunching* 😵",
+            after: "How did we do?",
+            afterResult: "*Real-time dashboard* → '$2.3B in sales, up 15%!' 🎉"
+        }
+    },
+    cinema: {
+        name: "Movie Theatre",
+        icon: "🎬",
+        badge: "CINEMA",
+        title: "Meet DataBot 🤖 - Your Box Office Analyst!",
+        subtitle: "Watch DataBot turn ticket stubs into blockbuster predictions using our 9 data tools!",
+        speech: "Lights, Camera, DATA! Let me show you how we predict the next blockbuster hit!",
+        steps: {
+            step1: {
+                title: "PostgreSQL - The Ticket Counter Chaos",
+                desc: "Picture 500 movie theatres with popcorn-sticky keyboards! 🎟️ Every ticket sale, every large popcorn upgrade, every 'extra butter please!' gets logged. But data is everywhere - ticket sales here, concessions there, movie schedules in another system!",
+                example: "John bought 2 tickets for 'Avatar 5' at 7:30 PM, large popcorn combo, and snuck in his own candy (we know, John!) 🍿"
+            },
+            step2: {
+                title: "DBeaver - The Film Critic's Notebook",
+                desc: "DBeaver lets you explore movie data like a detective! 🔍 'Show me all Friday 7 PM screenings... Now show me which snacks sold the most during Marvel movies!' It's like having a crystal ball for cinema!",
+                example: "Discovered that 'horror movie + nachos' is the most popular combo! And romantic comedies sell 40% more chocolate! 🍫"
+            },
+            step3: {
+                title: "Python - The Prediction Machine",
+                desc: "Python analyzes years of movie data and predicts hits! 🎯 'Based on director, cast, genre, and release date... this movie will make $150M opening weekend!' It's like having a time-traveling film critic!",
+                example: "Predicted 'Superhero Movie X' would flop based on runtime + similar films. Saved $2M in marketing! 💰"
+            },
+            step4: {
+                title: "AWS DMS - The Reel-to-Digital Converter",
+                desc: "DMS migrates all historical ticket data to the cloud! 📼 Like converting all those old film reels to digital - but for data! 10 years of box office history, now searchable in seconds!",
+                example: "Migrated 15 years of ticket sales while theatres stayed open. That's 500 million tickets worth of data! 🎬"
+            }
+        },
+        result: {
+            title: "The Box Office Magic! ✨",
+            desc: "From scattered ticket stubs to predicting the next billion-dollar franchise! Theatre managers now know exactly which movies to book, when, and how much popcorn to order! 🍿",
+            before: "Should we book this indie film?",
+            beforeResult: "*Gut feeling and crossed fingers* 🤞",
+            after: "Should we book this indie film?",
+            afterResult: "*AI prediction* → 'Yes! 87% fill rate predicted for date-night slots!' 💑"
+        }
+    },
+    airline: {
+        name: "Airlines",
+        icon: "✈️",
+        badge: "AVIATION",
+        title: "Meet DataBot 🤖 - Your Flight Operations Expert!",
+        subtitle: "Soar with DataBot as he optimizes flight routes and passenger experiences!",
+        speech: "Welcome aboard Flight DATA-101! Let me show you how we keep millions of passengers happy!",
+        steps: {
+            step1: {
+                title: "PostgreSQL - The Busy Airport Terminal",
+                desc: "Imagine managing 1,000 flights daily! ✈️ Passengers checking in, bags being loaded, pilots filing reports, fuel being pumped. Data flying everywhere faster than the planes! Gate assignments here, passenger manifests there!",
+                example: "Flight 747 to Paris: 234 passengers, 847 bags, 3 vegetarian meals, 1 emotional support peacock. All in different systems! 🦚"
+            },
+            step2: {
+                title: "DBeaver - The Control Tower View",
+                desc: "DBeaver gives you the control tower perspective! 📡 See every flight, every delay, every connection at risk. 'Show me all passengers connecting through Chicago with less than 30 minutes!' Crisis averted!",
+                example: "Found 47 passengers who'll miss connections due to weather delay. Automatically rebooked before they even knew! 🌧️"
+            },
+            step3: {
+                title: "Python - The Route Optimizer",
+                desc: "Python calculates the most efficient flight paths! 🗺️ Fuel prices, weather patterns, air traffic - it processes everything to find the perfect route. Saves millions in fuel costs!",
+                example: "Optimized Pacific routes based on jet streams. Saved 15 minutes per flight = $50M in fuel annually! ⛽"
+            },
+            step4: {
+                title: "AWS DMS - The Airline Merger Expert",
+                desc: "When two airlines merge, DMS combines their systems! 🤝 Millions of loyalty members, fleet data, crew schedules - all unified without a single flight cancellation!",
+                example: "Merged two airlines' databases overnight. 50 million frequent flyer accounts combined flawlessly! ✨"
+            }
+        },
+        result: {
+            title: "The Aviation Magic! ✨",
+            desc: "From flight delays to on-time arrivals! Operations center now predicts delays 6 hours ahead, automatically rebooks passengers, and optimizes crew schedules. Passengers actually arrive happy! 😊",
+            before: "Why is my flight delayed?",
+            beforeResult: "*Shrug* 'Weather somewhere maybe?' ☁️",
+            after: "Will my flight be delayed?",
+            afterResult: "*Proactive alert* → 'Yes, but we've already rebooked you!' 🎉"
+        }
+    },
+    oilrig: {
+        name: "Oil & Gas",
+        icon: "🛢️",
+        badge: "ENERGY",
+        title: "Meet DataBot 🤖 - Your Energy Sector Analyst!",
+        subtitle: "Drill into data with DataBot as he monitors oil rigs and optimizes production!",
+        speech: "Welcome to the oil fields! Let me show you how we turn sensor data into energy efficiency!",
+        steps: {
+            step1: {
+                title: "PostgreSQL - The Sensor Ocean",
+                desc: "Picture an oil rig with 10,000 sensors! 🌡️ Temperature, pressure, flow rates, vibrations - data streaming every millisecond! One rig generates more data than a small country! It's a tsunami of numbers!",
+                example: "Sensor #4521 shows pressure at 4,521 PSI. Sensor #4522 shows temperature at 347°F. That's 864 million readings per day! 📊"
+            },
+            step2: {
+                title: "DBeaver - The Engineer's Dashboard",
+                desc: "DBeaver helps engineers query sensor data safely! 🔧 'Show me all pressure anomalies in the last hour.' Spot problems before they become disasters!",
+                example: "Query revealed Pump #7 running 12% hotter than normal. Scheduled maintenance before failure. Saved $2M! 💵"
+            },
+            step3: {
+                title: "Python - The Predictive Maintenance Brain",
+                desc: "Python predicts equipment failures BEFORE they happen! 🔮 By analyzing vibration patterns, it says 'This pump will fail in 72 hours.' Replace it now, avoid $10M in lost production!",
+                example: "Predicted turbine bearing failure 5 days early. Scheduled repair during planned downtime. Zero production loss! 🎯"
+            },
+            step4: {
+                title: "AWS DMS - The Legacy System Bridge",
+                desc: "Oil rigs run systems from the 1990s! 📟 DMS connects these ancient systems to modern cloud analytics. Like teaching your grandpa's computer to talk to Alexa!",
+                example: "Connected 30-year-old SCADA system to AWS. Now engineers can monitor rigs from their phones! 📱"
+            }
+        },
+        result: {
+            title: "The Energy Magic! ✨",
+            desc: "From reactive repairs to predictive maintenance! Engineers now see problems coming weeks ahead. Production up 15%, accidents down 40%, and equipment lasts 30% longer! 🛢️",
+            before: "Why did that pump explode?",
+            beforeResult: "*Investigation* 'It was old, I guess?' 🤷",
+            after: "Is anything about to fail?",
+            afterResult: "*AI Alert* → 'Yes, replace Pump #7 bearing in 3 days!' 🔧"
+        }
+    },
+    procurement: {
+        name: "Procurement",
+        icon: "📦",
+        badge: "SUPPLY",
+        title: "Meet DataBot 🤖 - Your Supply Chain Guru!",
+        subtitle: "Watch DataBot optimize procurement and save millions in purchasing!",
+        speech: "Welcome to the supply chain! Let me show you how we turn purchase orders into profit!",
+        steps: {
+            step1: {
+                title: "PostgreSQL - The Vendor Jungle",
+                desc: "Managing 5,000 vendors is like herding cats! 🐱 Purchase orders, invoices, delivery schedules, quality reports - all in different formats! Some vendors email Excel, others fax (yes, fax!), some use carrier pigeons!",
+                example: "Order #78451: 10,000 widgets from Vendor A. But wait, Vendor B is 15% cheaper... and Vendor C has better quality! 😵"
+            },
+            step2: {
+                title: "DBeaver - The Vendor Analyzer",
+                desc: "DBeaver helps you compare vendors instantly! 📋 'Show me all vendors who delivered late last quarter.' Suddenly negotiations become much easier!",
+                example: "Found that Vendor X has 98% on-time delivery vs Vendor Y's 67%. Switched and saved 3 weeks in delays! ⏰"
+            },
+            step3: {
+                title: "Python - The Price Predictor",
+                desc: "Python analyzes market trends and predicts prices! 📈 'Steel prices will rise 20% next month due to shipping constraints.' Buy now and save millions!",
+                example: "Predicted copper shortage 2 months early. Pre-ordered at current prices. Saved $4.2M when prices spiked! 💰"
+            },
+            step4: {
+                title: "AWS DMS - The ERP Unifier",
+                desc: "Every acquisition means another ERP system! 🏢 DMS merges Oracle, SAP, and custom systems into one unified procurement platform. One vendor database to rule them all!",
+                example: "Unified 7 different ERP systems after acquisitions. Found we had 3 contracts with same vendor at different prices! 🤯"
+            }
+        },
+        result: {
+            title: "The Procurement Magic! ✨",
+            desc: "From chaotic purchasing to strategic sourcing! Procurement team now has vendor scorecards, price predictions, and automatic reordering. Costs down 18%, supplier quality up! 📦",
+            before: "Why do we keep running out of parts?",
+            beforeResult: "*Spreadsheet chaos* 'Reorder point was wrong?' 📊",
+            after: "When should we reorder?",
+            afterResult: "*Smart Alert* → 'Order now! Lead time increased + demand spike coming!' 🚀"
+        }
+    },
+    hospital: {
+        name: "Healthcare",
+        icon: "🏥",
+        badge: "HEALTH",
+        title: "Meet DataBot 🤖 - Your Healthcare Analytics Partner!",
+        subtitle: "Heal with DataBot as he improves patient outcomes through data!",
+        speech: "Welcome to healthcare data! Let me show you how we save lives with analytics!",
+        steps: {
+            step1: {
+                title: "PostgreSQL - The Medical Records Maze",
+                desc: "Hospitals generate MASSIVE amounts of data! 🩺 Lab results, vital signs, prescriptions, imaging, doctor notes - scattered across dozens of systems! Finding a patient's complete history is like a treasure hunt!",
+                example: "Patient John: Blood test in Lab System A, X-ray in Imaging System B, prescription in Pharmacy System C. Time to solve the puzzle! 🧩"
+            },
+            step2: {
+                title: "DBeaver - The Medical Detective",
+                desc: "DBeaver helps doctors query patient history safely! 🔍 'Show me all diabetic patients on Medication X who had adverse reactions.' Critical for research and patient safety!",
+                example: "Found pattern: 5% of patients on Drug X + Drug Y have interactions. Updated protocols. Lives saved! 💊"
+            },
+            step3: {
+                title: "Python - The Diagnostic Assistant",
+                desc: "Python analyzes symptoms and suggests diagnoses! 🤖 Not to replace doctors, but to catch things humans might miss. 'Based on these 47 symptoms and test results, consider checking for...'",
+                example: "Flagged rare condition that matches patient symptoms. Doctor confirmed. Early detection = full recovery! ❤️"
+            },
+            step4: {
+                title: "AWS DMS - The HIPAA-Compliant Migrator",
+                desc: "Moving healthcare data requires EXTREME security! 🔒 DMS migrates patient records while maintaining full compliance. Every bit encrypted, every access logged!",
+                example: "Migrated 10 million patient records to cloud. Zero data breaches. Full HIPAA compliance. Auditors impressed! ✅"
+            }
+        },
+        result: {
+            title: "The Healthcare Magic! ✨",
+            desc: "From fragmented records to unified patient care! Doctors now see complete patient history instantly, AI flags potential issues, and research happens 10x faster. Better care, saved lives! 🏥",
+            before: "What medications is this patient on?",
+            beforeResult: "*Calling 5 pharmacies* 'Let me check...' 📞",
+            after: "What medications is this patient on?",
+            afterResult: "*Instant view* → 'Complete medication history + interaction warnings!' 💊"
+        }
+    },
+    automotive: {
+        name: "Automotive",
+        icon: "🚗",
+        badge: "AUTO",
+        title: "Meet DataBot 🤖 - Your Manufacturing Intelligence!",
+        subtitle: "Rev up with DataBot as he optimizes car production lines!",
+        speech: "Welcome to the factory floor! Let me show you how we build perfect cars with data!",
+        steps: {
+            step1: {
+                title: "PostgreSQL - The Assembly Line Symphony",
+                desc: "A car has 30,000 parts! 🔩 Each part has origin, quality checks, and installation time. Multiply by 1,000 cars per day. That's 30 MILLION data points daily! Tracking one defective bolt is like finding Waldo!",
+                example: "Bolt #47829-C installed in Car #78451 at Station 23 by Robot Arm #7 at 14:23:47. Now imagine tracking ALL bolts! 🤯"
+            },
+            step2: {
+                title: "DBeaver - The Quality Inspector",
+                desc: "DBeaver helps find defect patterns! 🔍 'Show me all paint defects from the last week, grouped by shift and spray booth.' Suddenly the root cause becomes obvious!",
+                example: "Discovered all orange-peel defects came from Booth #3 during humid weather. Fixed ventilation. Defects: ZERO! ✨"
+            },
+            step3: {
+                title: "Python - The Production Optimizer",
+                desc: "Python balances the entire production line! ⚖️ If one station is slow, it ripples through everything. Python simulates changes and finds the perfect flow!",
+                example: "Optimized station sequence. Reduced bottleneck at door assembly. Production up 8%! That's 80 extra cars per day! 🚗"
+            },
+            step4: {
+                title: "AWS DMS - The Plant Integrator",
+                desc: "Car companies have factories worldwide! 🌍 DMS syncs data from Germany, Mexico, Japan, USA into one global view. Same quality standards everywhere!",
+                example: "Unified quality data from 12 plants. Found best practices in Japan. Applied globally. Defect rate dropped 23%! 🎌"
+            }
+        },
+        result: {
+            title: "The Manufacturing Magic! ✨",
+            desc: "From reactive quality control to predictive perfection! Factory managers now see defects forming before they happen, optimize production in real-time, and ensure every car is perfect! 🚗",
+            before: "Why did we have recalls last quarter?",
+            beforeResult: "*Root cause analysis for months* 🔍",
+            after: "Will we have quality issues?",
+            afterResult: "*Predictive Alert* → 'Station 7 showing anomaly. Inspect before next shift!' ⚠️"
+        }
+    },
+    banking: {
+        name: "Banking",
+        icon: "🏦",
+        badge: "FINANCE",
+        title: "Meet DataBot 🤖 - Your Financial Data Guardian!",
+        subtitle: "Watch DataBot secure billions in transactions and catch fraud in milliseconds!",
+        speech: "Welcome to the world of Finance! Let me show you how we protect money and catch bad actors with data magic!",
+        steps: {
+            step1: {
+                title: "PostgreSQL - The Vault of Transactions",
+                desc: "Banks process MILLIONS of transactions every second! 💰 ATM withdrawals, wire transfers, card swipes, loan payments - all happening simultaneously across the globe. Each transaction has sender, receiver, amount, time, location, and risk score!",
+                example: "Customer John swipes card in New York at 2:15 PM, then another swipe in London at 2:17 PM. That's 3,500 miles in 2 minutes! 🚨 FRAUD ALERT!"
+            },
+            step2: {
+                title: "DBeaver - The Financial Detective",
+                desc: "DBeaver lets risk analysts investigate suspicious patterns! 🔎 'Show me all transactions over $10,000 in the last hour, grouped by account age.' Suddenly, money laundering patterns become visible!",
+                example: "Found 47 new accounts all receiving exactly $9,999 transfers (just under reporting limit). Classic structuring scheme exposed! 👮"
+            },
+            step3: {
+                title: "Python - The Fraud Hunter",
+                desc: "Python builds AI models that learn what 'normal' looks like! 🧠 It scores every transaction in real-time. Unusual spending? Different location? Weird timing? Python catches it before the transaction completes!",
+                example: "ML model flagged card #4521 - spending pattern changed 847% from baseline. Turned out the card was cloned in a gas station skimmer! 🎯"
+            },
+            step4: {
+                title: "AWS DMS - The Global Compliance Engine",
+                desc: "Banks operate in 100+ countries with different regulations! 🌍 DMS syncs customer data across regions while maintaining GDPR, SOX, and PCI compliance. One source of truth for auditors!",
+                example: "Merged customer data from 23 countries. Detected duplicate accounts used for round-tripping. Saved $12M in potential fines! 📋"
+            }
+        },
+        result: {
+            title: "The Financial Fortress! 🏰",
+            desc: "From reactive fraud detection to real-time protection! Banks now stop fraudsters mid-transaction, prevent money laundering, and keep customer money safe - all while processing billions in legitimate transactions! 💎",
+            before: "Why did we lose $2M to fraud last month?",
+            beforeResult: "*Reviewing paper reports* → 'Investigating...' 📄",
+            after: "Is this transaction safe?",
+            afterResult: "*Real-time AI* → 'BLOCKED! Card cloned. Customer notified. New card shipped!' ⚡"
+        }
+    },
+    ecommerce: {
+        name: "E-Commerce",
+        icon: "🛍️",
+        badge: "SHOP",
+        title: "Meet DataBot 🤖 - Your E-Commerce Growth Engine!",
+        subtitle: "Watch DataBot turn clicks into customers and abandoned carts into sales!",
+        speech: "Welcome to Online Shopping paradise! Let me show you how we turn browsers into buyers with data wizardry!",
+        steps: {
+            step1: {
+                title: "PostgreSQL - The Digital Shopping Mall",
+                desc: "Every click, scroll, hover, and purchase creates data! 🖱️ A busy e-commerce site tracks 50 MILLION events per day. Product views, wishlist adds, cart abandonment, search queries - it's like watching millions of shoppers through security cameras!",
+                example: "User #78234 viewed blue sneakers 7 times, added to cart twice, removed once, checked competitor prices, came back with a coupon code. Buy or bounce? 🤔"
+            },
+            step2: {
+                title: "DBeaver - The Customer Journey Mapper",
+                desc: "DBeaver reveals the shopping journey! 🗺️ 'Show me all users who viewed Product X but bought Product Y instead.' Discover why customers choose competitors and fix it!",
+                example: "Found 2,341 users abandoned cart at shipping page. Shipping cost $12.99. Competitor offers free shipping. Solution: Free shipping over $50! 📦"
+            },
+            step3: {
+                title: "Python - The Recommendation Wizard",
+                desc: "Python builds the 'Customers also bought' magic! 🪄 Collaborative filtering, content-based recommendations, and real-time personalization. Every user sees a store built just for them!",
+                example: "'Based on your browsing: Here are 5 items you'll LOVE!' Click-through rate jumped 340%. Average order value up $23! 🎯"
+            },
+            step4: {
+                title: "AWS DMS - The Inventory Synchronizer",
+                desc: "Products listed on Amazon, eBay, Shopify, and your own website! 📱 DMS keeps inventory synced in real-time. Sold on Amazon? Instantly updated everywhere. No overselling nightmares!",
+                example: "Last 50 units of viral TikTok product! Sold across 4 platforms in 3 minutes. Zero oversells. Happy customers everywhere! 🎉"
+            }
+        },
+        result: {
+            title: "The Conversion Kingdom! 👑",
+            desc: "From guessing what customers want to knowing before they do! E-commerce teams now rescue abandoned carts, personalize every experience, and turn one-time buyers into loyal fans! 🛒",
+            before: "Why is our conversion rate only 2%?",
+            beforeResult: "*Looking at basic analytics* → 'Maybe better photos?' 📸",
+            after: "How do we increase sales?",
+            afterResult: "*AI Insight* → 'User #78234 hesitating! Send 10% off push notification NOW!' → PURCHASED! 💰"
+        }
+    }
+};
+
+// Current story theme
+let currentStoryTheme = 'walmart';
+
+// Select story theme
+function selectStoryTheme(themeName) {
+    if (!storyThemes[themeName]) return;
+    
+    currentStoryTheme = themeName;
+    const theme = storyThemes[themeName];
+    
+    // Update theme card active state
+    document.querySelectorAll('.theme-card').forEach(card => {
+        card.classList.remove('active');
+        if (card.dataset.theme === themeName) {
+            card.classList.add('active');
+        }
+    });
+    
+    // Update DataBot appearance
+    const databotHat = document.getElementById('databot-hat');
+    const databotBadge = document.getElementById('databot-badge');
+    if (databotHat) databotHat.textContent = theme.icon;
+    if (databotBadge) databotBadge.textContent = theme.badge;
+    
+    // Update title and subtitle
+    const journeyTitle = document.getElementById('journey-title');
+    const journeySubtitle = document.getElementById('journey-subtitle');
+    if (journeyTitle) journeyTitle.textContent = theme.title;
+    if (journeySubtitle) journeySubtitle.textContent = theme.subtitle;
+    
+    // Update DataBot speech
+    updateDatabotSpeech(theme.speech);
+    
+    // Update journey steps (first 4 for demo)
+    const steps = theme.steps;
+    Object.keys(steps).forEach((key, index) => {
+        const stepNum = index + 1;
+        const titleEl = document.getElementById(`step${stepNum}-title`);
+        const descEl = document.getElementById(`step${stepNum}-desc`);
+        const exampleEl = document.getElementById(`step${stepNum}-example`);
+        
+        if (titleEl) titleEl.textContent = steps[key].title;
+        if (descEl) descEl.textContent = steps[key].desc;
+        if (exampleEl) exampleEl.innerHTML = `<strong>${stepNum === 1 ? 'Real Scenario:' : stepNum === 2 ? 'DBeaver reveals:' : stepNum === 3 ? 'Python discovers:' : 'DMS in action:'}</strong> "${steps[key].example}"`;
+    });
+    
+    // Update result card
+    const result = theme.result;
+    const resultTitle = document.getElementById('result-title');
+    const resultDesc = document.getElementById('result-desc');
+    const finalExample = document.getElementById('final-example');
+    
+    if (resultTitle) resultTitle.textContent = result.title;
+    if (resultDesc) resultDesc.textContent = result.desc;
+    if (finalExample) {
+        finalExample.innerHTML = `
+            <strong>Before:</strong> "${result.before}" → ${result.beforeResult}<br>
+            <strong>After:</strong> "${result.after}" → ${result.afterResult}
+        `;
+    }
+    
+    // Scroll to journey section
+    const journeySection = document.getElementById('data-journey');
+    if (journeySection) {
+        journeySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    
+    console.log(`Story theme changed to: ${themeName}`);
+}
+
 // Export functions for global access
 window.enterCourse = enterCourse;
 window.scrollToCourses = scrollToCourses;
@@ -622,3 +1043,4 @@ window.openDemo = openDemo;
 window.toggleThemeSelector = toggleThemeSelector;
 window.setTheme = setTheme;
 window.scrollToTop = scrollToTop;
+window.selectStoryTheme = selectStoryTheme;

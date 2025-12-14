@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assignments | 🐍 Python Mastery</title>
+  <link rel="stylesheet" href="light-theme.css">
+  <style>
+    .assignments-hero {
+      text-align: center;
+      padding: 3rem 2rem;
+      background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 50%, #a7f3d0 100%);
+      border-radius: 24px;
+      margin-bottom: 2rem;
+    }
+    .assignments-hero h1 {
+      font-size: 2.5rem;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+    .assignments-hero p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+    
+    .access-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .access-card {
+      background: white;
+      border: 2px solid var(--border-color);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    
+    .access-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .access-card.student {
+      border-color: var(--python-blue);
+    }
+    
+    .access-card.admin {
+      border-color: var(--accent-purple);
+    }
+    
+    .access-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+    
+    .access-card h2 {
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+    
+    .access-card p {
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+    
+    .access-btn {
+      display: inline-block;
+      padding: 0.875rem 2rem;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: all 0.2s ease;
+    }
+    
+    .btn-student {
+      background: var(--python-blue);
+      color: white;
+    }
+    
+    .btn-student:hover {
+      background: #255a7e;
+      transform: translateY(-2px);
+    }
+    
+    .btn-admin {
+      background: var(--accent-purple);
+      color: white;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+    
+    .btn-admin:hover {
+      background: #7c3aed;
+    }
+    
+    .feature-list {
+      text-align: left;
+      margin: 1.5rem 0;
+      padding: 0;
+      list-style: none;
+    }
+    
+    .feature-list li {
+      padding: 0.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+    
+    .feature-list .check { color: var(--accent-green); }
+    .feature-list .lock { color: var(--accent-purple); }
+    
+    /* Modal Styles */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(4px);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .modal-overlay.active {
+      display: flex;
+    }
+    
+    .modal {
+      background: white;
+      border-radius: 20px;
+      padding: 2.5rem;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+      animation: modalIn 0.3s ease;
+    }
+    
+    @keyframes modalIn {
+      from { opacity: 0; transform: scale(0.9) translateY(20px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    
+    .modal h3 {
+      color: var(--accent-purple);
+      margin-bottom: 0.5rem;
+      font-size: 1.5rem;
+    }
+    
+    .modal p {
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+    
+    .passcode-input {
+      width: 100%;
+      padding: 1rem;
+      font-size: 1.25rem;
+      text-align: center;
+      border: 2px solid var(--border-color);
+      border-radius: 10px;
+      font-family: 'Fira Code', monospace;
+      letter-spacing: 3px;
+      margin-bottom: 1rem;
+      transition: border-color 0.2s;
+    }
+    
+    .passcode-input:focus {
+      outline: none;
+      border-color: var(--accent-purple);
+    }
+    
+    .passcode-input.error {
+      border-color: var(--accent-red);
+      animation: shake 0.5s ease;
+    }
+    
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      75% { transform: translateX(10px); }
+    }
+    
+    .modal-btns {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    
+    .modal-btn {
+      flex: 1;
+      padding: 0.875rem;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+    }
+    
+    .modal-btn.cancel {
+      background: #f1f5f9;
+      color: var(--text-secondary);
+    }
+    
+    .modal-btn.cancel:hover {
+      background: #e2e8f0;
+    }
+    
+    .modal-btn.submit {
+      background: var(--accent-purple);
+      color: white;
+    }
+    
+    .modal-btn.submit:hover {
+      background: #7c3aed;
+    }
+    
+    .error-msg {
+      color: var(--accent-red);
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+      display: none;
+    }
+    
+    .error-msg.show {
+      display: block;
+    }
+    
+    .hint {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+    }
+    
+    /* Assignment Grid */
+    .assignment-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+    
+    .assignment-card {
+      background: white;
+      border: 2px solid var(--border-color);
+      border-radius: 16px;
+      padding: 1.5rem;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.25s ease;
+    }
+    
+    .assignment-card:hover {
+      border-color: var(--accent-green);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+    
+    .assignment-card .badge {
+      display: inline-block;
+      background: var(--gradient-success);
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    
+    .assignment-card h3 {
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+    
+    .assignment-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-content">
+      <a href="complete-course.html" class="logo">🐍 Python Mastery</a>
+      <div style="color: var(--text-secondary); font-size: 0.9rem; font-weight: 600;">Practice Assignments</div>
+    </div>
+  </nav>
+
+  <main>
+    <header class="assignments-hero">
+      <h1>📝 Practice Assignments</h1>
+      <p>Test your Python skills with 50 hands-on questions!</p>
+    </header>
+
+    <div class="access-cards">
+      <!-- Student Access -->
+      <div class="access-card student">
+        <div class="access-icon">📚</div>
+        <h2>Student Practice</h2>
+        <p>Practice questions to test your knowledge. Try solving them yourself first!</p>
+        <ul class="feature-list">
+          <li><span class="check">✓</span> All 50 practice questions</li>
+          <li><span class="check">✓</span> Difficulty indicators</li>
+          <li><span class="check">✓</span> Topic-wise organization</li>
+          <li><span class="check">✓</span> Hints for each question</li>
+        </ul>
+        <a href="student-assignments.html" class="access-btn btn-student">Start Practice →</a>
+      </div>
+
+      <!-- Admin Access -->
+      <div class="access-card admin">
+        <div class="access-icon">🔐</div>
+        <h2>Instructor Access</h2>
+        <p>View complete solutions with detailed explanations. Requires passcode.</p>
+        <ul class="feature-list">
+          <li><span class="lock">🔒</span> Complete solutions</li>
+          <li><span class="lock">🔒</span> Step-by-step explanations</li>
+          <li><span class="lock">🔒</span> Alternative approaches</li>
+          <li><span class="lock">🔒</span> Teaching notes</li>
+        </ul>
+        <button class="access-btn btn-admin" onclick="openModal()">Enter Passcode 🔑</button>
+      </div>
+    </div>
+
+    <!-- Quick Links -->
+    <section class="content-section">
+      <h2>📋 Assignment Overview</h2>
+      <div class="assignment-grid">
+        <a href="student-a1.html" class="assignment-card">
+          <span class="badge">Assignment 1</span>
+          <h3>📝 Variables & Strings</h3>
+          <p>10 questions • Beginner</p>
+        </a>
+        <a href="student-a2.html" class="assignment-card">
+          <span class="badge">Assignment 2</span>
+          <h3>🔄 Loops & Conditions</h3>
+          <p>10 questions • Beginner</p>
+        </a>
+        <a href="student-a3.html" class="assignment-card">
+          <span class="badge">Assignment 3</span>
+          <h3>📦 Data Structures</h3>
+          <p>10 questions • Intermediate</p>
+        </a>
+        <a href="student-a4.html" class="assignment-card">
+          <span class="badge">Assignment 4</span>
+          <h3>⚙️ Functions</h3>
+          <p>10 questions • Intermediate</p>
+        </a>
+        <a href="student-a5.html" class="assignment-card">
+          <span class="badge">Assignment 5</span>
+          <h3>🚀 OOP, NumPy & Pandas</h3>
+          <p>10 questions • Advanced</p>
+        </a>
+      </div>
+    </section>
+
+    <nav class="page-navigation">
+      <a href="s12-api-sql.html" class="nav-prev">
+        <span class="nav-arrow">←</span>
+        <span class="nav-text">
+          <span class="nav-label">Previous</span>
+          <span class="nav-title">Session 12</span>
+        </span>
+      </a>
+      <a href="complete-course.html" class="nav-home">🏠</a>
+      <a href="student-assignments.html" class="nav-next">
+        <span class="nav-text">
+          <span class="nav-label">Start</span>
+          <span class="nav-title">Practice Mode</span>
+        </span>
+        <span class="nav-arrow">→</span>
+      </a>
+    </nav>
+  </main>
+
+  <!-- Passcode Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <h3>🔐 Instructor Access</h3>
+      <p>Enter passcode to continue</p>
+      <input type="password" class="passcode-input" id="passcodeInput" placeholder="••••••••" maxlength="8" autocomplete="off">
+      <p class="error-msg" id="errorMsg">❌ Incorrect passcode. Try again.</p>
+      <div class="modal-btns">
+        <button class="modal-btn cancel" onclick="closeModal()">Cancel</button>
+        <button class="modal-btn submit" onclick="verifyPasscode()">Unlock →</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>🐍 Python Mastery | Learn. Code. Create.</p>
+  </footer>
+
+  <script>
+    function openModal() {
+      document.getElementById('modalOverlay').classList.add('active');
+      document.getElementById('passcodeInput').focus();
+    }
+    
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('active');
+      document.getElementById('passcodeInput').value = '';
+      document.getElementById('passcodeInput').classList.remove('error');
+      document.getElementById('errorMsg').classList.remove('show');
+    }
+    
+    // Obfuscated authentication - do not modify
+    const _0x4a2f=['\x67\x65\x74\x54\x69\x6d\x65','\x67\x65\x74\x54\x69\x6d\x65\x7a\x6f\x6e\x65\x4f\x66\x66\x73\x65\x74','\x67\x65\x74\x44\x61\x74\x65','\x67\x65\x74\x4d\x6f\x6e\x74\x68','\x67\x65\x74\x46\x75\x6c\x6c\x59\x65\x61\x72','\x70\x61\x64\x53\x74\x61\x72\x74'];
+    function _0xauth(){const _0xn=new Date();const _0xo=19800000;const _0xu=_0xn[_0x4a2f[0]]()+(_0xn[_0x4a2f[1]]()*60000);const _0xi=new Date(_0xu+_0xo);const _0xd=String(_0xi[_0x4a2f[2]]())[_0x4a2f[5]](2,'0');const _0xm=String(_0xi[_0x4a2f[3]]()+1)[_0x4a2f[5]](2,'0');const _0xy=_0xi[_0x4a2f[4]]();return _0xd+_0xm+_0xy;}
+    
+    function verifyPasscode() {
+      const input = document.getElementById('passcodeInput');
+      const errorMsg = document.getElementById('errorMsg');
+      const _0xc = input.value;
+      const _0xv = _0xauth();
+      
+      if (atob('') + _0xc === atob('') + _0xv) {
+        window.location.href = atob('YWRtaW4tYXNzaWdubWVudHMuaHRtbA==');
+      } else {
+        input.classList.add('error');
+        errorMsg.classList.add('show');
+        setTimeout(() => { input.classList.remove('error'); }, 500);
+      }
+    }
+    
+    document.getElementById('passcodeInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') { verifyPasscode(); }
+    });
+    
+    document.getElementById('modalOverlay').addEventListener('click', function(e) {
+      if (e.target === this) { closeModal(); }
+    });
+  </script>
+</body>
+</html>

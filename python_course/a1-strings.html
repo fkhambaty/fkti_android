@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assignment 1 Solutions | 🐍 Python Mastery</title>
+  <link rel="stylesheet" href="light-theme.css">
+  <style>
+    .question-card { background: white; border: 2px solid var(--border-color); border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem; }
+    .question-header { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1rem; }
+    .question-num { background: var(--gradient-python); color: white; min-width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0; }
+    .question-text { font-size: 1.05rem; color: var(--text-primary); font-weight: 600; line-height: 1.5; }
+    .solution-toggle { background: #f1f5f9; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer; font-weight: 600; color: var(--python-blue); margin-top: 1rem; }
+    .solution-toggle:hover { background: #e2e8f0; }
+    .solution-content { display: none; margin-top: 1rem; padding-top: 1rem; border-top: 2px dashed var(--border-color); }
+    .solution-content.show { display: block; }
+    .explanation-box { background: #f0fdf4; border-left: 4px solid var(--accent-green); padding: 1rem; margin: 1rem 0; border-radius: 0 8px 8px 0; }
+    .explanation-box h4 { color: var(--accent-green); margin-bottom: 0.5rem; }
+  </style>
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-content">
+      <a href="complete-course.html" class="logo">🐍 Python Mastery</a>
+      <div class="session-nav">
+        <a href="a1-strings.html" class="nav-link active">A1</a>
+        <a href="a2-loops.html" class="nav-link">A2</a>
+        <a href="a3-datastructures.html" class="nav-link">A3</a>
+        <a href="a4-functions.html" class="nav-link">A4</a>
+        <a href="a5-advanced.html" class="nav-link">A5</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <header class="session-header">
+      <div class="session-badge" style="background: var(--gradient-success);">Assignment 1 - Solutions</div>
+      <h1>📝 Data Types & Strings</h1>
+      <p class="session-subtitle">Complete solutions with detailed explanations</p>
+    </header>
+
+    <section class="content-section">
+      <h2>📋 Questions & Solutions</h2>
+
+      <!-- Q1 -->
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-num">1</span>
+          <span class="question-text">Create two numbers. One float another integer. Add two numbers and print the result in integer format.</span>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">💡 Show Solution</button>
+        <div class="solution-content">
+          <div class="code-block"><pre><code># Create a float and an integer
+float_num = 3.14
+int_num = 5
+
+# Add them together
+result = float_num + int_num
+print("Sum (float):", result)
+
+# Convert to integer and print
+result_int = int(result)
+print("Sum (integer):", result_int)</code></pre></div>
+          <div class="output-block"><div class="output-header">Output</div><pre>Sum (float): 8.14
+Sum (integer): 8</pre></div>
+          <div class="explanation-box"><h4>🎓 Explanation</h4><p><code>int()</code> truncates the decimal part (doesn't round). 8.14 becomes 8, not 8.14 rounded to 8.</p></div>
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-num">2</span>
+          <span class="question-text">"i live in india since my childhood". Count number of 'i' in this text.</span>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">💡 Show Solution</button>
+        <div class="solution-content">
+          <div class="code-block"><pre><code>text = "i live in india since my childhood"
+
+# Count lowercase 'i'
+count = text.count('i')
+print("Number of 'i':", count)</code></pre></div>
+          <div class="output-block"><div class="output-header">Output</div><pre>Number of 'i': 6</pre></div>
+          <div class="explanation-box"><h4>🎓 Explanation</h4><p><code>.count()</code> is case-sensitive. It counts: "i" (1st word), "i" in live, "i" in in, "i" and "i" in india, "i" in since, "i" in childhood = 6 total.</p></div>
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-num">3</span>
+          <span class="question-text">How do you check if a variable is of a certain data type in Python?</span>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">💡 Show Solution</button>
+        <div class="solution-content">
+          <div class="code-block"><pre><code># Method 1: type() function
+x = 10
+print("Type of x:", type(x))
+print("Is x an int?", type(x) == int)
+
+# Method 2: isinstance() function (recommended)
+y = "Hello"
+print("Is y a string?", isinstance(y, str))
+
+# isinstance can check multiple types
+z = 3.14
+print("Is z int or float?", isinstance(z, (int, float)))</code></pre></div>
+          <div class="output-block"><div class="output-header">Output</div><pre>Type of x: &lt;class 'int'&gt;
+Is x an int? True
+Is y a string? True
+Is z int or float? True</pre></div>
+          <div class="explanation-box"><h4>🎓 Explanation</h4><p><code>type()</code> returns the exact type. <code>isinstance()</code> is preferred because it also works with inheritance and can check multiple types at once.</p></div>
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-num">4</span>
+          <span class="question-text">Write a python code to find last 4 characters of a string: 'Machine Learning'</span>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">💡 Show Solution</button>
+        <div class="solution-content">
+          <div class="code-block"><pre><code>text = "Machine Learning"
+
+# Using negative slicing
+last_4 = text[-4:]
+print("Last 4 characters:", last_4)</code></pre></div>
+          <div class="output-block"><div class="output-header">Output</div><pre>Last 4 characters: ning</pre></div>
+          <div class="explanation-box"><h4>🎓 Explanation</h4><p><code>[-4:]</code> means start from 4th character from end, go till end. Negative indexing: -1 is last char, -2 is second last, etc.</p></div>
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-num">5</span>
+          <span class="question-text">Write a python code to remove trailing space from string: 'Machine Learning. '</span>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">💡 Show Solution</button>
+        <div class="solution-content">
+          <div class="code-block"><pre><code>text = "Machine Learning. "
+
+# Remove trailing whitespace
+cleaned = text.rstrip()
+print("Original:", repr(text))
+print("Cleaned:", repr(cleaned))
+
+# Alternative: strip() removes from both ends
+text2 = "  Hello World  "
+print("strip():", repr(text2.strip()))</code></pre></div>
+          <div class="output-block"><div class="output-header">Output</div><pre>Original: 'Machine Learning. '
+Cleaned: 'Machine Learning.'
+strip(): 'Hello World'</pre></div>
+          <div class="explanation-box"><h4>🎓 Explanation</h4><p><code>rstrip()</code> removes trailing (right) whitespace. <code>lstrip()</code> removes leading (left). <code>strip()</code> removes both ends. <code>repr()</code> shows the string with quotes to visualize spaces.</p></div>
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-num">6</span>
+          <span class="question-text">Write a Python program to print every second character from the string: "Data Science with Python"</span>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">💡 Show Solution</button>
+        <div class="solution-content">
+          <div class="code-block"><pre><code>text = "Data Science with Python"
+
+# Using slicing with step 2
+every_second = text[::2]
+print("Every second character:", every_second)
+
+# Alternative: manual loop
+result = ""
+for i in range(0, len(text), 2):
+    result += text[i]
+print("Loop method:", result)</code></pre></div>
+          <div class="output-block"><div class="output-header">Output</div><pre>Every second character: Dt cec ihPto
+Loop method: Dt cec ihPto</pre></div>
+          <div class="explanation-box"><h4>🎓 Explanation</h4><p><code>[::2]</code> means start:end:step. Empty start/end = full string, step 2 = every 2nd char. Characters at index 0, 2, 4, 6... are selected.</p></div>
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-num">7</span>
+          <span class="question-text">Write a python code to check given character is digit or not: 265</span>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">💡 Show Solution</button>
+        <div class="solution-content">
+          <div class="code-block"><pre><code># Convert to string first if it's an integer
+value = 265
+value_str = str(value)
+
+# Check if all characters are digits
+is_digit = value_str.isdigit()
+print(f"'{value}' is digit: {is_digit}")
+
+# Can also check individual characters
+text = "Hello123"
+for char in text:
+    print(f"'{char}' is digit: {char.isdigit()}")</code></pre></div>
+          <div class="output-block"><div class="output-header">Output</div><pre>'265' is digit: True
+'H' is digit: False
+'e' is digit: False
+'l' is digit: False
+'l' is digit: False
+'o' is digit: False
+'1' is digit: True
+'2' is digit: True
+'3' is digit: True</pre></div>
+          <div class="explanation-box"><h4>🎓 Explanation</h4><p><code>.isdigit()</code> returns True if all characters in the string are digits (0-9). It's a string method, so convert numbers to string first.</p></div>
+        </div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-num">8</span>
+          <span class="question-text">Write a python code to Convert a string to lowercase: 'MACHINE LEARNING'</span>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">💡 Show Solution</button>
+        <div class="solution-content">
+          <div class="code-block"><pre><code>text = "MACHINE LEARNING"
+
+# Convert to lowercase
+lowercase = text.lower()
+print("Lowercase:", lowercase)
+
+# Also useful: upper(), title(), capitalize()
+print("Upper:", text.upper())
+print("Title:", text.title())
+print("Capitalize:", text.capitalize())</code></pre></div>
+          <div class="output-block"><div class="output-header">Output</div><pre>Lowercase: machine learning
+Upper: MACHINE LEARNING
+Title: Machine Learning
+Capitalize: Machine learning</pre></div>
+          <div class="explanation-box"><h4>🎓 Explanation</h4><p><code>.lower()</code> converts all to lowercase. <code>.upper()</code> to uppercase. <code>.title()</code> capitalizes each word. <code>.capitalize()</code> only first letter of string.</p></div>
+        </div>
+      </div>
+
+      <!-- Q9 -->
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-num">9</span>
+          <span class="question-text">Write a python code to count the number of occurrences of a character 'e' in a string: 'Machine Learning and Deep Learning'</span>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">💡 Show Solution</button>
+        <div class="solution-content">
+          <div class="code-block"><pre><code>text = "Machine Learning and Deep Learning"
+
+# Count occurrences of 'e'
+count = text.count('e')
+print(f"Number of 'e': {count}")
+
+# Case-insensitive count (if needed)
+count_all = text.lower().count('e')
+print(f"Number of 'e' (case-insensitive): {count_all}")</code></pre></div>
+          <div class="output-block"><div class="output-header">Output</div><pre>Number of 'e': 5
+Number of 'e' (case-insensitive): 5</pre></div>
+          <div class="explanation-box"><h4>🎓 Explanation</h4><p><code>.count('e')</code> counts all lowercase 'e'. The 'e' appears in: Machine, Learning (x2), Deep, Learning (x2) = 5 times.</p></div>
+        </div>
+      </div>
+
+      <!-- Q10 -->
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-num">10</span>
+          <span class="question-text">Write a python code to check if a string contains only alphabetic characters. String = 'HelloPython'</span>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">💡 Show Solution</button>
+        <div class="solution-content">
+          <div class="code-block"><pre><code>string1 = "HelloPython"
+string2 = "Hello Python"  # has space
+string3 = "Hello123"      # has numbers
+
+print(f"'{string1}' is alphabetic: {string1.isalpha()}")
+print(f"'{string2}' is alphabetic: {string2.isalpha()}")
+print(f"'{string3}' is alphabetic: {string3.isalpha()}")</code></pre></div>
+          <div class="output-block"><div class="output-header">Output</div><pre>'HelloPython' is alphabetic: True
+'Hello Python' is alphabetic: False
+'Hello123' is alphabetic: False</pre></div>
+          <div class="explanation-box"><h4>🎓 Explanation</h4><p><code>.isalpha()</code> returns True ONLY if ALL characters are letters (a-z, A-Z). Spaces, numbers, and special characters make it False.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <nav class="page-navigation">
+      <a href="admin-assignments.html" class="nav-prev">
+        <span class="nav-arrow">←</span>
+        <span class="nav-text">
+          <span class="nav-label">Back</span>
+          <span class="nav-title">All Solutions</span>
+        </span>
+      </a>
+      <a href="complete-course.html" class="nav-home">🏠</a>
+      <a href="a2-loops.html" class="nav-next">
+        <span class="nav-text">
+          <span class="nav-label">Next</span>
+          <span class="nav-title">Assignment 2</span>
+        </span>
+        <span class="nav-arrow">→</span>
+      </a>
+    </nav>
+  </main>
+
+  <footer><p>🐍 Python Mastery | Instructor Solutions</p></footer>
+  <script>function toggleSolution(btn) { const content = btn.nextElementSibling; content.classList.toggle('show'); btn.textContent = content.classList.contains('show') ? '🔒 Hide Solution' : '💡 Show Solution'; }</script>
+</body>
+</html>

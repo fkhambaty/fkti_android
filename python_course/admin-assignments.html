@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🔐 Instructor Solutions | Python Mastery</title>
+  <link rel="stylesheet" href="light-theme.css">
+  <style>
+    .admin-banner {
+      background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
+      border: 2px solid var(--accent-purple);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .admin-banner-icon {
+      font-size: 2.5rem;
+    }
+    .admin-banner h2 {
+      color: var(--accent-purple);
+      margin: 0 0 0.25rem;
+    }
+    .admin-banner p {
+      color: var(--text-secondary);
+      margin: 0;
+      font-size: 0.9rem;
+    }
+    .solutions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .solution-card {
+      background: white;
+      border: 2px solid var(--border-color);
+      border-radius: 16px;
+      padding: 1.75rem;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .solution-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--gradient-success);
+    }
+    .solution-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--accent-green);
+    }
+    .solution-badge {
+      display: inline-block;
+      background: var(--gradient-success);
+      color: white;
+      padding: 0.35rem 1rem;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      margin-bottom: 1rem;
+    }
+    .solution-card h3 {
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+    }
+    .solution-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    .solution-meta {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    .solution-meta span {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .logout-btn {
+      background: white;
+      border: 2px solid var(--border-color);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--text-secondary);
+      transition: all 0.2s;
+      font-size: 0.85rem;
+    }
+    .logout-btn:hover {
+      border-color: var(--accent-red);
+      color: var(--accent-red);
+    }
+  </style>
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-content">
+      <a href="complete-course.html" class="logo">🐍 Python Mastery</a>
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <span style="color: var(--accent-purple); font-weight: 700; font-size: 0.9rem;">🔐 Instructor Mode</span>
+        <button class="logout-btn" onclick="window.location.href='assignments.html'">Exit →</button>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <div class="admin-banner">
+      <div class="admin-banner-icon">🔐</div>
+      <div>
+        <h2>Instructor Access Granted</h2>
+        <p>You have access to complete solutions with detailed explanations.</p>
+      </div>
+    </div>
+
+    <header class="session-header">
+      <div class="session-badge" style="background: var(--gradient-success);">Complete Solutions</div>
+      <h1>📋 Assignment Solutions</h1>
+      <p class="session-subtitle">Detailed answers with step-by-step explanations</p>
+    </header>
+
+    <section class="content-section">
+      <h2>📝 All Solutions</h2>
+      
+      <div class="solutions-grid">
+        <a href="a1-strings.html" class="solution-card">
+          <span class="solution-badge">Assignment 1</span>
+          <h3>📝 Variables & Strings</h3>
+          <p>String manipulation, type conversion, and variable operations.</p>
+          <div class="solution-meta">
+            <span>📊 10 Solutions</span>
+            <span>⏱️ ~20 min</span>
+            <span>🎯 Beginner</span>
+          </div>
+        </a>
+
+        <a href="a2-loops.html" class="solution-card">
+          <span class="solution-badge">Assignment 2</span>
+          <h3>🔄 Loops & Conditions</h3>
+          <p>Control flow, iteration, patterns, and number operations.</p>
+          <div class="solution-meta">
+            <span>📊 10 Solutions</span>
+            <span>⏱️ ~25 min</span>
+            <span>🎯 Beginner</span>
+          </div>
+        </a>
+
+        <a href="a3-datastructures.html" class="solution-card">
+          <span class="solution-badge">Assignment 3</span>
+          <h3>📦 Data Structures</h3>
+          <p>Lists, dictionaries, sets, and collection operations.</p>
+          <div class="solution-meta">
+            <span>📊 10 Solutions</span>
+            <span>⏱️ ~30 min</span>
+            <span>🎯 Intermediate</span>
+          </div>
+        </a>
+
+        <a href="a4-functions.html" class="solution-card">
+          <span class="solution-badge">Assignment 4</span>
+          <h3>⚙️ Functions</h3>
+          <p>Function creation, parameters, returns, and best practices.</p>
+          <div class="solution-meta">
+            <span>📊 10 Solutions</span>
+            <span>⏱️ ~30 min</span>
+            <span>🎯 Intermediate</span>
+          </div>
+        </a>
+
+        <a href="a5-advanced.html" class="solution-card">
+          <span class="solution-badge">Assignment 5</span>
+          <h3>🚀 OOP, NumPy & Pandas</h3>
+          <p>Classes, numerical computing, and data analysis.</p>
+          <div class="solution-meta">
+            <span>📊 10 Solutions</span>
+            <span>⏱️ ~45 min</span>
+            <span>🎯 Advanced</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Teaching Notes -->
+    <section class="content-section">
+      <h2>📚 Teaching Notes</h2>
+      
+      <div class="tip-box">
+        <strong>💡 Tip for Instructors:</strong> Encourage students to attempt questions first before checking solutions. The struggle is part of learning!
+      </div>
+
+      <div class="key-concept">
+        <h4>Common Student Mistakes to Watch For:</h4>
+        <ul style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary);">
+          <li>Forgetting that list indices start at 0</li>
+          <li>Using = instead of == in conditions</li>
+          <li>Not handling edge cases (empty lists, negative numbers)</li>
+          <li>Modifying lists while iterating over them</li>
+          <li>Confusing mutable vs immutable types</li>
+        </ul>
+      </div>
+    </section>
+
+    <nav class="page-navigation">
+      <a href="assignments.html" class="nav-prev">
+        <span class="nav-arrow">←</span>
+        <span class="nav-text">
+          <span class="nav-label">Back</span>
+          <span class="nav-title">Assignment Hub</span>
+        </span>
+      </a>
+      <a href="complete-course.html" class="nav-home">🏠</a>
+      <a href="a1-strings.html" class="nav-next">
+        <span class="nav-text">
+          <span class="nav-label">Start</span>
+          <span class="nav-title">Assignment 1</span>
+        </span>
+        <span class="nav-arrow">→</span>
+      </a>
+    </nav>
+  </main>
+
+  <footer>
+    <p>🐍 Python Mastery | Instructor Portal</p>
+  </footer>
+</body>
+</html>
+

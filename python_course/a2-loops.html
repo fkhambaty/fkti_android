@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assignment 2 Solutions | 🐍 Python Mastery</title>
+  <link rel="stylesheet" href="light-theme.css">
+  <style>
+    .question-card { background: white; border: 2px solid var(--border-color); border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem; }
+    .question-header { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1rem; }
+    .question-num { background: var(--gradient-python); color: white; min-width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0; }
+    .question-text { font-size: 1.05rem; color: var(--text-primary); font-weight: 600; line-height: 1.5; }
+    .solution-toggle { background: #f1f5f9; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer; font-weight: 600; color: var(--python-blue); margin-top: 1rem; }
+    .solution-toggle:hover { background: #e2e8f0; }
+    .solution-content { display: none; margin-top: 1rem; padding-top: 1rem; border-top: 2px dashed var(--border-color); }
+    .solution-content.show { display: block; }
+    .explanation-box { background: #f0fdf4; border-left: 4px solid var(--accent-green); padding: 1rem; margin: 1rem 0; border-radius: 0 8px 8px 0; }
+    .explanation-box h4 { color: var(--accent-green); margin-bottom: 0.5rem; }
+  </style>
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-content">
+      <a href="complete-course.html" class="logo">🐍 Python Mastery</a>
+      <div class="session-nav">
+        <a href="a1-strings.html" class="nav-link">A1</a>
+        <a href="a2-loops.html" class="nav-link active">A2</a>
+        <a href="a3-datastructures.html" class="nav-link">A3</a>
+        <a href="a4-functions.html" class="nav-link">A4</a>
+        <a href="a5-advanced.html" class="nav-link">A5</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <header class="session-header">
+      <div class="session-badge" style="background: var(--gradient-success);">Assignment 2 - Solutions</div>
+      <h1>🔄 Loops & Conditions</h1>
+      <p class="session-subtitle">Complete solutions with detailed explanations</p>
+    </header>
+
+    <section class="content-section">
+      <h2>📋 Questions & Solutions</h2>
+
+      <!-- Q1 -->
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-num">1</span>
+          <span class="question-text">Create a list with numbers 1 to 10 in it ([1,2,3….10]). Write a for loop on this list to sum up all numbers in the list except 5 and 7. Print the result.</span>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">💡 Show Solution</button>
+        <div class="solution-content">
+          <div class="code-block"><pre><code># Create list 1 to 10
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+# Sum all except 5 and 7
+total = 0
+for num in numbers:
+    if num not in [5, 7]:
+        total += num
+
+print("Sum (excluding 5 and 7):", total)
+
+# Verify: 1+2+3+4+6+8+9+10 = 43
+# Full sum would be 55, minus 5 and 7 = 55-12 = 43</code></pre></div>
+          <div class="output-block"><div class="output-header">Output</div><pre>Sum (excluding 5 and 7): 43</pre></div>
+          <div class="explanation-box"><h4>🎓 Explanation</h4><p><code>if num not in [5, 7]</code> skips 5 and 7. Alternative: <code>if num != 5 and num != 7</code>. The <code>continue</code> keyword could also be used.</p></div>
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-num">2</span>
+          <span class="question-text">Write a while loop to create a list with numbers from 1 to 100. When inserting new number in the list, skip every number which is divisible by 3. Print the result.</span>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">💡 Show Solution</button>
+        <div class="solution-content">
+          <div class="code-block"><pre><code># Create list skipping multiples of 3
+result = []
+num = 1
+
+while num <= 100:
+    if num % 3 != 0:  # Not divisible by 3
+        result.append(num)
+    num += 1
+
+print("Numbers (excluding divisible by 3):")
+print(result)
+print(f"\nTotal count: {len(result)}")</code></pre></div>
+          <div class="output-block"><div class="output-header">Output</div><pre>Numbers (excluding divisible by 3):
+[1, 2, 4, 5, 7, 8, 10, 11, 13, 14, 16, 17, 19, 20, 22, 23, 25, 26, 28, 29, 31, 32, 34, 35, 37, 38, 40, 41, 43, 44, 46, 47, 49, 50, 52, 53, 55, 56, 58, 59, 61, 62, 64, 65, 67, 68, 70, 71, 73, 74, 76, 77, 79, 80, 82, 83, 85, 86, 88, 89, 91, 92, 94, 95, 97, 98, 100]
+
+Total count: 67</pre></div>
+          <div class="explanation-box"><h4>🎓 Explanation</h4><p><code>%</code> is modulo (remainder). <code>num % 3 != 0</code> means "not divisible by 3". Out of 100 numbers, 33 are divisible by 3, leaving 67.</p></div>
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-num">3</span>
+          <span class="question-text">Write a program that prints the 1 to 10 numbers.</span>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">💡 Show Solution</button>
+        <div class="solution-content">
+          <div class="code-block"><pre><code># Method 1: for loop with range
+for i in range(1, 11):
+    print(i, end=" ")
+print()  # New line
+
+# Method 2: while loop
+num = 1
+while num <= 10:
+    print(num, end=" ")
+    num += 1</code></pre></div>
+          <div class="output-block"><div class="output-header">Output</div><pre>1 2 3 4 5 6 7 8 9 10 
+1 2 3 4 5 6 7 8 9 10 </pre></div>
+          <div class="explanation-box"><h4>🎓 Explanation</h4><p><code>range(1, 11)</code> generates 1 to 10 (end is exclusive). <code>end=" "</code> prints on same line with space separator.</p></div>
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-num">4</span>
+          <span class="question-text">Write a python code to print the summation of all the numbers from 1 to 100.</span>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">💡 Show Solution</button>
+        <div class="solution-content">
+          <div class="code-block"><pre><code># Method 1: Built-in sum with range
+total = sum(range(1, 101))
+print("Sum (1 to 100):", total)
+
+# Method 2: Loop
+total_loop = 0
+for i in range(1, 101):
+    total_loop += i
+print("Sum (loop):", total_loop)
+
+# Method 3: Formula n(n+1)/2
+n = 100
+formula_result = n * (n + 1) // 2
+print("Sum (formula):", formula_result)</code></pre></div>
+          <div class="output-block"><div class="output-header">Output</div><pre>Sum (1 to 100): 5050
+Sum (loop): 5050
+Sum (formula): 5050</pre></div>
+          <div class="explanation-box"><h4>🎓 Explanation</h4><p>The formula n(n+1)/2 is Gauss's trick! For 1 to 100: 100×101/2 = 5050. Much faster than looping for large numbers.</p></div>
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-num">5</span>
+          <span class="question-text">Write a Python program to find the common elements between two lists.<br>list1 = [11,2,190,43,23,65,19]<br>list2 = [12,11,121,190,43,23,76,190]</span>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">💡 Show Solution</button>
+        <div class="solution-content">
+          <div class="code-block"><pre><code>list1 = [11, 2, 190, 43, 23, 65, 19]
+list2 = [12, 11, 121, 190, 43, 23, 76, 190]
+
+# Method 1: Set intersection
+common = list(set(list1) & set(list2))
+print("Common elements:", common)
+
+# Method 2: List comprehension
+common2 = [x for x in list1 if x in list2]
+print("Common (comprehension):", common2)
+
+# Method 3: set.intersection()
+common3 = set(list1).intersection(set(list2))
+print("Common (method):", common3)</code></pre></div>
+          <div class="output-block"><div class="output-header">Output</div><pre>Common elements: [11, 43, 190, 23]
+Common (comprehension): [11, 190, 43, 23]
+Common (method): {11, 43, 190, 23}</pre></div>
+          <div class="explanation-box"><h4>🎓 Explanation</h4><p>Set intersection (<code>&</code>) is most efficient O(n). Common elements are: 11, 190, 43, 23. Note: sets don't preserve order.</p></div>
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-num">6</span>
+          <span class="question-text">Write a python code to create separate lists of Even and Odd numbers from a list: [21,44,22,878,55,90,17,68,69,91]</span>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">💡 Show Solution</button>
+        <div class="solution-content">
+          <div class="code-block"><pre><code>numbers = [21, 44, 22, 878, 55, 90, 17, 68, 69, 91]
+
+# Method 1: Loop
+even = []
+odd = []
+for num in numbers:
+    if num % 2 == 0:
+        even.append(num)
+    else:
+        odd.append(num)
+
+print("Even numbers:", even)
+print("Odd numbers:", odd)
+
+# Method 2: List comprehension
+even2 = [n for n in numbers if n % 2 == 0]
+odd2 = [n for n in numbers if n % 2 != 0]
+print("\nEven (comprehension):", even2)
+print("Odd (comprehension):", odd2)</code></pre></div>
+          <div class="output-block"><div class="output-header">Output</div><pre>Even numbers: [44, 22, 878, 90, 68]
+Odd numbers: [21, 55, 17, 69, 91]
+
+Even (comprehension): [44, 22, 878, 90, 68]
+Odd (comprehension): [21, 55, 17, 69, 91]</pre></div>
+          <div class="explanation-box"><h4>🎓 Explanation</h4><p><code>num % 2 == 0</code> checks if even (remainder 0 when divided by 2). List comprehension is more Pythonic and concise.</p></div>
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-num">7</span>
+          <span class="question-text">Calculate the sum of all numbers in a list using a loop: [21,44,767,98,37]</span>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">💡 Show Solution</button>
+        <div class="solution-content">
+          <div class="code-block"><pre><code>numbers = [21, 44, 767, 98, 37]
+
+# Using loop
+total = 0
+for num in numbers:
+    total += num
+
+print("Sum:", total)
+
+# Verify with built-in
+print("Sum (built-in):", sum(numbers))</code></pre></div>
+          <div class="output-block"><div class="output-header">Output</div><pre>Sum: 967
+Sum (built-in): 967</pre></div>
+          <div class="explanation-box"><h4>🎓 Explanation</h4><p><code>total += num</code> is shorthand for <code>total = total + num</code>. Initialize accumulator to 0 before loop. 21+44+767+98+37 = 967.</p></div>
+        </div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-num">8</span>
+          <span class="question-text">Write a python code to check if a number is positive, negative, or zero.</span>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">💡 Show Solution</button>
+        <div class="solution-content">
+          <div class="code-block"><pre><code>def check_number(num):
+    if num > 0:
+        return "Positive"
+    elif num < 0:
+        return "Negative"
+    else:
+        return "Zero"
+
+# Test with different numbers
+test_numbers = [10, -5, 0, 3.14, -0.5]
+for n in test_numbers:
+    print(f"{n} is {check_number(n)}")</code></pre></div>
+          <div class="output-block"><div class="output-header">Output</div><pre>10 is Positive
+-5 is Negative
+0 is Zero
+3.14 is Positive
+-0.5 is Negative</pre></div>
+          <div class="explanation-box"><h4>🎓 Explanation</h4><p>Use <code>if/elif/else</code> chain. Order matters: check positive first, then negative, else must be zero. Works for floats too!</p></div>
+        </div>
+      </div>
+
+      <!-- Q9 -->
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-num">9</span>
+          <span class="question-text">Find the length of the longest word in a string: 'Data Science and Machine Learning'</span>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">💡 Show Solution</button>
+        <div class="solution-content">
+          <div class="code-block"><pre><code>text = "Data Science and Machine Learning"
+
+# Split into words
+words = text.split()
+
+# Method 1: Loop
+max_length = 0
+longest_word = ""
+for word in words:
+    if len(word) > max_length:
+        max_length = len(word)
+        longest_word = word
+
+print(f"Longest word: '{longest_word}'")
+print(f"Length: {max_length}")
+
+# Method 2: Using max with key
+longest = max(words, key=len)
+print(f"\nUsing max(): '{longest}' ({len(longest)} chars)")</code></pre></div>
+          <div class="output-block"><div class="output-header">Output</div><pre>Longest word: 'Learning'
+Length: 8
+
+Using max(): 'Learning' ({len(longest)} chars)</pre></div>
+          <div class="explanation-box"><h4>🎓 Explanation</h4><p><code>split()</code> breaks string into words by whitespace. <code>max(words, key=len)</code> finds the word with maximum length. "Learning" and "Science" both have 8 chars, but "Science" comes first.</p></div>
+        </div>
+      </div>
+
+      <!-- Q10 -->
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-num">10</span>
+          <span class="question-text">Write a program to calculate the sum of squares of all numbers from 1 to 10 using a while loop.</span>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">💡 Show Solution</button>
+        <div class="solution-content">
+          <div class="code-block"><pre><code># Sum of squares: 1² + 2² + 3² + ... + 10²
+i = 1
+sum_of_squares = 0
+
+while i <= 10:
+    sum_of_squares += i ** 2
+    i += 1
+
+print("Sum of squares (1 to 10):", sum_of_squares)
+
+# Verify with formula: n(n+1)(2n+1)/6
+n = 10
+formula = n * (n + 1) * (2 * n + 1) // 6
+print("Using formula:", formula)
+
+# Show breakdown
+print("\nBreakdown: 1+4+9+16+25+36+49+64+81+100 =", 
+      1+4+9+16+25+36+49+64+81+100)</code></pre></div>
+          <div class="output-block"><div class="output-header">Output</div><pre>Sum of squares (1 to 10): 385
+Using formula: 385
+
+Breakdown: 1+4+9+16+25+36+49+64+81+100 = 385</pre></div>
+          <div class="explanation-box"><h4>🎓 Explanation</h4><p><code>i ** 2</code> squares the number. The formula for sum of squares is n(n+1)(2n+1)/6. For n=10: 10×11×21/6 = 385.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <nav class="page-navigation">
+      <a href="a1-strings.html" class="nav-prev">
+        <span class="nav-arrow">←</span>
+        <span class="nav-text">
+          <span class="nav-label">Previous</span>
+          <span class="nav-title">Assignment 1</span>
+        </span>
+      </a>
+      <a href="complete-course.html" class="nav-home">🏠</a>
+      <a href="a3-datastructures.html" class="nav-next">
+        <span class="nav-text">
+          <span class="nav-label">Next</span>
+          <span class="nav-title">Assignment 3</span>
+        </span>
+        <span class="nav-arrow">→</span>
+      </a>
+    </nav>
+  </main>
+
+  <footer><p>🐍 Python Mastery | Instructor Solutions</p></footer>
+  <script>function toggleSolution(btn) { const content = btn.nextElementSibling; content.classList.toggle('show'); btn.textContent = content.classList.contains('show') ? '🔒 Hide Solution' : '💡 Show Solution'; }</script>
+</body>
+</html>

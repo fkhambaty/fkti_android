@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session 1: Introduction to Python | 🐍 Python Mastery</title>
+  <link rel="stylesheet" href="light-theme.css">
+</head>
+<body>
+  <div class="bg-pattern"></div>
+
+  <nav class="course-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-hub">
+        <span>←</span> Python
+      </a>
+      <div class="session-pills">
+        <a href="s1-intro.html" class="pill active">1</a>
+        <a href="s2-datatypes.html" class="pill">2</a>
+        <a href="s3-loops.html" class="pill">3</a>
+        <a href="s4-lists.html" class="pill">4</a>
+        <a href="s5-datastructures.html" class="pill">5</a>
+        <a href="s6-functions1.html" class="pill">6</a>
+        <a href="s7-functions2.html" class="pill">7</a>
+        <a href="s8-oop.html" class="pill">8</a>
+        <a href="s9-numpy.html" class="pill">9</a>
+        <a href="s10-pandas1.html" class="pill">10</a>
+        <a href="s11-pandas2.html" class="pill">11</a>
+        <a href="s12-api-sql.html" class="pill">12</a>
+        <a href="s13-dataviz.html" class="pill">13</a>
+      </div>
+      <a href="student-assignments.html" class="nav-assign">
+        <span>📝</span> Assignments
+      </a>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Session Header -->
+    <header class="session-header">
+      <span class="achievement-badge">🌟 Session 1 of 12</span>
+      <div class="session-number">Session 1</div>
+      <h1>Introduction to Python</h1>
+      <p class="session-subtitle">Your programming journey starts here! Learn what Python is and write your first code.</p>
+    </header>
+
+    <!-- Learning Objectives -->
+    <section class="objectives-card">
+      <h2>🎯 What You'll Learn</h2>
+      <div class="objectives-grid">
+        <div class="objective-item">
+          <span class="objective-icon">🐍</span>
+          <h4>What is Python?</h4>
+          <p>The language that powers AI, web, and more</p>
+        </div>
+        <div class="objective-item">
+          <span class="objective-icon">📦</span>
+          <h4>Variables</h4>
+          <p>Store and retrieve data easily</p>
+        </div>
+        <div class="objective-item">
+          <span class="objective-icon">📝</span>
+          <h4>Naming Rules</h4>
+          <p>7 rules for valid variable names</p>
+        </div>
+        <div class="objective-item">
+          <span class="objective-icon">🖨️</span>
+          <h4>print() & id()</h4>
+          <p>Display output and check memory</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: What is Python -->
+    <section class="content-section">
+      <h2>🐍 What is Python?</h2>
+      
+      <div class="story-box">
+        <div class="story-title">The Robot Butler Story</div>
+        <p>Imagine you have a robot butler. You want it to make you breakfast. But you can't just say "make breakfast" - the robot doesn't understand English!</p>
+        <p>You need to give it very specific instructions:</p>
+        <ol style="margin-left: 1.5rem; margin-top: 0.5rem;">
+          <li>Go to the refrigerator</li>
+          <li>Open the door</li>
+          <li>Pick up 2 eggs</li>
+          <li>Close the door</li>
+          <li>Walk to the stove...</li>
+        </ol>
+        <p class="story-moral">Python is the language we use to give these instructions to computers!</p>
+      </div>
+
+      <div class="character-illustration">
+        <div class="emoji-large">🤖👨‍🍳</div>
+        <p>Your robot butler needs step-by-step instructions in a language it understands!</p>
+      </div>
+
+      <div class="key-concept">
+        <h4>Python was created by Guido van Rossum in 1991</h4>
+        <p>He named it after "Monty Python's Flying Circus" (a comedy show, not the snake! 🐍)</p>
+        <p style="margin-top: 0.5rem;">Python is designed to be:</p>
+        <ul style="margin-left: 1.5rem;">
+          <li><strong>Easy to read</strong> - Code looks almost like English</li>
+          <li><strong>Easy to write</strong> - Less typing than other languages</li>
+          <li><strong>Powerful</strong> - Can do AI, web apps, games, and more!</li>
+        </ul>
+      </div>
+
+      <h3>Three Important Terms to Understand</h3>
+
+      <div class="story-box" style="background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%); border-color: #93c5fd;">
+        <div class="story-title" style="color: #1d4ed8;">1. Interpreted Language</div>
+        <p><strong>Real-Life Analogy:</strong> Think of a UN translator. When someone speaks French, the translator converts it to English <em>line by line, in real-time</em>. They don't wait for the entire speech!</p>
+        <p style="margin-top: 0.5rem;">Python works the same way - it reads your code one line at a time and executes it immediately.</p>
+      </div>
+
+      <div class="story-box" style="background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); border-color: #86efac;">
+        <div class="story-title" style="color: #166534;">2. Object-Oriented Programming (OOP)</div>
+        <p><strong>Real-Life Analogy:</strong> Think of a car. A car has:</p>
+        <ul style="margin-left: 1.5rem;">
+          <li><strong>Properties</strong> (data): color, model, speed</li>
+          <li><strong>Actions</strong> (behaviors): start, stop, accelerate</li>
+        </ul>
+        <p>In Python, we can create "objects" that bundle data and actions together!</p>
+      </div>
+
+      <div class="story-box" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-color: #fcd34d;">
+        <div class="story-title" style="color: #b45309;">3. High-Level Language</div>
+        <p><strong>Real-Life Analogy:</strong> When you drive a car, you just press the gas pedal - you don't manually inject fuel into each cylinder!</p>
+        <p>Python handles all the complex computer operations for you. You focus on <em>what</em> you want, not <em>how</em> the computer does it.</p>
+      </div>
+
+      <div class="fun-fact">
+        <h4>Popular Python IDEs</h4>
+        <p>IDE = Integrated Development Environment (where you write code)</p>
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+          <li><strong>Jupyter Notebook</strong> - Great for learning & data science</li>
+          <li><strong>VS Code</strong> - Free, powerful, lots of features</li>
+          <li><strong>PyCharm</strong> - Professional Python IDE</li>
+          <li><strong>Google Colab</strong> - Free, runs in browser, no installation!</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SECTION: Your First Program -->
+    <section class="content-section">
+      <h2>🎉 Your Very First Python Program!</h2>
+      
+      <p>Every programmer's journey starts with the famous "Hello, World!" program. Let's write yours!</p>
+
+      <div class="code-block-wrapper">
+        <div class="code-header">
+          <span class="lang-badge">Python</span>
+          <span>Your first program!</span>
+        </div>
+        <div class="code-block">
+          <pre><code>print("Hello, World!")</code></pre>
+        </div>
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <div class="output-content">Hello, World!</div>
+        </div>
+      </div>
+
+      <div class="step-by-step">
+        <h4 style="margin-bottom: 1rem;">Let's Break This Down:</h4>
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <strong>print</strong>
+            <p>This is a <em>function</em> - a built-in command that Python understands. Think of it as a megaphone 📢 that displays whatever you give it.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <strong>( )</strong>
+            <p>Parentheses tell Python: "Here comes the input for this function!" Functions always need parentheses.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <strong>"Hello, World!"</strong>
+            <p>Text inside quotes is called a "string". Quotes tell Python "this is just text, don't try to interpret it as code."</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="think-box">
+        <strong>Why quotes?</strong> Without quotes, Python would think <code>Hello</code> is a variable name! Try <code>print(Hello)</code> and you'll get an error because there's no variable called "Hello".
+      </div>
+
+      <h3>More print() Examples</h3>
+      
+      <div class="code-block-wrapper">
+        <div class="code-header">
+          <span class="lang-badge">Python</span>
+        </div>
+        <div class="code-block">
+          <pre><code><span class="comment"># Printing different things</span>
+print("I am learning Python!")
+print(42)                    <span class="comment"># Numbers don't need quotes</span>
+print(3.14159)               <span class="comment"># Decimals work too</span>
+print("The answer is:", 42)  <span class="comment"># Multiple items</span></code></pre>
+        </div>
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <div class="output-content">I am learning Python!
+42
+3.14159
+The answer is: 42</div>
+        </div>
+      </div>
+
+      <div class="tip-box">
+        <strong>About Comments:</strong> Lines starting with <code>#</code> are <em>comments</em>. Python ignores them completely! They're notes for humans reading the code.
+      </div>
+    </section>
+
+    <!-- SECTION: Variables -->
+    <section class="content-section">
+      <h2>📦 Variables: Your Data Storage System</h2>
+      
+      <div class="story-box">
+        <div class="story-title">The Moving Day Story</div>
+        <p>Imagine you're moving to a new house. You pack your things in boxes and <strong>label each box</strong>:</p>
+        <div style="display: flex; justify-content: center; gap: 1rem; margin: 1rem 0; flex-wrap: wrap;">
+          <div style="text-align: center; background: white; padding: 1rem; border-radius: 8px;">
+            <div style="font-size: 2rem;">📦</div>
+            <div style="font-weight: 600; color: var(--python-blue);">BOOKS</div>
+          </div>
+          <div style="text-align: center; background: white; padding: 1rem; border-radius: 8px;">
+            <div style="font-size: 2rem;">📦</div>
+            <div style="font-weight: 600; color: var(--python-blue);">CLOTHES</div>
+          </div>
+          <div style="text-align: center; background: white; padding: 1rem; border-radius: 8px;">
+            <div style="font-size: 2rem;">📦</div>
+            <div style="font-weight: 600; color: var(--python-blue);">KITCHEN</div>
+          </div>
+        </div>
+        <p>When you need something, you look at the labels to find the right box.</p>
+        <p class="story-moral">Variables in Python work exactly the same way! They're labeled containers that store data.</p>
+      </div>
+
+      <div class="key-concept">
+        <h4>Definition: Variable</h4>
+        <p>A <strong>variable</strong> is a named location in memory used to store data. Variables allow programs to store, retrieve, and manipulate values dynamically.</p>
+        <p style="margin-top: 0.5rem;"><strong>Python is dynamically typed</strong> - you don't need to declare what data type a variable will hold!</p>
+      </div>
+
+      <h3>Creating a Variable</h3>
+      <p>To create a variable, you need three things:</p>
+
+      <div style="display: flex; justify-content: center; align-items: center; gap: 1rem; margin: 1.5rem 0; font-family: 'Fira Code', monospace; font-size: 1.3rem; flex-wrap: wrap;">
+        <span style="background: #dbeafe; padding: 0.5rem 1rem; border-radius: 8px; border: 2px solid #60a5fa;">name</span>
+        <span style="color: var(--accent-orange); font-weight: 700;">=</span>
+        <span style="background: #dcfce7; padding: 0.5rem 1rem; border-radius: 8px; border: 2px solid #86efac;">"value"</span>
+      </div>
+      <div style="display: flex; justify-content: center; gap: 2rem; color: var(--text-secondary); font-size: 0.9rem; flex-wrap: wrap;">
+        <span>The label</span>
+        <span>"put inside"</span>
+        <span>What goes in</span>
+      </div>
+
+      <div class="code-block-wrapper">
+        <div class="code-header">
+          <span class="lang-badge">Python</span>
+          <span>Creating variables</span>
+        </div>
+        <div class="code-block">
+          <pre><code><span class="comment"># Creating variables - like labeling boxes!</span>
+name = "Alice"      <span class="comment"># Box "name" contains "Alice"</span>
+age = 25            <span class="comment"># Box "age" contains 25</span>
+height = 5.6        <span class="comment"># Box "height" contains 5.6</span>
+is_student = True   <span class="comment"># Box "is_student" contains True</span>
+
+<span class="comment"># Python is dynamically typed - no type declaration needed!</span>
+growth = 567
+Growth = 345        <span class="comment"># Different variable! (case sensitive)</span></code></pre>
+        </div>
+      </div>
+
+      <div class="memory-diagram">
+        <h4>🧠 What Happens in Computer Memory:</h4>
+        <div class="memory-boxes">
+          <div class="memory-box">
+            <div class="memory-label">name</div>
+            <div class="memory-value">"Alice"</div>
+          </div>
+          <div class="memory-box">
+            <div class="memory-label">age</div>
+            <div class="memory-value">25</div>
+          </div>
+          <div class="memory-box">
+            <div class="memory-label">height</div>
+            <div class="memory-value">5.6</div>
+          </div>
+          <div class="memory-box">
+            <div class="memory-label">is_student</div>
+            <div class="memory-value">True</div>
+          </div>
+        </div>
+      </div>
+
+      <h3>Using Variables</h3>
+      <div class="code-block-wrapper">
+        <div class="code-header">
+          <span class="lang-badge">Python</span>
+        </div>
+        <div class="code-block">
+          <pre><code><span class="comment"># Using variables with print()</span>
+print(name)    <span class="comment"># Opens the "name" box, shows what's inside</span>
+print(age)
+
+<span class="comment"># Combine text and variables</span>
+print("Hello,", name, "! You are", age, "years old.")</code></pre>
+        </div>
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <div class="output-content">Alice
+25
+Hello, Alice ! You are 25 years old.</div>
+        </div>
+      </div>
+
+      <div class="warning-box">
+        <strong>Critical Difference!</strong>
+        <ul style="margin-left: 1.5rem;">
+          <li><code>print("name")</code> → prints the word "name"</li>
+          <li><code>print(name)</code> → prints what's INSIDE the variable name ("Alice")</li>
+        </ul>
+        <p>Quotes = literal text. No quotes = look up the variable!</p>
+      </div>
+
+      <h3>The id() Function - Memory Address</h3>
+      <div class="code-block-wrapper">
+        <div class="code-header">
+          <span class="lang-badge">Python</span>
+        </div>
+        <div class="code-block">
+          <pre><code><span class="comment"># id() returns the unique memory address of a variable</span>
+growth = 567
+Growth = 345
+
+print(id(growth))  <span class="comment"># Memory location of growth</span>
+print(id(Growth))  <span class="comment"># Different location! (different variable)</span></code></pre>
+        </div>
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <div class="output-content">140234567890
+140234567920</div>
+        </div>
+      </div>
+
+      <div class="think-box">
+        <strong>Why different IDs?</strong> <code>growth</code> and <code>Growth</code> are two completely different variables because Python is case-sensitive! They're stored in different memory locations.
+      </div>
+    </section>
+
+    <!-- SECTION: Variable Naming Rules -->
+    <section class="content-section">
+      <h2>📝 Variable Naming Rules: The 7 Golden Rules</h2>
+      
+      <div class="story-box">
+        <div class="story-title">The Address Label Story</div>
+        <p>Imagine writing an address on a package:</p>
+        <ul style="margin-left: 1.5rem;">
+          <li>✅ "123 Main Street" - Clear and deliverable!</li>
+          <li>❌ "###@@@!!!" - The postal service would be confused!</li>
+        </ul>
+        <p class="story-moral">Python has similar rules to avoid confusion!</p>
+      </div>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Rule</th>
+            <th>✅ Correct</th>
+            <th>❌ Wrong</th>
+            <th>Why?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1. Start with letter or underscore</td>
+            <td><code>name</code>, <code>_private</code></td>
+            <td><code>1name</code></td>
+            <td>Numbers first confuse Python</td>
+          </tr>
+          <tr>
+            <td>2. Only letters, numbers, underscores</td>
+            <td><code>my_name2</code></td>
+            <td><code>my-name</code>, <code>any@</code></td>
+            <td>Special chars have meanings</td>
+          </tr>
+          <tr>
+            <td>3. No spaces allowed</td>
+            <td><code>machine_learning</code></td>
+            <td><code>machine learning</code></td>
+            <td>Space = end of variable</td>
+          </tr>
+          <tr>
+            <td>4. Case sensitive!</td>
+            <td><code>age</code> ≠ <code>Age</code> ≠ <code>AGE</code></td>
+            <td>-</td>
+            <td>These are 3 different boxes!</td>
+          </tr>
+          <tr>
+            <td>5. No reserved words</td>
+            <td><code>else1</code>, <code>my_class</code></td>
+            <td><code>else</code>, <code>if</code>, <code>for</code></td>
+            <td>Reserved for Python</td>
+          </tr>
+          <tr>
+            <td>6. No special characters</td>
+            <td><code>data_2025</code></td>
+            <td><code>data)</code>, <code>name$</code></td>
+            <td>Only _ is allowed</td>
+          </tr>
+          <tr>
+            <td>7. Be descriptive</td>
+            <td><code>student_age</code></td>
+            <td><code>x</code></td>
+            <td>Makes code readable!</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="code-block-wrapper">
+        <div class="code-header">
+          <span class="lang-badge">Python</span>
+          <span>Valid vs Invalid Names</span>
+        </div>
+        <div class="code-block">
+          <pre><code><span class="comment"># ✅ VALID variable names</span>
+hello1 = "how are you"
+machine_learning = 45
+_year = 2023
+aravind = 12345
+else1 = 567          <span class="comment"># "else1" is fine, "else" is not</span>
+t1234 = "tarun"
+__DATA = 45
+
+<span class="comment"># ❌ INVALID - These will cause errors!</span>
+<span class="comment"># 1233 = 2024       # Can't start with number</span>
+<span class="comment"># machine learning = 344  # No spaces!</span>
+<span class="comment"># data) = 34        # No special chars!</span>
+<span class="comment"># any@ = 345        # @ not allowed</span></code></pre>
+        </div>
+      </div>
+
+      <div class="code-block-wrapper">
+        <div class="code-header">
+          <span class="lang-badge">Python</span>
+          <span>Case Sensitivity Demo</span>
+        </div>
+        <div class="code-block">
+          <pre><code><span class="comment"># These are THREE DIFFERENT variables!</span>
+age = 25    <span class="comment"># Variable 1</span>
+Age = 30    <span class="comment"># Variable 2</span>
+AGE = 35    <span class="comment"># Variable 3</span>
+
+print(age)  
+print(Age)  
+print(AGE)
+
+print(id(age))
+print(id(Age))
+print(id(AGE))  <span class="comment"># All different memory addresses!</span></code></pre>
+        </div>
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <div class="output-content">25
+30
+35
+140234567890
+140234567920
+140234567950</div>
+        </div>
+      </div>
+
+      <div class="quiz-box">
+        <h4>Quick Check: Which are valid variable names?</h4>
+        <ul class="quiz-list">
+          <li><code>myVariable</code> <span class="correct">✅ Valid - letters only</span></li>
+          <li><code>2nd_place</code> <span class="wrong">❌ Invalid - starts with number</span></li>
+          <li><code>_secret</code> <span class="correct">✅ Valid - underscore at start is OK</span></li>
+          <li><code>user-name</code> <span class="wrong">❌ Invalid - hyphen not allowed</span></li>
+          <li><code>for</code> <span class="wrong">❌ Invalid - reserved word</span></li>
+          <li><code>deep_learning45</code> <span class="correct">✅ Valid - letters, numbers, underscore</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SECTION: Assignment Operators -->
+    <section class="content-section">
+      <h2>🔄 The Assignment Operator (=)</h2>
+      
+      <div class="key-concept">
+        <h4>Important: = Does NOT Mean "Equals" in Python!</h4>
+        <ul style="margin-left: 1.5rem;">
+          <li><code>=</code> means <strong>"put this value into this variable"</strong> (assignment)</li>
+          <li><code>==</code> means <strong>"are these equal?"</strong> (comparison)</li>
+        </ul>
+      </div>
+
+      <div class="character-illustration">
+        <div class="emoji-large">📦⬅️🎁</div>
+        <p>Think of = as an arrow pointing LEFT: take the value on the right and PUT IT INTO the variable on the left</p>
+      </div>
+
+      <h3>Reassigning Variables</h3>
+      <div class="code-block-wrapper">
+        <div class="code-header">
+          <span class="lang-badge">Python</span>
+        </div>
+        <div class="code-block">
+          <pre><code><span class="comment"># Variables can change! (That's why they're called "variables")</span>
+age = 20
+print(age)
+
+age = 21     <span class="comment"># Replace the old value with new one</span>
+print(age)
+
+age = age + 1  <span class="comment"># Take current age, add 1, put result back</span>
+print(age)</code></pre>
+        </div>
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <div class="output-content">20
+21
+22</div>
+        </div>
+      </div>
+
+      <div class="think-box">
+        <strong>How does <code>age = age + 1</code> work?</strong>
+        <ol style="margin-left: 1.5rem; margin-top: 0.5rem;">
+          <li>Look up current value of <code>age</code> → 21</li>
+          <li>Calculate 21 + 1 → 22</li>
+          <li>Store 22 back into <code>age</code></li>
+        </ol>
+      </div>
+
+      <h3>Multiple Assignment - Python's Superpowers! ✨</h3>
+      <div class="code-block-wrapper">
+        <div class="code-header">
+          <span class="lang-badge">Python</span>
+        </div>
+        <div class="code-block">
+          <pre><code><span class="comment"># Assign multiple variables at once</span>
+rahul, suresh, jhon, tarun = 65, 67, 88, 99
+print(jhon)
+
+<span class="comment"># Same value to multiple variables</span>
+tarun = tanish = tanamyi = 100
+print(tanamyi)</code></pre>
+        </div>
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <div class="output-content">88
+100</div>
+        </div>
+      </div>
+
+      <div class="code-block-wrapper">
+        <div class="code-header">
+          <span class="lang-badge">Python</span>
+          <span>The Magic Swap! ✨</span>
+        </div>
+        <div class="code-block">
+          <pre><code>a = 5
+b = 10
+print(f"Before: a={a}, b={b}")
+
+<span class="comment"># In other languages, you'd need a temporary variable</span>
+<span class="comment"># Python makes it elegant!</span>
+a, b = b, a
+
+print(f"After: a={a}, b={b}")</code></pre>
+        </div>
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <div class="output-content">Before: a=5, b=10
+After: a=10, b=5</div>
+        </div>
+      </div>
+
+      <div class="fun-fact">
+        <h4>Python's Elegant Swap</h4>
+        <p>In other languages like C or Java, swapping requires a temporary variable. Python's multiple assignment makes it a one-liner! This is one reason developers love Python.</p>
+      </div>
+
+      <h3>Type Conversion (Basic)</h3>
+      <div class="code-block-wrapper">
+        <div class="code-header">
+          <span class="lang-badge">Python</span>
+        </div>
+        <div class="code-block">
+          <pre><code>age = 56
+print(type(age))     <span class="comment"># &lt;class 'int'&gt;</span>
+
+age = float(age)     <span class="comment"># Convert to float (reallocation)</span>
+print(age)
+print(type(age))     <span class="comment"># &lt;class 'float'&gt;</span></code></pre>
+        </div>
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <div class="output-content">&lt;class 'int'&gt;
+56.0
+&lt;class 'float'&gt;</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Summary Section -->
+    <section class="summary-section">
+      <h2>📋 Session 1 Summary</h2>
+      <div class="summary-grid">
+        <div class="summary-item">
+          <h4>🐍 Python Is</h4>
+          <p>An interpreted, OOP, high-level language that's easy to learn and powerful!</p>
+        </div>
+        <div class="summary-item">
+          <h4>📦 Variables Are</h4>
+          <p>Named containers that store data. Create with <code>name = value</code></p>
+        </div>
+        <div class="summary-item">
+          <h4>🖨️ print()</h4>
+          <p>Displays output. Quotes for text, no quotes for variables.</p>
+        </div>
+        <div class="summary-item">
+          <h4>🔍 id()</h4>
+          <p>Returns the memory address of a variable.</p>
+        </div>
+        <div class="summary-item">
+          <h4>📝 Naming Rules</h4>
+          <p>Start with letter/underscore, no spaces, case sensitive!</p>
+        </div>
+        <div class="summary-item">
+          <h4>🔄 Assignment</h4>
+          <p>= puts value in variable. Multiple assignment is powerful!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Milestone -->
+    <div class="milestone-card">
+      <h3>🎉 Congratulations!</h3>
+      <p>You've completed Session 1! You now know what Python is, how to create variables, and the rules for naming them. You're officially a Python programmer!</p>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="page-nav">
+      <span class="nav-disabled">← Previous</span>
+      <a href="complete-course.html" class="nav-home">🏠 Course Home</a>
+      <a href="s2-datatypes.html" class="nav-next">Session 2: Data Types →</a>
+    </nav>
+  </main>
+
+  <footer>
+    <div class="footer-mascot">🐍</div>
+    <p><strong>Python Mastery</strong> - Session 1 Complete!</p>
+    <p style="font-size: 0.85rem; color: var(--text-muted);">Keep going - you're doing great! 💪</p>
+  </footer>
+</body>
+</html>
+

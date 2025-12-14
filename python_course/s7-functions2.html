@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session 7: Functions Part II | 🐍 Python Mastery</title>
+  <link rel="stylesheet" href="light-theme.css">
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-content">
+      <a href="complete-course.html" class="logo">🐍 Python Mastery</a>
+      <div class="session-nav">
+        <a href="s1-intro.html" class="nav-link">1</a>
+        <a href="s2-datatypes.html" class="nav-link">2</a>
+        <a href="s3-loops.html" class="nav-link">3</a>
+        <a href="s4-lists.html" class="nav-link">4</a>
+        <a href="s5-datastructures.html" class="nav-link">5</a>
+        <a href="s6-functions1.html" class="nav-link">6</a>
+        <a href="s7-functions2.html" class="nav-link active">7</a>
+        <a href="s8-oop.html" class="nav-link">8</a>
+        <a href="s9-numpy.html" class="nav-link">9</a>
+        <a href="s10-pandas1.html" class="nav-link">10</a>
+        <a href="s11-pandas2.html" class="nav-link">11</a>
+        <a href="s12-api-sql.html" class="nav-link">12</a>
+        <a href="assignments.html" class="nav-link assignment">📝</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <header class="session-header">
+      <div class="session-badge">Session 7</div>
+      <h1>🔧 Functions Part II</h1>
+      <p class="session-subtitle">Advanced function concepts and real-world applications</p>
+      <div class="progress-info">
+        <span>📚 8 Topics</span>
+        <span>⏱️ 50 min read</span>
+        <span>🎯 Intermediate Level</span>
+      </div>
+    </header>
+
+    <!-- OVERVIEW -->
+    <section class="overview-card">
+      <h2>🗺️ What You'll Learn</h2>
+      <div class="overview-grid">
+        <div class="overview-item">
+          <span class="overview-icon">📦</span>
+          <span>*args (Arbitrary Arguments)</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">🏷️</span>
+          <span>**kwargs (Keyword Args)</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">⚡</span>
+          <span>Lambda Functions</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">🗺️</span>
+          <span>map() Function</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">🔍</span>
+          <span>filter() Function</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">🧮</span>
+          <span>Calculator Project</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- *ARGS SECTION -->
+    <section class="content-section">
+      <h2>📦 *args - Variable Positional Arguments</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">7.1</span>
+          <h3>🌟 Accept Any Number of Arguments</h3>
+        </div>
+
+        <div class="explanation">
+          <p><code>*args</code> allows a function to accept any number of positional arguments. The asterisk (*) packs all extra arguments into a tuple!</p>
+        </div>
+
+        <div class="visual-box">
+          <h4>🎁 *args = A Gift Box for Extra Arguments</h4>
+          <pre style="text-align: center; font-size: 1.1rem;">
+    def add(*args):
+              │
+              └── All arguments get packed into a tuple!
+    
+    add(1, 2)        → args = (1, 2)
+    add(1, 2, 3)     → args = (1, 2, 3)
+    add(1, 2, 3, 4, 5) → args = (1, 2, 3, 4, 5)
+    
+    One function, unlimited arguments! 🎉
+          </pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># *args from Session 7</span>
+<span class="keyword">def</span> <span class="function">add_all</span>(*args):
+    <span class="string">"""Add any number of numbers together"""</span>
+    <span class="function">print</span>(<span class="string">"Received args:"</span>, args)
+    <span class="function">print</span>(<span class="string">"Type:"</span>, <span class="function">type</span>(args))
+    <span class="keyword">return</span> <span class="function">sum</span>(args)
+
+<span class="comment"># Call with different numbers of arguments</span>
+<span class="function">print</span>(<span class="string">"Sum of 1, 2:"</span>, add_all(<span class="number">1</span>, <span class="number">2</span>))
+<span class="function">print</span>()
+<span class="function">print</span>(<span class="string">"Sum of 1, 2, 3, 4, 5:"</span>, add_all(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>))
+<span class="function">print</span>()
+<span class="function">print</span>(<span class="string">"Sum of 10, 20, 30, 40, 50, 60:"</span>, add_all(<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>, <span class="number">50</span>, <span class="number">60</span>))</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Received args: (1, 2)
+Type: &lt;class 'tuple'&gt;
+Sum of 1, 2: 3
+
+Received args: (1, 2, 3, 4, 5)
+Type: &lt;class 'tuple'&gt;
+Sum of 1, 2, 3, 4, 5: 15
+
+Received args: (10, 20, 30, 40, 50, 60)
+Type: &lt;class 'tuple'&gt;
+Sum of 10, 20, 30, 40, 50, 60: 210</pre>
+        </div>
+
+        <h4>🔗 Combining Regular Parameters with *args</h4>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Regular parameter + *args from Session 7</span>
+<span class="keyword">def</span> <span class="function">greet_all</span>(greeting, *names):
+    <span class="string">"""Greet multiple people with same greeting"""</span>
+    <span class="keyword">for</span> <span class="variable">name</span> <span class="keyword">in</span> names:
+        <span class="function">print</span>(<span class="string">f"</span>{greeting}<span class="string">, </span>{name}<span class="string">!"</span>)
+
+greet_all(<span class="string">"Hello"</span>, <span class="string">"Alice"</span>, <span class="string">"Bob"</span>, <span class="string">"Charlie"</span>)
+<span class="function">print</span>()
+greet_all(<span class="string">"Good morning"</span>, <span class="string">"Team"</span>)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Hello, Alice!
+Hello, Bob!
+Hello, Charlie!
+
+Good morning, Team!</pre>
+        </div>
+
+        <div class="info-box tip">
+          <div class="info-header">
+            <span class="info-icon">💡</span>
+            <span>The Name "args" is Convention</span>
+          </div>
+          <div class="info-content">
+            <p>You can use any name after the asterisk: <code>*numbers</code>, <code>*items</code>, <code>*values</code>. The <code>*</code> is what matters!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- **KWARGS SECTION -->
+    <section class="content-section">
+      <h2>🏷️ **kwargs - Variable Keyword Arguments</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">7.2</span>
+          <h3>📝 Accept Named Arguments</h3>
+        </div>
+
+        <div class="explanation">
+          <p><code>**kwargs</code> allows a function to accept any number of keyword arguments. The double asterisk (**) packs them into a dictionary!</p>
+        </div>
+
+        <div class="visual-box">
+          <h4>📖 **kwargs = A Dictionary of Named Arguments</h4>
+          <pre style="text-align: center; font-size: 1rem;">
+    def func(**kwargs):
+               │
+               └── All keyword arguments become a dictionary!
+    
+    func(name="Alice", age=25)
+        → kwargs = {"name": "Alice", "age": 25}
+    
+    func(a=1, b=2, c=3, d=4)
+        → kwargs = {"a": 1, "b": 2, "c": 3, "d": 4}
+          </pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># **kwargs from Session 7</span>
+<span class="keyword">def</span> <span class="function">print_info</span>(**kwargs):
+    <span class="string">"""Print any information passed as keyword arguments"""</span>
+    <span class="function">print</span>(<span class="string">"Received kwargs:"</span>, kwargs)
+    <span class="function">print</span>(<span class="string">"Type:"</span>, <span class="function">type</span>(kwargs))
+    <span class="function">print</span>()
+    <span class="keyword">for</span> <span class="variable">key</span>, <span class="variable">value</span> <span class="keyword">in</span> kwargs.items():
+        <span class="function">print</span>(<span class="string">f"  </span>{key}<span class="string">: </span>{value}<span class="string">"</span>)
+
+<span class="comment"># Call with different keyword arguments</span>
+print_info(name=<span class="string">"Alice"</span>, age=<span class="number">25</span>, city=<span class="string">"NYC"</span>)
+<span class="function">print</span>()
+print_info(product=<span class="string">"Laptop"</span>, price=<span class="number">999</span>, brand=<span class="string">"Dell"</span>, stock=<span class="number">50</span>)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Received kwargs: {'name': 'Alice', 'age': 25, 'city': 'NYC'}
+Type: &lt;class 'dict'&gt;
+
+  name: Alice
+  age: 25
+  city: NYC
+
+Received kwargs: {'product': 'Laptop', 'price': 999, 'brand': 'Dell', 'stock': 50}
+Type: &lt;class 'dict'&gt;
+
+  product: Laptop
+  price: 999
+  brand: Dell
+  stock: 50</pre>
+        </div>
+      </div>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">7.3</span>
+          <h3>🔗 Combining *args and **kwargs</h3>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Combining all argument types from Session 7</span>
+<span class="keyword">def</span> <span class="function">super_function</span>(required, *args, **kwargs):
+    <span class="string">"""Demonstrates all argument types"""</span>
+    <span class="function">print</span>(<span class="string">"Required:"</span>, required)
+    <span class="function">print</span>(<span class="string">"Args (extra positional):"</span>, args)
+    <span class="function">print</span>(<span class="string">"Kwargs (extra keyword):"</span>, kwargs)
+
+super_function(<span class="string">"Hello"</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, name=<span class="string">"Alice"</span>, age=<span class="number">25</span>)
+
+<span class="comment"># Practical example: flexible print function</span>
+<span class="keyword">def</span> <span class="function">custom_print</span>(*messages, sep=<span class="string">" | "</span>, prefix=<span class="string">""</span>):
+    <span class="string">"""Print messages with custom separator and prefix"""</span>
+    <span class="variable">output</span> = sep.join(<span class="function">str</span>(m) <span class="keyword">for</span> m <span class="keyword">in</span> messages)
+    <span class="function">print</span>(<span class="string">f"</span>{prefix}<span class="string">{output}"</span>)
+
+<span class="function">print</span>(<span class="string">"\\nCustom print examples:"</span>)
+custom_print(<span class="string">"Hello"</span>, <span class="string">"World"</span>, <span class="string">"Python"</span>)
+custom_print(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, sep=<span class="string">" → "</span>)
+custom_print(<span class="string">"Error occurred"</span>, prefix=<span class="string">"⚠️ "</span>)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Required: Hello
+Args (extra positional): (1, 2, 3)
+Kwargs (extra keyword): {'name': 'Alice', 'age': 25}
+
+Custom print examples:
+Hello | World | Python
+1 → 2 → 3
+⚠️ Error occurred</pre>
+        </div>
+
+        <div class="info-box warning">
+          <div class="info-header">
+            <span class="info-icon">⚠️</span>
+            <span>Order Matters!</span>
+          </div>
+          <div class="info-content">
+            <p>Arguments must be in this order:</p>
+            <ol>
+              <li>Regular positional arguments</li>
+              <li>*args</li>
+              <li>Keyword arguments with defaults</li>
+              <li>**kwargs</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LAMBDA FUNCTIONS -->
+    <section class="content-section">
+      <h2>⚡ Lambda Functions</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">7.4</span>
+          <h3>🎯 Anonymous Functions</h3>
+        </div>
+
+        <div class="explanation">
+          <p>Lambda functions are small, one-line anonymous functions. They're perfect for simple operations that don't need a full function definition!</p>
+        </div>
+
+        <div class="visual-box">
+          <h4>🔄 Regular Function vs Lambda</h4>
+          <pre style="text-align: center; font-size: 1rem;">
+    REGULAR FUNCTION (3 lines)        LAMBDA (1 line)
+    ──────────────────────            ───────────────
+    def square(x):                    square = lambda x: x**2
+        return x**2
+                                      
+    def add(a, b):                    add = lambda a, b: a + b
+        return a + b
+    
+    Same result, less code! ⚡
+          </pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Lambda functions from Session 7/9</span>
+
+<span class="comment"># Basic lambda</span>
+<span class="variable">square</span> = <span class="keyword">lambda</span> x: x ** <span class="number">2</span>
+<span class="function">print</span>(<span class="string">"Square of 5:"</span>, square(<span class="number">5</span>))
+
+<span class="comment"># Lambda with multiple parameters</span>
+<span class="variable">add</span> = <span class="keyword">lambda</span> a, b: a + b
+<span class="function">print</span>(<span class="string">"3 + 4 ="</span>, add(<span class="number">3</span>, <span class="number">4</span>))
+
+<span class="variable">multiply</span> = <span class="keyword">lambda</span> x, y: x * y
+<span class="function">print</span>(<span class="string">"6 × 7 ="</span>, multiply(<span class="number">6</span>, <span class="number">7</span>))
+
+<span class="comment"># Lambda with conditional</span>
+<span class="variable">is_even</span> = <span class="keyword">lambda</span> x: <span class="string">"Even"</span> <span class="keyword">if</span> x % <span class="number">2</span> == <span class="number">0</span> <span class="keyword">else</span> <span class="string">"Odd"</span>
+<span class="function">print</span>(<span class="string">"10 is:"</span>, is_even(<span class="number">10</span>))
+<span class="function">print</span>(<span class="string">"7 is:"</span>, is_even(<span class="number">7</span>))
+
+<span class="comment"># Lambda with no parameters</span>
+<span class="variable">greet</span> = <span class="keyword">lambda</span>: <span class="string">"Hello, World!"</span>
+<span class="function">print</span>(greet())</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Square of 5: 25
+3 + 4 = 7
+6 × 7 = 42
+10 is: Even
+7 is: Odd
+Hello, World!</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAP FUNCTION -->
+    <section class="content-section">
+      <h2>🗺️ The map() Function</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">7.5</span>
+          <h3>🔄 Apply Function to Every Item</h3>
+        </div>
+
+        <div class="explanation">
+          <p><code>map()</code> applies a function to every item in a sequence and returns the results!</p>
+        </div>
+
+        <div class="visual-box">
+          <h4>🗺️ How map() Works</h4>
+          <pre style="text-align: center; font-size: 1.1rem;">
+    map(function, sequence)
+    
+    numbers = [1, 2, 3, 4, 5]
+    
+         1   2   3   4   5
+         │   │   │   │   │
+         ▼   ▼   ▼   ▼   ▼
+       ┌───────────────────┐
+       │  square function  │
+       └───────────────────┘
+         │   │   │   │   │
+         ▼   ▼   ▼   ▼   ▼
+         1   4   9  16  25
+          </pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># map() examples from Session 7/9</span>
+
+<span class="comment"># Square all numbers</span>
+<span class="variable">numbers</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]
+<span class="variable">squared</span> = <span class="function">list</span>(<span class="function">map</span>(<span class="keyword">lambda</span> x: x**<span class="number">2</span>, numbers))
+<span class="function">print</span>(<span class="string">"Squared:"</span>, squared)
+
+<span class="comment"># Convert to uppercase</span>
+<span class="variable">names</span> = [<span class="string">"alice"</span>, <span class="string">"bob"</span>, <span class="string">"charlie"</span>]
+<span class="variable">upper_names</span> = <span class="function">list</span>(<span class="function">map</span>(<span class="function">str</span>.upper, names))
+<span class="function">print</span>(<span class="string">"Uppercase:"</span>, upper_names)
+
+<span class="comment"># Convert strings to integers</span>
+<span class="variable">str_numbers</span> = [<span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>, <span class="string">"4"</span>, <span class="string">"5"</span>]
+<span class="variable">int_numbers</span> = <span class="function">list</span>(<span class="function">map</span>(<span class="function">int</span>, str_numbers))
+<span class="function">print</span>(<span class="string">"As integers:"</span>, int_numbers)
+
+<span class="comment"># Using a defined function</span>
+<span class="keyword">def</span> <span class="function">add_ten</span>(x):
+    <span class="keyword">return</span> x + <span class="number">10</span>
+
+<span class="variable">result</span> = <span class="function">list</span>(<span class="function">map</span>(add_ten, numbers))
+<span class="function">print</span>(<span class="string">"Add 10:"</span>, result)
+
+<span class="comment"># map with multiple sequences</span>
+<span class="variable">list1</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]
+<span class="variable">list2</span> = [<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>]
+<span class="variable">sums</span> = <span class="function">list</span>(<span class="function">map</span>(<span class="keyword">lambda</span> x, y: x + y, list1, list2))
+<span class="function">print</span>(<span class="string">"Pairwise sums:"</span>, sums)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Squared: [1, 4, 9, 16, 25]
+Uppercase: ['ALICE', 'BOB', 'CHARLIE']
+As integers: [1, 2, 3, 4, 5]
+Add 10: [11, 12, 13, 14, 15]
+Pairwise sums: [11, 22, 33]</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- FILTER FUNCTION -->
+    <section class="content-section">
+      <h2>🔍 The filter() Function</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">7.6</span>
+          <h3>🎯 Keep Only Matching Items</h3>
+        </div>
+
+        <div class="explanation">
+          <p><code>filter()</code> keeps only items that pass a test (return True)!</p>
+        </div>
+
+        <div class="visual-box">
+          <h4>🔍 How filter() Works</h4>
+          <pre style="text-align: center; font-size: 1.1rem;">
+    filter(function, sequence)
+    
+    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    
+    Filter: is_even (x % 2 == 0)
+    
+    1❌ 2✅ 3❌ 4✅ 5❌ 6✅ 7❌ 8✅ 9❌ 10✅
+    
+    Result: [2, 4, 6, 8, 10]
+          </pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># filter() examples from Session 7/9</span>
+
+<span class="comment"># Filter even numbers</span>
+<span class="variable">numbers</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]
+<span class="variable">evens</span> = <span class="function">list</span>(<span class="function">filter</span>(<span class="keyword">lambda</span> x: x % <span class="number">2</span> == <span class="number">0</span>, numbers))
+<span class="function">print</span>(<span class="string">"Even numbers:"</span>, evens)
+
+<span class="comment"># Filter odd numbers</span>
+<span class="variable">odds</span> = <span class="function">list</span>(<span class="function">filter</span>(<span class="keyword">lambda</span> x: x % <span class="number">2</span> != <span class="number">0</span>, numbers))
+<span class="function">print</span>(<span class="string">"Odd numbers:"</span>, odds)
+
+<span class="comment"># Filter numbers greater than 5</span>
+<span class="variable">greater_than_5</span> = <span class="function">list</span>(<span class="function">filter</span>(<span class="keyword">lambda</span> x: x > <span class="number">5</span>, numbers))
+<span class="function">print</span>(<span class="string">"Greater than 5:"</span>, greater_than_5)
+
+<span class="comment"># Filter non-empty strings</span>
+<span class="variable">words</span> = [<span class="string">"hello"</span>, <span class="string">""</span>, <span class="string">"world"</span>, <span class="string">""</span>, <span class="string">"python"</span>, <span class="string">""</span>]
+<span class="variable">non_empty</span> = <span class="function">list</span>(<span class="function">filter</span>(<span class="keyword">None</span>, words))  <span class="comment"># None filters falsy values</span>
+<span class="function">print</span>(<span class="string">"Non-empty:"</span>, non_empty)
+
+<span class="comment"># Filter with a defined function</span>
+<span class="keyword">def</span> <span class="function">is_positive</span>(x):
+    <span class="keyword">return</span> x > <span class="number">0</span>
+
+<span class="variable">mixed</span> = [-<span class="number">5</span>, <span class="number">3</span>, -<span class="number">2</span>, <span class="number">8</span>, -<span class="number">1</span>, <span class="number">4</span>, <span class="number">0</span>]
+<span class="variable">positives</span> = <span class="function">list</span>(<span class="function">filter</span>(is_positive, mixed))
+<span class="function">print</span>(<span class="string">"Positive numbers:"</span>, positives)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Even numbers: [2, 4, 6, 8, 10]
+Odd numbers: [1, 3, 5, 7, 9]
+Greater than 5: [6, 7, 8, 9, 10]
+Non-empty: ['hello', 'world', 'python']
+Positive numbers: [3, 8, 4]</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- REDUCE FUNCTION -->
+    <section class="content-section">
+      <h2>🔗 The reduce() Function</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">7.7</span>
+          <h3>📊 Combine All Items into One</h3>
+        </div>
+
+        <div class="explanation">
+          <p><code>reduce()</code> takes a list and combines all items into a single value! You need to import it from <code>functools</code>.</p>
+        </div>
+
+        <div class="visual-box">
+          <h4>🔗 How reduce() Works</h4>
+          <pre style="text-align: center; font-size: 1.1rem;">
+    reduce(function, [1, 2, 3, 4, 5])
+    
+    Step 1:  1 + 2 = 3
+    Step 2:  3 + 3 = 6
+    Step 3:  6 + 4 = 10
+    Step 4: 10 + 5 = 15  ← Final result!
+    
+    Keeps applying function until one value remains.
+          </pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># reduce() examples from Session 7/9</span>
+<span class="keyword">from</span> functools <span class="keyword">import</span> reduce
+
+<span class="comment"># Sum all numbers</span>
+<span class="variable">numbers</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]
+<span class="variable">total</span> = reduce(<span class="keyword">lambda</span> a, b: a + b, numbers)
+<span class="function">print</span>(<span class="string">"Sum:"</span>, total)
+
+<span class="comment"># Multiply all numbers</span>
+<span class="variable">product</span> = reduce(<span class="keyword">lambda</span> a, b: a * b, numbers)
+<span class="function">print</span>(<span class="string">"Product:"</span>, product)
+
+<span class="comment"># Find maximum</span>
+<span class="variable">maximum</span> = reduce(<span class="keyword">lambda</span> a, b: a <span class="keyword">if</span> a > b <span class="keyword">else</span> b, numbers)
+<span class="function">print</span>(<span class="string">"Maximum:"</span>, maximum)
+
+<span class="comment"># Concatenate strings</span>
+<span class="variable">words</span> = [<span class="string">"Python"</span>, <span class="string">" is"</span>, <span class="string">" awesome"</span>, <span class="string">"!"</span>]
+<span class="variable">sentence</span> = reduce(<span class="keyword">lambda</span> a, b: a + b, words)
+<span class="function">print</span>(<span class="string">"Sentence:"</span>, sentence)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Sum: 15
+Product: 120
+Maximum: 5
+Sentence: Python is awesome!</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRACTICAL PROJECT -->
+    <section class="content-section">
+      <h2>🧮 Practical Project: Calculator</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">7.8</span>
+          <h3>🖩 Building a Calculator</h3>
+        </div>
+
+        <div class="explanation">
+          <p>Let's combine everything we've learned to build a functional calculator!</p>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Calculator from Session 7</span>
+<span class="keyword">def</span> <span class="function">add</span>(a, b):
+    <span class="string">"""Add two numbers"""</span>
+    <span class="keyword">return</span> a + b
+
+<span class="keyword">def</span> <span class="function">subtract</span>(a, b):
+    <span class="string">"""Subtract b from a"""</span>
+    <span class="keyword">return</span> a - b
+
+<span class="keyword">def</span> <span class="function">multiply</span>(a, b):
+    <span class="string">"""Multiply two numbers"""</span>
+    <span class="keyword">return</span> a * b
+
+<span class="keyword">def</span> <span class="function">divide</span>(a, b):
+    <span class="string">"""Divide a by b"""</span>
+    <span class="keyword">if</span> b == <span class="number">0</span>:
+        <span class="keyword">return</span> <span class="string">"Error: Division by zero!"</span>
+    <span class="keyword">return</span> a / b
+
+<span class="keyword">def</span> <span class="function">calculator</span>(operation, a, b):
+    <span class="string">"""Perform calculation based on operation"""</span>
+    <span class="variable">operations</span> = {
+        <span class="string">"+"</span>: add,
+        <span class="string">"-"</span>: subtract,
+        <span class="string">"*"</span>: multiply,
+        <span class="string">"/"</span>: divide
+    }
+    
+    <span class="keyword">if</span> operation <span class="keyword">in</span> operations:
+        <span class="keyword">return</span> operations[operation](a, b)
+    <span class="keyword">else</span>:
+        <span class="keyword">return</span> <span class="string">"Invalid operation!"</span>
+
+<span class="comment"># Test the calculator</span>
+<span class="function">print</span>(<span class="string">"10 + 5 ="</span>, calculator(<span class="string">"+"</span>, <span class="number">10</span>, <span class="number">5</span>))
+<span class="function">print</span>(<span class="string">"10 - 5 ="</span>, calculator(<span class="string">"-"</span>, <span class="number">10</span>, <span class="number">5</span>))
+<span class="function">print</span>(<span class="string">"10 * 5 ="</span>, calculator(<span class="string">"*"</span>, <span class="number">10</span>, <span class="number">5</span>))
+<span class="function">print</span>(<span class="string">"10 / 5 ="</span>, calculator(<span class="string">"/"</span>, <span class="number">10</span>, <span class="number">5</span>))
+<span class="function">print</span>(<span class="string">"10 / 0 ="</span>, calculator(<span class="string">"/"</span>, <span class="number">10</span>, <span class="number">0</span>))</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>10 + 5 = 15
+10 - 5 = 5
+10 * 5 = 50
+10 / 5 = 2.0
+10 / 0 = Error: Division by zero!</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUICK REFERENCE -->
+    <section class="content-section">
+      <h2>📋 Quick Reference</h2>
+      
+      <div class="reference-card">
+        <table class="reference-table">
+          <thead>
+            <tr>
+              <th>Concept</th>
+              <th>Syntax</th>
+              <th>Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>*args</code></td>
+              <td>def f(*args):</td>
+              <td>Packs extra positional args into tuple</td>
+            </tr>
+            <tr>
+              <td><code>**kwargs</code></td>
+              <td>def f(**kwargs):</td>
+              <td>Packs extra keyword args into dict</td>
+            </tr>
+            <tr>
+              <td>Lambda</td>
+              <td>lambda x: x*2</td>
+              <td>Anonymous one-line function</td>
+            </tr>
+            <tr>
+              <td><code>map()</code></td>
+              <td>map(func, list)</td>
+              <td>Apply function to each item</td>
+            </tr>
+            <tr>
+              <td><code>filter()</code></td>
+              <td>filter(func, list)</td>
+              <td>Keep items that return True</td>
+            </tr>
+            <tr>
+              <td><code>reduce()</code></td>
+              <td>reduce(func, list)</td>
+              <td>Combine all items into one</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- NAVIGATION -->
+    <nav class="page-navigation">
+      <a href="s6-functions1.html" class="nav-prev">
+        <span class="nav-arrow">←</span>
+        <span class="nav-text">
+          <span class="nav-label">Previous</span>
+          <span class="nav-title">Functions Part I</span>
+        </span>
+      </a>
+      <a href="complete-course.html" class="nav-home">🏠</a>
+      <a href="s8-oop.html" class="nav-next">
+        <span class="nav-text">
+          <span class="nav-label">Next</span>
+          <span class="nav-title">Object-Oriented Programming</span>
+        </span>
+        <span class="nav-arrow">→</span>
+      </a>
+    </nav>
+  </main>
+
+  <footer>
+    <p>🐍 Python Mastery | Learn. Code. Create.</p>
+  </footer>
+</body>
+</html>
+

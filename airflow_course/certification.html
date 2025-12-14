@@ -3,823 +3,483 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FKTI - Airflow Certification Exam | 75 Questions Study Guide</title>
-    <link rel="stylesheet" href="../css/minimalistic-theme.css">
-    <link rel="stylesheet" href="../assets/design-system.css">
-    <link rel="stylesheet" href="styles.css">
+    <title>Airflow Certification | FKTI</title>
+    <link rel="stylesheet" href="../css/fkti-light-theme.css">
     <style>
-        /* Certification Page Specific Styles */
-        .cert-header {
-            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
-            padding: 2rem;
-            border-radius: 12px;
-            margin-bottom: 2rem;
+        .page-header {
             text-align: center;
-            border: 2px solid #0077be;
+            padding: 48px 20px 32px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        .logo-text {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: #86868b;
+            margin-bottom: 16px;
+        }
+        .page-header h1 {
+            font-size: 32px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 8px;
+        }
+        .page-header p {
+            font-size: 17px;
+            color: #86868b;
         }
         
-        .cert-header h2 {
-            color: #0077be;
-            margin-bottom: 0.5rem;
-        }
-        
-        .cert-header p {
-            color: #005a8b;
-            font-size: 1.1rem;
-        }
-        
-        .mode-buttons {
+        /* Tabs */
+        .tabs {
             display: flex;
             justify-content: center;
-            gap: 1rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
+            gap: 24px;
+            padding: 16px 20px;
+            border-bottom: 1px solid #e5e5e5;
+            background: #fbfbfd;
+            position: sticky;
+            top: 48px;
+            z-index: 100;
         }
-        
-        .mode-btn {
-            padding: 1rem 2rem;
+        .tab {
+            background: none;
             border: none;
-            border-radius: 25px;
-            font-size: 1.1rem;
-            font-weight: bold;
+            font-size: 14px;
+            color: #86868b;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+            padding: 8px 0;
+            font-family: inherit;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+        }
+        .tab:hover { color: #1d1d1f; }
+        .tab.active {
+            color: #1d1d1f;
+            border-bottom-color: #1d1d1f;
         }
         
-        .mode-btn.study {
-            background: linear-gradient(135deg, #0077be 0%, #00a8f3 100%);
-            color: white;
+        /* Content */
+        .cert-content {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 32px 20px 60px;
         }
+        .section { display: none; }
+        .section.active { display: block; }
         
-        .mode-btn.quiz {
-            background: linear-gradient(135deg, #ff9800 0%, #ffc107 100%);
-            color: white;
-        }
-        
-        .mode-btn.answers {
-            background: linear-gradient(135deg, #4caf50 0%, #8bc34a 100%);
-            color: white;
-        }
-        
-        .mode-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
-        }
-        
-        .mode-btn.active {
-            box-shadow: 0 0 0 4px rgba(0, 119, 190, 0.4);
-        }
-        
-        .cert-section {
+        /* Results */
+        .results {
+            text-align: center;
+            padding: 32px;
+            background: #f5f5f7;
+            border-radius: 12px;
+            margin-bottom: 24px;
             display: none;
         }
+        .results.show { display: block; }
+        .score { font-size: 48px; font-weight: 600; color: #1d1d1f; }
+        .score-msg { font-size: 17px; color: #86868b; margin-top: 8px; }
+        .score-msg.pass { color: #34c759; }
+        .score-msg.fail { color: #ff3b30; }
+        .stats { display: flex; justify-content: center; gap: 40px; margin-top: 20px; }
+        .stat-val { font-size: 24px; font-weight: 600; }
+        .stat-val.correct { color: #34c759; }
+        .stat-val.wrong { color: #ff3b30; }
+        .stat-lbl { font-size: 12px; color: #86868b; }
         
-        .cert-section.active {
-            display: block;
+        /* Actions */
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 24px;
         }
-        
-        .question-card {
-            background: #f9f9f9;
-            border: 1px solid #e0e0e0;
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            border-left: 5px solid #0077be;
-            transition: all 0.3s ease;
-        }
-        
-        .question-card:hover {
-            box-shadow: 0 4px 15px rgba(0, 119, 190, 0.15);
-            transform: translateX(5px);
-        }
-        
-        .q-number {
-            display: inline-block;
-            background: linear-gradient(135deg, #0077be 0%, #00a8f3 100%);
+        .btn {
+            background: #06c;
             color: white;
-            padding: 4px 12px;
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
             border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .btn.secondary {
+            background: #f5f5f7;
+            color: #1d1d1f;
+        }
+        .btn:hover { opacity: 0.9; }
+        .btn.hidden { display: none; }
+        
+        /* Questions */
+        .question {
+            background: white;
+            border: 1px solid #e5e5e5;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+        .q-meta {
+            display: flex;
+            gap: 8px;
             margin-bottom: 12px;
         }
-        
-        .q-category {
-            display: inline-block;
-            background: #e3f2fd;
-            color: #0077be;
-            padding: 3px 10px;
-            border-radius: 15px;
-            font-size: 0.75rem;
-            margin-left: 8px;
-            font-weight: 500;
+        .q-num {
+            font-size: 11px;
+            font-weight: 600;
+            color: #06c;
+            background: #e8f4fd;
+            padding: 2px 8px;
+            border-radius: 10px;
         }
-        
+        .q-cat {
+            font-size: 11px;
+            color: #86868b;
+            background: #f5f5f7;
+            padding: 2px 8px;
+            border-radius: 10px;
+        }
         .q-text {
-            font-size: 1.1rem;
-            font-weight: 500;
-            margin-bottom: 1rem;
-            color: #333;
+            font-size: 15px;
+            color: #1d1d1f;
+            margin-bottom: 16px;
             line-height: 1.5;
         }
-        
         .q-text pre {
-            background: #282c34;
-            padding: 1rem;
+            background: #f5f5f7;
+            padding: 12px;
             border-radius: 8px;
+            font-size: 12px;
             overflow-x: auto;
-            margin: 0.5rem 0;
-            font-size: 0.9rem;
+            margin: 8px 0;
         }
         
-        .options-list {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        
-        .option-item {
+        /* Options */
+        .options { display: flex; flex-direction: column; gap: 8px; }
+        .opt {
             display: flex;
             align-items: center;
-            padding: 12px 15px;
-            background: white;
-            border: 2px solid #e0e0e0;
+            padding: 12px;
+            background: #f5f5f7;
+            border: 1px solid transparent;
             border-radius: 8px;
+            font-size: 14px;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.2s;
+        }
+        .opt:hover { background: #ebebed; }
+        .opt input { margin-right: 10px; accent-color: #06c; }
+        .opt.correct { background: #e8f8ec; border-color: #34c759; }
+        .opt.wrong { background: #ffebeb; border-color: #ff3b30; }
+        
+        /* Answer badge */
+        .answer {
+            margin-top: 12px;
+            padding: 8px 12px;
+            background: #e8f8ec;
+            border-radius: 6px;
+            font-size: 13px;
+            color: #1d7a3a;
         }
         
-        .option-item:hover {
-            border-color: #0077be;
-            background: #f0f8ff;
+        /* Explanation */
+        .explanation {
+            margin-top: 12px;
+            padding: 12px;
+            background: #f5f5f7;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #6e6e73;
+            line-height: 1.5;
         }
+        .explanation strong { color: #1d1d1f; }
         
-        .option-item input[type="radio"],
-        .option-item input[type="checkbox"] {
-            margin-right: 12px;
-            accent-color: #0077be;
-            width: 18px;
-            height: 18px;
-            cursor: pointer;
-        }
-        
-        .option-item.correct-highlight {
-            border-color: #4caf50 !important;
-            background: #e8f5e9 !important;
-        }
-        
-        .option-item.correct-highlight::after {
-            content: ' ✓';
-            color: #4caf50;
-            font-weight: bold;
-            margin-left: auto;
-        }
-        
-        .option-item.user-correct {
-            border-color: #4caf50 !important;
-            background: #e8f5e9 !important;
-        }
-        
-        .option-item.user-wrong {
-            border-color: #f44336 !important;
-            background: #ffebee !important;
-        }
-        
-        .explanation-box {
-            margin-top: 1rem;
-            padding: 1rem;
-            background: linear-gradient(135deg, #e3f2fd 0%, #f0f8ff 100%);
-            border-left: 4px solid #0077be;
-            border-radius: 0 8px 8px 0;
-        }
-        
-        .explanation-box h4 {
-            color: #0077be;
-            margin-bottom: 8px;
-            font-size: 1rem;
-        }
-        
-        .explanation-box p {
-            color: #555;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-        
-        .explanation-box code {
-            background: #e8e8e8;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-family: 'Courier New', monospace;
-            font-size: 0.85rem;
-            color: #0077be;
-        }
-        
-        .correct-badge {
+        /* Back link */
+        .back-link {
             display: inline-block;
-            background: #e8f5e9;
-            color: #2e7d32;
-            padding: 5px 12px;
-            border-radius: 5px;
-            font-weight: 600;
-            margin-top: 10px;
+            padding: 12px 20px;
+            color: #06c;
+            text-decoration: none;
+            font-size: 14px;
         }
+        .back-link:hover { text-decoration: underline; }
         
-        /* Quiz Results */
-        .quiz-results {
-            background: linear-gradient(135deg, #f0f8ff 0%, #e3f2fd 100%);
-            border: 2px solid #0077be;
-            border-radius: 12px;
-            padding: 2rem;
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-        
-        .score-display {
-            font-size: 4rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #0077be 0%, #00a8f3 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .score-label {
-            font-size: 1.2rem;
-            color: #555;
-            margin-top: 10px;
-        }
-        
-        .score-label.pass {
-            color: #2e7d32;
-            font-weight: bold;
-        }
-        
-        .score-label.fail {
-            color: #c62828;
-            font-weight: bold;
-        }
-        
-        .progress-track {
-            width: 100%;
-            height: 12px;
-            background: #e0e0e0;
-            border-radius: 6px;
-            margin: 20px 0;
-            overflow: hidden;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #0077be, #00a8f3);
-            border-radius: 6px;
-            transition: width 0.5s ease;
-        }
-        
-        .stats-row {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 20px;
-        }
-        
-        .stat-box {
-            text-align: center;
-        }
-        
-        .stat-num {
-            font-size: 2rem;
-            font-weight: 700;
-        }
-        
-        .stat-num.correct {
-            color: #4caf50;
-        }
-        
-        .stat-num.wrong {
-            color: #f44336;
-        }
-        
-        .stat-lbl {
-            color: #666;
-            font-size: 0.9rem;
-        }
-        
-        .quiz-actions {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-        }
-        
-        .action-btn {
-            padding: 12px 24px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .action-btn.primary {
-            background: linear-gradient(135deg, #0077be 0%, #00a8f3 100%);
-            color: white;
-        }
-        
-        .action-btn.secondary {
-            background: #f5f5f5;
-            color: #333;
-            border: 2px solid #e0e0e0;
-        }
-        
-        .action-btn.success {
-            background: linear-gradient(135deg, #4caf50 0%, #8bc34a 100%);
-            color: white;
-        }
-        
-        .action-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .hidden {
-            display: none !important;
-        }
-        
-        /* Scroll to top button */
-        .scroll-top-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: linear-gradient(135deg, #0077be 0%, #00a8f3 100%);
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: none;
-            cursor: pointer;
-            font-size: 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: all 0.3s ease;
-            z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0, 119, 190, 0.4);
-        }
-        
-        .scroll-top-btn.visible {
-            opacity: 1;
-        }
-        
-        .scroll-top-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 119, 190, 0.5);
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .mode-buttons {
-                flex-direction: column;
-                padding: 0 1rem;
-            }
-            
-            .mode-btn {
-                width: 100%;
-            }
-            
-            .stats-row {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .question-card {
-                padding: 1rem;
-            }
+        @media (max-width: 600px) {
+            .page-header { padding: 32px 16px 24px; }
+            .page-header h1 { font-size: 24px; }
+            .tabs { gap: 16px; top: 40px; }
+            .tab { font-size: 12px; }
+            .cert-content { padding: 20px 16px 40px; }
+            .question { padding: 16px; }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <img src="logo.svg" alt="FKTI Logo" class="logo">
-                <div class="header-text">
-                    <h1>📜 Airflow Certification Exam</h1>
-                    <p class="institute-name">FKTI - Fakhruddin Khambaty Training Institute</p>
-                    <p class="tagline">75 Questions - Complete Study Guide</p>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Navigation -->
+    <!-- Simple Nav -->
     <nav id="navbar">
         <div class="container">
-            <div class="nav-section">
-                <button class="nav-btn hub-btn" onclick="goToHub()">← FKTI Hub</button>
-            </div>
-            <div class="nav-section main-nav">
-                <button class="nav-btn" onclick="window.location.href='index.html'">🏠 Course Home</button>
-                <button class="nav-btn" onclick="window.location.href='index.html#basics'">🚀 Basics</button>
-                <button class="nav-btn" onclick="window.location.href='index.html#exercises'">🎯 Exercises</button>
-                <button class="nav-btn" style="background: linear-gradient(135deg, #ff9800, #ffc107);">📜 Certification</button>
-            </div>
-            <div class="nav-section">
-                <button class="nav-btn python-btn" onclick="goToPython()">🐍 Python Course</button>
-            </div>
+            <a href="../index.html" class="nav-btn">FKTI</a>
+            <a href="index.html" class="nav-btn">Course</a>
+            <span class="nav-btn" style="opacity: 1;">Certification</span>
+            <a href="../python_course/index.html" class="nav-btn">Python</a>
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <main class="container">
-        <div class="cert-header">
-            <h2>🎓 Apache Airflow Certification Exam Preparation</h2>
-            <p>Master all 75 questions to ace your Airflow certification!</p>
-        </div>
+    <!-- Header -->
+    <div class="page-header">
+        <div class="logo-text">FKTI</div>
+        <h1>Airflow Certification</h1>
+        <p>75 Questions · Complete Study Guide</p>
+    </div>
 
-        <div class="mode-buttons">
-            <button class="mode-btn study active" onclick="showMode('study')">📚 Study Mode</button>
-            <button class="mode-btn quiz" onclick="showMode('quiz')">✍️ Take Quiz</button>
-            <button class="mode-btn answers" onclick="showMode('answers')">✅ Answer Key</button>
-        </div>
+    <!-- Tabs -->
+    <div class="tabs">
+        <button class="tab active" onclick="showTab('study')">Study</button>
+        <button class="tab" onclick="showTab('quiz')">Quiz</button>
+        <button class="tab" onclick="showTab('answers')">Answers</button>
+    </div>
 
-        <!-- STUDY SECTION -->
-        <div id="study-section" class="cert-section active">
-            <div id="study-content"></div>
-        </div>
-
-        <!-- QUIZ SECTION -->
-        <div id="quiz-section" class="cert-section">
-            <div class="quiz-results hidden" id="results">
-                <div class="score-display" id="score-value">0%</div>
-                <div class="score-label" id="score-message">Your Score</div>
-                <div class="progress-track">
-                    <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
-                </div>
-                <div class="stats-row">
-                    <div class="stat-box">
-                        <div class="stat-num correct" id="correct-count">0</div>
-                        <div class="stat-lbl">Correct</div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-num wrong" id="incorrect-count">0</div>
-                        <div class="stat-lbl">Incorrect</div>
-                    </div>
-                </div>
-            </div>
-            <div class="quiz-actions">
-                <button class="action-btn primary" onclick="submitQuiz()" id="submit-btn">📝 Submit Quiz</button>
-                <button class="action-btn success hidden" onclick="revealAnswers()" id="show-answers-btn">👁️ Show Answers</button>
-                <button class="action-btn secondary" onclick="resetQuiz()">🔄 Reset Quiz</button>
-            </div>
-            <div id="quiz-content"></div>
-        </div>
-
-        <!-- ANSWERS SECTION -->
-        <div id="answers-section" class="cert-section">
-            <div id="answers-content"></div>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <img src="logo.svg" alt="FKTI Logo" class="footer-logo">
-                <div class="footer-text">
-                    <h3>FKTI - Fakhruddin Khambaty Training Institute</h3>
-                    <p>Building the next generation of Data Engineers 🚀</p>
-                    <p class="copyright">© 2025 FKTI. All rights reserved.</p>
-                </div>
+    <!-- Content -->
+    <div class="cert-content">
+        <!-- Results (Quiz) -->
+        <div class="results" id="results">
+            <div class="score" id="score">0%</div>
+            <div class="score-msg" id="score-msg">Your Score</div>
+            <div class="stats">
+                <div><div class="stat-val correct" id="correct">0</div><div class="stat-lbl">Correct</div></div>
+                <div><div class="stat-val wrong" id="wrong">0</div><div class="stat-lbl">Wrong</div></div>
             </div>
         </div>
-    </footer>
+        
+        <!-- Actions (Quiz) -->
+        <div class="actions" id="actions" style="display: none;">
+            <button class="btn" id="submit-btn" onclick="submitQuiz()">Submit</button>
+            <button class="btn hidden" id="reveal-btn" onclick="revealAnswers()">Show Answers</button>
+            <button class="btn secondary" onclick="resetQuiz()">Reset</button>
+        </div>
 
-    <button class="scroll-top-btn" id="scroll-top" onclick="scrollToTop()">↑</button>
+        <!-- Study Section -->
+        <div class="section active" id="study-section"></div>
+        
+        <!-- Quiz Section -->
+        <div class="section" id="quiz-section"></div>
+        
+        <!-- Answers Section -->
+        <div class="section" id="answers-section"></div>
+    </div>
 
     <script>
         const questions = [
-            { id: 1, question: "Assume an Airflow variable with the name airtable_api_key was created via the Airflow UI. Will the variable's value be hidden on the Airflow UI?", options: ["Yes", "No"], correct: [0], type: "single", category: "Variables", explanation: "Airflow automatically masks variables containing sensitive keywords in their names. The variable 'airtable_api_key' contains 'api_key', which is one of the keywords Airflow looks for. Other keywords include: password, secret, passwd, authorization, access_token, private_key." },
-            { id: 2, question: "Take a look at the code below from a .env file that creates a PostgreSQL connection:\n\nAIRFLOW_CONN_POSTGRES='my-conn-type://login:password@host:port/schema?'\n\nIs this the correct way to create a connection using an environment variable?", options: ["Yes", "No"], correct: [1], type: "single", category: "Connections", explanation: "This is NOT correct. The connection type 'my-conn-type' is invalid. For PostgreSQL, it should be 'postgresql' or 'postgres'. The correct format would be: AIRFLOW_CONN_POSTGRES='postgresql://login:password@host:port/schema'" },
-            { id: 3, question: "What is a DAG run?", options: ["A special Airflow object that determines the schedule of a DAG", "A specific run or instance of a task", "A specific run or instance of a DAG", "An object grouping all DAGs"], correct: [2], type: "single", category: "Core Concepts", explanation: "A DAG run represents a single execution of a DAG at a specific point in time. Each DAG run has a run_id, logical_date (execution_date), data_interval, and state." },
-            { id: 4, question: "Examine the DAG with 5 tasks (task_a, task_b, task_c, task_d, task_e) where:\n[task_a(), task_b()] >> task_e()\n[task_c(), task_d()] >> task_e()\n\nHow many tasks will run at the same time if this DAG is unpaused?", options: ["4", "1", "0", "2"], correct: [0], type: "single", category: "Dependencies", explanation: "4 tasks will run at the same time. task_a, task_b, task_c, and task_d have no upstream dependencies, so they all start immediately and run in parallel. task_e waits for all four to complete." },
-            { id: 5, question: "Which feature in Airflow allows tasks to communicate with each other and share data?", options: ["Variables", "Connections", "XCom", "Hooks"], correct: [2], type: "single", category: "Core Concepts", explanation: "XCom (Cross-Communication) is Airflow's mechanism for tasks to exchange small amounts of data between each other. Tasks can push (send) and pull (receive) data via XCom." },
-            { id: 6, question: "If a DAG has a schedule parameter with @daily and catchup set to True, how far back in time will Airflow try to catch up on missed DAG runs?", options: ["To the beginning of time", "One week", "One month", "To the DAG's start_date"], correct: [3], type: "single", category: "Scheduling", explanation: "When catchup=True, Airflow will create DAG runs for all missed intervals between the start_date and the current date." },
-            { id: 7, question: "A member of a data team writes a Python script that downloads data from an API and stores it in a database on a daily basis. Is this scenario a use case for Airflow?", options: ["Yes", "No"], correct: [0], type: "single", category: "Use Cases", explanation: "Yes! This is an ideal use case for Airflow. Scheduled, recurring data pipelines are exactly what Airflow is designed for." },
-            { id: 8, question: "Assume a DAG should only run for the next two months. Which DAG parameter can help accomplish this goal?", options: ["start_date", "schedule", "end_date", "catchup"], correct: [2], type: "single", category: "DAG Parameters", explanation: "The end_date parameter tells Airflow to stop scheduling DAG runs after a specific date." },
-            { id: 9, question: "A team member adds a new task to an existing DAG but doesn't see it in the UI after saving. The DAG file has my_dag() call missing. What is the most likely reason?", options: ["The schedule parameter is missing", "The task dependency setup is incorrect", "Airflow has a default delay of up to 30 seconds to detect a new task", "Airflow has a default delay of up to 5 minutes to detect a new task"], correct: [2], type: "single", category: "Troubleshooting", explanation: "Airflow's min_file_process_interval defaults to 30 seconds, which controls how often existing DAG files are re-parsed." },
-            { id: 10, question: "What is the role of the executor in Airflow?", options: ["It deletes unwanted tasks", "It defines how tasks are executed and on which system", "It executes tasks", "It schedules tasks"], correct: [1], type: "single", category: "Architecture", explanation: "The executor defines the mechanism and environment for running tasks. Types include: SequentialExecutor, LocalExecutor, CeleryExecutor, and KubernetesExecutor." },
-            { id: 11, question: "What mode is considered best practice when a sensor's poke_interval parameter value is set to greater than 5 minutes?", options: ["reschedule", "poke"], correct: [0], type: "single", category: "Sensors", explanation: "When poke_interval is long (> 5 minutes), reschedule mode is best because it releases the worker slot between pokes, avoiding resource waste." },
-            { id: 12, question: "What would be the value of the schedule parameter of a DAG that runs every 10 minutes but not on weekends?", options: ["schedule='/10 * * * *'", "schedule='*/10 * * * 1-5'", "schedule=timedelta(minutes=10)", "schedule='*/10 * * * M-F'"], correct: [1], type: "single", category: "Scheduling", explanation: "The cron expression '*/10 * * * 1-5' means: every 10 minutes, every hour, every day of month, every month, Monday through Friday (1-5)." },
-            { id: 13, question: "Which of the following are valid values for scheduling a DAG in Airflow? (select all that apply)", options: ["Timedelta", "Integers", "Calendar", "Cron"], correct: [0, 3], type: "multiple", category: "Scheduling", explanation: "Valid schedule values include: Cron strings, Timedelta objects, Timetables, None, and Dataset triggers. Integers and Calendar are not valid." },
-            { id: 14, question: "A new DAG file was added to the /dags folder but it doesn't show up on the Airflow UI. Which could be causing the issue? (select all that apply)", options: ["The code doesn't contain 'airflow' or 'dag' words", "The Airflow instance must be restarted", "Airflow has a default delay of up to 5 minutes", "The .airflowignore file has the name of the file"], correct: [0, 2, 3], type: "multiple", category: "Troubleshooting", explanation: "Airflow scans files for 'airflow' and 'dag' keywords before parsing. The dag_dir_list_interval defaults to 300 seconds (5 minutes) for new files." },
-            { id: 15, question: "What is the default value for the start_date parameter of a DAG?", options: ["datetime.now()", "datetime(2020, 1, 1)", "None", "Yesterday"], correct: [2], type: "single", category: "DAG Parameters", explanation: "The start_date defaults to None. Without a start_date, the DAG won't be scheduled automatically." },
-            { id: 16, question: "Which of the following parameters would set the start date to 2025/01/01?", options: ["start_date=datetime(2025, 1, 1)", "schedule=datetime(2025, 1, 1)", "start_date=datetime(1, 1, 2025)", "start_date='2025/01/01'"], correct: [0], type: "single", category: "DAG Parameters", explanation: "The correct format is start_date=datetime(year, month, day), so datetime(2025, 1, 1)." },
-            { id: 17, question: "Assume a DAG is scheduled to run daily at 00:00. The start date is January 1st, 2025. What is the logical_date for the first DAG Run?", options: ["2025/01/01 00:00", "2025/01/02 00:00", "2025/01/01 00:01", "2025/01/02 23:59"], correct: [0], type: "single", category: "Scheduling", explanation: "The logical_date represents the start of the data interval being processed, not when the DAG runs. For the first run, logical_date = 2025-01-01 00:00." },
-            { id: 18, question: "What is a limitation of using XComs? (select all that apply)", options: ["XComs are the only way to share data between tasks", "There must be a defined DAG with at least one task", "The amount of data that can be given to an XCom is limited", "XComs can only be used with a maximum of two tasks"], correct: [1, 2], type: "multiple", category: "XCom", explanation: "XCom limitations: requires task context, and size is limited (stored in metadata DB). XCom is NOT the only way to share data." },
-            { id: 19, question: "Which of the following ways allows the code to avoid defining a DAG object in all operators (dag=dag)? (select all that apply)", options: ["By defining tasks within a function decorated by @dag", "By giving all tasks the same task_id", "By instantiating the DAG object with the context manager 'with'", "By creating a default_argument dictionary"], correct: [0, 2], type: "multiple", category: "DAG Definition", explanation: "Using @dag decorator or 'with DAG(...) as dag:' context manager auto-associates tasks defined within." },
-            { id: 20, question: "What is the default timezone in Airflow?", options: ["Local timezone", "EST", "UTC", "PST"], correct: [2], type: "single", category: "Configuration", explanation: "Airflow uses UTC as the default timezone for all internal operations." },
-            { id: 21, question: "What is the typical journey of a task?", options: ["No status → Scheduled → Queued → Running → Success/Failure", "Queued → Scheduled → Running → Success/Failure", "No status → Queued → Scheduled → Running → Success/Failure", "Scheduled → Queued → Running → Success/Failure"], correct: [0], type: "single", category: "Core Concepts", explanation: "The task lifecycle: No status (created) → Scheduled (ready to run) → Queued (sent to executor) → Running (worker executing) → Success/Failure." },
-            { id: 22, question: "Examine the DAG missing start_date and task/dag not called. Which of the following are issues? (select all that apply)", options: ["The start_date parameter is missing", "The tags parameter is missing", "Not calling the task 'python_task'", "Not calling the dag 'my_dag'"], correct: [0, 2, 3], type: "multiple", category: "Troubleshooting", explanation: "Issues: Missing start_date (required for scheduling), task not called, DAG not called. Tags are optional." },
-            { id: 23, question: "What is the purpose of setting dependencies between tasks in Airflow?", options: ["To ensure that tasks are executed in the correct order", "To reduce the likelihood of task failures", "To increase the parallelism of task execution", "To improve the performance of the Airflow scheduler"], correct: [0], type: "single", category: "Dependencies", explanation: "Task dependencies define execution order. Dependencies are about correctness, not performance." },
-            { id: 24, question: "What is a XCom?", options: ["A real-time communication protocol", "A way to store data between tasks", "A data serialization tool", "A type of task in a DAG"], correct: [1], type: "single", category: "XCom", explanation: "XCom (Cross-Communication) is Airflow's mechanism for tasks to share and pass small amounts of data." },
-            { id: 25, question: "What is the default timeout value of a sensor?", options: ["7 hours", "7 days", "1 day", "1 minute"], correct: [1], type: "single", category: "Sensors", explanation: "Sensors have a default timeout of 7 days (604,800 seconds)." },
-            { id: 26, question: "What does the bar chart column represent in the Airflow DAGs view?", options: ["The status of all future DAG runs", "The status of previous DAG runs only", "Task instances along with their states", "Past and current DAG runs along with their states"], correct: [3], type: "single", category: "UI", explanation: "The bar chart shows a DAG run history visualization—recent DAG runs and their statuses." },
-            { id: 27, question: "Why doesn't the DAG show up on the Airflow UI? (my_dag function not called)", options: ["my_dag isn't called", "The schedule parameter is missing", "The catchup parameter is missing", "The start_date parameter is incorrectly formatted"], correct: [0], type: "single", category: "Troubleshooting", explanation: "When using the @dag decorator, you must call the decorated function to instantiate the DAG." },
-            { id: 28, question: "Assuming current date is 2025/01/04, how many DAG runs will occur after unpausing a DAG with start_date 2025/01/01, @daily schedule, and default catchup?", options: ["4", "1", "0", "2"], correct: [0], type: "single", category: "Scheduling", explanation: "With catchup=True (default) and @daily schedule from Jan 1 to Jan 4, there will be 4 completed intervals." },
-            { id: 29, question: "Once a DAG has a unique ID, which parameter defines when it will start being scheduled?", options: ["schedule", "end_date", "start_date", "dag_id"], correct: [2], type: "single", category: "DAG Parameters", explanation: "The start_date parameter defines when the DAG starts being scheduled." },
-            { id: 30, question: "What task dependency relationship results in: t0 → t1 → t2 → t3 (linear flow)?", options: ["[t0, t1] >> [t2, t3]", "[t0, t1] >> t2 >> t3", "t0 >> t1 >> t2 >> t3", "t0 >> t1 >> [t2, t3]"], correct: [2], type: "single", category: "Dependencies", explanation: "t0 >> t1 >> t2 >> t3 creates a linear sequential flow." },
-            { id: 31, question: "Which of the following is a valid way to create a data pipeline in Airflow? (select all that apply)", options: ["Using with DAG()", "Using the DAG class and defining the dag parameter in an operator", "Creating a Python function called DAG", "Using the @dag decorator"], correct: [0, 1, 3], type: "multiple", category: "DAG Definition", explanation: "Valid ways: @dag decorator, with DAG() context manager, and DAG class with dag= parameter." },
-            { id: 32, question: "Is it still possible to backfill your DAGs even if the catchup parameter is set to false?", options: ["No, when catchup is set to False, it is impossible to backfill", "Yes, with the UI, API, or CLI"], correct: [1], type: "single", category: "Backfill", explanation: "catchup=False only prevents automatic backfilling. You can still manually backfill using CLI, UI, or API." },
-            { id: 33, question: "Would this DAG run properly? (task_a() >> task_b - missing parentheses on task_b)", options: ["Yes", "No"], correct: [1], type: "single", category: "Troubleshooting", explanation: "No, this would fail. task_b without parentheses is a _TaskDecorator object, not a task instance." },
-            { id: 34, question: "What does the 'Latest Run' column represent in the Airflow UI?", options: ["The logical date of the latest DAG run", "The interval of time between each DAG run", "The end date/time of the most recent DAG run", "The date when the DAG is scheduled to run next"], correct: [0], type: "single", category: "UI", explanation: "The 'Latest Run' column shows the logical_date of the most recent DAG run." },
-            { id: 35, question: "A team member notices the provider they need (e.g., Presto) is missing from the connection dropdown. What should they do?", options: ["Reinstall Airflow", "Restart Airflow", "Find a different provider because it's impossible", "Find and install the provider package"], correct: [3], type: "single", category: "Providers", explanation: "Install the provider package: pip install apache-airflow-providers-presto." },
-            { id: 36, question: "Which Airflow UI view is most helpful for an overview of all DAG runs and task states?", options: ["Graph view", "Grid view", "DAGs view"], correct: [1], type: "single", category: "UI", explanation: "Grid view shows a matrix of tasks and DAG runs, making it ideal for viewing task states across multiple runs." },
-            { id: 37, question: "Which statements are true about a DAG in Airflow? (select all that apply)", options: ["It is good practice to have loops in a DAG", "A DAG is a programming language for data analysis", "DAG stands for Directed Acyclic Graph", "A DAG's nodes define tasks, edges define dependencies"], correct: [2, 3], type: "multiple", category: "Core Concepts", explanation: "DAG = Directed Acyclic Graph. Nodes are tasks, edges are dependencies. Loops are NOT allowed." },
-            { id: 38, question: "What is the purpose of an Airflow variable? (select all that apply)", options: ["To store a XCom", "To reuse a value across multiple DAGs", "To store large amounts of data", "To avoid hardcoding a value"], correct: [1, 3], type: "multiple", category: "Variables", explanation: "Variables store global config values accessible across DAGs and help avoid hardcoding." },
-            { id: 39, question: "Which Airflow CLI command runs a task without checking dependencies or recording state?", options: ["airflow tasks start", "airflow dags test", "airflow standalone", "airflow tasks test"], correct: [3], type: "single", category: "CLI", explanation: "airflow tasks test runs a single task in isolation without checking dependencies or recording state." },
-            { id: 40, question: "What types of data can be stored in an Airflow variable? (select all that apply)", options: ["Integers", "Strings", "Python Dataclasses", "JSON"], correct: [1, 3], type: "multiple", category: "Variables", explanation: "Airflow variables natively support Strings and JSON (with deserialize_json=True)." },
-            { id: 41, question: "Which of the following best describes what a Transfer Operator does?", options: ["Moves data between different sources, destinations, or storage systems", "Transforms data into a different format", "Sends notifications during workflow execution", "Evaluates conditions for workflow branching"], correct: [0], type: "single", category: "Operators", explanation: "Transfer Operators move data from one system to another." },
-            { id: 42, question: "What is the purpose of the default_args parameter in a DAG?", options: ["It specifies the schedule interval", "It specifies the operator a DAG will use", "It specifies default parameters for at most one task", "It specifies default parameters for all tasks in a DAG"], correct: [3], type: "single", category: "DAG Parameters", explanation: "default_args is a dictionary of default values automatically applied to ALL tasks in the DAG." },
-            { id: 43, question: "Which of the following best describes what a Sensor Operator does?", options: ["Waits for a condition to be met before proceeding", "Evaluates conditions for workflow branching", "Sends notifications during execution", "Provides utility functions for workflow management"], correct: [0], type: "single", category: "Sensors", explanation: "Sensors wait for a specific condition to become true before allowing downstream tasks to proceed." },
-            { id: 44, question: "Would [t0, t1] >> t2 >> [t3, t4] >> t5 work as a valid task dependency?", options: ["No", "Yes"], correct: [1], type: "single", category: "Dependencies", explanation: "Yes, this is valid Airflow syntax. It creates: t0,t1 (parallel) → t2 → t3,t4 (parallel) → t5." },
-            { id: 45, question: "Assuming current date is 2025/01/08 10:00, how many DAG runs occur for a DAG with start_date 2025/01/05 and catchup=True?", options: ["4", "2", "1", "3"], correct: [3], type: "single", category: "Scheduling", explanation: "3 completed intervals: Jan 5→6, Jan 6→7, Jan 7→8. The Jan 8→9 interval hasn't completed yet." },
-            { id: 46, question: "Which parameters are optional when creating a DAG without the @dag decorator? (select all that apply)", options: ["schedule_interval", "start_date", "default_args", "dag_id"], correct: [0, 1, 2], type: "multiple", category: "DAG Parameters", explanation: "Only dag_id is REQUIRED. schedule_interval, start_date, and default_args are optional." },
-            { id: 47, question: "A CEO wants a dashboard that analyzes user behavior. Which describes how Airflow can help?", options: ["Airflow as the primary database for user information", "Airflow to schedule data pipelines that feed a data warehouse", "Airflow embedded to analyze click events and present dashboards", "Airflow to build dashboards directly in the Airflow UI"], correct: [1], type: "single", category: "Use Cases", explanation: "Airflow orchestrates data pipelines—it's not a database, analytics tool, or dashboard builder." },
-            { id: 48, question: "Can an Airflow variable created via environment variable still be accessed in DAGs even if not visible in UI?", options: ["Yes", "No"], correct: [0], type: "single", category: "Variables", explanation: "Yes! Variables set via AIRFLOW_VAR_* can be accessed in DAGs using Variable.get()." },
-            { id: 49, question: "What task dependency results from chain(t0, t1, [t2, t3], [t4, t5], t6)?", options: ["chain(t0, t1, [t2, t4], [t3, t5], t6)", "t0 >> t1 >> [t2, t3] >> [t4, t5] >> t6", "chain(t0, t1, [t2, t3], [t4, t5], t6)", "[t0, t1] >> t2 >> t3 >> t4 >> [t5, t6]"], correct: [2], type: "single", category: "Dependencies", explanation: "chain() with lists connects corresponding elements in parallel." },
-            { id: 50, question: "Which of the following is a valid way to create a connection in Airflow? (select all that apply)", options: ["Airflow CLI", "In an XCOM", "Airflow UI", "Environment Variables"], correct: [0, 2, 3], type: "multiple", category: "Connections", explanation: "Valid ways: CLI, UI, Environment Variables (AIRFLOW_CONN_*). XCom is for task-to-task data." },
-            { id: 51, question: "What mode is best practice when a sensor's poke_interval is less than 5 minutes?", options: ["reschedule", "poke"], correct: [1], type: "single", category: "Sensors", explanation: "For short intervals (< 5 min), poke mode is best." },
-            { id: 52, question: "In a typical Airflow setup, what folder is parsed by the scheduler for new DAG files?", options: ["/plugins folder", "/dags folder", "/include folder", "/airflow folder"], correct: [1], type: "single", category: "Configuration", explanation: "The /dags folder is where DAG files are stored and parsed." },
-            { id: 53, question: "What method allows an Airflow user to add data to XComs?", options: ["Providing data to the xcom parameter of DAG", "Executing the method xcom_push", "Executing the method xcom_add", "Executing the method xcom_pull"], correct: [1], type: "single", category: "XCom", explanation: "Use xcom_push to add/push data to XCom." },
-            { id: 54, question: "What does it mean when a task has the status 'queued'?", options: ["The task is running in a worker", "The task is executed immediately", "The task is waiting to be scheduled", "The task has been assigned to an Executor and is awaiting a worker"], correct: [3], type: "single", category: "Core Concepts", explanation: "Queued status means the scheduler sent the task to the executor, waiting for an available worker." },
-            { id: 55, question: "Is running a daily SQL script that aggregates performance data a use case for Airflow?", options: ["No", "Yes"], correct: [1], type: "single", category: "Use Cases", explanation: "Yes! This is a perfect use case for Airflow." },
-            { id: 56, question: "What is the purpose of the PythonOperator in Airflow?", options: ["To deploy Python packages to remote servers", "To execute Python code as a task in a DAG", "To schedule Python scripts on a regular basis", "To manage Python virtual environments"], correct: [1], type: "single", category: "Operators", explanation: "PythonOperator executes a Python callable (function) as a task within a DAG." },
-            { id: 57, question: "Is a data team's need for automated failure notifications a use case for Airflow?", options: ["No", "Yes"], correct: [1], type: "single", category: "Use Cases", explanation: "Yes! Airflow provides email_on_failure, Slack notifications, custom callbacks, and built-in monitoring." },
-            { id: 58, question: "Which is the correct way to define an Airflow variable named 'customer_folder' with value 'my_folder' using environment variable?", options: ["AIRFLOW_VARIABLE_CUSTOMER_FOLDER='my_folder'", "CUSTOMER_FOLDER='my_folder'", "AIRFLOW_VAR_CUSTOMER_FOLDER='my_folder'", "AIRFLOW_CUSTOMER_FOLDER='my_folder'"], correct: [2], type: "single", category: "Variables", explanation: "Format: AIRFLOW_VAR_<VARIABLE_NAME_UPPERCASE>=value." },
-            { id: 59, question: "What task dependency results from: t0 → t1 → t2 → t3 (all sequential)?", options: ["t3 << t2 << t1 << t0", "t0 >> t1 >> t2 >> t3", "t0 >> [t1, t2] >> t3", "t0 >> [t1, t2, t3]"], correct: [0, 1], type: "multiple", category: "Dependencies", explanation: "Both t0 >> t1 >> t2 >> t3 and t3 << t2 << t1 << t0 create the same linear dependency." },
-            { id: 60, question: "Which Airflow CLI command shows the Python version the environment is running?", options: ["airflow version", "airflow python version", "airflow info", "airflow standalone"], correct: [2], type: "single", category: "CLI", explanation: "airflow info displays comprehensive environment information including Python version." },
-            { id: 61, question: "Which Airflow UI view is best for understanding task dependencies?", options: ["Graph view", "Grid view", "DAGs view"], correct: [0], type: "single", category: "UI", explanation: "Graph view displays the DAG as a visual flowchart, showing tasks as nodes and dependencies as arrows." },
-            { id: 62, question: "What is an Airflow provider?", options: ["A configuration for task concurrency control", "A separate Python package that extends Airflow's functionality", "A Docker image that installs Airflow", "Core operators like PythonOperator and BashOperator"], correct: [1], type: "single", category: "Providers", explanation: "Providers are separate Python packages that add integrations with external systems." },
-            { id: 63, question: "Is the SQLSensor with poke_interval=30 configured correctly to check every 30 minutes?", options: ["Yes", "No"], correct: [1], type: "single", category: "Sensors", explanation: "No! poke_interval is in SECONDS, not minutes. For 30 minutes, use poke_interval=1800." },
-            { id: 64, question: "Which Airflow CLI command is necessary to create the metadata database?", options: ["airflow db start", "airflow db reset", "airflow db check", "airflow db migrate"], correct: [3], type: "single", category: "CLI", explanation: "airflow db migrate creates/upgrades the metadata database schema." },
-            { id: 65, question: "Examining the error '_TaskDecorator' object has no attribute 'update_relative', which solution resolves this?", options: ["Calling the task explicitly in task dependencies", "Changing the format of start_date", "Importing the correct DAG object", "Not enough information"], correct: [0], type: "single", category: "Troubleshooting", explanation: "This error occurs when setting dependencies on decorator objects. Call the tasks: task_a() >> task_b()." },
-            { id: 66, question: "What method allows an Airflow user to get data from an XCom?", options: ["Executing xcom_push", "Executing xcom_add", "Executing xcom_pull", "Providing data to xcom parameter of DAG"], correct: [2], type: "single", category: "XCom", explanation: "Use xcom_pull to retrieve data from XCom." },
-            { id: 67, question: "Is t0 >> t1 >> t2 >> t3 equivalent to t3 << t2 << t1 << t0?", options: ["No", "Yes"], correct: [1], type: "single", category: "Dependencies", explanation: "Yes! Both create the same dependency chain: t0 → t1 → t2 → t3." },
-            { id: 68, question: "In which place do Airflow users set up dependencies between tasks?", options: ["In a Python file in the 'includes' directory", "In the DAG file itself", "In the Airflow UI", "In a separate configuration file"], correct: [1], type: "single", category: "DAG Definition", explanation: "Task dependencies are defined directly in the DAG Python file." },
-            { id: 69, question: "What is the purpose of the catchup parameter in a DAG?", options: ["Determines the schedule interval", "Determines whether DAG runs in the future", "Determines the number of retries", "Determines whether DAG runs retroactively for missed intervals"], correct: [3], type: "single", category: "DAG Parameters", explanation: "catchup controls whether Airflow backfills past intervals." },
-            { id: 70, question: "Which returns a variable named 'my_json' as a Python dictionary?", options: ["Variable.retrieve('my_json', deserialize_json=True)", "Variable.get('my_json', deserialize_json=True)", "Variable.retrieve('my_json', deserialize_json=False)", "Variable.get('my_json')"], correct: [1], type: "single", category: "Variables", explanation: "Use Variable.get() with deserialize_json=True to get JSON as a Python dict." },
-            { id: 71, question: "Would [t0, t1] >> [t2, t3] work as a valid task dependency?", options: ["No", "Yes"], correct: [1], type: "single", category: "Dependencies", explanation: "Yes! This creates cross-dependencies: t0 and t1 must complete before t2 or t3 can start." },
-            { id: 72, question: "A DAG was designed to fetch files daily at 7:00 AM. What schedule value achieves this?", options: ["schedule='7 * * * *'", "schedule='0 7 * * *'", "schedule=timedelta(hours=6)", "schedule=timedelta(hours=7)"], correct: [1], type: "single", category: "Scheduling", explanation: "Cron '0 7 * * *' means: minute 0, hour 7, every day." },
-            { id: 73, question: "What is the default amount of time for a new DAG file to appear in the Airflow UI?", options: ["1 minute", "30 seconds", "5 minutes", "1 second"], correct: [2], type: "single", category: "Configuration", explanation: "dag_dir_list_interval defaults to 300 seconds (5 minutes) for scanning new DAG files." },
-            { id: 74, question: "Examining the Airflow UI showing only 2 DAGs when expecting 5, why?", options: ["5-minute default delay to see new DAGs", "A filter is applied for tags", "30-second default delay", "Airflow is experiencing an error"], correct: [1], type: "single", category: "UI", explanation: "A tag filter is applied. Remove the filter to see all 5 DAGs." },
-            { id: 75, question: "What is the purpose of the schedule parameter in a DAG?", options: ["Defines when the DAG starts being scheduled", "Defines how often the DAG runs", "Defines when the DAG stops being scheduled", "Defines the timezone for the DAG"], correct: [1], type: "single", category: "DAG Parameters", explanation: "The schedule parameter defines how often the DAG runs (@daily, cron expressions, timedelta)." }
+            { id: 1, q: "Assume an Airflow variable with the name airtable_api_key was created via the Airflow UI. Will the variable's value be hidden on the Airflow UI?", opts: ["Yes", "No"], ans: [0], type: "single", cat: "Variables", exp: "Airflow automatically masks variables containing sensitive keywords like 'api_key', 'password', 'secret'." },
+            { id: 2, q: "Is this the correct way to create a PostgreSQL connection?\n\nAIRFLOW_CONN_POSTGRES='my-conn-type://login:password@host:port/schema'", opts: ["Yes", "No"], ans: [1], type: "single", cat: "Connections", exp: "No. 'my-conn-type' is invalid. Use 'postgresql' or 'postgres'." },
+            { id: 3, q: "What is a DAG run?", opts: ["A special Airflow object that determines the schedule of a DAG", "A specific run or instance of a task", "A specific run or instance of a DAG", "An object grouping all DAGs"], ans: [2], type: "single", cat: "Core Concepts", exp: "A DAG run represents a single execution of a DAG at a specific point in time." },
+            { id: 4, q: "With [task_a(), task_b()] >> task_e() and [task_c(), task_d()] >> task_e(), how many tasks run at the same time?", opts: ["4", "1", "0", "2"], ans: [0], type: "single", cat: "Dependencies", exp: "4 tasks (a, b, c, d) have no upstream dependencies, so they all run in parallel." },
+            { id: 5, q: "Which feature allows tasks to communicate and share data?", opts: ["Variables", "Connections", "XCom", "Hooks"], ans: [2], type: "single", cat: "Core Concepts", exp: "XCom (Cross-Communication) is Airflow's mechanism for tasks to exchange data." },
+            { id: 6, q: "With @daily schedule and catchup=True, how far back will Airflow catch up?", opts: ["To the beginning of time", "One week", "One month", "To the DAG's start_date"], ans: [3], type: "single", cat: "Scheduling", exp: "Airflow backfills from start_date to current date." },
+            { id: 7, q: "A Python script downloads data from an API and stores it daily. Is this a use case for Airflow?", opts: ["Yes", "No"], ans: [0], type: "single", cat: "Use Cases", exp: "Yes! Scheduled data pipelines are ideal for Airflow." },
+            { id: 8, q: "Which parameter limits a DAG to run only for the next two months?", opts: ["start_date", "schedule", "end_date", "catchup"], ans: [2], type: "single", cat: "DAG Parameters", exp: "end_date stops scheduling after a specific date." },
+            { id: 9, q: "A new task doesn't appear in the UI. Why?", opts: ["The schedule parameter is missing", "The task dependency setup is incorrect", "Airflow has a default delay of up to 30 seconds", "Airflow has a default delay of up to 5 minutes"], ans: [2], type: "single", cat: "Troubleshooting", exp: "min_file_process_interval defaults to 30 seconds for re-parsing existing files." },
+            { id: 10, q: "What is the role of the executor?", opts: ["It deletes unwanted tasks", "It defines how tasks are executed and on which system", "It executes tasks", "It schedules tasks"], ans: [1], type: "single", cat: "Architecture", exp: "The executor defines the mechanism for running tasks (Local, Celery, Kubernetes, etc.)." },
+            { id: 11, q: "Which mode is best when poke_interval > 5 minutes?", opts: ["reschedule", "poke"], ans: [0], type: "single", cat: "Sensors", exp: "reschedule mode releases the worker slot between pokes." },
+            { id: 12, q: "Schedule for every 10 minutes, but not on weekends?", opts: ["schedule='/10 * * * *'", "schedule='*/10 * * * 1-5'", "schedule=timedelta(minutes=10)", "schedule='*/10 * * * M-F'"], ans: [1], type: "single", cat: "Scheduling", exp: "'*/10 * * * 1-5' = every 10 min, Mon-Fri." },
+            { id: 13, q: "Which are valid schedule values? (select all)", opts: ["Timedelta", "Integers", "Calendar", "Cron"], ans: [0, 3], type: "multiple", cat: "Scheduling", exp: "Valid: Cron strings, Timedelta objects, Timetables, None, Datasets." },
+            { id: 14, q: "A new DAG file doesn't show up. Why? (select all)", opts: ["The code doesn't contain 'airflow' or 'dag'", "The Airflow instance must be restarted", "5 minute default delay", "The .airflowignore file has the name"], ans: [0, 2, 3], type: "multiple", cat: "Troubleshooting", exp: "Airflow scans for keywords, has 5-min delay for new files, and respects .airflowignore." },
+            { id: 15, q: "What is the default value for start_date?", opts: ["datetime.now()", "datetime(2020, 1, 1)", "None", "Yesterday"], ans: [2], type: "single", cat: "DAG Parameters", exp: "start_date defaults to None." },
+            { id: 16, q: "Which sets start date to 2025/01/01?", opts: ["start_date=datetime(2025, 1, 1)", "schedule=datetime(2025, 1, 1)", "start_date=datetime(1, 1, 2025)", "start_date='2025/01/01'"], ans: [0], type: "single", cat: "DAG Parameters", exp: "Format: datetime(year, month, day)." },
+            { id: 17, q: "Daily DAG at 00:00, start_date Jan 1, 2025. What's the first logical_date?", opts: ["2025/01/01 00:00", "2025/01/02 00:00", "2025/01/01 00:01", "2025/01/02 23:59"], ans: [0], type: "single", cat: "Scheduling", exp: "logical_date = start of the data interval (2025-01-01 00:00)." },
+            { id: 18, q: "XCom limitations? (select all)", opts: ["XComs are the only way to share data", "Requires a defined DAG with at least one task", "Data size is limited", "Max 2 tasks can use XCom"], ans: [1, 2], type: "multiple", cat: "XCom", exp: "XCom requires task context and has size limits." },
+            { id: 19, q: "How to avoid dag=dag in all operators? (select all)", opts: ["Using @dag decorator", "Giving all tasks the same task_id", "Using 'with DAG()' context manager", "Creating default_argument dictionary"], ans: [0, 2], type: "multiple", cat: "DAG Definition", exp: "@dag decorator or context manager auto-associates tasks." },
+            { id: 20, q: "What is the default timezone in Airflow?", opts: ["Local timezone", "EST", "UTC", "PST"], ans: [2], type: "single", cat: "Configuration", exp: "Airflow uses UTC by default." },
+            { id: 21, q: "What is the typical task journey?", opts: ["No status → Scheduled → Queued → Running → Success/Failure", "Queued → Scheduled → Running → Success/Failure", "No status → Queued → Scheduled → Running → Success/Failure", "Scheduled → Queued → Running → Success/Failure"], ans: [0], type: "single", cat: "Core Concepts", exp: "No status → Scheduled → Queued → Running → Success/Failure." },
+            { id: 22, q: "DAG missing start_date, task/dag not called. Issues? (select all)", opts: ["start_date missing", "tags missing", "Task not called", "DAG not called"], ans: [0, 2, 3], type: "multiple", cat: "Troubleshooting", exp: "Missing start_date, task not called, DAG not called. Tags are optional." },
+            { id: 23, q: "Purpose of task dependencies?", opts: ["Ensure correct execution order", "Reduce task failures", "Increase parallelism", "Improve scheduler performance"], ans: [0], type: "single", cat: "Dependencies", exp: "Dependencies define execution order." },
+            { id: 24, q: "What is XCom?", opts: ["A real-time communication protocol", "A way to store data between tasks", "A data serialization tool", "A type of task"], ans: [1], type: "single", cat: "XCom", exp: "XCom shares data between tasks." },
+            { id: 25, q: "Default sensor timeout?", opts: ["7 hours", "7 days", "1 day", "1 minute"], ans: [1], type: "single", cat: "Sensors", exp: "Default timeout is 7 days." },
+            { id: 26, q: "What does the bar chart show in DAGs view?", opts: ["Future DAG runs", "Previous DAG runs only", "Task instances with states", "Past and current DAG runs with states"], ans: [3], type: "single", cat: "UI", exp: "Shows recent DAG runs and their statuses." },
+            { id: 27, q: "Why doesn't the DAG show up? (my_dag function not called)", opts: ["my_dag isn't called", "schedule missing", "catchup missing", "start_date format wrong"], ans: [0], type: "single", cat: "Troubleshooting", exp: "When using @dag, you must call the decorated function." },
+            { id: 28, q: "Jan 4, start_date Jan 1, @daily, default catchup. How many DAG runs?", opts: ["4", "1", "0", "2"], ans: [0], type: "single", cat: "Scheduling", exp: "4 completed intervals (Jan 1→2, 2→3, 3→4, 4→now)." },
+            { id: 29, q: "Which parameter defines when scheduling starts?", opts: ["schedule", "end_date", "start_date", "dag_id"], ans: [2], type: "single", cat: "DAG Parameters", exp: "start_date defines when scheduling begins." },
+            { id: 30, q: "Which creates t0 → t1 → t2 → t3?", opts: ["[t0, t1] >> [t2, t3]", "[t0, t1] >> t2 >> t3", "t0 >> t1 >> t2 >> t3", "t0 >> t1 >> [t2, t3]"], ans: [2], type: "single", cat: "Dependencies", exp: "t0 >> t1 >> t2 >> t3 creates linear flow." },
+            { id: 31, q: "Valid ways to create a pipeline? (select all)", opts: ["Using with DAG()", "Using DAG class with dag parameter", "Creating a function called DAG", "Using @dag decorator"], ans: [0, 1, 3], type: "multiple", cat: "DAG Definition", exp: "Valid: @dag, with DAG(), DAG class with dag=." },
+            { id: 32, q: "Can you backfill with catchup=False?", opts: ["No, impossible", "Yes, with UI, API, or CLI"], ans: [1], type: "single", cat: "Backfill", exp: "You can manually backfill even with catchup=False." },
+            { id: 33, q: "Would task_a() >> task_b (missing parentheses) work?", opts: ["Yes", "No"], ans: [1], type: "single", cat: "Troubleshooting", exp: "No, task_b without () is a decorator object, not a task." },
+            { id: 34, q: "What does 'Latest Run' column show?", opts: ["Logical date of latest DAG run", "Interval between runs", "End date/time of most recent run", "Next scheduled run"], ans: [0], type: "single", cat: "UI", exp: "Shows the logical_date of the most recent DAG run." },
+            { id: 35, q: "Presto provider missing. What to do?", opts: ["Reinstall Airflow", "Restart Airflow", "Impossible", "Install the provider package"], ans: [3], type: "single", cat: "Providers", exp: "Install: pip install apache-airflow-providers-presto" },
+            { id: 36, q: "Best view for DAG runs and task states overview?", opts: ["Graph view", "Grid view", "DAGs view"], ans: [1], type: "single", cat: "UI", exp: "Grid view shows tasks × runs matrix." },
+            { id: 37, q: "True about DAG? (select all)", opts: ["Loops are good practice", "DAG is a programming language", "DAG = Directed Acyclic Graph", "Nodes = tasks, edges = dependencies"], ans: [2, 3], type: "multiple", cat: "Core Concepts", exp: "DAG = Directed Acyclic Graph. No loops allowed." },
+            { id: 38, q: "Purpose of Airflow variable? (select all)", opts: ["Store XCom", "Reuse value across DAGs", "Store large data", "Avoid hardcoding"], ans: [1, 3], type: "multiple", cat: "Variables", exp: "Variables store config values and avoid hardcoding." },
+            { id: 39, q: "CLI command to run a task without dependencies?", opts: ["airflow tasks start", "airflow dags test", "airflow standalone", "airflow tasks test"], ans: [3], type: "single", cat: "CLI", exp: "airflow tasks test runs a task in isolation." },
+            { id: 40, q: "What can be stored in a variable? (select all)", opts: ["Integers", "Strings", "Python Dataclasses", "JSON"], ans: [1, 3], type: "multiple", cat: "Variables", exp: "Strings and JSON (with deserialize_json=True)." },
+            { id: 41, q: "What does a Transfer Operator do?", opts: ["Moves data between systems", "Transforms data format", "Sends notifications", "Evaluates conditions"], ans: [0], type: "single", cat: "Operators", exp: "Transfer Operators move data from one system to another." },
+            { id: 42, q: "Purpose of default_args?", opts: ["Specifies schedule interval", "Specifies operator to use", "Default params for one task", "Default params for all tasks"], ans: [3], type: "single", cat: "DAG Parameters", exp: "default_args applies to ALL tasks in the DAG." },
+            { id: 43, q: "What does a Sensor Operator do?", opts: ["Waits for a condition", "Evaluates conditions for branching", "Sends notifications", "Provides utility functions"], ans: [0], type: "single", cat: "Sensors", exp: "Sensors wait for a condition to be true." },
+            { id: 44, q: "Is [t0, t1] >> t2 >> [t3, t4] >> t5 valid?", opts: ["No", "Yes"], ans: [1], type: "single", cat: "Dependencies", exp: "Yes, valid Airflow syntax." },
+            { id: 45, q: "Jan 8 10:00, start_date Jan 5, catchup=True. How many DAG runs?", opts: ["4", "2", "1", "3"], ans: [3], type: "single", cat: "Scheduling", exp: "3 completed intervals: 5→6, 6→7, 7→8." },
+            { id: 46, q: "Optional params without @dag? (select all)", opts: ["schedule_interval", "start_date", "default_args", "dag_id"], ans: [0, 1, 2], type: "multiple", cat: "DAG Parameters", exp: "Only dag_id is required." },
+            { id: 47, q: "How can Airflow help build a user behavior dashboard?", opts: ["As the database", "To schedule pipelines feeding a data warehouse", "To analyze events and present dashboards", "To build dashboards in the UI"], ans: [1], type: "single", cat: "Use Cases", exp: "Airflow orchestrates pipelines, not databases or dashboards." },
+            { id: 48, q: "Can env variable variables be accessed in DAGs even if not in UI?", opts: ["Yes", "No"], ans: [0], type: "single", cat: "Variables", exp: "Yes, via Variable.get()." },
+            { id: 49, q: "Result of chain(t0, t1, [t2, t3], [t4, t5], t6)?", opts: ["chain(t0, t1, [t2, t4], [t3, t5], t6)", "t0 >> t1 >> [t2, t3] >> [t4, t5] >> t6", "chain(t0, t1, [t2, t3], [t4, t5], t6)", "[t0, t1] >> t2 >> t3 >> t4 >> [t5, t6]"], ans: [2], type: "single", cat: "Dependencies", exp: "chain() with lists connects corresponding elements." },
+            { id: 50, q: "Valid ways to create a connection? (select all)", opts: ["Airflow CLI", "In an XCom", "Airflow UI", "Environment Variables"], ans: [0, 2, 3], type: "multiple", cat: "Connections", exp: "CLI, UI, or AIRFLOW_CONN_* env vars." },
+            { id: 51, q: "Best mode when poke_interval < 5 minutes?", opts: ["reschedule", "poke"], ans: [1], type: "single", cat: "Sensors", exp: "poke mode is best for short intervals." },
+            { id: 52, q: "Which folder does the scheduler parse for DAGs?", opts: ["/plugins", "/dags", "/include", "/airflow"], ans: [1], type: "single", cat: "Configuration", exp: "/dags folder contains DAG files." },
+            { id: 53, q: "Method to add data to XCom?", opts: ["xcom parameter of DAG", "xcom_push", "xcom_add", "xcom_pull"], ans: [1], type: "single", cat: "XCom", exp: "Use xcom_push to add data." },
+            { id: 54, q: "What does 'queued' status mean?", opts: ["Task is running", "Task executes immediately", "Task waiting to be scheduled", "Task assigned to executor, awaiting worker"], ans: [3], type: "single", cat: "Core Concepts", exp: "Queued = sent to executor, waiting for worker." },
+            { id: 55, q: "Is daily SQL aggregation a use case for Airflow?", opts: ["No", "Yes"], ans: [1], type: "single", cat: "Use Cases", exp: "Yes, perfect use case!" },
+            { id: 56, q: "Purpose of PythonOperator?", opts: ["Deploy Python packages", "Execute Python code as a task", "Schedule Python scripts", "Manage virtual environments"], ans: [1], type: "single", cat: "Operators", exp: "PythonOperator executes a Python function as a task." },
+            { id: 57, q: "Is automated failure notification a use case for Airflow?", opts: ["No", "Yes"], ans: [1], type: "single", cat: "Use Cases", exp: "Yes! Airflow provides email_on_failure, Slack, etc." },
+            { id: 58, q: "Correct env var for variable 'customer_folder'='my_folder'?", opts: ["AIRFLOW_VARIABLE_CUSTOMER_FOLDER='my_folder'", "CUSTOMER_FOLDER='my_folder'", "AIRFLOW_VAR_CUSTOMER_FOLDER='my_folder'", "AIRFLOW_CUSTOMER_FOLDER='my_folder'"], ans: [2], type: "single", cat: "Variables", exp: "Format: AIRFLOW_VAR_<NAME_UPPERCASE>=value" },
+            { id: 59, q: "Which creates t0 → t1 → t2 → t3? (select all)", opts: ["t3 << t2 << t1 << t0", "t0 >> t1 >> t2 >> t3", "t0 >> [t1, t2] >> t3", "t0 >> [t1, t2, t3]"], ans: [0, 1], type: "multiple", cat: "Dependencies", exp: "Both >> and << create the same chain." },
+            { id: 60, q: "CLI command showing Python version?", opts: ["airflow version", "airflow python version", "airflow info", "airflow standalone"], ans: [2], type: "single", cat: "CLI", exp: "airflow info shows environment details." },
+            { id: 61, q: "Best view for understanding task dependencies?", opts: ["Graph view", "Grid view", "DAGs view"], ans: [0], type: "single", cat: "UI", exp: "Graph view shows tasks and arrows." },
+            { id: 62, q: "What is an Airflow provider?", opts: ["Task concurrency config", "Separate package extending Airflow", "Docker image", "Core operators"], ans: [1], type: "single", cat: "Providers", exp: "Providers are packages adding integrations." },
+            { id: 63, q: "Is SQLSensor with poke_interval=30 checking every 30 minutes?", opts: ["Yes", "No"], ans: [1], type: "single", cat: "Sensors", exp: "No! poke_interval is in SECONDS. 30 = 30 seconds." },
+            { id: 64, q: "CLI command to create the metadata database?", opts: ["airflow db start", "airflow db reset", "airflow db check", "airflow db migrate"], ans: [3], type: "single", cat: "CLI", exp: "airflow db migrate creates/upgrades the schema." },
+            { id: 65, q: "Error: '_TaskDecorator' object has no attribute 'update_relative'. Solution?", opts: ["Call the task explicitly", "Change start_date format", "Import correct DAG object", "Not enough info"], ans: [0], type: "single", cat: "Troubleshooting", exp: "Call tasks: task_a() >> task_b()" },
+            { id: 66, q: "Method to get data from XCom?", opts: ["xcom_push", "xcom_add", "xcom_pull", "xcom parameter"], ans: [2], type: "single", cat: "XCom", exp: "Use xcom_pull to retrieve data." },
+            { id: 67, q: "Is t0 >> t1 >> t2 >> t3 equivalent to t3 << t2 << t1 << t0?", opts: ["No", "Yes"], ans: [1], type: "single", cat: "Dependencies", exp: "Yes, both create t0 → t1 → t2 → t3." },
+            { id: 68, q: "Where are task dependencies set up?", opts: ["In /includes directory", "In the DAG file", "In the Airflow UI", "In a config file"], ans: [1], type: "single", cat: "DAG Definition", exp: "Dependencies are defined in the DAG Python file." },
+            { id: 69, q: "Purpose of catchup parameter?", opts: ["Determines schedule interval", "Determines future runs", "Determines retry count", "Determines retroactive runs"], ans: [3], type: "single", cat: "DAG Parameters", exp: "catchup controls backfilling past intervals." },
+            { id: 70, q: "Which returns 'my_json' as a Python dict?", opts: ["Variable.retrieve('my_json', deserialize_json=True)", "Variable.get('my_json', deserialize_json=True)", "Variable.retrieve('my_json', deserialize_json=False)", "Variable.get('my_json')"], ans: [1], type: "single", cat: "Variables", exp: "Variable.get() with deserialize_json=True." },
+            { id: 71, q: "Is [t0, t1] >> [t2, t3] valid?", opts: ["No", "Yes"], ans: [1], type: "single", cat: "Dependencies", exp: "Yes, creates cross-dependencies." },
+            { id: 72, q: "Schedule for daily at 7:00 AM?", opts: ["schedule='7 * * * *'", "schedule='0 7 * * *'", "schedule=timedelta(hours=6)", "schedule=timedelta(hours=7)"], ans: [1], type: "single", cat: "Scheduling", exp: "'0 7 * * *' = minute 0, hour 7, daily." },
+            { id: 73, q: "Default time for new DAG file to appear?", opts: ["1 minute", "30 seconds", "5 minutes", "1 second"], ans: [2], type: "single", cat: "Configuration", exp: "dag_dir_list_interval defaults to 5 minutes." },
+            { id: 74, q: "UI shows 2 DAGs but expecting 5. Why?", opts: ["5-minute delay", "A filter is applied", "30-second delay", "Airflow error"], ans: [1], type: "single", cat: "UI", exp: "A tag filter is likely applied." },
+            { id: 75, q: "Purpose of schedule parameter?", opts: ["When scheduling starts", "How often DAG runs", "When scheduling stops", "Timezone for DAG"], ans: [1], type: "single", cat: "DAG Parameters", exp: "schedule defines how often the DAG runs." }
         ];
 
         let userAnswers = {};
-        let quizSubmitted = false;
+        let submitted = false;
 
-        function showMode(mode) {
-            document.querySelectorAll('.cert-section').forEach(s => s.classList.remove('active'));
-            document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
-            
-            document.getElementById(mode + '-section').classList.add('active');
+        function showTab(mode) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
             event.target.classList.add('active');
+            document.getElementById(mode + '-section').classList.add('active');
             
-            if (mode === 'study' && !document.getElementById('study-content').innerHTML) {
-                renderStudyMode();
-            } else if (mode === 'quiz' && !document.getElementById('quiz-content').innerHTML) {
-                renderQuizMode();
-            } else if (mode === 'answers' && !document.getElementById('answers-content').innerHTML) {
-                renderAnswersMode();
-            }
+            document.getElementById('actions').style.display = mode === 'quiz' ? 'flex' : 'none';
+            document.getElementById('results').classList.remove('show');
+            
+            if (mode === 'study') renderStudy();
+            else if (mode === 'quiz') renderQuiz();
+            else if (mode === 'answers') renderAnswers();
             
             window.scrollTo(0, 0);
         }
 
-        function renderStudyMode() {
-            const container = document.getElementById('study-content');
-            let html = '';
-            
-            questions.forEach((q) => {
-                const correctOptions = q.correct.map(i => q.options[i]).join(', ');
-                html += `
-                    <div class="question-card">
-                        <span class="q-number">Question ${q.id}</span>
-                        <span class="q-category">${q.category}</span>
-                        <div class="q-text">${q.question.replace(/\n/g, '<br>')}</div>
-                        <div class="options-list">
-                            ${q.options.map((opt, i) => `
-                                <div class="option-item ${q.correct.includes(i) ? 'correct-highlight' : ''}">
-                                    ${q.type === 'multiple' ? '☐' : '○'} ${opt}
-                                </div>
-                            `).join('')}
-                        </div>
-                        <div class="correct-badge">✓ Answer: ${correctOptions}</div>
-                        <div class="explanation-box">
-                            <h4>📖 Explanation</h4>
-                            <p>${q.explanation}</p>
-                        </div>
-                    </div>
-                `;
-            });
-            
-            container.innerHTML = html;
+        function renderStudy() {
+            const el = document.getElementById('study-section');
+            if (el.innerHTML) return;
+            el.innerHTML = questions.map(q => `
+                <div class="question">
+                    <div class="q-meta"><span class="q-num">Q${q.id}</span><span class="q-cat">${q.cat}</span></div>
+                    <div class="q-text">${q.q.replace(/\n/g, '<br>')}</div>
+                    <div class="options">${q.opts.map((o, i) => `
+                        <div class="opt ${q.ans.includes(i) ? 'correct' : ''}">${o}</div>
+                    `).join('')}</div>
+                    <div class="answer">✓ ${q.ans.map(i => q.opts[i]).join(', ')}</div>
+                    <div class="explanation"><strong>Why?</strong> ${q.exp}</div>
+                </div>
+            `).join('');
         }
 
-        function renderQuizMode() {
-            const container = document.getElementById('quiz-content');
-            let html = '';
+        function renderQuiz() {
+            const el = document.getElementById('quiz-section');
+            if (el.innerHTML && !submitted) return;
+            submitted = false;
+            userAnswers = {};
+            document.getElementById('results').classList.remove('show');
+            document.getElementById('submit-btn').classList.remove('hidden');
+            document.getElementById('reveal-btn').classList.add('hidden');
             
-            questions.forEach((q) => {
-                const inputType = q.type === 'multiple' ? 'checkbox' : 'radio';
-                html += `
-                    <div class="question-card" id="quiz-q-${q.id}">
-                        <span class="q-number">Question ${q.id}</span>
-                        <span class="q-category">${q.category}</span>
-                        <div class="q-text">${q.question.replace(/\n/g, '<br>')}</div>
-                        <div class="options-list">
-                            ${q.options.map((opt, i) => `
-                                <label class="option-item" id="quiz-q-${q.id}-opt-${i}">
-                                    <input type="${inputType}" name="q${q.id}" value="${i}" 
-                                           onchange="recordAnswer(${q.id}, ${i}, '${q.type}')">
-                                    ${opt}
-                                </label>
-                            `).join('')}
-                        </div>
-                    </div>
-                `;
-            });
-            
-            container.innerHTML = html;
+            el.innerHTML = questions.map(q => `
+                <div class="question" id="quiz-q-${q.id}">
+                    <div class="q-meta"><span class="q-num">Q${q.id}</span><span class="q-cat">${q.cat}</span></div>
+                    <div class="q-text">${q.q.replace(/\n/g, '<br>')}</div>
+                    <div class="options">${q.opts.map((o, i) => `
+                        <label class="opt" id="q${q.id}-o${i}">
+                            <input type="${q.type === 'multiple' ? 'checkbox' : 'radio'}" name="q${q.id}" value="${i}" onchange="record(${q.id}, ${i}, '${q.type}')">
+                            ${o}
+                        </label>
+                    `).join('')}</div>
+                </div>
+            `).join('');
         }
 
-        function renderAnswersMode() {
-            const container = document.getElementById('answers-content');
-            let html = '';
-            
-            questions.forEach((q) => {
-                html += `
-                    <div class="question-card">
-                        <span class="q-number">Question ${q.id}</span>
-                        <span class="q-category">${q.category}</span>
-                        <div class="q-text">${q.question.replace(/\n/g, '<br>')}</div>
-                        <div class="options-list">
-                            ${q.options.map((opt, i) => `
-                                <div class="option-item ${q.correct.includes(i) ? 'correct-highlight' : ''}">
-                                    ${q.type === 'multiple' ? '☐' : '○'} ${opt}
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
-                `;
-            });
-            
-            container.innerHTML = html;
+        function renderAnswers() {
+            const el = document.getElementById('answers-section');
+            if (el.innerHTML) return;
+            el.innerHTML = questions.map(q => `
+                <div class="question">
+                    <div class="q-meta"><span class="q-num">Q${q.id}</span><span class="q-cat">${q.cat}</span></div>
+                    <div class="q-text">${q.q.replace(/\n/g, '<br>')}</div>
+                    <div class="options">${q.opts.map((o, i) => `
+                        <div class="opt ${q.ans.includes(i) ? 'correct' : ''}">${o}</div>
+                    `).join('')}</div>
+                </div>
+            `).join('');
         }
 
-        function recordAnswer(questionId, optionIndex, type) {
-            if (quizSubmitted) return;
-            
+        function record(qid, oid, type) {
+            if (submitted) return;
             if (type === 'multiple') {
-                if (!userAnswers[questionId]) {
-                    userAnswers[questionId] = [];
-                }
-                const idx = userAnswers[questionId].indexOf(optionIndex);
-                if (idx > -1) {
-                    userAnswers[questionId].splice(idx, 1);
-                } else {
-                    userAnswers[questionId].push(optionIndex);
-                }
+                if (!userAnswers[qid]) userAnswers[qid] = [];
+                const idx = userAnswers[qid].indexOf(oid);
+                if (idx > -1) userAnswers[qid].splice(idx, 1);
+                else userAnswers[qid].push(oid);
             } else {
-                userAnswers[questionId] = [optionIndex];
+                userAnswers[qid] = [oid];
             }
         }
 
         function submitQuiz() {
-            if (quizSubmitted) return;
-            quizSubmitted = true;
-            
+            submitted = true;
             let correct = 0;
-            let incorrect = 0;
             
             questions.forEach(q => {
-                const userAnswer = userAnswers[q.id] || [];
-                const isCorrect = arraysEqual(userAnswer.sort(), [...q.correct].sort());
+                const user = (userAnswers[q.id] || []).sort();
+                const ans = [...q.ans].sort();
+                const isCorrect = JSON.stringify(user) === JSON.stringify(ans);
+                if (isCorrect) correct++;
                 
-                if (isCorrect) {
-                    correct++;
-                } else {
-                    incorrect++;
-                }
-                
-                q.options.forEach((opt, i) => {
-                    const optEl = document.getElementById(`quiz-q-${q.id}-opt-${i}`);
+                q.opts.forEach((_, i) => {
+                    const optEl = document.getElementById(`q${q.id}-o${i}`);
                     if (optEl) {
-                        optEl.classList.remove('user-correct', 'user-wrong');
-                        if (userAnswer.includes(i) && q.correct.includes(i)) {
-                            optEl.classList.add('user-correct');
-                        } else if (userAnswer.includes(i) && !q.correct.includes(i)) {
-                            optEl.classList.add('user-wrong');
-                        }
+                        optEl.classList.remove('correct', 'wrong');
+                        if (user.includes(i) && ans.includes(i)) optEl.classList.add('correct');
+                        else if (user.includes(i)) optEl.classList.add('wrong');
                     }
                 });
             });
             
-            const percentage = Math.round((correct / questions.length) * 100);
-            
-            document.getElementById('results').classList.remove('hidden');
-            document.getElementById('score-value').textContent = percentage + '%';
-            document.getElementById('progress-fill').style.width = percentage + '%';
-            document.getElementById('correct-count').textContent = correct;
-            document.getElementById('incorrect-count').textContent = incorrect;
+            const pct = Math.round((correct / questions.length) * 100);
+            document.getElementById('score').textContent = pct + '%';
+            document.getElementById('correct').textContent = correct;
+            document.getElementById('wrong').textContent = questions.length - correct;
+            document.getElementById('score-msg').textContent = pct >= 70 ? '🎉 Passed!' : '📚 Keep studying';
+            document.getElementById('score-msg').className = 'score-msg ' + (pct >= 70 ? 'pass' : 'fail');
+            document.getElementById('results').classList.add('show');
             document.getElementById('submit-btn').classList.add('hidden');
-            document.getElementById('show-answers-btn').classList.remove('hidden');
-            
-            const message = percentage >= 70 ? 
-                '🎉 Congratulations! You passed!' : 
-                '📚 Keep studying! You need 70% to pass.';
-            document.getElementById('score-message').textContent = message;
-            document.getElementById('score-message').className = 'score-label ' + (percentage >= 70 ? 'pass' : 'fail');
-            
-            document.querySelectorAll('#quiz-content input').forEach(input => {
-                input.disabled = true;
-            });
-            
+            document.getElementById('reveal-btn').classList.remove('hidden');
+            document.querySelectorAll('#quiz-section input').forEach(i => i.disabled = true);
             window.scrollTo(0, 0);
         }
 
         function revealAnswers() {
             questions.forEach(q => {
-                q.options.forEach((opt, i) => {
-                    const optEl = document.getElementById(`quiz-q-${q.id}-opt-${i}`);
-                    if (optEl && q.correct.includes(i)) {
-                        optEl.classList.add('correct-highlight');
-                    }
+                q.opts.forEach((_, i) => {
+                    const optEl = document.getElementById(`q${q.id}-o${i}`);
+                    if (optEl && q.ans.includes(i)) optEl.classList.add('correct');
                 });
             });
         }
 
         function resetQuiz() {
-            quizSubmitted = false;
-            userAnswers = {};
-            
-            document.getElementById('results').classList.add('hidden');
-            document.getElementById('submit-btn').classList.remove('hidden');
-            document.getElementById('show-answers-btn').classList.add('hidden');
-            
-            document.querySelectorAll('#quiz-content input').forEach(input => {
-                input.disabled = false;
-                input.checked = false;
-            });
-            
-            document.querySelectorAll('#quiz-content .option-item').forEach(opt => {
-                opt.classList.remove('user-correct', 'user-wrong', 'correct-highlight');
-            });
-            
-            window.scrollTo(0, 0);
+            document.getElementById('quiz-section').innerHTML = '';
+            renderQuiz();
         }
-
-        function arraysEqual(a, b) {
-            if (a.length !== b.length) return false;
-            for (let i = 0; i < a.length; i++) {
-                if (a[i] !== b[i]) return false;
-            }
-            return true;
-        }
-
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // Hub Navigation
-        function goToHub() {
-            window.location.href = '../index.html';
-        }
-
-        function goToPython() {
-            window.location.href = '../python_course/index.html';
-        }
-
-        // Scroll button visibility
-        window.addEventListener('scroll', () => {
-            const scrollBtn = document.getElementById('scroll-top');
-            if (window.scrollY > 500) {
-                scrollBtn.classList.add('visible');
-            } else {
-                scrollBtn.classList.remove('visible');
-            }
-        });
 
         // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            renderStudyMode();
-        });
+        renderStudy();
     </script>
 </body>
 </html>
-

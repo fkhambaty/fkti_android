@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assignment 4 Solutions | 🐍 Python Mastery</title>
+  <link rel="stylesheet" href="light-theme.css">
+  <style>
+    .question-card { background: white; border: 2px solid var(--border-color); border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem; }
+    .question-header { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1rem; }
+    .question-num { background: var(--gradient-python); color: white; min-width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0; }
+    .question-text { font-size: 1.05rem; color: var(--text-primary); font-weight: 600; line-height: 1.5; }
+    .solution-toggle { background: #f1f5f9; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer; font-weight: 600; color: var(--python-blue); margin-top: 1rem; }
+    .solution-toggle:hover { background: #e2e8f0; }
+    .solution-content { display: none; margin-top: 1rem; padding-top: 1rem; border-top: 2px dashed var(--border-color); }
+    .solution-content.show { display: block; }
+    .explanation-box { background: #f0fdf4; border-left: 4px solid var(--accent-green); padding: 1rem; margin: 1rem 0; border-radius: 0 8px 8px 0; }
+    .explanation-box h4 { color: var(--accent-green); margin-bottom: 0.5rem; }
+  </style>
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-content">
+      <a href="complete-course.html" class="logo">🐍 Python Mastery</a>
+      <div class="session-nav">
+        <a href="a1-strings.html" class="nav-link">A1</a>
+        <a href="a2-loops.html" class="nav-link">A2</a>
+        <a href="a3-datastructures.html" class="nav-link">A3</a>
+        <a href="a4-functions.html" class="nav-link active">A4</a>
+        <a href="a5-advanced.html" class="nav-link">A5</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <header class="session-header">
+      <div class="session-badge" style="background: var(--gradient-success);">Assignment 4 - Solutions</div>
+      <h1>⚙️ Functions</h1>
+      <p class="session-subtitle">Complete solutions with detailed explanations</p>
+    </header>
+
+    <section class="content-section">
+      <h2>📋 Questions & Solutions</h2>
+
+      <!-- Q1 -->
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-num">1</span>
+          <span class="question-text">Create a function which takes 2 numbers as inputs and returns the following three values: Addition of two numbers, Subtraction of two numbers, Multiplication of two numbers.</span>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">💡 Show Solution</button>
+        <div class="solution-content">
+          <div class="code-block"><pre><code>def arithmetic_operations(a, b):
+    """Perform addition, subtraction, and multiplication"""
+    addition = a + b
+    subtraction = a - b
+    multiplication = a * b
+    return addition, subtraction, multiplication
+
+# Test the function
+num1 = 10
+num2 = 3
+
+add, sub, mul = arithmetic_operations(num1, num2)
+print(f"Numbers: {num1} and {num2}")
+print(f"Addition: {add}")
+print(f"Subtraction: {sub}")
+print(f"Multiplication: {mul}")</code></pre></div>
+          <div class="output-block"><div class="output-header">Output</div><pre>Numbers: 10 and 3
+Addition: 13
+Subtraction: 7
+Multiplication: 30</pre></div>
+          <div class="explanation-box"><h4>🎓 Explanation</h4><p>Python functions can return multiple values using tuple unpacking. <code>return a, b, c</code> returns a tuple, and <code>x, y, z = func()</code> unpacks it into separate variables.</p></div>
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-num">2</span>
+          <span class="question-text">Write a python function to calculate the factorial of a given integer: 10<br><br>For example: Factorial of 5 = 5×4×3×2×1 = 120</span>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">💡 Show Solution</button>
+        <div class="solution-content">
+          <div class="code-block"><pre><code>def factorial(n):
+    """Calculate factorial of n"""
+    if n < 0:
+        return "Error: Factorial not defined for negative numbers"
+    if n == 0 or n == 1:
+        return 1
+    
+    result = 1
+    for i in range(2, n + 1):
+        result *= i
+    return result
+
+# Test with 10
+print(f"Factorial of 10: {factorial(10)}")
+print(f"Factorial of 5: {factorial(5)}")
+print(f"Factorial of 0: {factorial(0)}")
+
+# Recursive version
+def factorial_recursive(n):
+    if n <= 1:
+        return 1
+    return n * factorial_recursive(n - 1)
+
+print(f"\nRecursive - Factorial of 10: {factorial_recursive(10)}")</code></pre></div>
+          <div class="output-block"><div class="output-header">Output</div><pre>Factorial of 10: 3628800
+Factorial of 5: 120
+Factorial of 0: 1
+
+Recursive - Factorial of 10: 3628800</pre></div>
+          <div class="explanation-box"><h4>🎓 Explanation</h4><p>Factorial: n! = n × (n-1) × ... × 1. Base case: 0! = 1! = 1. Loop version is more efficient; recursive is more elegant but uses more memory.</p></div>
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-num">3</span>
+          <span class="question-text">Write a python function that takes a list of integers as input and returns a new list with the integers sorted in descending order.</span>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">💡 Show Solution</button>
+        <div class="solution-content">
+          <div class="code-block"><pre><code>def sort_descending(numbers):
+    """Sort list in descending order"""
+    return sorted(numbers, reverse=True)
+
+# Test
+test_list = [64, 34, 25, 12, 22, 11, 90]
+result = sort_descending(test_list)
+
+print("Original:", test_list)
+print("Sorted (descending):", result)</code></pre></div>
+          <div class="output-block"><div class="output-header">Output</div><pre>Original: [64, 34, 25, 12, 22, 11, 90]
+Sorted (descending): [90, 64, 34, 25, 22, 12, 11]</pre></div>
+          <div class="explanation-box"><h4>🎓 Explanation</h4><p><code>sorted()</code> returns a new sorted list without modifying the original. <code>reverse=True</code> sorts from largest to smallest.</p></div>
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-num">4</span>
+          <span class="question-text">Write a python function that takes a string as input and returns the number of vowels in the string.</span>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">💡 Show Solution</button>
+        <div class="solution-content">
+          <div class="code-block"><pre><code>def count_vowels(text):
+    """Count vowels in a string"""
+    vowels = "aeiouAEIOU"
+    count = 0
+    for char in text:
+        if char in vowels:
+            count += 1
+    return count
+
+# Test
+test_strings = ["Hello World", "Python Programming", "AEIOU"]
+for s in test_strings:
+    print(f"'{s}' has {count_vowels(s)} vowels")
+
+# One-liner version
+count_vowels_v2 = lambda s: sum(1 for c in s if c.lower() in 'aeiou')
+print(f"\nLambda version: {count_vowels_v2('Hello World')}")</code></pre></div>
+          <div class="output-block"><div class="output-header">Output</div><pre>'Hello World' has 3 vowels
+'Python Programming' has 4 vowels
+'AEIOU' has 5 vowels
+
+Lambda version: 3</pre></div>
+          <div class="explanation-box"><h4>🎓 Explanation</h4><p>Check each character against vowels string. Include both cases (aeiouAEIOU) or use <code>.lower()</code>. The generator expression version is concise.</p></div>
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-num">5</span>
+          <span class="question-text">Create a function that checks if a given number is even or odd.</span>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">💡 Show Solution</button>
+        <div class="solution-content">
+          <div class="code-block"><pre><code>def check_even_odd(num):
+    """Check if number is even or odd"""
+    if num % 2 == 0:
+        return "Even"
+    else:
+        return "Odd"
+
+# Test with multiple numbers
+test_numbers = [10, 7, 0, -4, 15]
+for n in test_numbers:
+    print(f"{n} is {check_even_odd(n)}")
+
+# Boolean version
+def is_even(num):
+    return num % 2 == 0
+
+print(f"\nis_even(10): {is_even(10)}")
+print(f"is_even(7): {is_even(7)}")</code></pre></div>
+          <div class="output-block"><div class="output-header">Output</div><pre>10 is Even
+7 is Odd
+0 is Even
+-4 is Even
+15 is Odd
+
+is_even(10): True
+is_even(7): False</pre></div>
+          <div class="explanation-box"><h4>🎓 Explanation</h4><p><code>%</code> is modulo (remainder). If n % 2 equals 0, the number divides evenly by 2, making it even. Zero is even. Negative numbers work too.</p></div>
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-num">6</span>
+          <span class="question-text">Create a function to find the sum of all even numbers in a list: [12,2,33,11,45,8]</span>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">💡 Show Solution</button>
+        <div class="solution-content">
+          <div class="code-block"><pre><code>def sum_even_numbers(numbers):
+    """Sum all even numbers in a list"""
+    total = 0
+    for num in numbers:
+        if num % 2 == 0:
+            total += num
+    return total
+
+# Test
+test_list = [12, 2, 33, 11, 45, 8]
+result = sum_even_numbers(test_list)
+
+print(f"List: {test_list}")
+print(f"Even numbers: {[n for n in test_list if n % 2 == 0]}")
+print(f"Sum of evens: {result}")
+
+# One-liner version
+sum_evens_v2 = lambda lst: sum(n for n in lst if n % 2 == 0)
+print(f"\nLambda version: {sum_evens_v2(test_list)}")</code></pre></div>
+          <div class="output-block"><div class="output-header">Output</div><pre>List: [12, 2, 33, 11, 45, 8]
+Even numbers: [12, 2, 8]
+Sum of evens: 22
+
+Lambda version: 22</pre></div>
+          <div class="explanation-box"><h4>🎓 Explanation</h4><p>Filter evens with <code>n % 2 == 0</code>, then sum. 12 + 2 + 8 = 22. The generator expression <code>sum(n for n if ...)</code> is memory efficient.</p></div>
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-num">7</span>
+          <span class="question-text">Write a function to remove duplicate elements from a list.</span>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">💡 Show Solution</button>
+        <div class="solution-content">
+          <div class="code-block"><pre><code>def remove_duplicates(lst):
+    """Remove duplicates while preserving order"""
+    seen = set()
+    result = []
+    for item in lst:
+        if item not in seen:
+            seen.add(item)
+            result.append(item)
+    return result
+
+# Test
+test_list = [1, 2, 2, 3, 3, 3, 4, 4, 4, 4]
+result = remove_duplicates(test_list)
+
+print(f"Original: {test_list}")
+print(f"Without duplicates: {result}")
+
+# Simple version (order may change)
+def remove_duplicates_simple(lst):
+    return list(set(lst))
+
+print(f"Simple version: {remove_duplicates_simple(test_list)}")</code></pre></div>
+          <div class="output-block"><div class="output-header">Output</div><pre>Original: [1, 2, 2, 3, 3, 3, 4, 4, 4, 4]
+Without duplicates: [1, 2, 3, 4]
+Simple version: [1, 2, 3, 4]</pre></div>
+          <div class="explanation-box"><h4>🎓 Explanation</h4><p>Set tracks seen items (O(1) lookup). First method preserves order. <code>list(set())</code> is simpler but may change order.</p></div>
+        </div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-num">8</span>
+          <span class="question-text">Create a Python function to reverse a string.</span>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">💡 Show Solution</button>
+        <div class="solution-content">
+          <div class="code-block"><pre><code>def reverse_string(text):
+    """Reverse a string using slicing"""
+    return text[::-1]
+
+# Test
+test_strings = ["Python", "Hello World", "12345"]
+for s in test_strings:
+    print(f"'{s}' → '{reverse_string(s)}'")
+
+# Alternative: Loop method
+def reverse_string_loop(text):
+    result = ""
+    for char in text:
+        result = char + result
+    return result
+
+print(f"\nLoop method: '{reverse_string_loop('Python')}'")</code></pre></div>
+          <div class="output-block"><div class="output-header">Output</div><pre>'Python' → 'nohtyP'
+'Hello World' → 'dlroW olleH'
+'12345' → '54321'
+
+Loop method: 'nohtyP'</pre></div>
+          <div class="explanation-box"><h4>🎓 Explanation</h4><p><code>[::-1]</code> slicing with step -1 is the Pythonic way to reverse. Loop method prepends each character to build the reversed string.</p></div>
+        </div>
+      </div>
+
+      <!-- Q9 -->
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-num">9</span>
+          <span class="question-text">Create a function greet_user that takes a name as an argument and prints "Hello, [Name]!". If no name is provided, it should print "Hello, Guest!"</span>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">💡 Show Solution</button>
+        <div class="solution-content">
+          <div class="code-block"><pre><code>def greet_user(name="Guest"):
+    """Greet user with optional name parameter"""
+    print(f"Hello, {name}!")
+
+# Test with different scenarios
+greet_user("Alice")      # With name
+greet_user("Bob")        # With another name
+greet_user()             # Without name (uses default)
+
+# Using keyword argument
+greet_user(name="Charlie")</code></pre></div>
+          <div class="output-block"><div class="output-header">Output</div><pre>Hello, Alice!
+Hello, Bob!
+Hello, Guest!
+Hello, Charlie!</pre></div>
+          <div class="explanation-box"><h4>🎓 Explanation</h4><p><code>name="Guest"</code> sets a default value. If no argument is passed, "Guest" is used. Default parameters must come after required parameters.</p></div>
+        </div>
+      </div>
+
+      <!-- Q10 -->
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-num">10</span>
+          <span class="question-text">Create a function that takes an integer as input and returns its cube.</span>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">💡 Show Solution</button>
+        <div class="solution-content">
+          <div class="code-block"><pre><code>def cube(n):
+    """Calculate cube of a number"""
+    return n ** 3
+
+# Test
+test_numbers = [2, 3, 5, 10]
+for n in test_numbers:
+    print(f"Cube of {n}: {cube(n)}")
+
+# Lambda version
+cube_lambda = lambda n: n ** 3
+print(f"\nLambda cube of 4: {cube_lambda(4)}")
+
+# Apply to list using map
+numbers = [1, 2, 3, 4, 5]
+cubes = list(map(cube, numbers))
+print(f"Cubes of {numbers}: {cubes}")</code></pre></div>
+          <div class="output-block"><div class="output-header">Output</div><pre>Cube of 2: 8
+Cube of 3: 27
+Cube of 5: 125
+Cube of 10: 1000
+
+Lambda cube of 4: 64
+Cubes of [1, 2, 3, 4, 5]: [1, 8, 27, 64, 125]</pre></div>
+          <div class="explanation-box"><h4>🎓 Explanation</h4><p><code>**</code> is the power operator. <code>n**3</code> = n³ = n×n×n. Lambda creates one-line anonymous functions. <code>map()</code> applies a function to each element.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <nav class="page-navigation">
+      <a href="a3-datastructures.html" class="nav-prev">
+        <span class="nav-arrow">←</span>
+        <span class="nav-text">
+          <span class="nav-label">Previous</span>
+          <span class="nav-title">Assignment 3</span>
+        </span>
+      </a>
+      <a href="complete-course.html" class="nav-home">🏠</a>
+      <a href="a5-advanced.html" class="nav-next">
+        <span class="nav-text">
+          <span class="nav-label">Next</span>
+          <span class="nav-title">Assignment 5</span>
+        </span>
+        <span class="nav-arrow">→</span>
+      </a>
+    </nav>
+  </main>
+
+  <footer><p>🐍 Python Mastery | Instructor Solutions</p></footer>
+  <script>function toggleSolution(btn) { const content = btn.nextElementSibling; content.classList.toggle('show'); btn.textContent = content.classList.contains('show') ? '🔒 Hide Solution' : '💡 Show Solution'; }</script>
+</body>
+</html>

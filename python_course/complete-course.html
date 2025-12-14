@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🐍 Python Mastery - Complete Interactive Course</title>
+  <link rel="stylesheet" href="light-theme.css">
+  <style>
+    /* Additional Hero Styles */
+    .hero {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #fef3c7 100%);
+      border-radius: 24px;
+      margin-bottom: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '🐍';
+      position: absolute;
+      font-size: 15rem;
+      opacity: 0.08;
+      top: -2rem;
+      right: -2rem;
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      background: var(--gradient-python);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1rem;
+    }
+    .hero .subtitle {
+      font-size: 1.3rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+    .stats-row {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+    .stat-item {
+      background: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow-md);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    /* Session Cards */
+    .sessions-container {
+      margin-bottom: 3rem;
+    }
+    .section-title {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .section-title h2 {
+      color: var(--python-blue);
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    .section-title p {
+      color: var(--text-secondary);
+    }
+    .sessions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+    .session-card {
+      background: white;
+      border: 2px solid var(--border-color);
+      border-radius: 16px;
+      padding: 1.5rem;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .session-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--gradient-python);
+    }
+    .session-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--python-blue);
+    }
+    .card-badge {
+      display: inline-block;
+      background: var(--gradient-python);
+      color: var(--text-primary);
+      padding: 0.3rem 0.8rem;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    .session-card h3 {
+      color: var(--text-primary);
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    .session-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    .topic-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .topic-tag {
+      background: #f1f5f9;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+    /* Assignment Card */
+    .session-card.assignment {
+      background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+      border-color: var(--accent-green);
+    }
+    .session-card.assignment::before {
+      background: var(--gradient-success);
+    }
+    .session-card.assignment .card-badge {
+      background: var(--gradient-success);
+      color: white;
+    }
+    /* Quick Start */
+    .quick-start {
+      background: white;
+      border: 2px solid var(--border-color);
+      border-radius: 20px;
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+    .quick-start h2 {
+      color: var(--python-blue);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.25rem;
+    }
+    .start-step {
+      text-align: center;
+      padding: 1.5rem;
+      background: #f8fafc;
+      border-radius: 12px;
+    }
+    .start-step .step-icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .start-step h4 {
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+    .start-step p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+    /* Mascot */
+    .mascot-section {
+      text-align: center;
+      padding: 2rem;
+      margin-top: 2rem;
+    }
+    .mascot {
+      font-size: 5rem;
+      margin-bottom: 1rem;
+    }
+    .mascot-text {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-pattern"></div>
+
+  <!-- Progress Bar -->
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="main-nav">
+    <div class="nav-content">
+      <a href="complete-course.html" class="logo">🐍 Python Mastery</a>
+      <div style="color: var(--text-secondary); font-size: 0.9rem; font-weight: 600;">Complete Interactive Course</div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Hero Section -->
+    <header class="hero">
+      <h1>🐍 Python Mastery</h1>
+      <p class="subtitle">Learn Python from absolute zero to data science hero! Master programming with fun stories, visual explanations, and hands-on practice.</p>
+      
+      <div class="stats-row">
+        <div class="stat-item">📚 13 Sessions</div>
+        <div class="stat-item">📝 50 Questions</div>
+        <div class="stat-item">🎯 Beginner Friendly</div>
+        <div class="stat-item">🏆 Certificate Ready</div>
+      </div>
+    </header>
+
+    <!-- Foundation Sessions -->
+    <div class="sessions-container">
+      <div class="section-title">
+        <h2>🌱 Foundation (Sessions 1-3)</h2>
+        <p>Start here! Build your Python basics step by step.</p>
+      </div>
+      
+      <div class="sessions-grid">
+        <a href="s1-intro.html" class="session-card">
+          <span class="card-badge">Session 1</span>
+          <h3>📚 Introduction to Python</h3>
+          <p>What is Python? Variables, print(), and your first program!</p>
+          <div class="topic-tags">
+            <span class="topic-tag">Variables</span>
+            <span class="topic-tag">print()</span>
+            <span class="topic-tag">Naming Rules</span>
+            <span class="topic-tag">id()</span>
+          </div>
+        </a>
+
+        <a href="s2-datatypes.html" class="session-card">
+          <span class="card-badge">Session 2</span>
+          <h3>📊 Data Types</h3>
+          <p>Numbers, strings, booleans - understand how Python categorizes data.</p>
+          <div class="topic-tags">
+            <span class="topic-tag">int/float/complex</span>
+            <span class="topic-tag">Strings</span>
+            <span class="topic-tag">Boolean</span>
+            <span class="topic-tag">Type Casting</span>
+          </div>
+        </a>
+
+        <a href="s3-loops.html" class="session-card">
+          <span class="card-badge">Session 3</span>
+          <h3>🔄 Operators & Loops</h3>
+          <p>Make decisions with if/else and repeat actions with loops!</p>
+          <div class="topic-tags">
+            <span class="topic-tag">Operators</span>
+            <span class="topic-tag">if/elif/else</span>
+            <span class="topic-tag">for loop</span>
+            <span class="topic-tag">while loop</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Data Structures Sessions -->
+    <div class="sessions-container">
+      <div class="section-title">
+        <h2>📦 Data Structures (Sessions 4-5)</h2>
+        <p>Learn to organize and manage collections of data.</p>
+      </div>
+      
+      <div class="sessions-grid">
+        <a href="s4-lists.html" class="session-card">
+          <span class="card-badge">Session 4</span>
+          <h3>📋 Lists</h3>
+          <p>Store multiple items in ordered, changeable collections.</p>
+          <div class="topic-tags">
+            <span class="topic-tag">Creating Lists</span>
+            <span class="topic-tag">Indexing/Slicing</span>
+            <span class="topic-tag">Methods</span>
+            <span class="topic-tag">2D Lists</span>
+          </div>
+        </a>
+
+        <a href="s5-datastructures.html" class="session-card">
+          <span class="card-badge">Session 5</span>
+          <h3>📦 Tuples, Sets & Dicts</h3>
+          <p>More ways to organize data with special properties!</p>
+          <div class="topic-tags">
+            <span class="topic-tag">Tuples</span>
+            <span class="topic-tag">Sets</span>
+            <span class="topic-tag">Dictionaries</span>
+            <span class="topic-tag">Methods</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Functions Sessions -->
+    <div class="sessions-container">
+      <div class="section-title">
+        <h2>⚙️ Functions (Sessions 6-7)</h2>
+        <p>Write reusable code blocks and master function arguments.</p>
+      </div>
+      
+      <div class="sessions-grid">
+        <a href="s6-functions1.html" class="session-card">
+          <span class="card-badge">Session 6</span>
+          <h3>⚙️ Functions Part I</h3>
+          <p>Create your own functions with parameters and return values.</p>
+          <div class="topic-tags">
+            <span class="topic-tag">def</span>
+            <span class="topic-tag">Parameters</span>
+            <span class="topic-tag">return</span>
+            <span class="topic-tag">Built-in Functions</span>
+          </div>
+        </a>
+
+        <a href="s7-functions2.html" class="session-card">
+          <span class="card-badge">Session 7</span>
+          <h3>🔧 Functions Part II</h3>
+          <p>Advanced concepts: *args, **kwargs, and real-world examples.</p>
+          <div class="topic-tags">
+            <span class="topic-tag">*args</span>
+            <span class="topic-tag">**kwargs</span>
+            <span class="topic-tag">Lambda</span>
+            <span class="topic-tag">Calculator Example</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Advanced Sessions -->
+    <div class="sessions-container">
+      <div class="section-title">
+        <h2>🚀 Advanced Topics (Sessions 8-12)</h2>
+        <p>Level up with OOP, NumPy, Pandas, and real data!</p>
+      </div>
+      
+      <div class="sessions-grid">
+        <a href="s8-oop.html" class="session-card">
+          <span class="card-badge">Session 8</span>
+          <h3>🏗️ Object-Oriented Programming</h3>
+          <p>Create classes and objects - the building blocks of real apps!</p>
+          <div class="topic-tags">
+            <span class="topic-tag">Classes</span>
+            <span class="topic-tag">Objects</span>
+            <span class="topic-tag">__init__</span>
+            <span class="topic-tag">self</span>
+          </div>
+        </a>
+
+        <a href="s9-numpy.html" class="session-card">
+          <span class="card-badge">Session 9</span>
+          <h3>🔢 NumPy & Comprehensions</h3>
+          <p>Powerful numerical computing and elegant list creation.</p>
+          <div class="topic-tags">
+            <span class="topic-tag">NumPy Arrays</span>
+            <span class="topic-tag">List Comprehension</span>
+            <span class="topic-tag">Lambda</span>
+            <span class="topic-tag">map/filter</span>
+          </div>
+        </a>
+
+        <a href="s10-pandas1.html" class="session-card">
+          <span class="card-badge">Session 10</span>
+          <h3>🐼 Pandas Part I</h3>
+          <p>Work with data tables like Excel - Series and DataFrames!</p>
+          <div class="topic-tags">
+            <span class="topic-tag">Series</span>
+            <span class="topic-tag">DataFrame</span>
+            <span class="topic-tag">read_csv</span>
+            <span class="topic-tag">merge/concat</span>
+          </div>
+        </a>
+
+        <a href="s11-pandas2.html" class="session-card">
+          <span class="card-badge">Session 11</span>
+          <h3>📈 Pandas Part II</h3>
+          <p>Advanced data manipulation: filtering, grouping, analysis!</p>
+          <div class="topic-tags">
+            <span class="topic-tag">loc/iloc</span>
+            <span class="topic-tag">Filtering</span>
+            <span class="topic-tag">describe()</span>
+            <span class="topic-tag">GroupBy</span>
+          </div>
+        </a>
+
+        <a href="s12-api-sql.html" class="session-card">
+          <span class="card-badge">Session 12</span>
+          <h3>🌐 APIs & SQL</h3>
+          <p>Get real data from the web and databases!</p>
+          <div class="topic-tags">
+            <span class="topic-tag">requests</span>
+            <span class="topic-tag">JSON</span>
+            <span class="topic-tag">SQLite</span>
+            <span class="topic-tag">Database</span>
+          </div>
+        </a>
+
+        <a href="s13-dataviz.html" class="session-card">
+          <span class="card-badge">Session 13</span>
+          <h3>📊 Data Visualization</h3>
+          <p>Transform numbers into beautiful charts and graphs!</p>
+          <div class="topic-tags">
+            <span class="topic-tag">Matplotlib</span>
+            <span class="topic-tag">Seaborn</span>
+            <span class="topic-tag">Charts</span>
+            <span class="topic-tag">Heatmaps</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Assignments Section -->
+    <div class="sessions-container">
+      <div class="section-title">
+        <h2>📝 Practice Assignments</h2>
+        <p>Test your knowledge with 50 hands-on questions!</p>
+      </div>
+      
+      <div class="sessions-grid">
+        <a href="student-assignments.html" class="session-card assignment">
+          <span class="card-badge">📚 Student Mode</span>
+          <h3>Practice Questions</h3>
+          <p>All 50 questions with hints. Try solving yourself first!</p>
+          <div class="topic-tags">
+            <span class="topic-tag">50 Questions</span>
+            <span class="topic-tag">All Levels</span>
+          </div>
+        </a>
+
+        <a href="assignments.html" class="session-card assignment" style="background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%); border-color: #a78bfa;">
+          <span class="card-badge" style="background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);">🔐 Instructor</span>
+          <h3>Assignment Hub</h3>
+          <p>Access solutions with passcode (for instructors only).</p>
+          <div class="topic-tags">
+            <span class="topic-tag">Solutions</span>
+            <span class="topic-tag">Passcode Required</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Quick Start Guide -->
+    <section class="quick-start">
+      <h2>🚀 How to Use This Course</h2>
+      <div class="steps-grid">
+        <div class="start-step">
+          <div class="step-icon">1️⃣</div>
+          <h4>Start from Session 1</h4>
+          <p>Even if you know some Python, foundations matter!</p>
+        </div>
+        <div class="start-step">
+          <div class="step-icon">2️⃣</div>
+          <h4>Read Every Story</h4>
+          <p>Analogies help you remember concepts forever!</p>
+        </div>
+        <div class="start-step">
+          <div class="step-icon">3️⃣</div>
+          <h4>Type the Code</h4>
+          <p>Don't just read - practice by typing yourself!</p>
+        </div>
+        <div class="start-step">
+          <div class="step-icon">4️⃣</div>
+          <h4>Do Assignments</h4>
+          <p>Test your skills with real practice problems!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mascot Section -->
+    <section class="mascot-section">
+      <div class="mascot">🐍</div>
+      <p class="mascot-text">"The best time to start learning Python was yesterday.<br>The second best time is NOW!"</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-mascot">🐍</div>
+    <p><strong>Python Mastery</strong> - Your Complete Learning Journey</p>
+    <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">Built with ❤️ for Python learners everywhere</p>
+  </footer>
+
+  <script>
+    // Progress bar based on scroll
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progressBar').style.width = scrolled + '%';
+    });
+  </script>
+</body>
+</html>
+

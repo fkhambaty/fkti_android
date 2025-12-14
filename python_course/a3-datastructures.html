@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assignment 3 Solutions | 🐍 Python Mastery</title>
+  <link rel="stylesheet" href="light-theme.css">
+  <style>
+    .question-card { background: white; border: 2px solid var(--border-color); border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem; }
+    .question-header { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1rem; }
+    .question-num { background: var(--gradient-python); color: white; min-width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0; }
+    .question-text { font-size: 1.05rem; color: var(--text-primary); font-weight: 600; line-height: 1.5; }
+    .solution-toggle { background: #f1f5f9; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer; font-weight: 600; color: var(--python-blue); margin-top: 1rem; }
+    .solution-toggle:hover { background: #e2e8f0; }
+    .solution-content { display: none; margin-top: 1rem; padding-top: 1rem; border-top: 2px dashed var(--border-color); }
+    .solution-content.show { display: block; }
+    .explanation-box { background: #f0fdf4; border-left: 4px solid var(--accent-green); padding: 1rem; margin: 1rem 0; border-radius: 0 8px 8px 0; }
+    .explanation-box h4 { color: var(--accent-green); margin-bottom: 0.5rem; }
+  </style>
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-content">
+      <a href="complete-course.html" class="logo">🐍 Python Mastery</a>
+      <div class="session-nav">
+        <a href="a1-strings.html" class="nav-link">A1</a>
+        <a href="a2-loops.html" class="nav-link">A2</a>
+        <a href="a3-datastructures.html" class="nav-link active">A3</a>
+        <a href="a4-functions.html" class="nav-link">A4</a>
+        <a href="a5-advanced.html" class="nav-link">A5</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <header class="session-header">
+      <div class="session-badge" style="background: var(--gradient-success);">Assignment 3 - Solutions</div>
+      <h1>📦 Lists & Dictionaries</h1>
+      <p class="session-subtitle">Complete solutions with detailed explanations</p>
+    </header>
+
+    <section class="content-section">
+      <h2>📋 Questions & Solutions</h2>
+
+      <!-- Q1 -->
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-num">1</span>
+          <span class="question-text">Create a list with numbers 1 to 10 and sort it in ascending and descending order.</span>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">💡 Show Solution</button>
+        <div class="solution-content">
+          <div class="code-block"><pre><code># Create list
+numbers = [5, 2, 8, 1, 9, 3, 7, 4, 6, 10]
+
+# Ascending order
+ascending = sorted(numbers)
+print("Ascending:", ascending)
+
+# Descending order
+descending = sorted(numbers, reverse=True)
+print("Descending:", descending)
+
+# In-place sorting
+numbers_copy = numbers.copy()
+numbers_copy.sort()
+print("In-place sorted:", numbers_copy)</code></pre></div>
+          <div class="output-block"><div class="output-header">Output</div><pre>Ascending: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+Descending: [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+In-place sorted: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]</pre></div>
+          <div class="explanation-box"><h4>🎓 Explanation</h4><p><code>sorted()</code> returns a new sorted list. <code>.sort()</code> modifies in-place. <code>reverse=True</code> for descending order.</p></div>
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-num">2</span>
+          <span class="question-text">data = [1,2,3,4,6,7,7,8,9,9]. Drop duplicate values from this list and print the remaining numbers.</span>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">💡 Show Solution</button>
+        <div class="solution-content">
+          <div class="code-block"><pre><code>data = [1, 2, 3, 4, 6, 7, 7, 8, 9, 9]
+
+# Method 1: Using set (doesn't preserve order)
+unique_set = list(set(data))
+print("Using set:", unique_set)
+
+# Method 2: Using dict.fromkeys() (preserves order)
+unique_ordered = list(dict.fromkeys(data))
+print("Preserving order:", unique_ordered)
+
+# Method 3: Loop approach
+unique_loop = []
+for item in data:
+    if item not in unique_loop:
+        unique_loop.append(item)
+print("Loop method:", unique_loop)</code></pre></div>
+          <div class="output-block"><div class="output-header">Output</div><pre>Using set: [1, 2, 3, 4, 6, 7, 8, 9]
+Preserving order: [1, 2, 3, 4, 6, 7, 8, 9]
+Loop method: [1, 2, 3, 4, 6, 7, 8, 9]</pre></div>
+          <div class="explanation-box"><h4>🎓 Explanation</h4><p>Sets automatically remove duplicates. <code>dict.fromkeys()</code> preserves insertion order (Python 3.7+). Loop method works everywhere but is slower.</p></div>
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-num">3</span>
+          <span class="question-text">Write a python code to find the second largest number in a list: [21,44,767,98,37,106,345,87]</span>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">💡 Show Solution</button>
+        <div class="solution-content">
+          <div class="code-block"><pre><code>numbers = [21, 44, 767, 98, 37, 106, 345, 87]
+
+# Method 1: Sort and get second last
+sorted_nums = sorted(numbers, reverse=True)
+second_largest = sorted_nums[1]
+print("Second largest:", second_largest)
+
+# Method 2: Remove max and find new max
+nums_copy = numbers.copy()
+nums_copy.remove(max(nums_copy))
+second = max(nums_copy)
+print("Second largest (remove method):", second)
+
+# Method 3: Single pass (efficient)
+first = second = float('-inf')
+for num in numbers:
+    if num > first:
+        second = first
+        first = num
+    elif num > second and num != first:
+        second = num
+print("Second largest (single pass):", second)</code></pre></div>
+          <div class="output-block"><div class="output-header">Output</div><pre>Second largest: 345
+Second largest (remove method): 345
+Second largest (single pass): 345</pre></div>
+          <div class="explanation-box"><h4>🎓 Explanation</h4><p>Sorted: [767, 345, 106, 98, 87, 44, 37, 21]. Index [1] = 345. The single-pass method is O(n) vs O(n log n) for sorting.</p></div>
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-num">4</span>
+          <span class="question-text">Write a Python program to find the maximum and minimum values in a list: list1 = [21,44,767,98,37]</span>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">💡 Show Solution</button>
+        <div class="solution-content">
+          <div class="code-block"><pre><code>list1 = [21, 44, 767, 98, 37]
+
+# Using built-in functions
+maximum = max(list1)
+minimum = min(list1)
+
+print(f"Maximum: {maximum}")
+print(f"Minimum: {minimum}")
+
+# Manual approach (without built-in)
+max_val = list1[0]
+min_val = list1[0]
+for num in list1:
+    if num > max_val:
+        max_val = num
+    if num < min_val:
+        min_val = num
+print(f"\nManual - Max: {max_val}, Min: {min_val}")</code></pre></div>
+          <div class="output-block"><div class="output-header">Output</div><pre>Maximum: 767
+Minimum: 21
+
+Manual - Max: 767, Min: 21</pre></div>
+          <div class="explanation-box"><h4>🎓 Explanation</h4><p><code>max()</code> and <code>min()</code> are built-in functions that work on any iterable. The manual method initializes with first element and compares each.</p></div>
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-num">5</span>
+          <span class="question-text">Create two separate dictionaries and Merge them.</span>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">💡 Show Solution</button>
+        <div class="solution-content">
+          <div class="code-block"><pre><code># Create two dictionaries
+dict1 = {'a': 1, 'b': 2, 'c': 3}
+dict2 = {'d': 4, 'e': 5, 'f': 6}
+
+# Method 1: Using ** unpacking
+merged1 = {**dict1, **dict2}
+print("Method 1 (**):", merged1)
+
+# Method 2: Using update()
+merged2 = dict1.copy()  # Don't modify original
+merged2.update(dict2)
+print("Method 2 (update):", merged2)
+
+# Method 3: Using | operator (Python 3.9+)
+merged3 = dict1 | dict2
+print("Method 3 (|):", merged3)</code></pre></div>
+          <div class="output-block"><div class="output-header">Output</div><pre>Method 1 (**): {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5, 'f': 6}
+Method 2 (update): {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5, 'f': 6}
+Method 3 (|): {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5, 'f': 6}</pre></div>
+          <div class="explanation-box"><h4>🎓 Explanation</h4><p><code>**</code> unpacks dict into key-value pairs. <code>update()</code> modifies in-place. <code>|</code> is cleanest (Python 3.9+). If keys overlap, second dict wins.</p></div>
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-num">6</span>
+          <span class="question-text">Write a Python program to create a dictionary where keys are integers from 1 to 5 and corresponding values are their squares.</span>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">💡 Show Solution</button>
+        <div class="solution-content">
+          <div class="code-block"><pre><code># Method 1: Dictionary comprehension
+squares = {i: i**2 for i in range(1, 6)}
+print("Squares:", squares)
+
+# Method 2: Loop approach
+squares_loop = {}
+for i in range(1, 6):
+    squares_loop[i] = i ** 2
+print("Squares (loop):", squares_loop)
+
+# Verify
+for key, value in squares.items():
+    print(f"{key}² = {value}")</code></pre></div>
+          <div class="output-block"><div class="output-header">Output</div><pre>Squares: {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
+Squares (loop): {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
+1² = 1
+2² = 4
+3² = 9
+4² = 16
+5² = 25</pre></div>
+          <div class="explanation-box"><h4>🎓 Explanation</h4><p>Dictionary comprehension <code>{key: value for item in iterable}</code> is concise and Pythonic. <code>i**2</code> calculates the square.</p></div>
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-num">7</span>
+          <span class="question-text">Create a Python dictionary with keys as cars and values as their respective prices.<br>car_models = ["Toyota Camry", "Honda Civic", "Ford Mustang", "Chevrolet Silverado", "Nissan Altima"]<br>car_prices = [2500000, 2200000, 4000000, 3500000, 2300000]</span>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">💡 Show Solution</button>
+        <div class="solution-content">
+          <div class="code-block"><pre><code>car_models = ["Toyota Camry", "Honda Civic", "Ford Mustang", 
+              "Chevrolet Silverado", "Nissan Altima"]
+car_prices = [2500000, 2200000, 4000000, 3500000, 2300000]
+
+# Using zip() to combine lists into dictionary
+car_dict = dict(zip(car_models, car_prices))
+print("Car Dictionary:")
+for car, price in car_dict.items():
+    print(f"  {car}: ₹{price:,}")</code></pre></div>
+          <div class="output-block"><div class="output-header">Output</div><pre>Car Dictionary:
+  Toyota Camry: ₹2,500,000
+  Honda Civic: ₹2,200,000
+  Ford Mustang: ₹4,000,000
+  Chevrolet Silverado: ₹3,500,000
+  Nissan Altima: ₹2,300,000</pre></div>
+          <div class="explanation-box"><h4>🎓 Explanation</h4><p><code>zip()</code> pairs elements from two lists. <code>dict()</code> converts pairs to dictionary. <code>{price:,}</code> formats with thousands separator.</p></div>
+        </div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-num">8</span>
+          <span class="question-text">Create a dictionary with 5 key pair values. Key would be a grocery item name and value will be its price (any value in the range of 10 to 1000). Write a for loop to iterate over a dictionary and print key-value pairs. While printing if the value is greater Rs. 500 then print a line – "this is a costly item."</span>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">💡 Show Solution</button>
+        <div class="solution-content">
+          <div class="code-block"><pre><code># Create grocery dictionary
+grocery = {
+    "Rice": 850,
+    "Milk": 60,
+    "Bread": 45,
+    "Olive Oil": 750,
+    "Cheese": 520
+}
+
+# Iterate and check price
+print("Grocery List:")
+print("-" * 40)
+for item, price in grocery.items():
+    print(f"{item}: ₹{price}")
+    if price > 500:
+        print("  ⚠️ This is a costly item!")
+print("-" * 40)</code></pre></div>
+          <div class="output-block"><div class="output-header">Output</div><pre>Grocery List:
+----------------------------------------
+Rice: ₹850
+  ⚠️ This is a costly item!
+Milk: ₹60
+Bread: ₹45
+Olive Oil: ₹750
+  ⚠️ This is a costly item!
+Cheese: ₹520
+  ⚠️ This is a costly item!
+----------------------------------------</pre></div>
+          <div class="explanation-box"><h4>🎓 Explanation</h4><p><code>.items()</code> returns key-value pairs for iteration. The condition <code>if price > 500</code> identifies costly items. Rice, Olive Oil, and Cheese exceed ₹500.</p></div>
+        </div>
+      </div>
+
+      <!-- Q9 -->
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-num">9</span>
+          <span class="question-text">In the dictionary created in above task, delete the key value pairs where price is less than average price of all the items in the dictionary.</span>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">💡 Show Solution</button>
+        <div class="solution-content">
+          <div class="code-block"><pre><code># Original grocery dictionary
+grocery = {
+    "Rice": 850,
+    "Milk": 60,
+    "Bread": 45,
+    "Olive Oil": 750,
+    "Cheese": 520
+}
+
+# Calculate average price
+avg_price = sum(grocery.values()) / len(grocery)
+print(f"Average price: ₹{avg_price:.2f}")
+
+# Method 1: Dictionary comprehension (create new dict)
+filtered = {item: price for item, price in grocery.items() 
+            if price >= avg_price}
+
+print(f"\nItems above average (₹{avg_price:.2f}):")
+for item, price in filtered.items():
+    print(f"  {item}: ₹{price}")</code></pre></div>
+          <div class="output-block"><div class="output-header">Output</div><pre>Average price: ₹445.00
+
+Items above average (₹445.00):
+  Rice: ₹850
+  Olive Oil: ₹750
+  Cheese: ₹520</pre></div>
+          <div class="explanation-box"><h4>🎓 Explanation</h4><p>Average = (850+60+45+750+520)/5 = 445. Items below 445 (Milk: 60, Bread: 45) are removed. Dict comprehension filters in one line.</p></div>
+        </div>
+      </div>
+
+      <!-- Q10 -->
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-num">10</span>
+          <span class="question-text">Write a python code that takes two sets as input and returns a set containing only the common elements.</span>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">💡 Show Solution</button>
+        <div class="solution-content">
+          <div class="code-block"><pre><code># Create two sets
+set1 = {1, 2, 3, 4, 5}
+set2 = {4, 5, 6, 7, 8}
+
+# Method 1: Using & operator
+common = set1 & set2
+print("Common elements (&):", common)
+
+# Method 2: Using intersection()
+common2 = set1.intersection(set2)
+print("Common elements (method):", common2)
+
+# Function version
+def find_common(s1, s2):
+    return s1 & s2
+
+result = find_common({10, 20, 30}, {20, 30, 40})
+print("Function result:", result)</code></pre></div>
+          <div class="output-block"><div class="output-header">Output</div><pre>Common elements (&): {4, 5}
+Common elements (method): {4, 5}
+Function result: {20, 30}</pre></div>
+          <div class="explanation-box"><h4>🎓 Explanation</h4><p>Set intersection finds elements in BOTH sets. <code>&</code> operator and <code>.intersection()</code> method are equivalent. Sets are unordered, so output order may vary.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <nav class="page-navigation">
+      <a href="a2-loops.html" class="nav-prev">
+        <span class="nav-arrow">←</span>
+        <span class="nav-text">
+          <span class="nav-label">Previous</span>
+          <span class="nav-title">Assignment 2</span>
+        </span>
+      </a>
+      <a href="complete-course.html" class="nav-home">🏠</a>
+      <a href="a4-functions.html" class="nav-next">
+        <span class="nav-text">
+          <span class="nav-label">Next</span>
+          <span class="nav-title">Assignment 4</span>
+        </span>
+        <span class="nav-arrow">→</span>
+      </a>
+    </nav>
+  </main>
+
+  <footer><p>🐍 Python Mastery | Instructor Solutions</p></footer>
+  <script>function toggleSolution(btn) { const content = btn.nextElementSibling; content.classList.toggle('show'); btn.textContent = content.classList.contains('show') ? '🔒 Hide Solution' : '💡 Show Solution'; }</script>
+</body>
+</html>

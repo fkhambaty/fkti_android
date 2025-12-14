@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session 3: Loops & Conditions | 🐍 Python Mastery</title>
+  <link rel="stylesheet" href="light-theme.css">
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-content">
+      <a href="complete-course.html" class="logo">🐍 Python Mastery</a>
+      <div class="session-nav">
+        <a href="s1-intro.html" class="nav-link">1</a>
+        <a href="s2-datatypes.html" class="nav-link">2</a>
+        <a href="s3-loops.html" class="nav-link active">3</a>
+        <a href="s4-lists.html" class="nav-link">4</a>
+        <a href="s5-datastructures.html" class="nav-link">5</a>
+        <a href="s6-functions1.html" class="nav-link">6</a>
+        <a href="s7-functions2.html" class="nav-link">7</a>
+        <a href="s8-oop.html" class="nav-link">8</a>
+        <a href="s9-numpy.html" class="nav-link">9</a>
+        <a href="s10-pandas1.html" class="nav-link">10</a>
+        <a href="s11-pandas2.html" class="nav-link">11</a>
+        <a href="s12-api-sql.html" class="nav-link">12</a>
+        <a href="assignments.html" class="nav-link assignment">📝</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <header class="session-header">
+      <div class="session-badge">Session 3</div>
+      <h1>🔄 Loops & Conditions</h1>
+      <p class="session-subtitle">Control the flow of your Python programs</p>
+      <div class="progress-info">
+        <span>📚 10 Topics</span>
+        <span>⏱️ 60 min read</span>
+        <span>🎯 Essential Level</span>
+      </div>
+    </header>
+
+    <!-- OVERVIEW -->
+    <section class="overview-card">
+      <h2>🗺️ What You'll Learn</h2>
+      <div class="overview-grid">
+        <div class="overview-item">
+          <span class="overview-icon">🔀</span>
+          <span>Comparison Operators</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">🤔</span>
+          <span>if, elif, else Statements</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">🔁</span>
+          <span>for Loops</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">♾️</span>
+          <span>while Loops</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">🎯</span>
+          <span>range() Function</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">⏹️</span>
+          <span>break, continue, pass</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ANALOGY -->
+    <section class="analogy-card">
+      <div class="analogy-header">
+        <span class="analogy-icon">🚦</span>
+        <h3>Think of It Like Driving!</h3>
+      </div>
+      <div class="analogy-content">
+        <div class="analogy-examples">
+          <div class="analogy-item">
+            <span class="item-icon">🟢</span>
+            <span><strong>if (green light)</strong> → Go!</span>
+          </div>
+          <div class="analogy-item">
+            <span class="item-icon">🟡</span>
+            <span><strong>elif (yellow light)</strong> → Slow down!</span>
+          </div>
+          <div class="analogy-item">
+            <span class="item-icon">🔴</span>
+            <span><strong>else (red light)</strong> → Stop!</span>
+          </div>
+          <div class="analogy-item">
+            <span class="item-icon">🔄</span>
+            <span><strong>Loop</strong> → Drive around the roundabout</span>
+          </div>
+        </div>
+        <p class="analogy-moral">Conditions check situations, loops repeat actions!</p>
+      </div>
+    </section>
+
+    <!-- COMPARISON OPERATORS -->
+    <section class="content-section">
+      <h2>🔀 Comparison Operators</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">3.1</span>
+          <h3>⚖️ Comparing Values</h3>
+        </div>
+
+        <div class="explanation">
+          <p>Comparison operators compare two values and return <code>True</code> or <code>False</code>. They're the foundation of decision-making in code!</p>
+        </div>
+
+        <div class="visual-diagram">
+          <h4 style="text-align: center;">🎯 All Comparison Operators</h4>
+          <table class="reference-table">
+            <thead>
+              <tr>
+                <th>Operator</th>
+                <th>Meaning</th>
+                <th>Example</th>
+                <th>Result</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>==</code></td>
+                <td>Equal to</td>
+                <td>5 == 5</td>
+                <td class="true">True</td>
+              </tr>
+              <tr>
+                <td><code>!=</code></td>
+                <td>Not equal to</td>
+                <td>5 != 3</td>
+                <td class="true">True</td>
+              </tr>
+              <tr>
+                <td><code>&gt;</code></td>
+                <td>Greater than</td>
+                <td>7 > 3</td>
+                <td class="true">True</td>
+              </tr>
+              <tr>
+                <td><code>&lt;</code></td>
+                <td>Less than</td>
+                <td>2 < 5</td>
+                <td class="true">True</td>
+              </tr>
+              <tr>
+                <td><code>&gt;=</code></td>
+                <td>Greater than or equal</td>
+                <td>5 >= 5</td>
+                <td class="true">True</td>
+              </tr>
+              <tr>
+                <td><code>&lt;=</code></td>
+                <td>Less than or equal</td>
+                <td>3 <= 5</td>
+                <td class="true">True</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Comparison operators from Session 3</span>
+<span class="variable">a</span> = <span class="number">10</span>
+<span class="variable">b</span> = <span class="number">5</span>
+
+<span class="comment"># Equal and not equal</span>
+<span class="function">print</span>(a == b)   <span class="comment"># False (10 is not equal to 5)</span>
+<span class="function">print</span>(a != b)   <span class="comment"># True (10 is not equal to 5)</span>
+
+<span class="comment"># Greater and less than</span>
+<span class="function">print</span>(a > b)    <span class="comment"># True (10 is greater than 5)</span>
+<span class="function">print</span>(a < b)    <span class="comment"># False (10 is not less than 5)</span>
+
+<span class="comment"># Greater/less than or equal</span>
+<span class="function">print</span>(a >= <span class="number">10</span>)  <span class="comment"># True (10 is equal to 10)</span>
+<span class="function">print</span>(b <= <span class="number">5</span>)   <span class="comment"># True (5 is equal to 5)</span></code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>False
+True
+True
+False
+True
+True</pre>
+        </div>
+
+        <div class="info-box warning">
+          <div class="info-header">
+            <span class="info-icon">⚠️</span>
+            <span>Common Mistake: = vs ==</span>
+          </div>
+          <div class="info-content">
+            <p><code>=</code> is for assignment: <code>x = 5</code> (put 5 in x)</p>
+            <p><code>==</code> is for comparison: <code>x == 5</code> (is x equal to 5?)</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOGICAL OPERATORS -->
+    <section class="content-section">
+      <h2>🧠 Logical Operators</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">3.2</span>
+          <h3>🔗 Combining Conditions</h3>
+        </div>
+
+        <div class="explanation">
+          <p>Logical operators let you combine multiple conditions together!</p>
+        </div>
+
+        <div class="visual-box">
+          <h4>🎯 The Three Logical Operators</h4>
+          <pre style="text-align: center; font-size: 1.1rem;">
+    AND 🤝  →  Both conditions must be True
+              "I need coffee AND breakfast"
+              
+    OR 🤷   →  At least one condition must be True
+              "I'll have tea OR coffee"
+              
+    NOT 🚫  →  Flips True to False, False to True
+              "I do NOT want spam"
+          </pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Logical operators from Session 3</span>
+<span class="variable">age</span> = <span class="number">25</span>
+<span class="variable">has_license</span> = <span class="keyword">True</span>
+<span class="variable">is_tired</span> = <span class="keyword">False</span>
+
+<span class="comment"># AND - Both must be True</span>
+<span class="variable">can_drive</span> = age >= <span class="number">18</span> <span class="keyword">and</span> has_license
+<span class="function">print</span>(<span class="string">"Can drive:"</span>, can_drive)  <span class="comment"># True</span>
+
+<span class="comment"># OR - At least one must be True</span>
+<span class="variable">needs_rest</span> = is_tired <span class="keyword">or</span> age > <span class="number">60</span>
+<span class="function">print</span>(<span class="string">"Needs rest:"</span>, needs_rest)  <span class="comment"># False</span>
+
+<span class="comment"># NOT - Reverses the boolean</span>
+<span class="variable">is_awake</span> = <span class="keyword">not</span> is_tired
+<span class="function">print</span>(<span class="string">"Is awake:"</span>, is_awake)  <span class="comment"># True</span>
+
+<span class="comment"># Complex combinations</span>
+<span class="variable">x</span> = <span class="number">15</span>
+<span class="function">print</span>(x > <span class="number">10</span> <span class="keyword">and</span> x < <span class="number">20</span>)  <span class="comment"># True (x is between 10 and 20)</span>
+<span class="function">print</span>(x < <span class="number">5</span> <span class="keyword">or</span> x > <span class="number">10</span>)    <span class="comment"># True (x is greater than 10)</span></code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Can drive: True
+Needs rest: False
+Is awake: True
+True
+True</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- IF STATEMENTS -->
+    <section class="content-section">
+      <h2>🤔 Conditional Statements (if/elif/else)</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">3.3</span>
+          <h3>🚦 The if Statement</h3>
+        </div>
+
+        <div class="explanation">
+          <p>The <code>if</code> statement runs code only when a condition is <code>True</code>. It's like a guard at a door!</p>
+        </div>
+
+        <div class="visual-box">
+          <h4>🚪 How IF Works</h4>
+          <pre style="text-align: center;">
+          START
+            │
+            ▼
+    ┌───────────────┐
+    │  Condition    │
+    │   True?       │
+    └───────┬───────┘
+        Yes │ No
+            ▼    ╲
+    ┌───────────┐  ╲
+    │ Run Code  │   │
+    └───────────┘   │
+            │      │
+            ▼     ◀
+          END
+          </pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Simple if statement from Session 3</span>
+<span class="variable">temperature</span> = <span class="number">35</span>
+
+<span class="keyword">if</span> temperature > <span class="number">30</span>:
+    <span class="function">print</span>(<span class="string">"It's hot outside! 🔥"</span>)
+    <span class="function">print</span>(<span class="string">"Stay hydrated!"</span>)
+
+<span class="comment"># This code runs regardless of the condition</span>
+<span class="function">print</span>(<span class="string">"Have a nice day!"</span>)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>It's hot outside! 🔥
+Stay hydrated!
+Have a nice day!</pre>
+        </div>
+
+        <div class="info-box tip">
+          <div class="info-header">
+            <span class="info-icon">💡</span>
+            <span>Indentation is Everything!</span>
+          </div>
+          <div class="info-content">
+            <p>Python uses indentation (spaces/tabs) to group code. Everything indented after <code>if</code> belongs to that if block. Use 4 spaces consistently!</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- IF-ELSE -->
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">3.4</span>
+          <h3>↔️ The if-else Statement</h3>
+        </div>
+
+        <div class="explanation">
+          <p>The <code>else</code> block runs when the <code>if</code> condition is <code>False</code>. It's the "otherwise" option!</p>
+        </div>
+
+        <div class="visual-box">
+          <h4>🔀 The Fork in the Road</h4>
+          <pre style="text-align: center; font-size: 1.1rem;">
+            Is it raining? 🌧️
+                  │
+         ┌───Yes─┴───No───┐
+         ▼                ▼
+    Take umbrella ☂️  Wear sunglasses 😎
+          </pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># if-else from Session 3</span>
+<span class="variable">age</span> = <span class="number">16</span>
+
+<span class="keyword">if</span> age >= <span class="number">18</span>:
+    <span class="function">print</span>(<span class="string">"You can vote! 🗳️"</span>)
+<span class="keyword">else</span>:
+    <span class="function">print</span>(<span class="string">"Sorry, you're too young to vote."</span>)
+    <span class="variable">years_left</span> = <span class="number">18</span> - age
+    <span class="function">print</span>(<span class="string">f"Wait </span>{years_left}<span class="string"> more years."</span>)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Sorry, you're too young to vote.
+Wait 2 more years.</pre>
+        </div>
+      </div>
+
+      <!-- IF-ELIF-ELSE -->
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">3.5</span>
+          <h3>🔢 The if-elif-else Chain</h3>
+        </div>
+
+        <div class="explanation">
+          <p>When you have multiple conditions to check, use <code>elif</code> (short for "else if"). Python checks each condition in order and runs the first one that's True!</p>
+        </div>
+
+        <div class="visual-box">
+          <h4>🎢 The Decision Waterfall</h4>
+          <pre style="text-align: center;">
+    score = 85
+         │
+    ┌────▼────┐
+    │ >= 90?  │──Yes──→ "A" 🌟
+    └────┬────┘
+         │ No
+    ┌────▼────┐
+    │ >= 80?  │──Yes──→ "B" ✨  ← (This runs!)
+    └────┬────┘
+         │ No
+    ┌────▼────┐
+    │ >= 70?  │──Yes──→ "C" 👍
+    └────┬────┘
+         │ No
+         ▼
+       "F" 😢
+          </pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Grade calculator from Session 3</span>
+<span class="variable">score</span> = <span class="number">85</span>
+
+<span class="keyword">if</span> score >= <span class="number">90</span>:
+    <span class="variable">grade</span> = <span class="string">"A"</span>
+    <span class="function">print</span>(<span class="string">"Excellent! 🌟"</span>)
+<span class="keyword">elif</span> score >= <span class="number">80</span>:
+    <span class="variable">grade</span> = <span class="string">"B"</span>
+    <span class="function">print</span>(<span class="string">"Good job! ✨"</span>)
+<span class="keyword">elif</span> score >= <span class="number">70</span>:
+    <span class="variable">grade</span> = <span class="string">"C"</span>
+    <span class="function">print</span>(<span class="string">"Not bad! 👍"</span>)
+<span class="keyword">elif</span> score >= <span class="number">60</span>:
+    <span class="variable">grade</span> = <span class="string">"D"</span>
+    <span class="function">print</span>(<span class="string">"Need improvement 📚"</span>)
+<span class="keyword">else</span>:
+    <span class="variable">grade</span> = <span class="string">"F"</span>
+    <span class="function">print</span>(<span class="string">"Please see the teacher 😢"</span>)
+
+<span class="function">print</span>(<span class="string">f"Your grade: </span>{grade}<span class="string">"</span>)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Good job! ✨
+Your grade: B</pre>
+        </div>
+      </div>
+
+      <!-- NESTED IF -->
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">3.6</span>
+          <h3>🪆 Nested if Statements</h3>
+        </div>
+
+        <div class="explanation">
+          <p>You can put <code>if</code> statements inside other <code>if</code> statements - like Russian nesting dolls!</p>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Nested if from Session 3</span>
+<span class="variable">age</span> = <span class="number">25</span>
+<span class="variable">has_ticket</span> = <span class="keyword">True</span>
+<span class="variable">is_vip</span> = <span class="keyword">False</span>
+
+<span class="keyword">if</span> age >= <span class="number">18</span>:
+    <span class="function">print</span>(<span class="string">"Age verified ✓"</span>)
+    <span class="keyword">if</span> has_ticket:
+        <span class="function">print</span>(<span class="string">"Ticket verified ✓"</span>)
+        <span class="keyword">if</span> is_vip:
+            <span class="function">print</span>(<span class="string">"Welcome to the VIP section! 🌟"</span>)
+        <span class="keyword">else</span>:
+            <span class="function">print</span>(<span class="string">"Welcome to the general section! 🎉"</span>)
+    <span class="keyword">else</span>:
+        <span class="function">print</span>(<span class="string">"Please buy a ticket first 🎫"</span>)
+<span class="keyword">else</span>:
+    <span class="function">print</span>(<span class="string">"Sorry, this event is for adults only 🔞"</span>)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Age verified ✓
+Ticket verified ✓
+Welcome to the general section! 🎉</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOR LOOPS -->
+    <section class="content-section">
+      <h2>🔁 For Loops</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">3.7</span>
+          <h3>🎠 Iterating Through Items</h3>
+        </div>
+
+        <div class="explanation">
+          <p>A <code>for</code> loop repeats code for each item in a sequence. Think of it like a assembly line in a factory - each item gets processed!</p>
+        </div>
+
+        <div class="visual-box">
+          <h4>🏭 The For Loop Assembly Line</h4>
+          <pre style="text-align: center; font-size: 1.1rem;">
+    Items: [🍎, 🍊, 🍋, 🍇]
+           │   │   │   │
+           ▼   ▼   ▼   ▼
+         ┌─────────────┐
+         │  Process    │  ← Same operation
+         │  Each Item  │     on each item
+         └─────────────┘
+           │   │   │   │
+           ▼   ▼   ▼   ▼
+    Output: 🍎✓ 🍊✓ 🍋✓ 🍇✓
+          </pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Basic for loop from Session 3</span>
+<span class="variable">fruits</span> = [<span class="string">"apple"</span>, <span class="string">"banana"</span>, <span class="string">"cherry"</span>]
+
+<span class="keyword">for</span> <span class="variable">fruit</span> <span class="keyword">in</span> fruits:
+    <span class="function">print</span>(<span class="string">f"I love </span>{fruit}<span class="string">s! 🍽️"</span>)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>I love apples! 🍽️
+I love bananas! 🍽️
+I love cherrys! 🍽️</pre>
+        </div>
+
+        <h4>🔤 Looping Through Strings</h4>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Loop through each character</span>
+<span class="variable">word</span> = <span class="string">"Python"</span>
+
+<span class="keyword">for</span> <span class="variable">letter</span> <span class="keyword">in</span> word:
+    <span class="function">print</span>(letter, end=<span class="string">" → "</span>)
+<span class="function">print</span>(<span class="string">"Done!"</span>)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>P → y → t → h → o → n → Done!</pre>
+        </div>
+      </div>
+
+      <!-- RANGE FUNCTION -->
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">3.8</span>
+          <h3>🎯 The range() Function</h3>
+        </div>
+
+        <div class="explanation">
+          <p><code>range()</code> generates a sequence of numbers. It's perfect when you want to loop a specific number of times!</p>
+        </div>
+
+        <div class="visual-box">
+          <h4>🔢 Understanding range()</h4>
+          <pre style="text-align: center;">
+    range(5)        → 0, 1, 2, 3, 4      (starts at 0, stops BEFORE 5)
+    range(2, 6)     → 2, 3, 4, 5         (starts at 2, stops BEFORE 6)
+    range(0, 10, 2) → 0, 2, 4, 6, 8      (step by 2)
+    range(5, 0, -1) → 5, 4, 3, 2, 1      (countdown!)
+    
+    🎯 Remember: The end number is NOT included!
+          </pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># range() examples from Session 3</span>
+
+<span class="comment"># Basic range - prints 0 to 4</span>
+<span class="function">print</span>(<span class="string">"range(5):"</span>)
+<span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> <span class="function">range</span>(<span class="number">5</span>):
+    <span class="function">print</span>(i, end=<span class="string">" "</span>)
+<span class="function">print</span>()
+
+<span class="comment"># Range with start and end</span>
+<span class="function">print</span>(<span class="string">"range(2, 7):"</span>)
+<span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> <span class="function">range</span>(<span class="number">2</span>, <span class="number">7</span>):
+    <span class="function">print</span>(i, end=<span class="string">" "</span>)
+<span class="function">print</span>()
+
+<span class="comment"># Range with step</span>
+<span class="function">print</span>(<span class="string">"range(0, 10, 2) - even numbers:"</span>)
+<span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> <span class="function">range</span>(<span class="number">0</span>, <span class="number">10</span>, <span class="number">2</span>):
+    <span class="function">print</span>(i, end=<span class="string">" "</span>)
+<span class="function">print</span>()
+
+<span class="comment"># Countdown</span>
+<span class="function">print</span>(<span class="string">"Countdown:"</span>)
+<span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> <span class="function">range</span>(<span class="number">5</span>, <span class="number">0</span>, -<span class="number">1</span>):
+    <span class="function">print</span>(i, end=<span class="string">"... "</span>)
+<span class="function">print</span>(<span class="string">"Blast off! 🚀"</span>)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>range(5):
+0 1 2 3 4 
+range(2, 7):
+2 3 4 5 6 
+range(0, 10, 2) - even numbers:
+0 2 4 6 8 
+Countdown:
+5... 4... 3... 2... 1... Blast off! 🚀</pre>
+        </div>
+
+        <h4>📊 Practical Example: Sum of Numbers</h4>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Calculate sum of 1 to 10</span>
+<span class="variable">total</span> = <span class="number">0</span>
+
+<span class="keyword">for</span> <span class="variable">num</span> <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1</span>, <span class="number">11</span>):  <span class="comment"># 1 to 10</span>
+    total = total + num
+    <span class="function">print</span>(<span class="string">f"Added </span>{num}<span class="string">, total is now </span>{total}<span class="string">"</span>)
+
+<span class="function">print</span>(<span class="string">f"\\nFinal sum: </span>{total}<span class="string">"</span>)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Added 1, total is now 1
+Added 2, total is now 3
+Added 3, total is now 6
+...
+Final sum: 55</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHILE LOOPS -->
+    <section class="content-section">
+      <h2>♾️ While Loops</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">3.9</span>
+          <h3>🔄 Repeat While Condition is True</h3>
+        </div>
+
+        <div class="explanation">
+          <p>A <code>while</code> loop keeps running as long as a condition is <code>True</code>. It's like saying "keep doing this until..."</p>
+        </div>
+
+        <div class="visual-box">
+          <h4>🎡 The While Loop Ferris Wheel</h4>
+          <pre style="text-align: center;">
+             ┌─────────────────┐
+             │  Is condition   │◄─────┐
+             │     True?       │      │
+             └────────┬────────┘      │
+                      │               │
+              Yes     │     No        │
+                      ▼               │
+             ┌─────────────────┐      │
+             │   Run the code  │──────┘
+             └─────────────────┘
+                      │
+                      │ No
+                      ▼
+                    EXIT
+          </pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Basic while loop from Session 3</span>
+<span class="variable">count</span> = <span class="number">1</span>
+
+<span class="keyword">while</span> count <= <span class="number">5</span>:
+    <span class="function">print</span>(<span class="string">f"Count is: </span>{count}<span class="string">"</span>)
+    count = count + <span class="number">1</span>  <span class="comment"># IMPORTANT: Update the condition!</span>
+
+<span class="function">print</span>(<span class="string">"Loop finished!"</span>)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Count is: 1
+Count is: 2
+Count is: 3
+Count is: 4
+Count is: 5
+Loop finished!</pre>
+        </div>
+
+        <div class="info-box warning">
+          <div class="info-header">
+            <span class="info-icon">⚠️</span>
+            <span>Beware of Infinite Loops!</span>
+          </div>
+          <div class="info-content">
+            <p>Always make sure your condition will eventually become <code>False</code>, otherwise your program will run forever!</p>
+            <code>while True:  # This runs FOREVER! ♾️</code>
+          </div>
+        </div>
+
+        <h4>🎮 Practical Example: Guessing Game</h4>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Simulated guessing game from Session 3</span>
+<span class="variable">secret</span> = <span class="number">7</span>
+<span class="variable">guess</span> = <span class="number">0</span>
+<span class="variable">attempts</span> = <span class="number">0</span>
+<span class="variable">guesses</span> = [<span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>]  <span class="comment"># Simulated user guesses</span>
+
+<span class="keyword">while</span> guess != secret:
+    guess = guesses[attempts]
+    attempts = attempts + <span class="number">1</span>
+    
+    <span class="keyword">if</span> guess < secret:
+        <span class="function">print</span>(<span class="string">f"Guess </span>{guess}<span class="string">: Too low! ⬆️"</span>)
+    <span class="keyword">elif</span> guess > secret:
+        <span class="function">print</span>(<span class="string">f"Guess </span>{guess}<span class="string">: Too high! ⬇️"</span>)
+
+<span class="function">print</span>(<span class="string">f"🎉 Correct! The number was </span>{secret}<span class="string">"</span>)
+<span class="function">print</span>(<span class="string">f"You got it in </span>{attempts}<span class="string"> attempts!"</span>)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Guess 3: Too low! ⬆️
+Guess 5: Too low! ⬆️
+🎉 Correct! The number was 7
+You got it in 3 attempts!</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOOP CONTROL -->
+    <section class="content-section">
+      <h2>⏹️ Loop Control Statements</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">3.10</span>
+          <h3>🛑 break, continue, and pass</h3>
+        </div>
+
+        <div class="explanation">
+          <p>These special keywords give you more control over how loops behave!</p>
+        </div>
+
+        <div class="visual-box">
+          <h4>🎮 Loop Control Remote</h4>
+          <pre style="text-align: center; font-size: 1.2rem;">
+    🛑 break    → STOP the loop completely
+                  (Emergency exit!)
+    
+    ⏭️ continue → SKIP to next iteration
+                  (Skip this one, do the next)
+    
+    ⏸️ pass     → Do NOTHING
+                  (Placeholder, move along)
+          </pre>
+        </div>
+
+        <h4>🛑 The break Statement</h4>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># break example from Session 3</span>
+<span class="comment"># Find the first number divisible by both 3 and 7</span>
+<span class="keyword">for</span> <span class="variable">num</span> <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1</span>, <span class="number">100</span>):
+    <span class="keyword">if</span> num % <span class="number">3</span> == <span class="number">0</span> <span class="keyword">and</span> num % <span class="number">7</span> == <span class="number">0</span>:
+        <span class="function">print</span>(<span class="string">f"Found it: </span>{num}<span class="string">"</span>)
+        <span class="keyword">break</span>  <span class="comment"># Exit the loop immediately</span>
+    <span class="function">print</span>(<span class="string">f"Checking </span>{num}<span class="string">..."</span>)
+
+<span class="function">print</span>(<span class="string">"Search complete!"</span>)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Checking 1...
+Checking 2...
+...
+Checking 20...
+Found it: 21
+Search complete!</pre>
+        </div>
+
+        <h4>⏭️ The continue Statement</h4>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># continue example from Session 3</span>
+<span class="comment"># Print only odd numbers</span>
+<span class="function">print</span>(<span class="string">"Odd numbers from 1-10:"</span>)
+<span class="keyword">for</span> <span class="variable">num</span> <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1</span>, <span class="number">11</span>):
+    <span class="keyword">if</span> num % <span class="number">2</span> == <span class="number">0</span>:  <span class="comment"># If even</span>
+        <span class="keyword">continue</span>  <span class="comment"># Skip this iteration</span>
+    <span class="function">print</span>(num, end=<span class="string">" "</span>)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Odd numbers from 1-10:
+1 3 5 7 9</pre>
+        </div>
+
+        <h4>⏸️ The pass Statement</h4>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># pass example from Session 3</span>
+<span class="comment"># Use pass as a placeholder</span>
+<span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> <span class="function">range</span>(<span class="number">5</span>):
+    <span class="keyword">if</span> i == <span class="number">2</span>:
+        <span class="keyword">pass</span>  <span class="comment"># TODO: Handle this case later</span>
+    <span class="keyword">else</span>:
+        <span class="function">print</span>(<span class="string">f"Processing </span>{i}<span class="string">"</span>)
+
+<span class="comment"># pass is useful for empty functions too</span>
+<span class="keyword">def</span> <span class="function">future_feature</span>():
+    <span class="keyword">pass</span>  <span class="comment"># Will implement later</span></code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Processing 0
+Processing 1
+Processing 3
+Processing 4</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- NESTED LOOPS -->
+    <section class="content-section">
+      <h2>🪆 Nested Loops</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">3.11</span>
+          <h3>🔄🔄 Loops Inside Loops</h3>
+        </div>
+
+        <div class="explanation">
+          <p>You can put a loop inside another loop! The inner loop runs completely for each iteration of the outer loop.</p>
+        </div>
+
+        <div class="visual-box">
+          <h4>📦 Nested Loops = Rows and Columns</h4>
+          <pre style="text-align: center;">
+    Outer loop (rows):    i = 1, 2, 3
+                               │
+         ┌─────────────────────┼─────────────────────┐
+         │                     │                     │
+         ▼                     ▼                     ▼
+    Inner loop:           j = 1,2,3             j = 1,2,3
+    (columns)             for i=1               for i=2
+    
+    Result:  (1,1) (1,2) (1,3)  →  (2,1) (2,2) (2,3)  → ...
+          </pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Nested loops from Session 3</span>
+<span class="comment"># Multiplication table</span>
+<span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1</span>, <span class="number">4</span>):  <span class="comment"># Outer loop: 1, 2, 3</span>
+    <span class="keyword">for</span> <span class="variable">j</span> <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1</span>, <span class="number">4</span>):  <span class="comment"># Inner loop: 1, 2, 3</span>
+        <span class="variable">product</span> = i * j
+        <span class="function">print</span>(<span class="string">f"</span>{i}<span class="string"> × </span>{j}<span class="string"> = </span>{product}<span class="string">"</span>, end=<span class="string">"\\t"</span>)
+    <span class="function">print</span>()  <span class="comment"># New line after each row</span></code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>1 × 1 = 1	1 × 2 = 2	1 × 3 = 3	
+2 × 1 = 2	2 × 2 = 4	2 × 3 = 6	
+3 × 1 = 3	3 × 2 = 6	3 × 3 = 9</pre>
+        </div>
+
+        <h4>⭐ Creating a Pattern</h4>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Star pattern from Session 3</span>
+<span class="variable">rows</span> = <span class="number">5</span>
+
+<span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1</span>, rows + <span class="number">1</span>):
+    <span class="keyword">for</span> <span class="variable">j</span> <span class="keyword">in</span> <span class="function">range</span>(i):
+        <span class="function">print</span>(<span class="string">"⭐"</span>, end=<span class="string">""</span>)
+    <span class="function">print</span>()  <span class="comment"># New line</span></code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>⭐
+⭐⭐
+⭐⭐⭐
+⭐⭐⭐⭐
+⭐⭐⭐⭐⭐</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRACTICAL EXAMPLES -->
+    <section class="content-section">
+      <h2>🎯 Practical Examples</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">3.12</span>
+          <h3>💼 Real-World Applications</h3>
+        </div>
+
+        <h4>🔢 FizzBuzz Challenge</h4>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Classic FizzBuzz from Session 3</span>
+<span class="keyword">for</span> <span class="variable">num</span> <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1</span>, <span class="number">16</span>):
+    <span class="keyword">if</span> num % <span class="number">3</span> == <span class="number">0</span> <span class="keyword">and</span> num % <span class="number">5</span> == <span class="number">0</span>:
+        <span class="function">print</span>(<span class="string">"FizzBuzz"</span>)
+    <span class="keyword">elif</span> num % <span class="number">3</span> == <span class="number">0</span>:
+        <span class="function">print</span>(<span class="string">"Fizz"</span>)
+    <span class="keyword">elif</span> num % <span class="number">5</span> == <span class="number">0</span>:
+        <span class="function">print</span>(<span class="string">"Buzz"</span>)
+    <span class="keyword">else</span>:
+        <span class="function">print</span>(num)</code></pre>
+        </div>
+
+        <h4>🔍 Finding Prime Numbers</h4>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Check for prime numbers from Session 3</span>
+<span class="keyword">for</span> <span class="variable">num</span> <span class="keyword">in</span> <span class="function">range</span>(<span class="number">2</span>, <span class="number">20</span>):
+    <span class="variable">is_prime</span> = <span class="keyword">True</span>
+    
+    <span class="keyword">for</span> <span class="variable">divisor</span> <span class="keyword">in</span> <span class="function">range</span>(<span class="number">2</span>, num):
+        <span class="keyword">if</span> num % divisor == <span class="number">0</span>:
+            <span class="variable">is_prime</span> = <span class="keyword">False</span>
+            <span class="keyword">break</span>
+    
+    <span class="keyword">if</span> is_prime:
+        <span class="function">print</span>(<span class="string">f"</span>{num}<span class="string"> is prime! ⭐"</span>)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>2 is prime! ⭐
+3 is prime! ⭐
+5 is prime! ⭐
+7 is prime! ⭐
+11 is prime! ⭐
+13 is prime! ⭐
+17 is prime! ⭐
+19 is prime! ⭐</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- SUMMARY -->
+    <section class="content-section">
+      <h2>📋 Session Summary</h2>
+      
+      <div class="reference-card">
+        <table class="reference-table">
+          <thead>
+            <tr>
+              <th>Concept</th>
+              <th>Syntax</th>
+              <th>Use When</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>if</code></td>
+              <td>if condition:</td>
+              <td>Run code only if condition is True</td>
+            </tr>
+            <tr>
+              <td><code>elif</code></td>
+              <td>elif condition:</td>
+              <td>Check another condition if previous was False</td>
+            </tr>
+            <tr>
+              <td><code>else</code></td>
+              <td>else:</td>
+              <td>Run if all previous conditions are False</td>
+            </tr>
+            <tr>
+              <td><code>for</code></td>
+              <td>for item in sequence:</td>
+              <td>Iterate through each item</td>
+            </tr>
+            <tr>
+              <td><code>while</code></td>
+              <td>while condition:</td>
+              <td>Repeat until condition becomes False</td>
+            </tr>
+            <tr>
+              <td><code>range()</code></td>
+              <td>range(start, stop, step)</td>
+              <td>Generate number sequences</td>
+            </tr>
+            <tr>
+              <td><code>break</code></td>
+              <td>break</td>
+              <td>Exit loop immediately</td>
+            </tr>
+            <tr>
+              <td><code>continue</code></td>
+              <td>continue</td>
+              <td>Skip to next iteration</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- NAVIGATION -->
+    <nav class="page-navigation">
+      <a href="s2-datatypes.html" class="nav-prev">
+        <span class="nav-arrow">←</span>
+        <span class="nav-text">
+          <span class="nav-label">Previous</span>
+          <span class="nav-title">Data Types</span>
+        </span>
+      </a>
+      <a href="complete-course.html" class="nav-home">🏠</a>
+      <a href="s4-lists.html" class="nav-next">
+        <span class="nav-text">
+          <span class="nav-label">Next</span>
+          <span class="nav-title">Lists & Tuples</span>
+        </span>
+        <span class="nav-arrow">→</span>
+      </a>
+    </nav>
+  </main>
+
+  <footer>
+    <p>🐍 Python Mastery | Learn. Code. Create.</p>
+  </footer>
+</body>
+</html>
+

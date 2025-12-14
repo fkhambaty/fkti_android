@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session 6: Functions Part I | 🐍 Python Mastery</title>
+  <link rel="stylesheet" href="light-theme.css">
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-content">
+      <a href="complete-course.html" class="logo">🐍 Python Mastery</a>
+      <div class="session-nav">
+        <a href="s1-intro.html" class="nav-link">1</a>
+        <a href="s2-datatypes.html" class="nav-link">2</a>
+        <a href="s3-loops.html" class="nav-link">3</a>
+        <a href="s4-lists.html" class="nav-link">4</a>
+        <a href="s5-datastructures.html" class="nav-link">5</a>
+        <a href="s6-functions1.html" class="nav-link active">6</a>
+        <a href="s7-functions2.html" class="nav-link">7</a>
+        <a href="s8-oop.html" class="nav-link">8</a>
+        <a href="s9-numpy.html" class="nav-link">9</a>
+        <a href="s10-pandas1.html" class="nav-link">10</a>
+        <a href="s11-pandas2.html" class="nav-link">11</a>
+        <a href="s12-api-sql.html" class="nav-link">12</a>
+        <a href="assignments.html" class="nav-link assignment">📝</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <header class="session-header">
+      <div class="session-badge">Session 6</div>
+      <h1>⚙️ Functions Part I</h1>
+      <p class="session-subtitle">Creating reusable blocks of code</p>
+      <div class="progress-info">
+        <span>📚 8 Topics</span>
+        <span>⏱️ 45 min read</span>
+        <span>🎯 Essential Level</span>
+      </div>
+    </header>
+
+    <!-- OVERVIEW -->
+    <section class="overview-card">
+      <h2>🗺️ What You'll Learn</h2>
+      <div class="overview-grid">
+        <div class="overview-item">
+          <span class="overview-icon">🎯</span>
+          <span>What are Functions?</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">✏️</span>
+          <span>Defining Functions</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">📥</span>
+          <span>Parameters & Arguments</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">📤</span>
+          <span>Return Values</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">🔧</span>
+          <span>Default Parameters</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon">🏷️</span>
+          <span>Keyword Arguments</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ANALOGY -->
+    <section class="analogy-card">
+      <div class="analogy-header">
+        <span class="analogy-icon">🏭</span>
+        <h3>Functions = Mini Factories!</h3>
+      </div>
+      <div class="analogy-content">
+        <div class="visual-box">
+          <pre style="text-align: center; font-size: 1.1rem;">
+             INPUT                         OUTPUT
+    (Raw Materials)      🏭              (Finished Product)
+    
+        🥚 🥛 🧈    →   [CAKE_MAKER]  →    🎂
+                        FUNCTION
+                        
+    • Give it ingredients (arguments)
+    • It does its job (function body)
+    • It gives back a result (return value)
+    
+    Write once, use many times! ♻️
+          </pre>
+        </div>
+        <p class="analogy-moral">A function is a reusable recipe - define it once, use it whenever you need!</p>
+      </div>
+    </section>
+
+    <!-- WHY FUNCTIONS -->
+    <section class="content-section">
+      <h2>❓ Why Use Functions?</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">6.1</span>
+          <h3>🎯 Benefits of Functions</h3>
+        </div>
+
+        <div class="visual-box">
+          <h4>🚫 Without Functions (Bad)</h4>
+          <pre style="font-size: 0.9rem;">
+# Calculate area of rectangle 1
+length1 = 10
+width1 = 5
+area1 = length1 * width1
+print("Area 1:", area1)
+
+# Calculate area of rectangle 2 (copy-paste!)
+length2 = 7
+width2 = 3
+area2 = length2 * width2
+print("Area 2:", area2)
+
+# Calculate area of rectangle 3 (more copy-paste!)
+length3 = 15
+width3 = 8
+area3 = length3 * width3
+print("Area 3:", area3)
+          </pre>
+        </div>
+
+        <div class="visual-box" style="border-color: #10b981;">
+          <h4>✅ With Functions (Good)</h4>
+          <pre style="font-size: 0.9rem;">
+def calculate_area(length, width):
+    return length * width
+
+# Use it as many times as needed!
+print("Area 1:", calculate_area(10, 5))
+print("Area 2:", calculate_area(7, 3))
+print("Area 3:", calculate_area(15, 8))
+          </pre>
+        </div>
+
+        <div class="info-box tip">
+          <div class="info-header">
+            <span class="info-icon">💡</span>
+            <span>DRY Principle</span>
+          </div>
+          <div class="info-content">
+            <p><strong>D</strong>on't <strong>R</strong>epeat <strong>Y</strong>ourself! Functions help you write code once and reuse it everywhere.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEFINING FUNCTIONS -->
+    <section class="content-section">
+      <h2>✏️ Defining Functions</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">6.2</span>
+          <h3>📝 Function Syntax</h3>
+        </div>
+
+        <div class="visual-diagram">
+          <h4 style="text-align: center;">🔍 Anatomy of a Function</h4>
+          <pre style="font-size: 1rem;">
+    def function_name(parameter1, parameter2):
+    │   │             │
+    │   │             └── Parameters (inputs)
+    │   │
+    │   └── Function name (follows variable naming rules)
+    │
+    └── 'def' keyword (defines a function)
+
+        """Docstring: explains what the function does"""
+            │
+            └── Optional but recommended!
+        
+        # Function body
+        result = parameter1 + parameter2
+            │
+            └── The code that runs when function is called
+        
+        return result
+            │
+            └── What the function gives back
+          </pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Basic function from Session 6</span>
+<span class="keyword">def</span> <span class="function">greet</span>():
+    <span class="string">"""A simple greeting function"""</span>
+    <span class="function">print</span>(<span class="string">"Hello, World!"</span>)
+
+<span class="comment"># Call the function</span>
+greet()
+greet()  <span class="comment"># Can call it multiple times!</span></code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Hello, World!
+Hello, World!</pre>
+        </div>
+
+        <div class="info-box warning">
+          <div class="info-header">
+            <span class="info-icon">⚠️</span>
+            <span>Don't Forget the Parentheses!</span>
+          </div>
+          <div class="info-content">
+            <p><code>greet</code> = the function object itself</p>
+            <p><code>greet()</code> = calling/executing the function</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PARAMETERS AND ARGUMENTS -->
+    <section class="content-section">
+      <h2>📥 Parameters & Arguments</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">6.3</span>
+          <h3>🎁 Passing Data to Functions</h3>
+        </div>
+
+        <div class="explanation">
+          <p><strong>Parameters</strong> are variables in the function definition. <strong>Arguments</strong> are the actual values you pass when calling the function.</p>
+        </div>
+
+        <div class="visual-box">
+          <h4>🏷️ Parameters vs Arguments</h4>
+          <pre style="text-align: center; font-size: 1.1rem;">
+    def greet(name):        ← 'name' is a PARAMETER
+                              (placeholder/variable)
+        print(f"Hello, {name}!")
+    
+    greet("Alice")          ← "Alice" is an ARGUMENT
+                              (actual value passed)
+          </pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Function with parameters from Session 6</span>
+<span class="keyword">def</span> <span class="function">greet</span>(name):
+    <span class="string">"""Greet a person by name"""</span>
+    <span class="function">print</span>(<span class="string">f"Hello, </span>{name}<span class="string">! Nice to meet you."</span>)
+
+<span class="comment"># Call with different arguments</span>
+greet(<span class="string">"Alice"</span>)
+greet(<span class="string">"Bob"</span>)
+greet(<span class="string">"Charlie"</span>)
+
+<span class="comment"># Can pass variables too</span>
+<span class="variable">my_name</span> = <span class="string">"David"</span>
+greet(my_name)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Hello, Alice! Nice to meet you.
+Hello, Bob! Nice to meet you.
+Hello, Charlie! Nice to meet you.
+Hello, David! Nice to meet you.</pre>
+        </div>
+
+        <h4>📊 Multiple Parameters</h4>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Multiple parameters from Session 6</span>
+<span class="keyword">def</span> <span class="function">add_numbers</span>(a, b):
+    <span class="string">"""Add two numbers and print the result"""</span>
+    <span class="variable">result</span> = a + b
+    <span class="function">print</span>(<span class="string">f"</span>{a}<span class="string"> + </span>{b}<span class="string"> = </span>{result}<span class="string">"</span>)
+
+add_numbers(<span class="number">5</span>, <span class="number">3</span>)
+add_numbers(<span class="number">10</span>, <span class="number">20</span>)
+add_numbers(-<span class="number">5</span>, <span class="number">5</span>)
+
+<span class="comment"># More parameters</span>
+<span class="keyword">def</span> <span class="function">introduce</span>(name, age, city):
+    <span class="string">"""Introduce a person"""</span>
+    <span class="function">print</span>(<span class="string">f"My name is </span>{name}<span class="string">, I'm </span>{age}<span class="string"> years old, from </span>{city}<span class="string">."</span>)
+
+introduce(<span class="string">"Alice"</span>, <span class="number">25</span>, <span class="string">"New York"</span>)
+introduce(<span class="string">"Bob"</span>, <span class="number">30</span>, <span class="string">"London"</span>)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>5 + 3 = 8
+10 + 20 = 30
+-5 + 5 = 0
+My name is Alice, I'm 25 years old, from New York.
+My name is Bob, I'm 30 years old, from London.</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- RETURN VALUES -->
+    <section class="content-section">
+      <h2>📤 Return Values</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">6.4</span>
+          <h3>🎁 Getting Results from Functions</h3>
+        </div>
+
+        <div class="explanation">
+          <p>The <code>return</code> statement sends a value back from the function. Without it, the function returns <code>None</code>.</p>
+        </div>
+
+        <div class="visual-box">
+          <h4>🔄 Print vs Return</h4>
+          <pre style="text-align: center; font-size: 1rem;">
+    PRINT 🖨️                    RETURN 📦
+    ─────────                    ──────────
+    Shows on screen              Sends value back
+    Can't use result             Can store/use result
+    Returns None                 Returns specified value
+    
+    print("Hi")  →  Hi           return "Hi"  →  "Hi"
+                   (to screen)                    (to code)
+          </pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Return values from Session 6</span>
+<span class="keyword">def</span> <span class="function">add</span>(a, b):
+    <span class="string">"""Add two numbers and return the result"""</span>
+    <span class="keyword">return</span> a + b
+
+<span class="keyword">def</span> <span class="function">multiply</span>(a, b):
+    <span class="string">"""Multiply two numbers"""</span>
+    <span class="keyword">return</span> a * b
+
+<span class="comment"># Store the returned values</span>
+<span class="variable">sum_result</span> = add(<span class="number">5</span>, <span class="number">3</span>)
+<span class="variable">product</span> = multiply(<span class="number">4</span>, <span class="number">6</span>)
+
+<span class="function">print</span>(<span class="string">"Sum:"</span>, sum_result)
+<span class="function">print</span>(<span class="string">"Product:"</span>, product)
+
+<span class="comment"># Use returned values directly</span>
+<span class="function">print</span>(<span class="string">"Direct use:"</span>, add(<span class="number">10</span>, <span class="number">20</span>))
+
+<span class="comment"># Chain function calls</span>
+<span class="variable">total</span> = add(multiply(<span class="number">2</span>, <span class="number">3</span>), multiply(<span class="number">4</span>, <span class="number">5</span>))
+<span class="function">print</span>(<span class="string">"Chained:"</span>, total)  <span class="comment"># (2*3) + (4*5) = 6 + 20 = 26</span></code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Sum: 8
+Product: 24
+Direct use: 30
+Chained: 26</pre>
+        </div>
+
+        <h4>📦 Returning Multiple Values</h4>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Return multiple values from Session 6</span>
+<span class="keyword">def</span> <span class="function">get_stats</span>(numbers):
+    <span class="string">"""Calculate and return multiple statistics"""</span>
+    <span class="variable">minimum</span> = <span class="function">min</span>(numbers)
+    <span class="variable">maximum</span> = <span class="function">max</span>(numbers)
+    <span class="variable">total</span> = <span class="function">sum</span>(numbers)
+    <span class="variable">average</span> = total / <span class="function">len</span>(numbers)
+    <span class="keyword">return</span> minimum, maximum, total, average  <span class="comment"># Returns a tuple</span>
+
+<span class="comment"># Call and unpack the results</span>
+<span class="variable">data</span> = [<span class="number">4</span>, <span class="number">8</span>, <span class="number">15</span>, <span class="number">16</span>, <span class="number">23</span>, <span class="number">42</span>]
+<span class="variable">min_val</span>, <span class="variable">max_val</span>, <span class="variable">sum_val</span>, <span class="variable">avg_val</span> = get_stats(data)
+
+<span class="function">print</span>(<span class="string">f"Min: </span>{min_val}<span class="string">"</span>)
+<span class="function">print</span>(<span class="string">f"Max: </span>{max_val}<span class="string">"</span>)
+<span class="function">print</span>(<span class="string">f"Sum: </span>{sum_val}<span class="string">"</span>)
+<span class="function">print</span>(<span class="string">f"Average: </span>{avg_val:.2f}<span class="string">"</span>)
+
+<span class="comment"># Or get as tuple</span>
+<span class="variable">stats</span> = get_stats(data)
+<span class="function">print</span>(<span class="string">"\\nAs tuple:"</span>, stats)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Min: 4
+Max: 42
+Sum: 108
+Average: 18.00
+
+As tuple: (4, 42, 108, 18.0)</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEFAULT PARAMETERS -->
+    <section class="content-section">
+      <h2>🔧 Default Parameters</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">6.5</span>
+          <h3>📋 Optional Arguments</h3>
+        </div>
+
+        <div class="explanation">
+          <p>Default parameters have a preset value that's used if no argument is provided. They make some arguments optional!</p>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Default parameters from Session 6</span>
+<span class="keyword">def</span> <span class="function">greet</span>(name, greeting=<span class="string">"Hello"</span>):
+    <span class="string">"""Greet with optional custom greeting"""</span>
+    <span class="function">print</span>(<span class="string">f"</span>{greeting}<span class="string">, </span>{name}<span class="string">!"</span>)
+
+<span class="comment"># Using default greeting</span>
+greet(<span class="string">"Alice"</span>)
+
+<span class="comment"># Providing custom greeting</span>
+greet(<span class="string">"Bob"</span>, <span class="string">"Hi"</span>)
+greet(<span class="string">"Charlie"</span>, <span class="string">"Good morning"</span>)
+
+<span class="comment"># More examples</span>
+<span class="keyword">def</span> <span class="function">power</span>(base, exponent=<span class="number">2</span>):
+    <span class="string">"""Calculate base raised to exponent (default: square)"""</span>
+    <span class="keyword">return</span> base ** exponent
+
+<span class="function">print</span>(<span class="string">"\\nPower examples:"</span>)
+<span class="function">print</span>(<span class="string">"5 squared:"</span>, power(<span class="number">5</span>))        <span class="comment"># Uses default exponent=2</span>
+<span class="function">print</span>(<span class="string">"2 cubed:"</span>, power(<span class="number">2</span>, <span class="number">3</span>))       <span class="comment"># Custom exponent</span>
+<span class="function">print</span>(<span class="string">"10 to 4:"</span>, power(<span class="number">10</span>, <span class="number">4</span>))     <span class="comment"># Custom exponent</span></code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Hello, Alice!
+Hi, Bob!
+Good morning, Charlie!
+
+Power examples:
+5 squared: 25
+2 cubed: 8
+10 to 4: 10000</pre>
+        </div>
+
+        <div class="info-box warning">
+          <div class="info-header">
+            <span class="info-icon">⚠️</span>
+            <span>Important Rule</span>
+          </div>
+          <div class="info-content">
+            <p>Default parameters must come AFTER non-default parameters!</p>
+            <p>✅ <code>def func(a, b=5)</code></p>
+            <p>❌ <code>def func(a=5, b)</code> - This is a syntax error!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KEYWORD ARGUMENTS -->
+    <section class="content-section">
+      <h2>🏷️ Keyword Arguments</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">6.6</span>
+          <h3>📌 Named Arguments</h3>
+        </div>
+
+        <div class="explanation">
+          <p>Keyword arguments let you specify which parameter gets which value by name. This makes your code clearer and more flexible!</p>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Keyword arguments from Session 6</span>
+<span class="keyword">def</span> <span class="function">create_profile</span>(name, age, city, occupation):
+    <span class="string">"""Create a user profile"""</span>
+    <span class="function">print</span>(<span class="string">f"Name: </span>{name}<span class="string">"</span>)
+    <span class="function">print</span>(<span class="string">f"Age: </span>{age}<span class="string">"</span>)
+    <span class="function">print</span>(<span class="string">f"City: </span>{city}<span class="string">"</span>)
+    <span class="function">print</span>(<span class="string">f"Occupation: </span>{occupation}<span class="string">"</span>)
+    <span class="function">print</span>(<span class="string">"---"</span>)
+
+<span class="comment"># Positional arguments (order matters!)</span>
+create_profile(<span class="string">"Alice"</span>, <span class="number">25</span>, <span class="string">"NYC"</span>, <span class="string">"Engineer"</span>)
+
+<span class="comment"># Keyword arguments (order doesn't matter!)</span>
+create_profile(
+    occupation=<span class="string">"Designer"</span>,
+    name=<span class="string">"Bob"</span>,
+    city=<span class="string">"LA"</span>,
+    age=<span class="number">30</span>
+)
+
+<span class="comment"># Mix of positional and keyword</span>
+create_profile(<span class="string">"Charlie"</span>, <span class="number">35</span>, city=<span class="string">"Chicago"</span>, occupation=<span class="string">"Manager"</span>)</code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Name: Alice
+Age: 25
+City: NYC
+Occupation: Engineer
+---
+Name: Bob
+Age: 30
+City: LA
+Occupation: Designer
+---
+Name: Charlie
+Age: 35
+City: Chicago
+Occupation: Manager
+---</pre>
+        </div>
+
+        <div class="info-box tip">
+          <div class="info-header">
+            <span class="info-icon">💡</span>
+            <span>When to Use Keyword Arguments</span>
+          </div>
+          <div class="info-content">
+            <ul>
+              <li>When a function has many parameters</li>
+              <li>When you want to skip some default parameters</li>
+              <li>When you want your code to be more readable</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCOPE -->
+    <section class="content-section">
+      <h2>🔭 Variable Scope</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">6.7</span>
+          <h3>📍 Local vs Global Variables</h3>
+        </div>
+
+        <div class="explanation">
+          <p><strong>Scope</strong> determines where a variable can be accessed. Variables created inside a function are <strong>local</strong> to that function.</p>
+        </div>
+
+        <div class="visual-box">
+          <h4>🏠 Think of Scope Like Rooms in a House</h4>
+          <pre style="text-align: center; font-size: 1rem;">
+    ┌───────────────────────────────────────┐
+    │          GLOBAL SCOPE 🌍              │
+    │       (Living Room - Everyone)        │
+    │                                       │
+    │  global_var = "I'm everywhere!"       │
+    │                                       │
+    │   ┌─────────────────┐                 │
+    │   │  FUNCTION SCOPE │                 │
+    │   │  (Your Bedroom) │                 │
+    │   │                 │                 │
+    │   │  local_var = "My secret"          │
+    │   │  (Only you can see this)          │
+    │   └─────────────────┘                 │
+    └───────────────────────────────────────┘
+          </pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Variable scope from Session 6</span>
+<span class="variable">global_var</span> = <span class="string">"I'm global!"</span>  <span class="comment"># Global variable</span>
+
+<span class="keyword">def</span> <span class="function">my_function</span>():
+    <span class="variable">local_var</span> = <span class="string">"I'm local!"</span>  <span class="comment"># Local variable</span>
+    <span class="function">print</span>(<span class="string">"Inside function:"</span>)
+    <span class="function">print</span>(<span class="string">"  Global:"</span>, global_var)  <span class="comment"># Can access global</span>
+    <span class="function">print</span>(<span class="string">"  Local:"</span>, local_var)    <span class="comment"># Can access local</span>
+
+my_function()
+
+<span class="function">print</span>(<span class="string">"\\nOutside function:"</span>)
+<span class="function">print</span>(<span class="string">"  Global:"</span>, global_var)  <span class="comment"># Can access global</span>
+<span class="comment"># print("  Local:", local_var)  # ERROR! local_var doesn't exist here</span>
+
+<span class="comment"># Variables with same name in different scopes</span>
+<span class="variable">x</span> = <span class="number">10</span>  <span class="comment"># Global x</span>
+
+<span class="keyword">def</span> <span class="function">test_scope</span>():
+    <span class="variable">x</span> = <span class="number">20</span>  <span class="comment"># Local x (shadows global x)</span>
+    <span class="function">print</span>(<span class="string">"Inside function, x ="</span>, x)
+
+test_scope()
+<span class="function">print</span>(<span class="string">"Outside function, x ="</span>, x)  <span class="comment"># Global x unchanged</span></code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>Inside function:
+  Global: I'm global!
+  Local: I'm local!
+
+Outside function:
+  Global: I'm global!
+Inside function, x = 20
+Outside function, x = 10</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- BUILT-IN FUNCTIONS -->
+    <section class="content-section">
+      <h2>🛠️ Built-in Functions</h2>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <span class="topic-number">6.8</span>
+          <h3>📦 Python's Ready-to-Use Functions</h3>
+        </div>
+
+        <div class="explanation">
+          <p>Python comes with many built-in functions that you've already been using!</p>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Python</span>
+            <span class="code-badge">From Source</span>
+          </div>
+          <pre><code><span class="comment"># Common built-in functions from Session 6</span>
+
+<span class="comment"># Type functions</span>
+<span class="function">print</span>(<span class="string">"type(42):"</span>, <span class="function">type</span>(<span class="number">42</span>))
+<span class="function">print</span>(<span class="string">"int('100'):"</span>, <span class="function">int</span>(<span class="string">"100"</span>))
+<span class="function">print</span>(<span class="string">"str(42):"</span>, <span class="function">str</span>(<span class="number">42</span>))
+<span class="function">print</span>(<span class="string">"float(5):"</span>, <span class="function">float</span>(<span class="number">5</span>))
+
+<span class="comment"># Math functions</span>
+<span class="variable">numbers</span> = [<span class="number">3</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">9</span>]
+<span class="function">print</span>(<span class="string">"\\nmin:"</span>, <span class="function">min</span>(numbers))
+<span class="function">print</span>(<span class="string">"max:"</span>, <span class="function">max</span>(numbers))
+<span class="function">print</span>(<span class="string">"sum:"</span>, <span class="function">sum</span>(numbers))
+<span class="function">print</span>(<span class="string">"len:"</span>, <span class="function">len</span>(numbers))
+<span class="function">print</span>(<span class="string">"abs(-7):"</span>, <span class="function">abs</span>(-<span class="number">7</span>))
+<span class="function">print</span>(<span class="string">"round(3.7):"</span>, <span class="function">round</span>(<span class="number">3.7</span>))
+<span class="function">print</span>(<span class="string">"pow(2, 3):"</span>, <span class="function">pow</span>(<span class="number">2</span>, <span class="number">3</span>))
+
+<span class="comment"># Sequence functions</span>
+<span class="function">print</span>(<span class="string">"\\nrange(5):"</span>, <span class="function">list</span>(<span class="function">range</span>(<span class="number">5</span>)))
+<span class="function">print</span>(<span class="string">"sorted:"</span>, <span class="function">sorted</span>(numbers))
+<span class="function">print</span>(<span class="string">"reversed:"</span>, <span class="function">list</span>(<span class="function">reversed</span>(numbers)))
+
+<span class="comment"># Input/Output</span>
+<span class="comment"># name = input("Enter name: ")  # Gets user input</span>
+<span class="function">print</span>(<span class="string">"Hello!"</span>)  <span class="comment"># Outputs to console</span></code></pre>
+        </div>
+
+        <div class="output-block">
+          <div class="output-header">Output</div>
+          <pre>type(42): &lt;class 'int'&gt;
+int('100'): 100
+str(42): 42
+float(5): 5.0
+
+min: 1
+max: 9
+sum: 23
+len: 6
+abs(-7): 7
+round(3.7): 4
+pow(2, 3): 8
+
+range(5): [0, 1, 2, 3, 4]
+sorted: [1, 1, 3, 4, 5, 9]
+reversed: [9, 5, 1, 4, 1, 3]
+Hello!</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUICK REFERENCE -->
+    <section class="content-section">
+      <h2>📋 Quick Reference</h2>
+      
+      <div class="reference-card">
+        <table class="reference-table">
+          <thead>
+            <tr>
+              <th>Concept</th>
+              <th>Syntax</th>
+              <th>Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Define function</td>
+              <td><code>def name():</code></td>
+              <td>def greet():</td>
+            </tr>
+            <tr>
+              <td>With parameters</td>
+              <td><code>def name(a, b):</code></td>
+              <td>def add(x, y):</td>
+            </tr>
+            <tr>
+              <td>Return value</td>
+              <td><code>return value</code></td>
+              <td>return x + y</td>
+            </tr>
+            <tr>
+              <td>Default parameter</td>
+              <td><code>def f(a=5):</code></td>
+              <td>def greet(name="World"):</td>
+            </tr>
+            <tr>
+              <td>Call function</td>
+              <td><code>name(args)</code></td>
+              <td>greet("Alice")</td>
+            </tr>
+            <tr>
+              <td>Keyword argument</td>
+              <td><code>name=value</code></td>
+              <td>greet(name="Bob")</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- NAVIGATION -->
+    <nav class="page-navigation">
+      <a href="s5-datastructures.html" class="nav-prev">
+        <span class="nav-arrow">←</span>
+        <span class="nav-text">
+          <span class="nav-label">Previous</span>
+          <span class="nav-title">Sets & Dictionaries</span>
+        </span>
+      </a>
+      <a href="complete-course.html" class="nav-home">🏠</a>
+      <a href="s7-functions2.html" class="nav-next">
+        <span class="nav-text">
+          <span class="nav-label">Next</span>
+          <span class="nav-title">Functions Part II</span>
+        </span>
+        <span class="nav-arrow">→</span>
+      </a>
+    </nav>
+  </main>
+
+  <footer>
+    <p>🐍 Python Mastery | Learn. Code. Create.</p>
+  </footer>
+</body>
+</html>
+

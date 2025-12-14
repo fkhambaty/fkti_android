@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assignment 5: Advanced | 🐍 Python Mastery</title>
+  <link rel="stylesheet" href="light-theme.css">
+  <style>
+    .question-card { background: white; border: 2px solid var(--border-color); border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem; }
+    .question-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+    .question-num { background: var(--gradient-python); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+    .question-text { font-size: 1.1rem; color: var(--text-primary); font-weight: 600; }
+    .solution-toggle { background: #f1f5f9; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer; font-weight: 600; color: var(--python-blue); margin-top: 1rem; }
+    .solution-toggle:hover { background: #e2e8f0; }
+    .solution-content { display: none; margin-top: 1rem; padding-top: 1rem; border-top: 2px dashed var(--border-color); }
+    .solution-content.show { display: block; }
+    .explanation-box { background: #f0fdf4; border-left: 4px solid var(--accent-green); padding: 1rem; margin: 1rem 0; border-radius: 0 8px 8px 0; }
+    .explanation-box h4 { color: var(--accent-green); margin-bottom: 0.5rem; }
+    .sub-question { background: #f8fafc; padding: 1rem; border-radius: 8px; margin: 1rem 0; border-left: 3px solid var(--python-blue); }
+    .sub-question h5 { margin: 0 0 0.5rem; color: var(--python-blue); }
+    .category-badge { display: inline-block; background: #e0e7ff; color: #3730a3; padding: 0.25rem 0.75rem; border-radius: 50px; font-size: 0.85rem; margin-bottom: 0.5rem; }
+  </style>
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-content">
+      <a href="complete-course.html" class="logo">🐍 Python Mastery</a>
+      <div class="session-nav">
+        <a href="a1-strings.html" class="nav-link">A1</a>
+        <a href="a2-loops.html" class="nav-link">A2</a>
+        <a href="a3-datastructures.html" class="nav-link">A3</a>
+        <a href="a4-functions.html" class="nav-link">A4</a>
+        <a href="a5-advanced.html" class="nav-link active">A5</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <header class="session-header">
+      <div class="session-badge" style="background: var(--gradient-success);">Assignment 5</div>
+      <h1>🚀 Advanced Python</h1>
+      <p class="session-subtitle">OOP, NumPy & Pandas</p>
+      <div class="progress-info">
+        <span>📝 4 Complex Questions</span>
+        <span>⏱️ 60 min</span>
+        <span>🎯 Advanced</span>
+      </div>
+    </header>
+
+    <section class="content-section">
+      <h2>📋 Questions & Solutions</h2>
+
+      <!-- Question 1: OOP Circle Class -->
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-num">1</span>
+          <span class="question-text">Object-Oriented Programming: Circle Class</span>
+        </div>
+        <span class="category-badge">🎯 OOP</span>
+        
+        <div class="sub-question">
+          <h5>a) Create a Circle class with radius attribute</h5>
+          <p>Initialize with default radius of 1.</p>
+        </div>
+        <div class="sub-question">
+          <h5>b) Add method to calculate area</h5>
+          <p>Area = π × r²</p>
+        </div>
+        <div class="sub-question">
+          <h5>c) Add method to calculate circumference</h5>
+          <p>Circumference = 2 × π × r</p>
+        </div>
+        <div class="sub-question">
+          <h5>d) Add __repr__ method</h5>
+          <p>Return a string representation of the circle.</p>
+        </div>
+        
+        <button class="solution-toggle" onclick="toggleSolution(this)">💡 Show Solution</button>
+        <div class="solution-content">
+          <div class="code-block"><pre><code>import math
+
+class Circle:
+    """A class to represent a circle"""
+    
+    def __init__(self, radius=1):
+        """Initialize circle with radius (default 1)"""
+        self.radius = radius
+    
+    def area(self):
+        """Calculate and return area of circle"""
+        return math.pi * self.radius ** 2
+    
+    def circumference(self):
+        """Calculate and return circumference"""
+        return 2 * math.pi * self.radius
+    
+    def __repr__(self):
+        """String representation of Circle"""
+        return f"Circle(radius={self.radius})"
+
+# Test the Circle class
+c1 = Circle()           # Default radius
+c2 = Circle(5)          # Radius of 5
+c3 = Circle(radius=10)  # Named argument
+
+print("Circle 1:", c1)
+print(f"  Area: {c1.area():.2f}")
+print(f"  Circumference: {c1.circumference():.2f}")
+
+print("\nCircle 2:", c2)
+print(f"  Area: {c2.area():.2f}")
+print(f"  Circumference: {c2.circumference():.2f}")
+
+print("\nCircle 3:", c3)
+print(f"  Area: {c3.area():.2f}")
+print(f"  Circumference: {c3.circumference():.2f}")</code></pre></div>
+          <div class="output-block"><div class="output-header">Output</div><pre>Circle 1: Circle(radius=1)
+  Area: 3.14
+  Circumference: 6.28
+
+Circle 2: Circle(radius=5)
+  Area: 78.54
+  Circumference: 31.42
+
+Circle 3: Circle(radius=10)
+  Area: 314.16
+  Circumference: 62.83</pre></div>
+          <div class="explanation-box"><h4>🎓 Explanation</h4>
+            <ul>
+              <li><code>__init__</code> - Constructor that runs when object is created</li>
+              <li><code>self</code> - Reference to the current instance</li>
+              <li><code>self.radius</code> - Instance attribute (each object has its own)</li>
+              <li><code>__repr__</code> - Special method for string representation</li>
+              <li><code>math.pi</code> - Built-in constant for π (3.14159...)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Question 2: NumPy -->
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-num">2</span>
+          <span class="question-text">NumPy Operations</span>
+        </div>
+        <span class="category-badge">🔢 NumPy</span>
+        
+        <div class="sub-question">
+          <h5>a) Generate 10 random numbers between 1 and 100</h5>
+        </div>
+        <div class="sub-question">
+          <h5>b) Create two 2x2 matrices, add and multiply them</h5>
+        </div>
+        <div class="sub-question">
+          <h5>c) Calculate mean, median, and standard deviation</h5>
+        </div>
+        
+        <button class="solution-toggle" onclick="toggleSolution(this)">💡 Show Solution</button>
+        <div class="solution-content">
+          <div class="code-block"><pre><code>import numpy as np
+
+# Set seed for reproducibility
+np.random.seed(42)
+
+# a) Generate 10 random numbers between 1 and 100
+random_nums = np.random.randint(1, 101, size=10)
+print("a) Random numbers (1-100):")
+print(random_nums)
+
+# b) Create and operate on 2x2 matrices
+print("\nb) Matrix Operations:")
+matrix1 = np.array([[1, 2], [3, 4]])
+matrix2 = np.array([[5, 6], [7, 8]])
+
+print("Matrix 1:")
+print(matrix1)
+print("\nMatrix 2:")
+print(matrix2)
+
+# Addition
+print("\nMatrix Addition (A + B):")
+print(matrix1 + matrix2)
+
+# Element-wise multiplication
+print("\nElement-wise Multiplication:")
+print(matrix1 * matrix2)
+
+# Matrix multiplication (dot product)
+print("\nMatrix Multiplication (A @ B):")
+print(matrix1 @ matrix2)
+
+# c) Statistical operations
+print("\nc) Statistics of random numbers:")
+print(f"Mean: {np.mean(random_nums):.2f}")
+print(f"Median: {np.median(random_nums):.2f}")
+print(f"Std Dev: {np.std(random_nums):.2f}")
+print(f"Min: {np.min(random_nums)}")
+print(f"Max: {np.max(random_nums)}")
+print(f"Sum: {np.sum(random_nums)}")</code></pre></div>
+          <div class="output-block"><div class="output-header">Output</div><pre>a) Random numbers (1-100):
+[52 93 15 72 61 21 83 87 75 75]
+
+b) Matrix Operations:
+Matrix 1:
+[[1 2]
+ [3 4]]
+
+Matrix 2:
+[[5 6]
+ [7 8]]
+
+Matrix Addition (A + B):
+[[ 6  8]
+ [10 12]]
+
+Element-wise Multiplication:
+[[ 5 12]
+ [21 32]]
+
+Matrix Multiplication (A @ B):
+[[19 22]
+ [43 50]]
+
+c) Statistics of random numbers:
+Mean: 63.40
+Median: 73.50
+Std Dev: 24.65
+Min: 15
+Max: 93
+Sum: 634</pre></div>
+          <div class="explanation-box"><h4>🎓 Explanation</h4>
+            <ul>
+              <li><code>np.random.randint(low, high, size)</code> - Random integers</li>
+              <li><code>+</code> adds matrices element-by-element</li>
+              <li><code>*</code> multiplies element-by-element (NOT matrix multiplication)</li>
+              <li><code>@</code> or <code>np.dot()</code> does true matrix multiplication</li>
+              <li><code>np.mean()</code>, <code>np.median()</code>, <code>np.std()</code> - Statistical functions</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Question 3: Pandas Basics -->
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-num">3</span>
+          <span class="question-text">Pandas DataFrame Operations</span>
+        </div>
+        <span class="category-badge">🐼 Pandas</span>
+        
+        <div class="sub-question">
+          <h5>a) Read a CSV file and display first 5 rows</h5>
+        </div>
+        <div class="sub-question">
+          <h5>b) Find maximum, minimum, and average price</h5>
+        </div>
+        <div class="sub-question">
+          <h5>c) Create a new column using lambda function</h5>
+        </div>
+        <div class="sub-question">
+          <h5>d) Sort by price descending</h5>
+        </div>
+        
+        <button class="solution-toggle" onclick="toggleSolution(this)">💡 Show Solution</button>
+        <div class="solution-content">
+          <div class="code-block"><pre><code>import pandas as pd
+
+# Create sample data (simulating CSV read)
+data = {
+    'Product': ['Laptop', 'Phone', 'Tablet', 'Watch', 'Headphones'],
+    'Price': [999.99, 699.99, 449.99, 299.99, 149.99],
+    'Quantity': [10, 25, 15, 30, 50]
+}
+df = pd.DataFrame(data)
+
+# a) Display first 5 rows
+print("a) First 5 rows (head):")
+print(df.head())
+
+# b) Price statistics
+print("\nb) Price Statistics:")
+print(f"Maximum Price: ${df['Price'].max():.2f}")
+print(f"Minimum Price: ${df['Price'].min():.2f}")
+print(f"Average Price: ${df['Price'].mean():.2f}")
+
+# c) Create new column with lambda
+print("\nc) Add 'Total Value' column:")
+df['Total_Value'] = df.apply(lambda row: row['Price'] * row['Quantity'], axis=1)
+print(df)
+
+# Alternative: Vectorized approach (faster)
+df['Discounted'] = df['Price'].apply(lambda x: x * 0.9)
+print("\nWith 10% discount column:")
+print(df)
+
+# d) Sort by price descending
+print("\nd) Sorted by Price (descending):")
+sorted_df = df.sort_values('Price', ascending=False)
+print(sorted_df)</code></pre></div>
+          <div class="output-block"><div class="output-header">Output</div><pre>a) First 5 rows (head):
+      Product   Price  Quantity
+0      Laptop  999.99        10
+1       Phone  699.99        25
+2      Tablet  449.99        15
+3       Watch  299.99        30
+4  Headphones  149.99        50
+
+b) Price Statistics:
+Maximum Price: $999.99
+Minimum Price: $149.99
+Average Price: $519.99
+
+c) Add 'Total Value' column:
+      Product   Price  Quantity  Total_Value
+0      Laptop  999.99        10      9999.90
+1       Phone  699.99        25     17499.75
+2      Tablet  449.99        15      6749.85
+3       Watch  299.99        30      8999.70
+4  Headphones  149.99        50      7499.50
+
+With 10% discount column:
+      Product   Price  Quantity  Total_Value  Discounted
+0      Laptop  999.99        10      9999.90      899.99
+1       Phone  699.99        25     17499.75      629.99
+2      Tablet  449.99        15      6749.85      404.99
+3       Watch  299.99        30      8999.70      269.99
+4  Headphones  149.99        50      7499.50      134.99
+
+d) Sorted by Price (descending):
+      Product   Price  Quantity  Total_Value  Discounted
+0      Laptop  999.99        10      9999.90      899.99
+1       Phone  699.99        25     17499.75      629.99
+2      Tablet  449.99        15      6749.85      404.99
+3       Watch  299.99        30      8999.70      269.99
+4  Headphones  149.99        50      7499.50      134.99</pre></div>
+          <div class="explanation-box"><h4>🎓 Explanation</h4>
+            <ul>
+              <li><code>pd.read_csv('file.csv')</code> - Read CSV file</li>
+              <li><code>df.head(n)</code> - First n rows (default 5)</li>
+              <li><code>df['column'].max()</code>, <code>.min()</code>, <code>.mean()</code> - Statistics</li>
+              <li><code>df.apply(lambda, axis=1)</code> - Apply function row-wise</li>
+              <li><code>df['col'].apply(lambda)</code> - Apply to single column</li>
+              <li><code>df.sort_values('col', ascending=False)</code> - Sort descending</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Question 4: Advanced Pandas -->
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-num">4</span>
+          <span class="question-text">Advanced Pandas Analysis</span>
+        </div>
+        <span class="category-badge">🐼 Pandas Advanced</span>
+        
+        <div class="sub-question">
+          <h5>a) Filter data based on conditions</h5>
+        </div>
+        <div class="sub-question">
+          <h5>b) Group by category and calculate aggregations</h5>
+        </div>
+        <div class="sub-question">
+          <h5>c) Handle missing values</h5>
+        </div>
+        <div class="sub-question">
+          <h5>d) Merge two DataFrames</h5>
+        </div>
+        
+        <button class="solution-toggle" onclick="toggleSolution(this)">💡 Show Solution</button>
+        <div class="solution-content">
+          <div class="code-block"><pre><code>import pandas as pd
+import numpy as np
+
+# Create sample sales data
+sales = pd.DataFrame({
+    'Product': ['Laptop', 'Phone', 'Tablet', 'Laptop', 'Phone', 'Watch'],
+    'Category': ['Electronics', 'Electronics', 'Electronics', 'Electronics', 'Electronics', 'Accessories'],
+    'Price': [999, 699, 449, 1099, 599, np.nan],
+    'Units': [5, 10, 8, 3, 15, 20]
+})
+
+# a) Filter: Products with Price > 500
+print("a) Products with Price > 500:")
+filtered = sales[sales['Price'] > 500]
+print(filtered)
+
+# Multiple conditions
+print("\nProducts: Price > 500 AND Units > 5:")
+multi_filter = sales[(sales['Price'] > 500) & (sales['Units'] > 5)]
+print(multi_filter)
+
+# b) Group by and aggregate
+print("\nb) Group by Product - Statistics:")
+grouped = sales.groupby('Product').agg({
+    'Price': ['mean', 'min', 'max'],
+    'Units': 'sum'
+})
+print(grouped)
+
+# Simpler groupby
+print("\nTotal units per category:")
+print(sales.groupby('Category')['Units'].sum())
+
+# c) Handle missing values
+print("\nc) Handling Missing Values:")
+print("Missing values per column:")
+print(sales.isnull().sum())
+
+# Fill missing values
+sales_filled = sales.fillna(sales['Price'].mean())
+print("\nAfter filling with mean:")
+print(sales_filled)
+
+# Alternative: Drop rows with NaN
+sales_dropped = sales.dropna()
+print(f"\nRows after dropping NaN: {len(sales_dropped)}")
+
+# d) Merge DataFrames
+products = pd.DataFrame({
+    'Product': ['Laptop', 'Phone', 'Tablet', 'Watch'],
+    'Manufacturer': ['Dell', 'Apple', 'Samsung', 'Fitbit']
+})
+
+print("\nd) Merge with manufacturer info:")
+merged = sales.merge(products, on='Product', how='left')
+print(merged)</code></pre></div>
+          <div class="output-block"><div class="output-header">Output</div><pre>a) Products with Price > 500:
+  Product     Category   Price  Units
+0  Laptop  Electronics   999.0      5
+1   Phone  Electronics   699.0     10
+3  Laptop  Electronics  1099.0      3
+4   Phone  Electronics   599.0     15
+
+Products: Price > 500 AND Units > 5:
+  Product     Category  Price  Units
+1   Phone  Electronics  699.0     10
+4   Phone  Electronics  599.0     15
+
+b) Group by Product - Statistics:
+        Price                 Units
+         mean     min     max   sum
+Product                            
+Laptop  1049.0   999.0  1099.0     8
+Phone    649.0   599.0   699.0    25
+Tablet   449.0   449.0   449.0     8
+Watch      NaN     NaN     NaN    20
+
+Total units per category:
+Category
+Accessories    20
+Electronics    41
+Name: Units, dtype: int64
+
+c) Handling Missing Values:
+Missing values per column:
+Product     0
+Category    0
+Price       1
+Units       0
+dtype: int64
+
+After filling with mean:
+  Product     Category     Price  Units
+0  Laptop  Electronics   999.000      5
+1   Phone  Electronics   699.000     10
+2  Tablet  Electronics   449.000      8
+3  Laptop  Electronics  1099.000      3
+4   Phone  Electronics   599.000     15
+5   Watch  Accessories   769.167     20
+
+Rows after dropping NaN: 5
+
+d) Merge with manufacturer info:
+  Product     Category   Price  Units Manufacturer
+0  Laptop  Electronics   999.0      5         Dell
+1   Phone  Electronics   699.0     10        Apple
+2  Tablet  Electronics   449.0      8      Samsung
+3  Laptop  Electronics  1099.0      3         Dell
+4   Phone  Electronics   599.0     15        Apple
+5   Watch  Accessories     NaN     20       Fitbit</pre></div>
+          <div class="explanation-box"><h4>🎓 Explanation</h4>
+            <ul>
+              <li><code>df[condition]</code> - Boolean indexing for filtering</li>
+              <li><code>&</code> for AND, <code>|</code> for OR (use parentheses!)</li>
+              <li><code>groupby().agg()</code> - Multiple aggregations at once</li>
+              <li><code>isnull().sum()</code> - Count missing values</li>
+              <li><code>fillna(value)</code> - Replace NaN with value</li>
+              <li><code>dropna()</code> - Remove rows with NaN</li>
+              <li><code>merge(df, on='col', how='left/right/inner/outer')</code> - SQL-like joins</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bonus: Quick Reference -->
+    <section class="content-section">
+      <h2>🎁 Bonus: Quick Reference</h2>
+      
+      <div class="concept-card">
+        <h3>📚 OOP Cheat Sheet</h3>
+        <div class="code-block"><pre><code>class MyClass:
+    class_var = "shared"     # Class variable
+    
+    def __init__(self, value):
+        self.value = value   # Instance variable
+    
+    def method(self):        # Instance method
+        return self.value
+    
+    @classmethod             # Class method
+    def class_method(cls):
+        return cls.class_var
+    
+    @staticmethod            # Static method
+    def static_method():
+        return "No self needed"</code></pre></div>
+      </div>
+
+      <div class="concept-card">
+        <h3>🔢 NumPy Essentials</h3>
+        <div class="code-block"><pre><code>import numpy as np
+
+# Create arrays
+a = np.array([1, 2, 3])
+zeros = np.zeros((3, 3))
+ones = np.ones((2, 2))
+range_arr = np.arange(0, 10, 2)  # [0, 2, 4, 6, 8]
+
+# Shape operations
+a.reshape(3, 1)    # Change shape
+a.flatten()        # To 1D
+
+# Math
+np.sum(a), np.mean(a), np.std(a)
+np.min(a), np.max(a), np.argmax(a)  # Index of max</code></pre></div>
+      </div>
+
+      <div class="concept-card">
+        <h3>🐼 Pandas Essentials</h3>
+        <div class="code-block"><pre><code>import pandas as pd
+
+# Read/Write
+df = pd.read_csv('file.csv')
+df.to_csv('output.csv', index=False)
+
+# Explore
+df.head(), df.tail(), df.info(), df.describe()
+df.shape, df.columns, df.dtypes
+
+# Select
+df['col'], df[['col1', 'col2']]
+df.loc[rows, cols], df.iloc[row_idx, col_idx]
+
+# Transform
+df['new'] = df['col'].apply(lambda x: x * 2)
+df.groupby('col').agg({'val': 'sum'})
+df.sort_values('col', ascending=False)
+df.merge(df2, on='key')</code></pre></div>
+      </div>
+    </section>
+
+    <nav class="page-navigation">
+      <a href="a4-functions.html" class="nav-prev"><span class="nav-arrow">←</span><span class="nav-text"><span class="nav-label">Previous</span><span class="nav-title">Assignment 4</span></span></a>
+      <a href="complete-course.html" class="nav-home">🏠</a>
+      <a href="s1-intro.html" class="nav-next"><span class="nav-text"><span class="nav-label">Start Course</span><span class="nav-title">Session 1</span></span><span class="nav-arrow">→</span></a>
+    </nav>
+  </main>
+
+  <footer><p>🐍 Python Mastery | Learn. Code. Create.</p></footer>
+  <script>function toggleSolution(button) { const content = button.nextElementSibling; content.classList.toggle('show'); button.textContent = content.classList.contains('show') ? '🔒 Hide Solution' : '💡 Show Solution'; }</script>
+</body>
+</html>
+
