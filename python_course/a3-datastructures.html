@@ -17,6 +17,7 @@
     .explanation-box { background: #f0fdf4; border-left: 4px solid var(--accent-green); padding: 1rem; margin: 1rem 0; border-radius: 0 8px 8px 0; }
     .explanation-box h4 { color: var(--accent-green); margin-bottom: 0.5rem; }
   </style>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
   <nav class="main-nav">
@@ -397,5 +398,16 @@ Function result: {20, 30}</pre></div>
 
   <footer><p>🐍 Python Mastery | Instructor Solutions</p></footer>
   <script>function toggleSolution(btn) { const content = btn.nextElementSibling; content.classList.toggle('show'); btn.textContent = content.classList.contains('show') ? '🔒 Hide Solution' : '💡 Show Solution'; }</script>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+  <script>
+    const backToTopBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      backToTopBtn.classList.toggle('show', window.pageYOffset > 300);
+    });
+  </script>
 </body>
 </html>

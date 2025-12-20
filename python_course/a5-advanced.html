@@ -20,6 +20,7 @@
     .sub-question h5 { margin: 0 0 0.5rem; color: var(--python-blue); }
     .category-badge { display: inline-block; background: #e0e7ff; color: #3730a3; padding: 0.25rem 0.75rem; border-radius: 50px; font-size: 0.85rem; margin-bottom: 0.5rem; }
   </style>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
   <nav class="main-nav">
@@ -570,6 +571,17 @@ df.merge(df2, on='key')</code></pre></div>
 
   <footer><p>🐍 Python Mastery | Learn. Code. Create.</p></footer>
   <script>function toggleSolution(button) { const content = button.nextElementSibling; content.classList.toggle('show'); button.textContent = content.classList.contains('show') ? '🔒 Hide Solution' : '💡 Show Solution'; }</script>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+  <script>
+    const backToTopBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      backToTopBtn.classList.toggle('show', window.pageYOffset > 300);
+    });
+  </script>
 </body>
 </html>
 

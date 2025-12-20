@@ -162,6 +162,7 @@
       margin: 0;
     }
   </style>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
   <nav class="main-nav">
@@ -746,6 +747,17 @@
       hint.classList.toggle('show');
       btn.textContent = hint.classList.contains('show') ? '🔒 Hide Hint' : '💡 Show Hint';
     }
+  </script>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+  <script>
+    const backToTopBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      backToTopBtn.classList.toggle('show', window.pageYOffset > 300);
+    });
   </script>
 </body>
 </html>

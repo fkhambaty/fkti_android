@@ -5,13 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Session 1: Introduction to Python | 🐍 Python Mastery</title>
   <link rel="stylesheet" href="light-theme.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
   <div class="bg-pattern"></div>
 
   <nav class="course-nav">
     <div class="nav-inner">
-      <a href="index.html" class="nav-hub">
+      <a href="../index.html" class="nav-hub" title="FKTI Hub">
+        <i class="fas fa-home"></i>
+        <span>FKTI Hub</span>
+      </a>
+      <a href="index.html" class="nav-hub" style="margin-left: 8px;">
         <span>←</span> Python
       </a>
       <div class="session-pills">
@@ -663,6 +668,17 @@ print(type(age))     <span class="comment"># &lt;class 'float'&gt;</span></code>
     <p><strong>Python Mastery</strong> - Session 1 Complete!</p>
     <p style="font-size: 0.85rem; color: var(--text-muted);">Keep going - you're doing great! 💪</p>
   </footer>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+  <script>
+    const backToTopBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      backToTopBtn.classList.toggle('show', window.pageYOffset > 300);
+    });
+  </script>
 </body>
 </html>
 

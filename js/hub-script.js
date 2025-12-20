@@ -162,6 +162,7 @@ function enterCourse(courseType) {
     // Course routing
     const courseUrls = {
         'python': 'python_course/index.html',
+        'datascience': 'data-science-basics.html',
         'airflow': 'airflow_course/index.html',
         'terraform': 'terraform_course/index.html',
         'redshift': 'redshift_course/index.html',

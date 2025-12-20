@@ -200,6 +200,7 @@
       font-style: italic;
     }
   </style>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
   <div class="bg-pattern"></div>
@@ -504,6 +505,17 @@
       const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       const scrolled = (winScroll / height) * 100;
       document.getElementById('progressBar').style.width = scrolled + '%';
+    });
+  </script>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+  <script>
+    const backToTopBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      backToTopBtn.classList.toggle('show', window.pageYOffset > 300);
     });
   </script>
 </body>

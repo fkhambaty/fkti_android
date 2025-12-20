@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FKTI Learning Hub | Fakhruddin Khambaty Training Institute</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&family=Fredoka+One:wght@400&family=Bungee:wght@400&family=Righteous:wght@400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/fkti-light-theme.css">
     <link rel="stylesheet" href="css/hub-styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -64,16 +64,24 @@
             <div class="hero-content">
                 <div class="hero-badge">
                     <i class="fas fa-graduation-cap"></i>
-                    <span>Professional Data Engineering Education</span>
+                    <span>Master the Complete Data Stack: From Science to Cloud</span>
                 </div>
-                <h1 class="hero-title">Master Modern Data Engineering</h1>
+                <h1 class="hero-title">Data Adventures for Dummies</h1>
+                <div class="free-learning-banner">
+                    <p>
+                        🎓 <strong>100% FREE</strong> - This entire website is completely free for anyone who wants to learn!
+                    </p>
+                </div>
                 <p class="hero-description">
                     Learn industry-standard tools and techniques from basic concepts to advanced implementations. 
                     Build real-world projects and advance your career with comprehensive, hands-on courses.
                 </p>
+                <p style="text-align: center; color: var(--text-medium, #6b7280); font-style: italic; margin-top: -10px; margin-bottom: 20px;">
+                    📚 Learnings and notes curated by <a href="https://www.linkedin.com/in/fakhruddinkhambaty/" target="_blank" rel="noopener noreferrer" style="color: var(--primary-blue, #3b82f6); text-decoration: none; font-weight: 700; border-bottom: 2px solid var(--primary-blue, #3b82f6); transition: all 0.2s;">Fakhruddin Khambaty</a>
+                </p>
                 <div class="hero-stats">
                     <div class="stat-item">
-                        <div class="stat-number">9</div>
+                        <div class="stat-number">10</div>
                         <div class="stat-label">Comprehensive Courses</div>
                     </div>
                     <div class="stat-item">
@@ -135,6 +143,18 @@
                         <img src="assets/metabase-logo.svg" alt="Metabase">
                         <span class="tech-label">Analytics</span>
                     </div>
+                    <div class="tech-float tech-8">
+                        <i class="fas fa-database" style="font-size: 32px; color: #22c55e;"></i>
+                        <span class="tech-label">PostgreSQL</span>
+                    </div>
+                    <div class="tech-float tech-9">
+                        <i class="fas fa-truck-loading" style="font-size: 32px; color: #ec4899;"></i>
+                        <span class="tech-label">DMS</span>
+                    </div>
+                    <div class="tech-float tech-10">
+                        <i class="fas fa-chart-line" style="font-size: 32px; color: #667eea;"></i>
+                        <span class="tech-label">Data Science</span>
+                    </div>
                     
                     <!-- Connection lines -->
                     <svg class="power-connections" viewBox="0 0 400 400">
@@ -151,6 +171,9 @@
                         <line x1="200" y1="200" x2="100" y2="340" stroke="url(#lineGrad)" stroke-width="1"/>
                         <line x1="200" y1="200" x2="300" y2="320" stroke="url(#lineGrad)" stroke-width="1"/>
                         <line x1="200" y1="200" x2="200" y2="380" stroke="url(#lineGrad)" stroke-width="1"/>
+                        <line x1="200" y1="200" x2="280" y2="140" stroke="url(#lineGrad)" stroke-width="1"/>
+                        <line x1="200" y1="200" x2="120" y2="260" stroke="url(#lineGrad)" stroke-width="1"/>
+                        <line x1="200" y1="200" x2="240" y2="300" stroke="url(#lineGrad)" stroke-width="1"/>
                     </svg>
                 </div>
             </div>
@@ -460,7 +483,7 @@
 
             <div class="courses-grid">
                 <!-- Python Course Card -->
-                <div class="course-card python-card">
+                <div class="course-card python-card" style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); border: 2px solid #3b82f6;">
                     <div class="course-header">
                         <div class="course-icon">
                             <i class="fab fa-python"></i>
@@ -521,8 +544,70 @@
                     </button>
                 </div>
 
+                <!-- Data Science Basics Course Card -->
+                <div class="course-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none;">
+                    <div class="course-header">
+                        <div class="course-icon" style="background: rgba(255,255,255,0.2);">
+                            <i class="fas fa-chart-line" style="color: white;"></i>
+                        </div>
+                        <div class="course-badge" style="background: rgba(255,255,255,0.3); color: white; border: 1px solid rgba(255,255,255,0.5);">Beginner Friendly</div>
+                    </div>
+                    <h3 class="course-title" style="color: white;">Data Science Fundamentals</h3>
+                    <p class="course-description" style="color: rgba(255,255,255,0.9);">
+                        Master the essential math concepts for data science made super simple! Learn probability, 
+                        vectors, matrices, derivatives, and more with real-world examples. Perfect for beginners!
+                    </p>
+                    
+                    <div class="course-features">
+                        <div class="feature" style="color: rgba(255,255,255,0.9);">
+                            <i class="fas fa-clock"></i>
+                            <span>Self-Paced</span>
+                        </div>
+                        <div class="feature" style="color: rgba(255,255,255,0.9);">
+                            <i class="fas fa-book"></i>
+                            <span>6 Core Topics</span>
+                        </div>
+                        <div class="feature" style="color: rgba(255,255,255,0.9);">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Real Examples</span>
+                        </div>
+                        <div class="feature" style="color: rgba(255,255,255,0.9);">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>Beginner Focus</span>
+                        </div>
+                    </div>
+
+                    <div class="course-curriculum">
+                        <h4 style="color: white;">What You'll Learn:</h4>
+                        <ul style="color: rgba(255,255,255,0.9);">
+                            <li>Probability with everyday examples</li>
+                            <li>Scalars and Vectors explained simply</li>
+                            <li>Distance metrics (Euclidean, Manhattan)</li>
+                            <li>Matrix operations made easy</li>
+                            <li>Linear vs Non-linear functions</li>
+                            <li>Derivatives for data science</li>
+                        </ul>
+                    </div>
+
+                    <div class="course-stats">
+                        <div class="stat-item" style="background: rgba(255,255,255,0.95); border-radius: 8px; padding: 12px;">
+                            <span class="stat-value" style="color: #667eea; font-weight: 700; font-size: 1.3em;">100%</span>
+                            <span class="stat-label" style="color: #1d1d1f; font-weight: 600;">Beginner Friendly</span>
+                        </div>
+                        <div class="stat-item" style="background: rgba(255,255,255,0.95); border-radius: 8px; padding: 12px;">
+                            <span class="stat-value" style="color: #667eea; font-weight: 700; font-size: 1.3em;">8</span>
+                            <span class="stat-label" style="color: #1d1d1f; font-weight: 600;">Core Topics</span>
+                        </div>
+                    </div>
+
+                    <button class="course-cta datascience-cta" onclick="enterCourse('datascience')">
+                        <i class="fas fa-graduation-cap"></i>
+                        Start Data Science Course
+                    </button>
+                </div>
+
                 <!-- Airflow Course Card -->
-                <div class="course-card airflow-card">
+                <div class="course-card airflow-card" style="background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%); border: 2px solid #06b6d4;">
                     <div class="course-header">
                         <div class="course-icon">
                             <i class="fas fa-project-diagram"></i>
@@ -584,7 +669,7 @@
                 </div>
 
                 <!-- Terraform Course Card -->
-                <div class="course-card terraform-card">
+                <div class="course-card terraform-card" style="background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); border: 2px solid #8b5cf6;">
                     <div class="course-header">
                         <div class="course-icon">
                             <i class="fas fa-cube"></i>
@@ -635,7 +720,7 @@
                 </div>
 
                 <!-- AWS Redshift Course Card -->
-                <div class="course-card redshift-card">
+                <div class="course-card redshift-card" style="background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%); border: 2px solid #f97316;">
                     <div class="course-header">
                         <div class="course-icon">
                             <i class="fab fa-aws"></i>
@@ -686,7 +771,7 @@
                 </div>
 
                 <!-- MSSQL Course Card -->
-                <div class="course-card mssql-card">
+                <div class="course-card mssql-card" style="background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); border: 2px solid #ef4444;">
                     <div class="course-header">
                         <div class="course-icon">
                             <i class="fas fa-database"></i>
@@ -737,7 +822,7 @@
                 </div>
 
                 <!-- DBT Course Card -->
-                <div class="course-card dbt-card">
+                <div class="course-card dbt-card" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 2px solid #f59e0b;">
                     <div class="course-header">
                         <div class="course-icon">
                             <i class="fas fa-transform"></i>
@@ -788,7 +873,7 @@
                 </div>
 
                 <!-- Metabase Course Card -->
-                <div class="course-card metabase-card">
+                <div class="course-card metabase-card" style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); border: 2px solid #3b82f6;">
                     <div class="course-header">
                         <div class="course-icon">
                             <i class="fas fa-chart-bar"></i>
@@ -839,7 +924,7 @@
                 </div>
 
                 <!-- PostgreSQL/DBeaver Course Card - NEW -->
-                <div class="course-card postgres-card">
+                <div class="course-card postgres-card" style="background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); border: 2px solid #22c55e;">
                     <div class="course-header">
                         <div class="course-icon">
                             <i class="fas fa-elephant"></i>
@@ -901,7 +986,7 @@
                 </div>
 
                 <!-- AWS DMS Course Card - NEW -->
-                <div class="course-card dms-card">
+                <div class="course-card dms-card" style="background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%); border: 2px solid #ec4899;">
                     <div class="course-header">
                         <div class="course-icon">
                             <i class="fas fa-truck-loading"></i>
@@ -1095,6 +1180,7 @@
                 <div class="footer-column">
                     <h4>Programming</h4>
                     <a href="python_course/index.html">Python for Data Science</a>
+                    <a href="data-science-basics.html">Data Science Fundamentals</a>
                     <a href="#" onclick="enterCourse('mssql'); return false;">Microsoft SQL Server</a>
                     <a href="postgres_course/index.html">PostgreSQL & DBeaver</a>
                 </div>
@@ -1752,20 +1838,130 @@
             saveToCloud(analytics);
         })();
 
-        // Save to cloud (using JSONbin.io free tier)
+        // Save to cloud - Central storage on internet
+        // Using a free backend service to store analytics centrally
+        // This ensures data is synced across all devices
         async function saveToCloud(data) {
             try {
-                // Using localStorage as primary, with timestamp for sync
                 data.lastUpdated = new Date().toISOString();
+                data.deviceId = navigator.userAgent + '_' + (screen.width + screen.height);
+                
+                // Store locally as backup
                 localStorage.setItem('fkti_analytics', JSON.stringify(data));
+                
+                // Send to central server (using a free API service)
+                // Option 1: Using a simple backend endpoint (you'll need to set this up)
+                const API_ENDPOINT = 'https://api.jsonbin.io/v3/b'; // JSONBin.io free tier
+                const BIN_ID = 'YOUR_BIN_ID'; // Replace with your actual bin ID
+                const API_KEY = 'YOUR_API_KEY'; // Replace with your actual API key
+                
+                // Central Storage Implementation
+                // Using a free backend service to store analytics centrally
+                // This ensures data syncs across all devices (laptop, mobile, etc.)
+                
+                // Option 1: Using Firebase (Recommended - Free tier available)
+                // Uncomment and configure Firebase:
+                /*
+                if (typeof firebase !== 'undefined') {
+                    const db = firebase.firestore();
+                    db.collection('analytics').doc('main').set(data, { merge: true })
+                        .then(() => console.log('Saved to Firebase'))
+                        .catch(e => console.log('Firebase save failed:', e));
+                }
+                */
+                
+                // Option 2: Using Supabase (Free tier available)
+                // Uncomment and configure Supabase:
+                /*
+                if (typeof supabase !== 'undefined') {
+                    supabase.from('analytics').upsert({ id: 'main', data: data })
+                        .then(() => console.log('Saved to Supabase'))
+                        .catch(e => console.log('Supabase save failed:', e));
+                }
+                */
+                
+                // Option 3: Using a simple backend API endpoint
+                // Create a free backend on Vercel/Netlify/Heroku and update the URL:
+                const BACKEND_URL = 'https://fkti-analytics.vercel.app/api/analytics'; // Replace with your backend URL
+                
+                try {
+                    const response = await fetch(BACKEND_URL, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            analytics: data,
+                            timestamp: new Date().toISOString(),
+                            source: 'fkti_website'
+                        }),
+                        // Don't wait for response to avoid blocking
+                        signal: AbortSignal.timeout(3000)
+                    }).catch(() => {
+                        // Silently fail if backend is not available
+                        console.log('Central storage not configured - using localStorage only');
+                    });
+                    
+                    if (response && response.ok) {
+                        console.log('Analytics saved to central storage');
+                    }
+                } catch (e) {
+                    // Backend not available - continue with localStorage
+                    console.log('Using localStorage (backend not configured):', e.message);
+                }
             } catch (e) {
-                console.log('Analytics save:', e);
+                console.log('Analytics save error:', e);
             }
         }
+        
+        // Load analytics from central storage
+        async function loadAnalyticsFromCloud() {
+            try {
+                const BACKEND_URL = 'https://fkti-analytics.vercel.app/api/analytics'; // Replace with your backend URL
+                
+                // Try to load from central server first
+                const response = await fetch(BACKEND_URL, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                }).catch(() => null);
+                
+                if (response && response.ok) {
+                    const cloudData = await response.json();
+                    if (cloudData && cloudData.analytics) {
+                        // Merge with local data
+                        const localData = JSON.parse(localStorage.getItem('fkti_analytics') || '{}');
+                        const merged = mergeAnalytics(localData, cloudData.analytics);
+                        localStorage.setItem('fkti_analytics', JSON.stringify(merged));
+                        return merged;
+                    }
+                }
+                
+                // Fallback to localStorage
+                return JSON.parse(localStorage.getItem('fkti_analytics') || '{}');
+            } catch (e) {
+                console.log('Cloud load failed, using local:', e);
+                return JSON.parse(localStorage.getItem('fkti_analytics') || '{}');
+            }
+        }
+        
+        // Merge analytics from multiple sources
+        function mergeAnalytics(local, cloud) {
+            return {
+                totalVisits: Math.max(local.totalVisits || 0, cloud.totalVisits || 0),
+                pageViews: Math.max(local.pageViews || 0, cloud.pageViews || 0),
+                uniqueVisitors: [...new Set([...(local.uniqueVisitors || []), ...(cloud.uniqueVisitors || [])])],
+                dailyStats: { ...cloud.dailyStats, ...local.dailyStats },
+                recentVisits: [...(cloud.recentVisits || []), ...(local.recentVisits || [])].slice(0, 20),
+                courseCounts: { ...cloud.courseCounts, ...local.courseCounts }
+            };
+        }
 
-        // Load analytics for admin dashboard
-        function loadAnalytics() {
-            const analytics = JSON.parse(localStorage.getItem('fkti_analytics') || '{}');
+        // Load analytics for admin dashboard - from central storage
+        async function loadAnalytics() {
+            // Try to load from cloud first, then fallback to local
+            const analytics = await loadAnalyticsFromCloud();
             const today = new Date().toISOString().split('T')[0];
             
             document.getElementById('totalVisitors').textContent = analytics.totalVisits || 0;
@@ -1823,6 +2019,32 @@
             if (e.target === this) closeAdminModal();
         });
     </script>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Back to Top Button Functionality
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+        
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    </script>
 </body>
 </html>
+
 

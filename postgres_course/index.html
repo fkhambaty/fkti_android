@@ -477,6 +477,19 @@
     <footer class="course-footer">
         <p>© 2024 FKTI Learning Hub | PostgreSQL & DBeaver Course</p>
     </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    <script>
+        const backToTopBtn = document.getElementById('backToTop');
+        if (backToTopBtn) {
+            window.addEventListener('scroll', () => {
+                backToTopBtn.classList.toggle('show', window.pageYOffset > 300);
+            });
+        }
+    </script>
 </body>
 </html>
 

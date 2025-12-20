@@ -5,11 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Session 10: Pandas Part I | 🐍 Python Mastery</title>
   <link rel="stylesheet" href="light-theme.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
   <nav class="main-nav">
     <div class="nav-content">
-      <a href="complete-course.html" class="logo">🐍 Python Mastery</a>
+            <a href="../index.html" class="nav-hub" title="FKTI Hub" style="display: flex; align-items: center; gap: 6px; padding: 8px 16px; background: linear-gradient(180deg, #ffffff 0%, #f5f5f7 100%); border: 1px solid #d1d5db; border-radius: 10px; color: #1d1d1f; font-size: 13px; font-weight: 600; text-decoration: none; box-shadow: 0 3px 0 #d1d5db, 0 4px 8px rgba(0,0,0,0.1); margin-right: 8px;">
+        <i class="fas fa-home"></i>
+        <span>FKTI Hub</span>
+      </a>
+<a href="complete-course.html" class="logo">🐍 Python Mastery</a>
       <div class="session-nav">
         <a href="s1-intro.html" class="nav-link">1</a>
         <a href="s2-datatypes.html" class="nav-link">2</a>
@@ -674,6 +679,17 @@ Concatenated:
   <footer>
     <p>🐍 Python Mastery | Learn. Code. Create.</p>
   </footer>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+  <script>
+    const backToTopBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      backToTopBtn.classList.toggle('show', window.pageYOffset > 300);
+    });
+  </script>
 </body>
 </html>
 
