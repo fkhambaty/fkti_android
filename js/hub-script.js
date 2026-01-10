@@ -713,6 +713,16 @@ const storyThemes = {
                 title: "AWS DMS - The Data Moving Truck",
                 desc: "DMS is like having a magical moving truck! 🚚 It takes data from your old store system and moves it to the fancy new cloud warehouse - WITHOUT closing the store! Zero downtime, zero data loss!",
                 example: "Moving 500GB of sales data from Store Server to AWS... Customers still shopping... Done! Not a single receipt lost! 🎉"
+            },
+            step5: {
+                title: "Terraform - The Store Builder Robot",
+                desc: "Need a new data center? Terraform builds it in 10 minutes! 🏗️ Like LEGO for the cloud - 'I need 1 data warehouse, 5 servers, 3 storage buckets, and connect them all together!' Click. Done. No calling IT for 6 months!",
+                example: "Creating analytics infrastructure for Black Friday... Scaling to handle 10x normal traffic... Ready to process 1 million transactions per hour! 💪"
+            },
+            step6: {
+                title: "Redshift - The Super Organized Warehouse",
+                desc: "Redshift is like having a warehouse where EVERYTHING is perfectly organized! 📦 5 billion rows of data, but finding 'all customers who bought organic milk on Tuesdays' takes 2 seconds! It's the Marie Kondo of data storage!",
+                example: "'Which stores sold out of toilet paper last March?' Searching 10 years of data... Found 847 stores in 0.8 seconds! 🚀"
             }
         },
         result: {
@@ -751,6 +761,16 @@ const storyThemes = {
                 title: "AWS DMS - The Reel-to-Digital Converter",
                 desc: "DMS migrates all historical ticket data to the cloud! 📼 Like converting all those old film reels to digital - but for data! 10 years of box office history, now searchable in seconds!",
                 example: "Migrated 15 years of ticket sales while theatres stayed open. That's 500 million tickets worth of data! 🎬"
+            },
+            step5: {
+                title: "Terraform - The Cinema Infrastructure Builder",
+                desc: "Need new servers for streaming analytics? Terraform builds the entire infrastructure in minutes! 🏗️ 'I need 3 data warehouses, 10 compute instances, and auto-scaling for opening weekend!' Click. Done. No IT tickets!",
+                example: "Building infrastructure for 'Avengers 10' opening weekend... Scaling for 10 million ticket sales... Ready in 8 minutes! 🎬"
+            },
+            step6: {
+                title: "Redshift - The Box Office Archive",
+                desc: "Redshift stores decades of movie data perfectly organized! 📦 20 years of ticket sales, but finding 'all horror movies that sold out on Friday nights' takes 1 second! It's the ultimate film database!",
+                example: "'Which movies had the best popcorn sales?' Searching 15 years of data... Found top 10 in 0.5 seconds! Horror movies + nachos = gold! 🍿"
             }
         },
         result: {
@@ -789,6 +809,16 @@ const storyThemes = {
                 title: "AWS DMS - The Airline Merger Expert",
                 desc: "When two airlines merge, DMS combines their systems! 🤝 Millions of loyalty members, fleet data, crew schedules - all unified without a single flight cancellation!",
                 example: "Merged two airlines' databases overnight. 50 million frequent flyer accounts combined flawlessly! ✨"
+            },
+            step5: {
+                title: "Terraform - The Airport Infrastructure Manager",
+                desc: "Need cloud infrastructure for flight operations? Terraform builds it instantly! 🏗️ 'I need 5 data warehouses, 20 servers for real-time tracking, and auto-scaling for holiday rush!' Click. Done. No delays!",
+                example: "Building infrastructure for holiday season... Scaling to handle 2 million passengers/day... Ready in 12 minutes! ✈️"
+            },
+            step6: {
+                title: "Redshift - The Flight Data Warehouse",
+                desc: "Redshift stores billions of flight records perfectly organized! 📦 30 years of flight data, but finding 'all delayed flights due to weather in December' takes 2 seconds! It's the control tower's best friend!",
+                example: "'Which routes have the most delays?' Searching 10 years of data... Found top 50 routes in 1.2 seconds! Chicago O'Hare + winter = delays! ❄️"
             }
         },
         result: {
@@ -827,6 +857,16 @@ const storyThemes = {
                 title: "AWS DMS - The Legacy System Bridge",
                 desc: "Oil rigs run systems from the 1990s! 📟 DMS connects these ancient systems to modern cloud analytics. Like teaching your grandpa's computer to talk to Alexa!",
                 example: "Connected 30-year-old SCADA system to AWS. Now engineers can monitor rigs from their phones! 📱"
+            },
+            step5: {
+                title: "Terraform - The Rig Infrastructure Builder",
+                desc: "Need cloud infrastructure for sensor analytics? Terraform builds it in minutes! 🏗️ 'I need 3 data warehouses, 15 servers for real-time monitoring, and auto-scaling for peak production!' Click. Done. No rig downtime!",
+                example: "Building infrastructure for 50 oil rigs... Scaling to handle 1 billion sensor readings/day... Ready in 10 minutes! 🛢️"
+            },
+            step6: {
+                title: "Redshift - The Sensor Data Archive",
+                desc: "Redshift stores decades of sensor data perfectly organized! 📦 20 years of pressure, temperature, and flow data, but finding 'all anomalies in Pump #7 last month' takes 1 second! It's the engineer's crystal ball!",
+                example: "'Which pumps had the most failures?' Searching 15 years of data... Found top 20 pumps in 0.8 seconds! Predictive maintenance scheduled! 🔧"
             }
         },
         result: {
@@ -865,6 +905,16 @@ const storyThemes = {
                 title: "AWS DMS - The ERP Unifier",
                 desc: "Every acquisition means another ERP system! 🏢 DMS merges Oracle, SAP, and custom systems into one unified procurement platform. One vendor database to rule them all!",
                 example: "Unified 7 different ERP systems after acquisitions. Found we had 3 contracts with same vendor at different prices! 🤯"
+            },
+            step5: {
+                title: "Terraform - The Procurement Infrastructure Builder",
+                desc: "Need cloud infrastructure for vendor analytics? Terraform builds it instantly! 🏗️ 'I need 2 data warehouses, 8 servers for price tracking, and auto-scaling for purchase order processing!' Click. Done. No procurement delays!",
+                example: "Building infrastructure for global procurement... Scaling to handle 100,000 purchase orders/day... Ready in 7 minutes! 📦"
+            },
+            step6: {
+                title: "Redshift - The Vendor Data Warehouse",
+                desc: "Redshift stores years of vendor and purchase data perfectly organized! 📦 10 years of procurement data, but finding 'all vendors who delivered late in Q4' takes 1 second! It's the procurement team's best tool!",
+                example: "'Which vendors have the best on-time delivery?' Searching 5 years of data... Found top 100 vendors in 0.6 seconds! Negotiations just got easier! 💰"
             }
         },
         result: {
@@ -903,6 +953,16 @@ const storyThemes = {
                 title: "AWS DMS - The HIPAA-Compliant Migrator",
                 desc: "Moving healthcare data requires EXTREME security! 🔒 DMS migrates patient records while maintaining full compliance. Every bit encrypted, every access logged!",
                 example: "Migrated 10 million patient records to cloud. Zero data breaches. Full HIPAA compliance. Auditors impressed! ✅"
+            },
+            step5: {
+                title: "Terraform - The Hospital Infrastructure Builder",
+                desc: "Need secure cloud infrastructure for medical data? Terraform builds it with HIPAA compliance! 🏗️ 'I need 4 encrypted data warehouses, 12 secure servers, and auto-scaling for patient records!' Click. Done. Fully compliant!",
+                example: "Building HIPAA-compliant infrastructure... Scaling to handle 5 million patient records... Ready in 15 minutes! 🏥"
+            },
+            step6: {
+                title: "Redshift - The Medical Records Warehouse",
+                desc: "Redshift stores decades of patient data perfectly organized and secure! 📦 25 years of medical records, but finding 'all diabetic patients on Medication X' takes 2 seconds! It's HIPAA-compliant and lightning-fast!",
+                example: "'Which patients had adverse reactions to Drug Y?' Searching 10 years of data... Found 847 cases in 1.1 seconds! Protocol updated! 💊"
             }
         },
         result: {
@@ -941,6 +1001,16 @@ const storyThemes = {
                 title: "AWS DMS - The Plant Integrator",
                 desc: "Car companies have factories worldwide! 🌍 DMS syncs data from Germany, Mexico, Japan, USA into one global view. Same quality standards everywhere!",
                 example: "Unified quality data from 12 plants. Found best practices in Japan. Applied globally. Defect rate dropped 23%! 🎌"
+            },
+            step5: {
+                title: "Terraform - The Factory Infrastructure Builder",
+                desc: "Need cloud infrastructure for production analytics? Terraform builds it instantly! 🏗️ 'I need 6 data warehouses, 25 servers for quality tracking, and auto-scaling for production lines!' Click. Done. No factory downtime!",
+                example: "Building infrastructure for 15 production lines... Scaling to handle 1 million parts/day... Ready in 9 minutes! 🚗"
+            },
+            step6: {
+                title: "Redshift - The Manufacturing Data Warehouse",
+                desc: "Redshift stores years of production data perfectly organized! 📦 10 years of quality data, but finding 'all paint defects from Station 7 last week' takes 1 second! It's the quality team's best friend!",
+                example: "'Which stations have the most defects?' Searching 5 years of data... Found top 20 stations in 0.7 seconds! Root cause identified! 🔧"
             }
         },
         result: {
@@ -979,6 +1049,16 @@ const storyThemes = {
                 title: "AWS DMS - The Global Compliance Engine",
                 desc: "Banks operate in 100+ countries with different regulations! 🌍 DMS syncs customer data across regions while maintaining GDPR, SOX, and PCI compliance. One source of truth for auditors!",
                 example: "Merged customer data from 23 countries. Detected duplicate accounts used for round-tripping. Saved $12M in potential fines! 📋"
+            },
+            step5: {
+                title: "Terraform - The Banking Infrastructure Builder",
+                desc: "Need secure cloud infrastructure for financial data? Terraform builds it with full compliance! 🏗️ 'I need 8 encrypted data warehouses, 30 secure servers, and auto-scaling for transaction processing!' Click. Done. PCI-DSS compliant!",
+                example: "Building PCI-compliant infrastructure... Scaling to handle 10 million transactions/day... Ready in 20 minutes! 🏦"
+            },
+            step6: {
+                title: "Redshift - The Financial Data Warehouse",
+                desc: "Redshift stores decades of transaction data perfectly organized and secure! 📦 20 years of banking data, but finding 'all transactions over $10K in the last hour' takes 1 second! It's the fraud team's superpower!",
+                example: "'Which accounts show suspicious patterns?' Searching 5 years of data... Found 47 flagged accounts in 0.9 seconds! Fraud prevented! 🚨"
             }
         },
         result: {
@@ -1017,6 +1097,16 @@ const storyThemes = {
                 title: "AWS DMS - The Inventory Synchronizer",
                 desc: "Products listed on Amazon, eBay, Shopify, and your own website! 📱 DMS keeps inventory synced in real-time. Sold on Amazon? Instantly updated everywhere. No overselling nightmares!",
                 example: "Last 50 units of viral TikTok product! Sold across 4 platforms in 3 minutes. Zero oversells. Happy customers everywhere! 🎉"
+            },
+            step5: {
+                title: "Terraform - The E-Commerce Infrastructure Builder",
+                desc: "Need cloud infrastructure for online shopping? Terraform builds it instantly! 🏗️ 'I need 5 data warehouses, 20 servers for real-time inventory, and auto-scaling for Black Friday!' Click. Done. No website crashes!",
+                example: "Building infrastructure for holiday shopping... Scaling to handle 50 million page views/day... Ready in 11 minutes! 🛍️"
+            },
+            step6: {
+                title: "Redshift - The Shopping Data Warehouse",
+                desc: "Redshift stores years of e-commerce data perfectly organized! 📦 5 years of customer behavior, but finding 'all users who abandoned cart at checkout' takes 1 second! It's the marketing team's goldmine!",
+                example: "'Which products have the highest conversion rate?' Searching 3 years of data... Found top 100 products in 0.8 seconds! Marketing campaigns optimized! 📈"
             }
         },
         result: {
@@ -1055,6 +1145,16 @@ const storyThemes = {
                 title: "Machine Learning - The Prediction Engine",
                 desc: "Machine Learning learns from the past to predict the future! 🤖 Train it on historical data, and it learns patterns. Then ask: 'Will this customer churn?' 'What's the stock price tomorrow?' 'Which movie will they like?' It gets smarter with more data!",
                 example: "Trained ML model on 10 million movie ratings. Now predicts what you'll watch with 94% accuracy! Netflix-level recommendations! 🎬"
+            },
+            step5: {
+                title: "Terraform - The Data Science Infrastructure Builder",
+                desc: "Need cloud infrastructure for ML models? Terraform builds it instantly! 🏗️ 'I need 4 data warehouses, 15 GPU servers for training, and auto-scaling for predictions!' Click. Done. No waiting for IT!",
+                example: "Building ML infrastructure... Scaling to handle 1 million predictions/hour... Ready in 13 minutes! 📊"
+            },
+            step6: {
+                title: "Redshift - The Data Science Warehouse",
+                desc: "Redshift stores massive datasets perfectly organized for analysis! 📦 10 years of data, but finding 'all customers who bought Product A and B together' takes 2 seconds! It's the data scientist's playground!",
+                example: "'What's the correlation between study hours and test scores?' Searching 5 years of data... Found 0.85 correlation in 1.0 seconds! Strong relationship confirmed! 📈"
             }
         },
         result: {
@@ -1101,24 +1201,30 @@ function selectStoryTheme(themeName) {
     // Update DataBot speech
     updateDatabotSpeech(theme.speech);
     
-    // Update journey steps (first 4 for demo)
+    // Update journey steps (all 6 steps)
     const steps = theme.steps;
     const stepLabels = {
         1: 'Real Scenario:',
         2: themeName === 'datascience' ? 'Python discovers:' : 'DBeaver reveals:',
         3: themeName === 'datascience' ? 'Statistics finds:' : 'Python discovers:',
-        4: themeName === 'datascience' ? 'ML predicts:' : 'DMS in action:'
+        4: themeName === 'datascience' ? 'ML predicts:' : 'DMS in action:',
+        5: 'Terraform builds:',
+        6: 'Redshift answers:'
     };
     
+    // Update all steps dynamically
     Object.keys(steps).forEach((key, index) => {
         const stepNum = index + 1;
         const titleEl = document.getElementById(`step${stepNum}-title`);
         const descEl = document.getElementById(`step${stepNum}-desc`);
         const exampleEl = document.getElementById(`step${stepNum}-example`);
         
-        if (titleEl) titleEl.textContent = steps[key].title;
-        if (descEl) descEl.textContent = steps[key].desc;
-        if (exampleEl) exampleEl.innerHTML = `<strong>${stepLabels[stepNum] || 'Example:'}</strong> "${steps[key].example}"`;
+        if (titleEl && steps[key]) titleEl.textContent = steps[key].title;
+        if (descEl && steps[key]) descEl.textContent = steps[key].desc;
+        if (exampleEl && steps[key]) {
+            const label = stepLabels[stepNum] || 'Example:';
+            exampleEl.innerHTML = `<strong>${label}</strong> "${steps[key].example}"`;
+        }
     });
     
     // Update result card
